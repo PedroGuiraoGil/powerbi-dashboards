@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power BI Dashboard Demos - Pedro Guirao</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at 20% 50%, #ff6b6b 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, #4ecdc4 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, #45b7d1 0%, transparent 50%),
+                        radial-gradient(circle at 60% 30%, #96ceb4 0%, transparent 50%),
+                        radial-gradient(circle at 90% 70%, #ffeaa7 0%, transparent 50%),
+                        linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 107, 107, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(78, 205, 196, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(69, 183, 209, 0.2) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(1deg); }
+            66% { transform: translateY(10px) rotate(-1deg); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 80px;
+            position: relative;
+            padding: 60px 0;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .header p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 10px 8px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .dashboard-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            border: 3px solid transparent;
+            position: relative;
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 35px 70px rgba(0,0,0,0.25);
+        }
+
+        .dashboard-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .dashboard-card.legacy {
+            border-image: linear-gradient(45deg, #28a745, #20c997) 1;
+        }
+
+        .dashboard-card.unavailable {
+            opacity: 0.7;
+            cursor: not-allowed;
+            border-image: linear-gradient(45deg, #dc3545, #fd7e14) 1;
+        }
+
+        .dashboard-card.unavailable:hover {
+            transform: none;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .dashboard-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .image-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .card-content {
+            padding: 30px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .status-badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .status-legacy {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .status-unavailable {
+            background: linear-gradient(45deg, #dc3545, #fd7e14);
+            color: white;
+        }
+
+        .card-description {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .view-button {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .view-button:hover:not(:disabled) {
+            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(78, 205, 196, 0.4);
+        }
+
+        .view-button:disabled {
+            background: linear-gradient(45deg, #ccc, #999);
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .dashboard-viewer {
+            display: none;
+            background: rgba(255,255,255,0.98);
+            border-radius: 30px;
+            padding: 40px;
+            margin-top: 50px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .dashboard-viewer.active {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .viewer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid transparent;
+            background: linear-gradient(white, white) padding-box, 
+                        linear-gradient(45deg, #ff6b6b, #4ecdc4) border-box;
+        }
+
+        .viewer-title {
+            font-size: 2.2rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        .close-button {
+            background: linear-gradient(45deg, #dc3545, #fd7e14);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
+        }
+
+        .close-button:hover {
+            background: linear-gradient(45deg, #fd7e14, #dc3545);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(220, 53, 69, 0.4);
+        }
+
+        .dashboard-iframe {
+            width: 100%;
+            height: 700px;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .info-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px;
+            margin-top: 80px;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.2);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+        }
+
+        .info-section h2 {
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            text-align: center;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .info-item {
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .info-item h3 {
+            margin-bottom: 15px;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .info-item p {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .warning-alert {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            border: 2px solid #e17055;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            color: #2d3436;
+            box-shadow: 0 10px 30px rgba(225, 112, 85, 0.3);
+        }
+
+        .warning-alert h4 {
+            margin-bottom: 15px;
+            color: #2d3436;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .warning-alert p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .shape1 {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape2 {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, #45b7d1, #96ceb4);
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+
+        .shape3 {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ffeaa7, #fdcb6e);
+            bottom: 30%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .dashboard-iframe {
+                height: 500px;
+            }
+            
+            .info-section {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="floating-shapes">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Power BI Dashboard Demos</h1>
+            <p>Experiencias interactivas que transforman datos en decisiones</p>
+            <div>
+                <span class="badge">🚀 Power BI Legacy</span>
+                <span class="badge">🌐 Acceso Público</span>
+                <span class="badge">💼 Demos Comerciales</span>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card legacy" onclick="showDashboard('alquiler')">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/600x250/ff6b6b/ffffff?text=📊+Análisis+de+Alquiler" alt="Dashboard de Alquiler" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-placeholder\'>📊</div>'">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">📊 Análisis de Alquiler</h3>
+                        <span class="status-badge status-legacy">Legacy</span>
+                    </div>
+                    <p class="card-description">
+                        Dashboard completo de análisis de mercado inmobiliario. Incluye métricas de precios, ubicaciones, tendencias temporales y análisis comparativo por zonas geográficas.
+                    </p>
+                    <button class="view-button">🚀 Explorar Dashboard</button>
+                </div>
+            </div>
+
+            <div class="dashboard-card legacy" onclick="showDashboard('ventas')">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/600x250/4ecdc4/ffffff?text=💰+Dashboard+de+Ventas" alt="Dashboard de Ventas" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-placeholder\'>💰</div>'">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">💰 Dashboard de Ventas</h3>
+                        <span class="status-badge status-legacy">Legacy</span>
+                    </div>
+                    <p class="card-description">
+                        Análisis completo de performance comercial con KPIs principales, evolución temporal, segmentación de clientes y análisis detallado de productos estrella.
+                    </p>
+                    <button class="view-button">🚀 Explorar Dashboard</button>
+                </div>
+            </div>
+
+            <div class="dashboard-card legacy" onclick="showDashboard('marketing')">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/600x250/45b7d1/ffffff?text=📈+Marketing+Analytics" alt="Dashboard de Marketing" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-placeholder\'>📈</div>'">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">📈 Marketing Analytics</h3>
+                        <span class="status-badge status-legacy">Legacy</span>
+                    </div>
+                    <p class="card-description">
+                        Métricas avanzadas de campañas digitales, ROI detallado, análisis de conversiones, seguimiento de canales y objetivos estratégicos de marketing.
+                    </p>
+                    <button class="view-button">🚀 Explorar Dashboard</button>
+                </div>
+            </div>
+
+            <div class="dashboard-card unavailable">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/600x250/dc3545/ffffff?text=🔒+Acceso+Restringido" alt="Dashboard No Disponible" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-placeholder\'>🔒</div>'">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">🔒 Dashboard Financiero</h3>
+                        <span class="status-badge status-unavailable">No Disponible</span>
+                    </div>
+                    <p class="card-description">
+                        Este dashboard requiere autenticación debido a los cambios de política de Microsoft. Ya no es accesible públicamente sin cuentas empresariales.
+                    </p>
+                    <button class="view-button" disabled>🚫 Requiere Autenticación</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="dashboardViewer" class="dashboard-viewer">
+            <div class="viewer-header">
+                <h2 id="viewerTitle" class="viewer-title">Dashboard</h2>
+                <button class="close-button" onclick="closeDashboard()">✕ Cerrar</button>
+            </div>
+            <div class="warning-alert">
+                <h4>⚡ Dashboard Legacy - Acceso Público</h4>
+                <p>Este es un dashboard legacy de Power BI que mantiene acceso público sin autenticación. Los nuevos dashboards de Power BI requieren cuentas empresariales tanto del creador como del usuario final.</p>
+            </div>
+            <iframe id="dashboardFrame" class="dashboard-iframe" src="" allowfullscreen="true"></iframe>
+        </div>
+
+        <div class="info-section">
+            <h2>🎯 Información del Proyecto</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <h3>🎯 Propósito</h3>
+                    <p>Estos dashboards sirven como demos comerciales para mostrar las capacidades avanzadas de Power BI y como material educativo premium para formación empresarial.</p>
+                </div>
+                <div class="info-item">
+                    <h3>🔧 Tecnología</h3>
+                    <p>Power BI con embebido público legacy. Funcionan sin necesidad de cuentas de usuario, autenticación o licencias adicionales para el acceso público.</p>
+                </div>
+                <div class="info-item">
+                    <h3>📊 Casos de Uso</h3>
+                    <p>Análisis de mercado inmobiliario, performance comercial, marketing digital avanzado y métricas financieras estratégicas para toma de decisiones.</p>
+                </div>
+                <div class="info-item">
+                    <h3>⚠️ Limitaciones Actuales</h3>
+                    <p>Microsoft cambió su política de embebido público. Los nuevos dashboards requieren cuentas empresariales de pago para acceso público y visualización.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuración de dashboards
+        const dashboards = {
+            alquiler: {
+                title: "📊 Análisis de Alquiler - Mercado Inmobiliario",
+                url: "https://app.powerbi.com/reportEmbed?reportId=11cd9035-d661-4d72-a338-d123dd444fce&autoAuth=true&ctid=81500f6d-bce9-4834-b446-74b5fb9cf10e"
+            },
+            ventas: {
+                title: "💰 Dashboard de Ventas - Performance Comercial",
+                url: "URL_DEL_DASHBOARD_VENTAS" // Reemplaza con tu URL real
+            },
+            marketing: {
+                title: "📈 Marketing Analytics - Campañas Digitales",
+                url: "URL_DEL_DASHBOARD_MARKETING" // Reemplaza con tu URL real
+            }
+        };
+
+        function showDashboard(dashboardKey) {
+            const dashboard = dashboards[dashboardKey];
+            if (!dashboard) return;
+
+            const viewer = document.getElementById('dashboardViewer');
+            const title = document.getElementById('viewerTitle');
+            const frame = document.getElementById('dashboardFrame');
+
+            title.textContent = dashboard.title;
+            frame.src = dashboard.url;
+            viewer.classList.add('active');
+
+            // Smooth scroll al dashboard
+            setTimeout(() => {
+                viewer.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        function closeDashboard() {
+            const viewer = document.getElementById('dashboardViewer');
+            const frame = document.getElementById('dashboardFrame');
+            
+            viewer.classList.remove('active');
+            frame.src = "";
+            
+            // Scroll de vuelta arriba
+            setTimeout(() => {
+                document.querySelector('.header').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        // Cerrar dashboard con tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeDashboard();
+            }
+        });
+
+        // Animaciones adicionales al scroll
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.2);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
