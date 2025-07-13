@@ -149,21 +149,21 @@
         .powerbi-brand {
             font-weight: bold;
             color: #FFD700;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 10px rgba(255,215,0,0.5);
-            background: linear-gradient(45deg, #F2C811, #FFD700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9), 0 0 15px rgba(255,215,0,0.8);
+            transition: all 0.6s ease;
         }
 
         .excel-brand {
             font-weight: bold;
-            color: #00FF7F;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 10px rgba(0,255,127,0.5);
-            background: linear-gradient(45deg, #217346, #00FF7F);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));
+            color: #32CD32;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9), 0 0 15px rgba(50,205,50,0.8);
+            transition: all 0.6s ease;
+        }
+
+        .text-block.highlight .powerbi-brand,
+        .text-block.highlight .excel-brand {
+            color: #ffffff !important;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
         }
 
         @keyframes fadeInUp {
@@ -379,7 +379,6 @@
         }
 
         .view-button {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
             color: white;
             border: none;
             padding: 15px 30px;
@@ -391,9 +390,10 @@
             width: 100%;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
             position: relative;
             overflow: hidden;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            z-index: 2;
         }
 
         .view-button::before {
@@ -407,6 +407,7 @@
             border-radius: 50%;
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
+            z-index: 1;
         }
 
         .view-button:hover::before {
@@ -414,18 +415,110 @@
             height: 300px;
         }
 
-        .view-button:hover {
-            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(78, 205, 196, 0.4);
+        /* BOTONES TEMÁTICOS */
+        button.btn-ventas {
+            background: linear-gradient(135deg, #667eea, #764ba2) !important;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6) !important;
         }
 
-        .view-button.private {
-            background: linear-gradient(45deg, #fd7e14, #ffc107);
+        button.btn-ventas:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea) !important;
+            transform: translateY(-3px) !important;
         }
 
-        .view-button.private:hover {
-            background: linear-gradient(45deg, #ffc107, #fd7e14);
+        button.btn-futbol {
+            background: linear-gradient(135deg, #2c3e50, #34495e) !important;
+            box-shadow: 0 10px 30px rgba(44, 62, 80, 0.6) !important;
+        }
+
+        button.btn-futbol:hover {
+            background: linear-gradient(135deg, #34495e, #2c3e50) !important;
+            transform: translateY(-3px) !important;
+        }
+
+        button.btn-presencia {
+            background: linear-gradient(135deg, #f093fb, #f5576c) !important;
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.6) !important;
+        }
+
+        button.btn-presencia:hover {
+            background: linear-gradient(135deg, #f5576c, #f093fb) !important;
+            transform: translateY(-3px) !important;
+        }
+
+        button.btn-coches {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f) !important;
+            box-shadow: 0 10px 30px rgba(252, 182, 159, 0.6) !important;
+            color: #333 !important;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8) !important;
+        }
+
+        button.btn-coches:hover {
+            background: linear-gradient(135deg, #fcb69f, #ffecd2) !important;
+            transform: translateY(-3px) !important;
+        }
+
+        /* Override para botones privados - debe ir después */
+
+        /* ESTILOS BASE PARA TODOS LOS BOTONES */
+        .btn-ventas, .btn-futbol, .btn-presencia, .btn-coches {
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        /* BOTONES ESPECÍFICOS */
+        .btn-ventas {
+            background: linear-gradient(135deg, #667eea, #764ba2) !important;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6) !important;
+        }
+
+        .btn-ventas:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea) !important;
+            transform: translateY(-3px) !important;
+        }
+
+        .btn-futbol {
+            background: linear-gradient(135deg, #2c3e50, #34495e) !important;
+            box-shadow: 0 10px 30px rgba(44, 62, 80, 0.6) !important;
+        }
+
+        .btn-futbol:hover {
+            background: linear-gradient(135deg, #34495e, #2c3e50) !important;
+            transform: translateY(-3px) !important;
+        }
+
+        .btn-presencia {
+            background: linear-gradient(135deg, #f093fb, #f5576c) !important;
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.6) !important;
+        }
+
+        .btn-presencia:hover {
+            background: linear-gradient(135deg, #f5576c, #f093fb) !important;
+            transform: translateY(-3px) !important;
+        }
+
+        .btn-coches {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f) !important;
+            box-shadow: 0 10px 30px rgba(252, 182, 159, 0.6) !important;
+            color: #333 !important;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8) !important;
+        }
+
+        .btn-coches:hover {
+            background: linear-gradient(135deg, #fcb69f, #ffecd2) !important;
+            transform: translateY(-3px) !important;
         }
 
         .gallery-modal {
@@ -605,7 +698,7 @@
                     <p class="card-description">
                         Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.
                     </p>
-                    <button class="view-button">🔍 Ver todas las páginas (3)</button>
+                    <button class="btn-ventas" onclick="openGallery('ventas')">📊 Ver todas las páginas (3)</button>
                 </div>
             </div>
 
@@ -622,7 +715,7 @@
                     <p class="card-description">
                         Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.
                     </p>
-                    <button class="view-button">🔍 Ver todas las páginas (2)</button>
+                    <button class="btn-futbol" onclick="openGallery('futbol')">⚽ Ver todas las páginas (2)</button>
                 </div>
             </div>
 
@@ -639,7 +732,7 @@
                     <p class="card-description">
                         Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.
                     </p>
-                    <button class="view-button">🔍 Ver todas las páginas (2)</button>
+                    <button class="btn-presencia" onclick="openGallery('vacaciones')">🕐 Ver todas las páginas (2)</button>
                 </div>
             </div>
 
@@ -656,7 +749,7 @@
                     <p class="card-description">
                         Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>2 páginas interactivas</strong> con KPIs del sector automovilístico.
                     </p>
-                    <button class="view-button">🔍 Ver todas las páginas (2)</button>
+                    <button class="btn-coches" onclick="openGallery('alquilercoches')">🚗 Ver todas las páginas (2)</button>
                 </div>
             </div>
         </div>
