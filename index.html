@@ -95,6 +95,22 @@
             animation: fadeInUp 1s ease-out 0.5s both;
         }
 
+        .animated-text {
+            display: inline;
+        }
+
+        .text-block {
+            transition: all 0.6s ease;
+            display: inline;
+        }
+
+        .text-block.highlight {
+            transform: scale(1.15);
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            font-weight: bold;
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -432,7 +448,12 @@
                 <img src="images/pedro-guirao.jpg" alt="Pedro Guirao Gil" class="profile-image" onerror="this.style.display='none'">
                 <div class="profile-info">
                     <h1>Pedro Guirao Gil</h1>
-                    <p>Especialista en Power BI y Microsoft EXCEL • Formador • Consultor • Automatización en la extracción y depuración de datos y Visibilidad</p>
+                    <p class="animated-text">
+                        <span class="text-block" data-block="0">Especialista en Power BI y Microsoft EXCEL</span> • 
+                        <span class="text-block" data-block="1">Formador</span> • 
+                        <span class="text-block" data-block="2">Consultor</span> • 
+                        <span class="text-block" data-block="3">Automatización en la extracción y depuración de datos y Visibilidad</span>
+                    </p>
                 </div>
             </div>
             
@@ -606,6 +627,35 @@
                 closeGallery();
             }
         });
+
+        // Animación secuencial del texto descriptivo
+        function animateTextBlocks() {
+            const textBlocks = document.querySelectorAll('.text-block');
+            let currentBlock = 0;
+
+            function highlightNext() {
+                // Remover highlight de todos los bloques
+                textBlocks.forEach(block => block.classList.remove('highlight'));
+                
+                // Añadir highlight al bloque actual
+                if (textBlocks[currentBlock]) {
+                    textBlocks[currentBlock].classList.add('highlight');
+                }
+                
+                // Avanzar al siguiente bloque
+                currentBlock = (currentBlock + 1) % textBlocks.length;
+                
+                // Si completamos un ciclo, esperar más tiempo antes del siguiente
+                const delay = currentBlock === 0 ? 3000 : 1500;
+                setTimeout(highlightNext, delay);
+            }
+
+            // Iniciar la animación después de que cargue la página
+            setTimeout(highlightNext, 2000);
+        }
+
+        // Iniciar la animación cuando se carga la página
+        document.addEventListener('DOMContentLoaded', animateTextBlocks);
     </script>
 </body>
 </html>
