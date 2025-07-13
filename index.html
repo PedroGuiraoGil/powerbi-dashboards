@@ -367,6 +367,7 @@
                 <a href="https://app.powerbi.com/view?r=eyJrIjoiYTJjN2E3MjAtZDdhMC00NmE5LThhZmEtMjU1MzA1ZDAzZDI2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="nav-link">📊 Análisis de Ventas</a>
                 <a href="https://app.powerbi.com/view?r=eyJrIjoiMGRlZjM5MjQtYjE0MC00MWMwLTllNjQtYmYwMTFlN2Y2NWE2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="nav-link">⚽ Liga de Fútbol</a>
                 <a href="https://app.powerbi.com/view?r=eyJrIjoiNDVlNWVhZGEtZjNjYi00NmM4LTg2NzEtMDQzZDNkY2YzMmE5IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9&pageName=ReportSection" target="_blank" class="nav-link">📅 Control de Presencia</a>
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiMM1wN" target="_blank" class="nav-link">🚗 Alquiler de Coches</a>
             </div>
         </div>
 
@@ -422,20 +423,20 @@
                 </div>
             </div>
 
-            <!-- Dashboard de Alquileres (Privado) -->
-            <div class="dashboard-card private" onclick="openGallery('alquileres')">
+            <!-- Dashboard de Alquiler de Coches (AHORA LEGACY) -->
+            <div class="dashboard-card legacy" onclick="openGallery('alquilercoches')">
                 <div class="card-image">
-                    <img src="images/alquiler1.jpg" alt="Dashboard de Alquileres - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#fd7e14,#ffc107);color:white;font-size:3rem;\'>🏠</div>'">
+                    <img src="images/alquilercoches1.jpg" alt="Dashboard de Alquiler de Coches - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#fd7e14,#ffc107);color:white;font-size:3rem;\'>🚗</div>'">
                 </div>
                 <div class="card-content">
                     <div class="card-header">
-                        <h3 class="card-title">🏠 Análisis de Alquileres</h3>
-                        <span class="status-badge status-private">Acceso Privado</span>
+                        <h3 class="card-title">🚗 Alquiler de Coches</h3>
+                        <span class="status-badge status-legacy">Legacy Público</span>
                     </div>
                     <p class="card-description">
-                        Dashboard de mercado inmobiliario con análisis de precios y tendencias. <strong>2 páginas interactivas</strong>. Requiere autenticación empresarial por políticas de Microsoft.
+                        Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>2 páginas interactivas</strong> con KPIs del sector automovilístico.
                     </p>
-                    <button class="view-button private">🔍 Ver capturas (2)</button>
+                    <button class="view-button">🔍 Ver todas las páginas (2)</button>
                 </div>
             </div>
         </div>
@@ -457,9 +458,8 @@
             <h2>🎯 Sobre estos Dashboards</h2>
             <p class="info-text">
                 Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: 
-                comercial, deportivo, recursos humanos e inmobiliario. Los tres primeros mantienen acceso público 
-                como ejemplos legacy, mientras que el último requiere autenticación empresarial debido a los 
-                cambios de política de Microsoft. Perfectos para demos comerciales y formación especializada.
+                comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público 
+                como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos.
             </p>
         </div>
     </div>
@@ -479,9 +479,9 @@
                 title: "📅 Control de Presencia - Gestión de Personal",
                 images: ["images/bajas1.jpg", "images/bajas2.jpg"]
             },
-            alquileres: {
-                title: "🏠 Análisis de Alquileres - Mercado Inmobiliario",
-                images: ["images/alquiler1.jpg", "images/alquiler2.jpg"]
+            alquilercoches: {
+                title: "🚗 Alquiler de Coches - Análisis del Sector Automovilístico",
+                images: ["images/alquilercoches1.jpg", "images/alquilercoches2.jpg"]
             }
         };
 
