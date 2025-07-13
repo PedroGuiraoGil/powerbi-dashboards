@@ -146,6 +146,26 @@
             font-weight: bold;
         }
 
+        .powerbi-brand {
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 10px rgba(255,215,0,0.5);
+            background: linear-gradient(45deg, #F2C811, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));
+        }
+
+        .excel-brand {
+            font-weight: bold;
+            color: #00FF7F;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 10px rgba(0,255,127,0.5);
+            background: linear-gradient(45deg, #217346, #00FF7F);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -554,7 +574,7 @@
                     <img src="images/pedro-guirao.jpg" alt="Pedro Guirao Gil" class="profile-image" onerror="this.style.display='none'">
                     <div class="profile-info">
                         <p class="animated-text">
-                            <span class="text-block" data-block="0">Especialista en Power BI y Microsoft EXCEL</span> • 
+                            <span class="text-block" data-block="0">Especialista en <span class="powerbi-brand">Power BI</span> y Microsoft <span class="excel-brand">EXCEL</span></span> • 
                             <span class="text-block" data-block="1">Formador</span> • 
                             <span class="text-block" data-block="2">Consultor</span> • 
                             <span class="text-block" data-block="3">Automatización en la extracción y depuración de datos y Visibilidad</span>
