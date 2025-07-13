@@ -38,11 +38,23 @@
 
         .profile-section {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 30px;
             margin-bottom: 40px;
+        }
+
+        .profile-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
             flex-wrap: wrap;
+        }
+
+        .profile-info {
+            text-align: center;
         }
 
         .profile-image {
@@ -54,9 +66,9 @@
             object-fit: cover;
         }
 
-        .profile-info h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+        .profile-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
             text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
             background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #ff6b6b);
             background-size: 300% 300%;
@@ -65,9 +77,10 @@
             animation: gradientShift 4s ease-in-out infinite;
             position: relative;
             display: inline-block;
+            text-align: center;
         }
 
-        .profile-info h1::before {
+        .profile-section h1::before {
             content: '';
             position: absolute;
             top: -5px;
@@ -421,9 +434,14 @@
                 flex-direction: column;
                 text-align: center;
             }
+
+            .profile-content {
+                flex-direction: column;
+                text-align: center;
+            }
             
-            .profile-info h1 {
-                font-size: 2.2rem;
+            .profile-section h1 {
+                font-size: 2.5rem;
             }
             
             .dashboard-grid {
@@ -445,15 +463,17 @@
     <div class="container">
         <div class="header">
             <div class="profile-section">
-                <img src="images/pedro-guirao.jpg" alt="Pedro Guirao Gil" class="profile-image" onerror="this.style.display='none'">
-                <div class="profile-info">
-                    <h1>Pedro Guirao Gil</h1>
-                    <p class="animated-text">
-                        <span class="text-block" data-block="0">Especialista en Power BI y Microsoft EXCEL</span> • 
-                        <span class="text-block" data-block="1">Formador</span> • 
-                        <span class="text-block" data-block="2">Consultor</span> • 
-                        <span class="text-block" data-block="3">Automatización en la extracción y depuración de datos y Visibilidad</span>
-                    </p>
+                <h1>Pedro Guirao Gil</h1>
+                <div class="profile-content">
+                    <img src="images/pedro-guirao.jpg" alt="Pedro Guirao Gil" class="profile-image" onerror="this.style.display='none'">
+                    <div class="profile-info">
+                        <p class="animated-text">
+                            <span class="text-block" data-block="0">Especialista en Power BI y Microsoft EXCEL</span> • 
+                            <span class="text-block" data-block="1">Formador</span> • 
+                            <span class="text-block" data-block="2">Consultor</span> • 
+                            <span class="text-block" data-block="3">Automatización en la extracción y depuración de datos y Visibilidad</span>
+                        </p>
+                    </div>
                 </div>
             </div>
             
