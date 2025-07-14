@@ -65,6 +65,14 @@
             background-position: center;
             transition: all 0.3s ease;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .lang-btn svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .lang-btn:hover {
@@ -1139,7 +1147,15 @@
             <button class="lang-btn" style="background-image: url('https://flagcdn.com/gb.svg');" onclick="changeLanguage('en')" data-lang="en" title="English"></button>
             <button class="lang-btn" style="background-image: url('https://flagcdn.com/fr.svg');" onclick="changeLanguage('fr')" data-lang="fr" title="Français"></button>
             <button class="lang-btn" style="background-image: url('https://flagcdn.com/de.svg');" onclick="changeLanguage('de')" data-lang="de" title="Deutsch"></button>
-            <button class="lang-btn" style="background-image: url('https://flagcdn.com/es-ct.svg');" onclick="changeLanguage('ca')" data-lang="ca" title="Català"></button> <!-- CORREGIDO: Bandera de Cataluña -->
+            <button class="lang-btn" onclick="changeLanguage('ca')" data-lang="ca" title="Català">
+                <svg viewBox="0 0 9 6" xmlns="http://www.w3.org/2000/svg" style="background-color: transparent;">
+                    <rect fill="#fcd116" width="9" height="6"/>
+                    <rect fill="#da121a" width="9" height="0.6" y="0.9"/>
+                    <rect fill="#da121a" width="9" height="0.6" y="2.1"/>
+                    <rect fill="#da121a" width="9" height="0.6" y="3.3"/>
+                    <rect fill="#da121a" width="9" height="0.6" y="4.5"/>
+                </svg>
+            </button> 
         </div>
 
         <div class="header">
@@ -1148,7 +1164,7 @@
                     <h1 data-translate="mainName">Pedro Guirao Gil</h1>
                 </div>
                 <div class="profile-content">
-                    <img src="https://placehold.co/120x120/764ba2/ffffff?text=Pedro+G." alt="Pedro Guirao Gil" class="profile-image">
+                    <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/yo.jpg" alt="Pedro Guirao Gil" class="profile-image" onerror="this.src='https://placehold.co/120x120/764ba2/ffffff?text=PGG'">
                     <div class="profile-info">
                         <p class="animated-text" data-translate="roles" data-html="true">
                             <span class="text-block" data-block="0">Especialista en <span class="powerbi-brand">Power BI</span> y Microsoft <span class="excel-brand">EXCEL</span></span> • 
@@ -1197,7 +1213,7 @@
                 <!-- Dashboard de Ventas -->
                 <div class="dashboard-card" onclick="openGallery('ventas')">
                     <div class="card-image">
-                        <img src="https://placehold.co/600x400/ff6b6b/ffffff?text=Análisis+de+Ventas" alt="Dashboard de Ventas" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#ff6b6b,#4ecdc4);color:white;font-size:3rem;\'>📊</div>'">
+                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas1.jpg" alt="Dashboard de Ventas" onerror="this.src='https://placehold.co/600x400/ff6b6b/ffffff?text=Error'">
                     </div>
                     <div class="card-content">
                         <div class="card-header">
@@ -1213,7 +1229,7 @@
                 <!-- Dashboard de Fútbol -->
                 <div class="dashboard-card" onclick="openGallery('futbol')">
                     <div class="card-image">
-                         <img src="https://placehold.co/600x400/4ecdc4/ffffff?text=Liga+de+Fútbol" alt="Dashboard de Fútbol" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#4ecdc4,#45b7d1);color:white;font-size:3rem;\'>⚽</div>'">
+                         <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol1.jpg" alt="Dashboard de Fútbol" onerror="this.src='https://placehold.co/600x400/4ecdc4/ffffff?text=Error'">
                     </div>
                     <div class="card-content">
                         <div class="card-header">
@@ -1229,7 +1245,7 @@
                 <!-- Dashboard de Vacaciones/Bajas -->
                 <div class="dashboard-card" onclick="openGallery('vacaciones')">
                     <div class="card-image">
-                        <img src="https://placehold.co/600x400/96ceb4/ffffff?text=Control+de+Presencia" alt="Dashboard de Presencia" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#96ceb4,#ffeaa7);color:white;font-size:3rem;\'>📅</div>'">
+                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas1.jpg" alt="Dashboard de Presencia" onerror="this.src='https://placehold.co/600x400/96ceb4/ffffff?text=Error'">
                     </div>
                     <div class="card-content">
                         <div class="card-header">
@@ -1245,7 +1261,7 @@
                 <!-- Dashboard de Alquiler de Coches -->
                 <div class="dashboard-card" onclick="openGallery('alquilercoches')">
                     <div class="card-image">
-                        <img src="https://placehold.co/600x400/fd7e14/ffffff?text=Alquiler+de+Coches" alt="Dashboard de Alquiler de Coches" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#fd7e14,#ffc107);color:white;font-size:3rem;\'>🚗</div>'">
+                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler1.jpg" alt="Dashboard de Alquiler de Coches" onerror="this.src='https://placehold.co/600x400/fd7e14/ffffff?text=Error'">
                     </div>
                     <div class="card-content">
                         <div class="card-header">
@@ -1284,19 +1300,19 @@
                 <div class="books-carousel">
                     <div class="books-container">
                         <div class="book-cover active" data-index="0" onclick="goToBook(0)">
-                            <img src="https://placehold.co/220x330/FF6B6B/ffffff?text=FIN" alt="FIN - Pedro G. Guirao">
+                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/FIN.png" alt="FIN - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FF6B6B/ffffff?text=FIN'">
                         </div>
                         <div class="book-cover next" data-index="1" onclick="goToBook(1)">
-                            <img src="https://placehold.co/220x330/FF8E53/ffffff?text=OH+MY+GOD" alt="OH MY GOD - Pedro G. Guirao">
+                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/OH%20MY%20GOD.jpg" alt="OH MY GOD - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FF8E53/ffffff?text=OMG'">
                         </div>
                         <div class="book-cover far-next" data-index="2" onclick="goToBook(2)">
-                            <img src="https://placehold.co/220x330/FFA726/ffffff?text=Manual+Básico" alt="MANUAL BÁSICO DE CONQUISTA - Pedro G. Guirao">
+                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/MANUAL%20BASICO%20DE%20CONQUISTA.jpg" alt="MANUAL BÁSICO DE CONQUISTA - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FFA726/ffffff?text=Manual'">
                         </div>
                         <div class="book-cover hidden-next" data-index="3" onclick="goToBook(3)">
-                            <img src="https://placehold.co/220x330/4ECDC4/ffffff?text=TOCATA+Y+FUGA" alt="TOCATA Y FUGA DE LA TENIENTE ESCALI - Pedro G. Guirao">
+                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/TOCATA%20Y%20FUGA%20DE%20LA%20TENIENTE%20ESCALI.jpg" alt="TOCATA Y FUGA DE LA TENIENTE ESCALI - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/4ECDC4/ffffff?text=TOCATA'">
                         </div>
                         <div class="book-cover hidden-next" data-index="4" onclick="goToBook(4)">
-                            <img src="https://placehold.co/220x330/26A69A/ffffff?text=ESCALI'S+BLUES" alt="ESCALI'S BLUES - Pedro G. Guirao">
+                            <img src="https://placehold.co/220x330/26A69A/ffffff?text=BLUES" alt="ESCALI'S BLUES - Pedro G. Guirao">
                         </div>
                         <div class="book-cover hidden-next" data-index="5" onclick="goToBook(5)">
                             <img src="https://placehold.co/220x330/8E44AD/ffffff?text=ÉXODOS" alt="ÉXODOS - Kia P. Cabdill">
@@ -1531,13 +1547,9 @@
                 return;
             }
             
-            // Guardar el idioma seleccionado
             localStorage.setItem('preferredLanguage', lang);
-
-            // Actualizar el atributo lang del HTML
             document.documentElement.lang = lang;
 
-            // Traducir todos los elementos con el atributo data-translate
             document.querySelectorAll('[data-translate]').forEach(el => {
                 const key = el.getAttribute('data-translate');
                 if (translations[lang][key]) {
@@ -1549,17 +1561,18 @@
                 }
             });
 
-            // Actualizar botones de idioma
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
             });
 
-            // Actualizar datos de los libros y el carrusel
             updateBookInfo();
             updateAutoplayButtonText();
         }
 
         // --- LÓGICA DEL SITIO ---
+        // URL base para las imágenes en GitHub.
+        const GITHUB_BASE_URL = "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/";
+
         let currentBook = 0;
         let autoplayInterval;
         let isAutoplayActive = true;
@@ -1567,16 +1580,31 @@
 
         const dashboards = {
             ventas: {
-                images: ["https://placehold.co/800x600/ff6b6b/ffffff?text=Ventas+1", "https://placehold.co/800x600/ff6b6b/ffffff?text=Ventas+2", "https://placehold.co/800x600/ff6b6b/ffffff?text=Ventas+3"]
+                images: [
+                    `${GITHUB_BASE_URL}ventas1.jpg`,
+                    `${GITHUB_BASE_URL}ventas2.jpg`,
+                    `${GITHUB_BASE_URL}ventas3.jpg`
+                ]
             },
             futbol: {
-                images: ["https://placehold.co/800x600/4ecdc4/ffffff?text=Fútbol+1", "https://placehold.co/800x600/4ecdc4/ffffff?text=Fútbol+2"]
+                images: [
+                    `${GITHUB_BASE_URL}futbol1.jpg`,
+                    `${GITHUB_BASE_URL}futbol2.jpg`
+                ]
             },
             vacaciones: {
-                images: ["https://placehold.co/800x600/96ceb4/ffffff?text=Presencia+1", "https://placehold.co/800x600/96ceb4/ffffff?text=Presencia+2"]
+                images: [
+                    `${GITHUB_BASE_URL}bajas1.jpg`,
+                    `${GITHUB_BASE_URL}bajas2.jpg`
+                ]
             },
             alquilercoches: {
-                images: ["https://placehold.co/800x600/fd7e14/ffffff?text=Coches+1", "https://placehold.co/800x600/fd7e14/ffffff?text=Coches+2", "https://placehold.co/800x600/fd7e14/ffffff?text=Coches+3", "https://placehold.co/800x600/fd7e14/ffffff?text=Coches+4"]
+                images: [
+                    `${GITHUB_BASE_URL}alquiler1.jpg`,
+                    `${GITHUB_BASE_URL}alquiler2.jpg`,
+                    `${GITHUB_BASE_URL}alquiler3.jpg`,
+                    `${GITHUB_BASE_URL}alquiler4.jpg`
+                ]
             }
         };
 
