@@ -183,7 +183,7 @@
 
         .text-block {
             transition: all 0.6s ease;
-            display: inline-block; /* CORREGIDO: Permite que 'transform' funcione */
+            display: inline-block;
             opacity: 0.7;
         }
 
@@ -1820,7 +1820,7 @@
         
         function setImages() {
             const timestamp = new Date().getTime(); // Cache buster
-            document.getElementById('profile-pic').src = `${GITHUB_BASE_URL}yo.jpg?t=${timestamp}`;
+            document.getElementById('profile-pic').src = `${GITHUB_BASE_URL}Yo%20(3).jpg?t=${timestamp}`;
             
             bookImageSources.forEach((src, index) => {
                 const imgElement = document.getElementById(`book-cover-${index}`);
