@@ -861,6 +861,17 @@
             opacity: 0.9;
         }
 
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @media (max-width: 768px) {
             .profile-section {
                 flex-direction: column;
@@ -893,6 +904,36 @@
             .button-text {
                 margin-left: 60px;
                 font-size: 0.9rem;
+            }
+
+            .bookshelf {
+                flex-direction: column !important;
+                align-items: center !important;
+                min-height: auto !important;
+                gap: 20px !important;
+            }
+
+            .book-spine {
+                width: 80px !important;
+                height: 60px !important;
+                writing-mode: horizontal-tb !important;
+            }
+
+            .book-spine div {
+                transform: translate(-50%, -50%) rotate(0deg) !important;
+                font-size: 0.7rem !important;
+            }
+
+            .book-separator {
+                width: 80% !important;
+                height: 4px !important;
+                margin: 10px 0 !important;
+            }
+
+            .book-separator div {
+                top: -25px !important;
+                left: 50% !important;
+                transform: translateX(-50%) rotate(0deg) !important;
             }
 
             .books-grid {
@@ -1238,85 +1279,128 @@
             }
         };
 
-        // Variables para el control de páginas de libros
+                        // Añadir animaciones de hover para los libros
+                        document.querySelectorAll('.book-spine').forEach(spine => {
+                            spine.addEventListener('mouseenter', function() {
+                                this.style.transform = 'scaleY(1.05) translateY(-10px)';
+                                this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
+                            });
+                            
+                            spine.addEventListener('mouseleave', function() {
+                                this.style.transform = 'scaleY(1) translateY(0px)';
+                                this.style.boxShadow = '0 10px 25px rgba(0,0,0,0.2)';
+                            });
+                            
+                            spine.addEventListener('click', function() {
+                                showBookInfo(this.dataset.book);
+                            });
+                        });
+
+        // Base de datos de libros
+        const booksData = {
+            fin: {
+                title: "FIN",
+                image: "images/FIN.png",
+                description: "Una reflexión profunda sobre los límites de la existencia humana y el significado del final. Una obra que explora las grandes preguntas filosóficas a través de una narrativa envolvente que desafía al lector a cuestionar sus propias percepciones sobre la vida y la muerte.",
+                genre: "Ficción Filosófica",
+                genreColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)",
+                link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/ref=tmm_kin_swatch_0?_encoding=UTF8&dib_tag=se&dib=eyJ2IjoiMSJ9.6A_MzvFnAk2N0yalauznZ2xZOGXFl0yUb7ZGi1VHNBHGjHj071QN20LucGBJIEps.PvcM39Ry6GFVvhBsNCXzqVQwTeeg2i5IBpzQhw-3foA&qid=1752505191&sr=1-1",
+                linkText: "Ver en Amazon",
+                linkColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)"
+            },
+            ohmygod: {
+                title: "OH MY GOD",
+                image: "images/OH MY GOD.jpg",
+                description: "Una exploración audaz de la espiritualidad contemporánea y las crisis de fe en el mundo moderno. A través de personajes complejos, esta obra examina la relación entre lo divino y lo humano, cuestionando dogmas y abriendo nuevos caminos de comprensión espiritual.",
+                genre: "Ficción Filosófica",
+                genreColor: "linear-gradient(45deg, #FF8E53, #FFA726)",
+                link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao&ac=1&acp=pedro+g+guirao&ac.author=pedro+g+guirao&sort=Temperature&fclanguages=es",
+                linkText: "Ver en Kobo",
+                linkColor: "linear-gradient(45deg, #FF8E53, #FFA726)"
+            },
+            manual: {
+                title: "MANUAL BÁSICO DE CONQUISTA",
+                image: "images/MANUAL BASICO DE CONQUISTA.jpg",
+                description: "Una sátira inteligente sobre las relaciones humanas y los juegos de poder en la sociedad moderna. Con humor filosófico, disecciona los mecanismos de seducción, manipulación y conquista tanto en el ámbito personal como profesional, revelando verdades incómodas sobre nuestra naturaleza.",
+                genre: "Ficción Filosófica",
+                genreColor: "linear-gradient(45deg, #FFA726, #FFB74D)",
+                link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/ref=sr_1_1?dib=eyJ2IjoiMSJ9.tmyylQfKGGx2v7Pa1FQPEHTkmibi0MFYU6RWXjUwEHI.XrvAYKEAR807cOBIE-pzns0-Z1ObNLVDqRhrkrFOjdM&dib_tag=se&qid=1752505246&refinements=p_27%3APedro+G.+Guirao&s=digital-text&sr=1-1&text=Pedro+G.+Guirao",
+                linkText: "Ver en Amazon",
+                linkColor: "linear-gradient(45deg, #FFA726, #FFB74D)"
+            },
+            tocata: {
+                title: "TOCATA Y FUGA DE LA TENIENTE ESCALI",
+                image: "images/TOCATA Y FUGA DE LA TENIENTE ESCALI.jpg",
+                description: "El debut de la Teniente Escali en un thriller que combina suspense policial con profundas reflexiones existenciales. Una investigación criminal se convierte en un viaje hacia los abismos del alma humana, donde cada pista revelada cuestiona no solo la culpabilidad del criminal, sino la naturaleza misma de la justicia y la moralidad.",
+                genre: "Thriller Existencialista",
+                genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)",
+                link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI&i=digital-text&__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=BA5E5DIC2EIO&sprefix=tocata+y+fuga+de+la+teniente+escali%2Cdigital-text%2C73&ref=nb_sb_noss",
+                linkText: "Ver en Amazon",
+                linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)"
+            },
+            blues: {
+                title: "ESCALI'S BLUES",
+                image: "images/ESCALIS BLUES.jpg",
+                description: "La secuela que profundiza en el universo de la Teniente Escali. Más oscura y compleja que su predecesora, esta obra explora los traumas del pasado mientras enfrenta un nuevo caso que desafía sus convicciones más profundas. Un blues literario que combina música, misterio y filosofía en una sinfonía de tensión y revelación personal.",
+                genre: "Thriller Existencialista",
+                genreColor: "linear-gradient(45deg, #26A69A, #00897B)",
+                link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao&ac=1&acp=pedro+g+guirao&ac.author=pedro+g+guirao&sort=Temperature&fclanguages=es",
+                linkText: "Ver en Kobo",
+                linkColor: "linear-gradient(45deg, #26A69A, #00897B)"
+            },
+            exodos: {
+                title: "ÉXODOS",
+                image: "images/EXODOS.jpg",
+                description: "Una épica space opera que narra el destino de la humanidad en su búsqueda de nuevos mundos. Cuando la Tierra se vuelve inhabitable, flotas de refugiados espaciales emprenden un viaje desesperado hacia lo desconocido. Entre conflictos intergalácticos, dilemas éticos y descubrimientos que desafían nuestra comprensión del universo, ÉXODOS es una reflexión sobre la supervivencia, la esperanza y lo que realmente significa ser humano.",
+                genre: "Space Opera - Ciencia Ficción",
+                genreColor: "linear-gradient(45deg, #8E44AD, #9B59B6)",
+                link: "https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill&s=relevancerank&text=Kia+P.+Cabdill&ref=dp_byline_sr_ebooks_1",
+                linkText: "Ver en Amazon (Kia P. Cabdill)",
+                linkColor: "linear-gradient(45deg, #8E44AD, #9B59B6)",
+                author: "Kia P. Cabdill"
+            }
+        };
+
+        function showBookInfo(bookKey) {
+            const book = booksData[bookKey];
+            if (!book) return;
+
+            // Actualizar contenido del panel
+            document.getElementById('bookTitle').textContent = book.title;
+            document.getElementById('bookImage').src = book.image;
+            document.getElementById('bookImage').alt = book.title;
+            document.getElementById('bookDescription').textContent = book.description;
+            document.getElementById('bookGenre').textContent = book.genre;
+            document.getElementById('bookGenre').style.background = book.genreColor;
+            document.getElementById('bookLink').href = book.link;
+            document.getElementById('bookLink').style.background = book.linkColor;
+            document.getElementById('bookLinkText').textContent = book.linkText;
+
+            // Agregar autor si existe (para ÉXODOS)
+            if (book.author) {
+                const authorElement = document.createElement('p');
+                authorElement.style.cssText = 'font-style: italic; color: #8E44AD; margin-bottom: 15px; font-size: 1.1rem;';
+                authorElement.textContent = `Por ${book.author}`;
+                document.getElementById('bookDescription').parentNode.insertBefore(authorElement, document.getElementById('bookGenre'));
+            }
+
+            // Mostrar panel
+            document.getElementById('bookPanel').style.display = 'block';
+            document.getElementById('bookPanel').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function closeBookPanel() {
+            document.getElementById('bookPanel').style.display = 'none';
+            // Limpiar autor si existe
+            const authorElements = document.querySelectorAll('#bookPanel p[style*="italic"]');
+            authorElements.forEach(el => el.remove());
+        }
+
+        // Variables para el control de páginas de libros (mantenemos por compatibilidad)
         let currentBookPage = 0;
         let currentThrillerPage = 0;
         const totalBookPages = 3;
         const totalThrillerPages = 2;
-
-        // Funciones para navegación de libros de ficción filosófica
-        function nextPage() {
-            if (currentBookPage < totalBookPages - 1) {
-                // Ocultar página actual
-                const currentPage = document.querySelector(`.book-page[data-page="${currentBookPage}"]`);
-                currentPage.style.transform = 'rotateY(-180deg)';
-                
-                currentBookPage++;
-                
-                // Mostrar nueva página
-                const nextPage = document.querySelector(`.book-page[data-page="${currentBookPage}"]`);
-                nextPage.style.transform = 'rotateY(0deg)';
-                
-                updatePageIndicator();
-            }
-        }
-
-        function previousPage() {
-            if (currentBookPage > 0) {
-                // Ocultar página actual
-                const currentPage = document.querySelector(`.book-page[data-page="${currentBookPage}"]`);
-                currentPage.style.transform = 'rotateY(-180deg)';
-                
-                currentBookPage--;
-                
-                // Mostrar página anterior
-                const prevPage = document.querySelector(`.book-page[data-page="${currentBookPage}"]`);
-                prevPage.style.transform = 'rotateY(0deg)';
-                
-                updatePageIndicator();
-            }
-        }
-
-        function updatePageIndicator() {
-            document.getElementById('pageIndicator').textContent = `Página ${currentBookPage + 1} de ${totalBookPages}`;
-        }
-
-        // Funciones para navegación de thrillers
-        function nextThrillerPage() {
-            if (currentThrillerPage < totalThrillerPages - 1) {
-                // Ocultar página actual
-                const currentPage = document.querySelector(`.thriller-page[data-page="${currentThrillerPage}"]`);
-                currentPage.style.transform = 'rotateY(-180deg)';
-                
-                currentThrillerPage++;
-                
-                // Mostrar nueva página
-                const nextPage = document.querySelector(`.thriller-page[data-page="${currentThrillerPage}"]`);
-                nextPage.style.transform = 'rotateY(0deg)';
-                
-                updateThrillerPageIndicator();
-            }
-        }
-
-        function previousThrillerPage() {
-            if (currentThrillerPage > 0) {
-                // Ocultar página actual
-                const currentPage = document.querySelector(`.thriller-page[data-page="${currentThrillerPage}"]`);
-                currentPage.style.transform = 'rotateY(-180deg)';
-                
-                currentThrillerPage--;
-                
-                // Mostrar página anterior
-                const prevPage = document.querySelector(`.thriller-page[data-page="${currentThrillerPage}"]`);
-                prevPage.style.transform = 'rotateY(0deg)';
-                
-                updateThrillerPageIndicator();
-            }
-        }
-
-        function updateThrillerPageIndicator() {
-            document.getElementById('thrillerPageIndicator').textContent = `Página ${currentThrillerPage + 1} de ${totalThrillerPages}`;
-        }
 
         // Función para cambiar entre secciones
         function showSection(sectionName) {
