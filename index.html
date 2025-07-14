@@ -662,7 +662,10 @@
     <div class="container">
         <div class="header">
             <div class="profile-section">
-                <h1>Pedro Guirao Gil</h1>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                    <h1>Pedro Guirao Gil</h1>
+                    <img src="images/yo.jpg" alt="Pedro Guirao Gil" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.3); object-fit: cover;" onerror="this.style.display='none'">
+                </div>
                 <div class="profile-content">
                     <img src="images/pedro-guirao.jpg" alt="Pedro Guirao Gil" class="profile-image" onerror="this.style.display='none'">
                     <div class="profile-info">
@@ -677,10 +680,67 @@
             </div>
             
             <div class="nav-links">
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiYTJjN2E3MjAtZDdhMC00NmE5LThhZmEtMjU1MzA1ZDAzZDI2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="nav-link">📊 Análisis de Ventas</a>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiMGRlZjM5MjQtYjE0MC00MWMwLTllNjQtYmYwMTFlN2Y2NWE2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="nav-link">⚽ Liga de Fútbol</a>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiNDVlNWVhZGEtZjNjYi00NmM4LTg2NzEtMDQzZDNkY2YzMmE5IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9&pageName=ReportSection" target="_blank" class="nav-link">📅 Control de Presencia</a>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiMmIwNDBjZjItNWJmMi00OWFlLWI4OWEtZmJhY2QwN2M4NjMwIiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="nav-link">🚗 Alquiler de Coches</a>
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiYTJjN2E3MjAtZDdhMC00NmE5LThhZmEtMjU1MzA1ZDAzZDI2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" style="background: linear-gradient(135deg, #667eea, #764ba2) !important; color: white !important; padding: 20px 30px !important; border-radius: 25px !important; text-decoration: none !important; font-weight: bold !important; text-transform: uppercase !important; letter-spacing: 1px !important; position: relative !important; overflow: hidden !important; min-height: 60px !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+                    <!-- Barras de gráfico muy visibles -->
+                    <div style="position: absolute; bottom: 8px; left: 15px; width: 8px; height: 15px; background: rgba(255,255,255,0.8); border-radius: 2px;"></div>
+                    <div style="position: absolute; bottom: 8px; left: 28px; width: 8px; height: 25px; background: rgba(255,255,255,0.9); border-radius: 2px;"></div>
+                    <div style="position: absolute; bottom: 8px; left: 41px; width: 8px; height: 35px; background: rgba(255,255,255,1); border-radius: 2px;"></div>
+                    <div style="position: absolute; bottom: 8px; left: 54px; width: 8px; height: 45px; background: rgba(255,255,255,0.9); border-radius: 2px;"></div>
+                    <div style="position: absolute; bottom: 8px; left: 67px; width: 8px; height: 38px; background: rgba(255,255,255,0.85); border-radius: 2px;"></div>
+                    <span style="position: relative; z-index: 2; margin-left: 50px;">ANÁLISIS DE VENTAS</span>
+                </a>
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiMGRlZjM5MjQtYjE0MC00MWMwLTllNjQtYmYwMTFlN2Y2NWE2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" style="background: linear-gradient(135deg, #1e3a2e, #0f2419) !important; color: white !important; padding: 20px 30px !important; border-radius: 25px !important; text-decoration: none !important; font-weight: bold !important; text-transform: uppercase !important; letter-spacing: 1px !important; position: relative !important; overflow: hidden !important; min-height: 60px !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+                    <!-- Campo de fútbol -->
+                    <div style="position: absolute; inset: 8px; border: 2px solid rgba(255,255,255,0.4); border-radius: 8px; background: linear-gradient(45deg, #1e3a2e 0%, #0f2419 100%);"></div>
+                    <!-- Línea central -->
+                    <div style="position: absolute; top: 50%; left: 8px; right: 8px; height: 2px; background: rgba(255,255,255,0.6);"></div>
+                    <!-- Círculo central -->
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 25px; height: 25px; border: 2px solid rgba(255,255,255,0.6); border-radius: 50%;"></div>
+                    <!-- Porterías -->
+                    <div style="position: absolute; top: 30%; left: 8px; width: 12px; height: 40%; border: 2px solid rgba(255,255,255,0.8); border-left: none; border-radius: 0 4px 4px 0;"></div>
+                    <div style="position: absolute; top: 30%; right: 8px; width: 12px; height: 40%; border: 2px solid rgba(255,255,255,0.8); border-right: none; border-radius: 4px 0 0 4px;"></div>
+                    <span style="position: relative; z-index: 2;">LIGA DE FÚTBOL</span>
+                </a>
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiNDVlNWVhZGEtZjNjYi00NmM4LTg2NzEtMDQzZDNkY2YzMmE5IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9&pageName=ReportSection" target="_blank" style="background: linear-gradient(135deg, #f093fb, #f5576c) !important; color: white !important; padding: 20px 30px !important; border-radius: 25px !important; text-decoration: none !important; font-weight: bold !important; text-transform: uppercase !important; letter-spacing: 1px !important; position: relative !important; overflow: hidden !important; min-height: 60px !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+                    <!-- Reloj grande y simple -->
+                    <div style="position: absolute; top: 10px; left: 15px; width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.9); border-radius: 50%; background: rgba(255,255,255,0.1);"></div>
+                    <!-- Manecillas muy visibles -->
+                    <div style="position: absolute; top: 22px; left: 27px; width: 12px; height: 2px; background: white; transform-origin: left center; transform: rotate(-30deg); border-radius: 1px;"></div>
+                    <div style="position: absolute; top: 27px; left: 27px; width: 8px; height: 2px; background: white; transform-origin: left center; transform: rotate(90deg); border-radius: 1px;"></div>
+                    <!-- Centro del reloj -->
+                    <div style="position: absolute; top: 28px; left: 33px; width: 4px; height: 4px; background: white; border-radius: 50%;"></div>
+                    <!-- Marcas de las horas -->
+                    <div style="position: absolute; top: 12px; left: 33px; width: 2px; height: 6px; background: rgba(255,255,255,0.7);"></div>
+                    <div style="position: absolute; top: 42px; left: 33px; width: 2px; height: 6px; background: rgba(255,255,255,0.7);"></div>
+                    <div style="position: absolute; top: 28px; left: 17px; width: 6px; height: 2px; background: rgba(255,255,255,0.7);"></div>
+                    <div style="position: absolute; top: 28px; left: 47px; width: 6px; height: 2px; background: rgba(255,255,255,0.7);"></div>
+                    <span style="position: relative; z-index: 2; margin-left: 30px;">CONTROL DE PRESENCIA</span>
+                </a>
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiMmIwNDBjZjItNWJmMi00OWFlLWI4OWEtZmJhY2QwN2M4NjMwIiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" style="background: linear-gradient(135deg, #ffecd2, #fcb69f) !important; color: #333 !important; padding: 20px 30px !important; border-radius: 25px !important; text-decoration: none !important; font-weight: bold !important; text-transform: uppercase !important; letter-spacing: 1px !important; position: relative !important; overflow: hidden !important; min-height: 60px !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+                    <!-- COCHE REALISTA -->
+                    <!-- Carrocería principal -->
+                    <div style="position: absolute; top: 20px; left: 15px; width: 60px; height: 20px; background: #FF4444; border-radius: 8px 8px 4px 4px; border: 2px solid #CC0000;"></div>
+                    <!-- Techo -->
+                    <div style="position: absolute; top: 15px; left: 25px; width: 35px; height: 15px; background: #FF4444; border-radius: 8px 8px 0 0; border: 2px solid #CC0000;"></div>
+                    <!-- Parabrisas delantero -->
+                    <div style="position: absolute; top: 17px; left: 55px; width: 12px; height: 12px; background: #87CEEB; border-radius: 0 6px 0 0; border: 1px solid #4682B4;"></div>
+                    <!-- Parabrisas trasero -->
+                    <div style="position: absolute; top: 17px; left: 27px; width: 10px; height: 12px; background: #87CEEB; border-radius: 6px 0 0 0; border: 1px solid #4682B4;"></div>
+                    <!-- Ventanas laterales -->
+                    <div style="position: absolute; top: 17px; left: 40px; width: 12px; height: 12px; background: #87CEEB; border: 1px solid #4682B4;"></div>
+                    <!-- Ruedas con llantas -->
+                    <div style="position: absolute; top: 35px; left: 22px; width: 14px; height: 14px; background: #222; border-radius: 50%; border: 2px solid #444;">
+                        <div style="position: absolute; top: 3px; left: 3px; width: 6px; height: 6px; background: #888; border-radius: 50%;"></div>
+                    </div>
+                    <div style="position: absolute; top: 35px; left: 55px; width: 14px; height: 14px; background: #222; border-radius: 50%; border: 2px solid #444;">
+                        <div style="position: absolute; top: 3px; left: 3px; width: 6px; height: 6px; background: #888; border-radius: 50%;"></div>
+                    </div>
+                    <!-- Faro delantero -->
+                    <div style="position: absolute; top: 25px; left: 75px; width: 6px; height: 8px; background: #FFD700; border-radius: 3px; border: 1px solid #FFA500;"></div>
+                    <!-- Parachoques -->
+                    <div style="position: absolute; top: 33px; left: 75px; width: 4px; height: 6px; background: #CCCCCC; border-radius: 2px;"></div>
+                    <span style="position: relative; z-index: 2; margin-left: 60px;">ALQUILER DE COCHES</span>
+                </a>
             </div>
         </div>
 
@@ -698,7 +758,7 @@
                     <p class="card-description">
                         Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.
                     </p>
-                    <button class="btn-ventas" onclick="openGallery('ventas')">📊 Ver todas las páginas (3)</button>
+                    <button style="background: red !important; color: white !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('ventas')">📊 Ver todas las páginas (3)</button>
                 </div>
             </div>
 
@@ -715,7 +775,7 @@
                     <p class="card-description">
                         Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.
                     </p>
-                    <button class="btn-futbol" onclick="openGallery('futbol')">⚽ Ver todas las páginas (2)</button>
+                    <button style="background: blue !important; color: white !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('futbol')">⚽ Ver todas las páginas (2)</button>
                 </div>
             </div>
 
@@ -732,7 +792,7 @@
                     <p class="card-description">
                         Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.
                     </p>
-                    <button class="btn-presencia" onclick="openGallery('vacaciones')">🕐 Ver todas las páginas (2)</button>
+                    <button style="background: green !important; color: white !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('vacaciones')">🕐 Ver todas las páginas (2)</button>
                 </div>
             </div>
 
@@ -749,7 +809,7 @@
                     <p class="card-description">
                         Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>2 páginas interactivas</strong> con KPIs del sector automovilístico.
                     </p>
-                    <button class="btn-coches" onclick="openGallery('alquilercoches')">🚗 Ver todas las páginas (2)</button>
+                    <button style="background: orange !important; color: black !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('alquilercoches')">🚗 Ver todas las páginas (2)</button>
                 </div>
             </div>
         </div>
