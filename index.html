@@ -1349,8 +1349,9 @@
             }
         };
 
-        // Base de datos de libros con toda la información
+        // Base de datos de libros con toda la información - ORDEN CORRECTO FINAL
         const booksData = [
+            // Índice 0 - FIN (primera portada en HTML)
             {
                 title: "FIN",
                 author: "Por Pedro G. Guirao",
@@ -1359,8 +1360,20 @@
                 genreColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)",
                 link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/ref=tmm_kin_swatch_0?_encoding=UTF8&dib_tag=se&dib=eyJ2IjoiMSJ9.6A_MzvFnAk2N0yalauznZ2xZOGXFl0yUb7ZGi1VHNBHGjHj071QN20LucGBJIEps.PvcM39Ry6GFVvhBsNCXzqVQwTeeg2i5IBpzQhw-3foA&qid=1752505191&sr=1-1",
                 linkText: "Ver en Amazon",
+                linkColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)"
+            },
+            // Índice 1 - OH MY GOD (segunda portada en HTML) - ¡AÑADIDO!
+            {
+                title: "OH MY GOD",
+                author: "Por Pedro G. Guirao",
+                description: "La Biblia Apócrifa del FIN de los días. Primera obra del autor. Creada con la misma edad de Cristo en la Cruz. Cuentos de apariencia inconexa y de aspecto bíblico mesiánico. Con mensaje oculto del creador a la Humanidad.",
+                genre: "Ficción Filosófica",
+                genreColor: "linear-gradient(45deg, #FF8E53, #FFA726)",
+                link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao&ac=1&acp=pedro+g+guirao&ac.author=pedro+g+guirao&sort=Temperature&fclanguages=es",
+                linkText: "Ver en Kobo",
                 linkColor: "linear-gradient(45deg, #FF8E53, #FFA726)"
             },
+            // Índice 2 - MANUAL BÁSICO DE CONQUISTA (tercera portada en HTML)
             {
                 title: "MANUAL BÁSICO DE CONQUISTA",
                 author: "Por Pedro G. Guirao",
@@ -1371,6 +1384,7 @@
                 linkText: "Ver en Amazon",
                 linkColor: "linear-gradient(45deg, #FFA726, #FFB74D)"
             },
+            // Índice 3 - TOCATA Y FUGA DE LA TENIENTE ESCALI (cuarta portada en HTML)
             {
                 title: "TOCATA Y FUGA DE LA TENIENTE ESCALI",
                 author: "Por Pedro G. Guirao",
@@ -1381,6 +1395,7 @@
                 linkText: "Ver en Amazon",
                 linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)"
             },
+            // Índice 4 - ESCALI'S BLUES (quinta portada en HTML)
             {
                 title: "ESCALI'S BLUES",
                 author: "Por Pedro G. Guirao",
@@ -1391,6 +1406,7 @@
                 linkText: "Ver en Kobo",
                 linkColor: "linear-gradient(45deg, #26A69A, #00897B)"
             },
+            // Índice 5 - ÉXODOS (sexta portada en HTML)
             {
                 title: "ÉXODOS",
                 author: "Por Kia P. Cabdill",
@@ -1426,19 +1442,38 @@
 
         // FUNCIONES DEL CARRUSEL DE LIBROS
         function updateBookInfo() {
-            const book = booksData[currentBook];
+            // Verificar que tenemos los datos
+            if (!booksData || !booksData[currentBook]) {
+                console.error('No hay datos para el libro:', currentBook);
+                return;
+            }
             
-            // Debug: verificar que estamos obteniendo el libro correcto
+            const book = booksData[currentBook];
             console.log('Actualizando libro:', currentBook, book.title);
             
-            document.getElementById('bookTitle').textContent = book.title;
-            document.getElementById('bookAuthor').textContent = book.author;
-            document.getElementById('bookDescription').textContent = book.description;
-            document.getElementById('bookGenre').textContent = book.genre;
-            document.getElementById('bookGenre').style.background = book.genreColor;
-            document.getElementById('bookLink').href = book.link;
-            document.getElementById('bookLink').style.background = book.linkColor;
-            document.getElementById('bookLink').innerHTML = `<span>📖</span> ${book.linkText}`;
+            // Verificar que los elementos existen antes de actualizarlos
+            const titleEl = document.getElementById('bookTitle');
+            const authorEl = document.getElementById('bookAuthor');
+            const descriptionEl = document.getElementById('bookDescription');
+            const genreEl = document.getElementById('bookGenre');
+            const linkEl = document.getElementById('bookLink');
+            
+            if (!titleEl || !authorEl || !descriptionEl || !genreEl || !linkEl) {
+                console.error('Elementos DOM no encontrados');
+                return;
+            }
+            
+            // Actualizar contenido
+            titleEl.textContent = book.title;
+            authorEl.textContent = book.author;
+            descriptionEl.textContent = book.description;
+            genreEl.textContent = book.genre;
+            genreEl.style.background = book.genreColor;
+            linkEl.href = book.link;
+            linkEl.style.background = book.linkColor;
+            linkEl.innerHTML = `<span>📖</span> ${book.linkText}`;
+            
+            console.log('Información actualizada correctamente para:', book.title);
         }
 
         function updateCarousel() {
@@ -1489,9 +1524,15 @@
         }
 
         function goToBook(index) {
+            console.log('goToBook llamado con índice:', index);
             currentBook = index;
-            console.log('Ir a libro - currentBook:', currentBook); // Debug
-            updateCarousel();
+            console.log('currentBook actualizado a:', currentBook);
+            
+            // Forzar actualización inmediata
+            setTimeout(() => {
+                updateCarousel();
+                console.log('Carrusel actualizado');
+            }, 10);
         }
 
         function startAutoplay() {
@@ -1644,9 +1685,18 @@
             animateTextBlocks();
             createFloatingParticles();
             initButtonAnimations();
+            
+            // VERIFICAR ARRAY DE LIBROS
+            console.log('=== VERIFICACIÓN DEL ARRAY booksData ===');
+            console.log('Total de libros:', booksData.length);
+            booksData.forEach((book, index) => {
+                console.log(`Índice ${index}: ${book.title}`);
+            });
+            console.log('=== FIN VERIFICACIÓN ===');
+            
             // Inicializar carrusel correctamente
-            console.log('Inicializando carrusel con libro:', currentBook); // Debug
-            updateCarousel(); // Esto asegura que la información inicial esté sincronizada
+            console.log('Inicializando carrusel con libro:', currentBook);
+            updateCarousel();
             startAutoplay();
             
             // Verificar que los elementos DOM existen
@@ -1657,6 +1707,14 @@
                 genre: document.getElementById('bookGenre'),
                 link: document.getElementById('bookLink')
             });
+            
+            // Test manual - agregar botón de prueba
+            setTimeout(() => {
+                console.log('=== TEST MANUAL CORREGIDO ===');
+                console.log('Probando cambio a OH MY GOD (índice 1)...');
+                console.log('Libro en índice 1:', booksData[1] ? booksData[1].title : 'NO EXISTE');
+                goToBook(1);
+            }, 3000);
         });
 
         // Pausar en hover del carrusel
