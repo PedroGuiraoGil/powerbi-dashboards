@@ -757,6 +757,13 @@
             color: white;
         }
 
+        .book-links-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
         .book-link {
             display: inline-flex;
             align-items: center;
@@ -1327,9 +1334,12 @@
                     <p class="book-author" id="bookAuthor"></p>
                     <p class="book-description" id="bookDescription"></p>
                     <span class="book-genre" id="bookGenre"></span>
-                    <div>
+                    <div class="book-links-container">
                         <a href="#" target="_blank" class="book-link" id="bookLink">
                             <span>📖</span> <span data-translate="viewOnAmazon">Ver en Amazon</span>
+                        </a>
+                        <a href="#" target="_blank" class="book-link trailer-link" id="bookTrailerLink" style="display: none; background: #c0392b;">
+                            <span>🎬</span> <span data-translate="viewTrailer">Ver Booktrailer</span>
                         </a>
                     </div>
                 </div>
@@ -1390,6 +1400,7 @@
                 literaryFacetSubtitle: "Exploro mundos imaginarios a través de la escritura, desde la ciencia ficción hasta el thriller, siempre buscando conectar con los lectores a través de historias que combinan entretenimiento y reflexión.",
                 viewOnAmazon: "Ver en Amazon",
                 viewOnKobo: "Ver en Kobo",
+                viewTrailer: "Ver Booktrailer",
                 pauseCarousel: "⏸️ Pausar Carrusel",
                 resumeCarousel: "▶️ Reanudar Carrusel",
                 gallerySalesTitle: "📊 Análisis de Ventas - Dashboard Completo",
@@ -1426,6 +1437,7 @@
                 literaryFacetSubtitle: "I explore imaginary worlds through writing, from science fiction to thrillers, always seeking to connect with readers through stories that combine entertainment and reflection.",
                 viewOnAmazon: "View on Amazon",
                 viewOnKobo: "View on Kobo",
+                viewTrailer: "Watch Booktrailer",
                 pauseCarousel: "⏸️ Pause Carousel",
                 resumeCarousel: "▶️ Resume Carousel",
                 gallerySalesTitle: "📊 Sales Analysis - Complete Dashboard",
@@ -1462,6 +1474,7 @@
                 literaryFacetSubtitle: "J'explore des mondes imaginaires à travers l'écriture, de la science-fiction au thriller, cherchant toujours à me connecter avec les lecteurs à travers des histoires qui allient divertissement et réflexion.",
                 viewOnAmazon: "Voir sur Amazon",
                 viewOnKobo: "Voir sur Kobo",
+                viewTrailer: "Voir la bande-annonce",
                 pauseCarousel: "⏸️ Mettre en Pause",
                 resumeCarousel: "▶️ Reprendre",
                 gallerySalesTitle: "📊 Analyse des Ventes - Tableau de Bord Complet",
@@ -1498,6 +1511,7 @@
                 literaryFacetSubtitle: "Ich erkunde imaginäre Welten durch das Schreiben, von Science-Fiction bis zum Thriller, immer auf der Suche nach einer Verbindung zu den Lesern durch Geschichten, die Unterhaltung und Reflexion verbinden.",
                 viewOnAmazon: "Auf Amazon ansehen",
                 viewOnKobo: "Auf Kobo ansehen",
+                viewTrailer: "Trailer ansehen",
                 pauseCarousel: "⏸️ Karussell anhalten",
                 resumeCarousel: "▶️ Karussell fortsetzen",
                 gallerySalesTitle: "📊 Verkaufsanalyse - Vollständiges Dashboard",
@@ -1534,6 +1548,7 @@
                 literaryFacetSubtitle: "Exploro mons imaginaris a través de l'escriptura, des de la ciència-ficció fins al thriller, sempre buscant connectar amb els lectors a través d'històries que combinen entreteniment i reflexió.",
                 viewOnAmazon: "Veure a Amazon",
                 viewOnKobo: "Veure a Kobo",
+                viewTrailer: "Veure el Booktrailer",
                 pauseCarousel: "⏸️ Pausa Carrusel",
                 resumeCarousel: "▶️ Reprèn Carrusel",
                 gallerySalesTitle: "📊 Anàlisi de Vendes - Dashboard Complet",
@@ -1566,7 +1581,8 @@
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
             });
-
+            
+            animateTextBlocks();
             updateBookInfo();
             updateAutoplayButtonText();
         }
@@ -1578,6 +1594,7 @@
         let currentBook = 0;
         let autoplayInterval;
         let isAutoplayActive = true;
+        let textAnimationInterval;
         const totalBooks = 6;
 
         const dashboards = {
@@ -1625,7 +1642,7 @@
                 { title: "FIN", author: "Por Pedro G. Guirao", description: "Una reflexión profunda sobre los límites de la existencia humana y el significado del final. Una obra que explora las grandes preguntas filosóficas a través de una narrativa envolvente que desafía al lector a cuestionar sus propias percepciones sobre la vida y la muerte.", genre: "Ficción Filosófica", genreColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)", link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)" },
                 { title: "OH MY GOD", author: "Por Pedro G. Guirao", description: "La Biblia Apócrifa del FIN de los días. Primera obra del autor. Creada con la misma edad de Cristo en la Cruz. Cuentos de apariencia inconexa y de aspecto bíblico mesiánico. Con mensaje oculto del creador a la Humanidad.", genre: "Ficción Filosófica", genreColor: "linear-gradient(45deg, #FF8E53, #FFA726)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #FF8E53, #FFA726)" },
                 { title: "MANUAL BÁSICO DE CONQUISTA", author: "Por Pedro G. Guirao", description: "Una sátira inteligente sobre las relaciones humanas y los juegos de poder en la sociedad moderna. Con humor filosófico, disecciona los mecanismos de seducción, manipulación y conquista tanto en el ámbito personal como profesional, revelando verdades incómodas sobre nuestra naturaleza.", genre: "Ficción Filosófica", genreColor: "linear-gradient(45deg, #FFA726, #FFB74D)", link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FFA726, #FFB74D)" },
-                { title: "TOCATA Y FUGA DE LA TENIENTE ESCALI", author: "Por Pedro G. Guirao", description: "El debut de la Teniente Escali en un thriller que combina suspense policial con profundas reflexiones existenciales. Una investigación criminal se convierte en un viaje hacia los abismos del alma humana, donde cada pista revelada cuestiona no solo la culpabilidad del criminal, sino la naturaleza misma de la justicia y la moralidad.", genre: "Thriller Existencialista", genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)" },
+                { title: "TOCATA Y FUGA DE LA TENIENTE ESCALI", author: "Por Pedro G. Guirao", description: "El debut de la Teniente Escali en un thriller que combina suspense policial con profundas reflexiones existenciales. Una investigación criminal se convierte en un viaje hacia los abismos del alma humana, donde cada pista revelada cuestiona no solo la culpabilidad del criminal, sino la naturaleza misma de la justicia y la moralidad.", genre: "Thriller Existencialista", genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", trailer: `${GITHUB_BASE_URL}BOKKTRAILER%20VIDEOS%20ESCALI.MP4` },
                 { title: "ESCALI'S BLUES", author: "Por Pedro G. Guirao", description: "La secuela que profundiza en el universo de la Teniente Escali. Más oscura y compleja que su predecesora, esta obra explora los traumas del pasado mientras enfrenta un nuevo caso que desafía sus convicciones más profundas. Un blues literario que combina música, misterio y filosofía en una sinfonía de tensión y revelación personal.", genre: "Thriller Existencialista", genreColor: "linear-gradient(45deg, #26A69A, #00897B)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #26A69A, #00897B)" },
                 { title: "ÉXODOS", author: "Por Kia P. Cabdill", description: "Una épica space opera que narra el destino de la humanidad en su búsqueda de nuevos mundos. Cuando la Tierra se vuelve inhabitable, flotas de refugiados espaciales emprenden un viaje desesperado hacia lo desconocido. Entre conflictos intergalácticos, dilemas éticos y descubrimientos que desafían nuestra comprensión del universo, ÉXODOS es una reflexión sobre la supervivencia, la esperanza y lo que realmente significa ser humano.", genre: "Space Opera - Ciencia Ficción", genreColor: "linear-gradient(45deg, #8E44AD, #9B59B6)", link: "https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #8E44AD, #9B59B6)" }
             ],
@@ -1633,7 +1650,7 @@
                 { title: "THE END", author: "By Pedro G. Guirao", description: "A profound reflection on the limits of human existence and the meaning of the end. A work that explores the great philosophical questions through an engaging narrative that challenges the reader to question their own perceptions of life and death.", genre: "Philosophical Fiction", genreColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)", link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)" },
                 { title: "OH MY GOD", author: "By Pedro G. Guirao", description: "The Apocryphal Bible of the END of days. The author's first work. Created at the same age as Christ on the Cross. Seemingly disconnected stories with a messianic biblical aspect. With a hidden message from the creator to Humanity.", genre: "Philosophical Fiction", genreColor: "linear-gradient(45deg, #FF8E53, #FFA726)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #FF8E53, #FFA726)" },
                 { title: "BASIC CONQUEST MANUAL", author: "By Pedro G. Guirao", description: "An intelligent satire on human relationships and power games in modern society. With philosophical humor, it dissects the mechanisms of seduction, manipulation, and conquest in both personal and professional spheres, revealing uncomfortable truths about our nature.", genre: "Philosophical Fiction", genreColor: "linear-gradient(45deg, #FFA726, #FFB74D)", link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FFA726, #FFB74D)" },
-                { title: "LIEUTENANT ESCALI'S TOCCATA AND FUGUE", author: "By Pedro G. Guirao", description: "Lieutenant Escali's debut in a thriller that combines police suspense with deep existential reflections. A criminal investigation becomes a journey into the abyss of the human soul, where each revealed clue questions not only the criminal's guilt but the very nature of justice and morality.", genre: "Existentialist Thriller", genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)" },
+                { title: "LIEUTENANT ESCALI'S TOCCATA AND FUGUE", author: "By Pedro G. Guirao", description: "Lieutenant Escali's debut in a thriller that combines police suspense with deep existential reflections. A criminal investigation becomes a journey into the abyss of the human soul, where each revealed clue questions not only the criminal's guilt but the very nature of justice and morality.", genre: "Existentialist Thriller", genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", trailer: `${GITHUB_BASE_URL}BOKKTRAILER%20VIDEOS%20ESCALI.MP4` },
                 { title: "ESCALI'S BLUES", author: "By Pedro G. Guirao", description: "The sequel that delves deeper into Lieutenant Escali's universe. Darker and more complex than its predecessor, this work explores past traumas while facing a new case that challenges her deepest convictions. A literary blues that combines music, mystery, and philosophy in a symphony of tension and personal revelation.", genre: "Existentialist Thriller", genreColor: "linear-gradient(45deg, #26A69A, #00897B)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #26A69A, #00897B)" },
                 { title: "EXODUS", author: "By Kia P. Cabdill", description: "An epic space opera that chronicles the fate of humanity in its search for new worlds. When Earth becomes uninhabitable, fleets of space refugees embark on a desperate journey into the unknown. Amidst intergalactic conflicts, ethical dilemmas, and discoveries that challenge our understanding of the universe, EXODUS is a reflection on survival, hope, and what it truly means to be human.", genre: "Space Opera - Sci-Fi", genreColor: "linear-gradient(45deg, #8E44AD, #9B59B6)", link: "https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #8E44AD, #9B59B6)" }
             ],
@@ -1641,7 +1658,7 @@
                 { title: "FIN", author: "Par Pedro G. Guirao", description: "Une réflexion profonde sur les limites de l'existence humaine et le sens de la fin. Une œuvre qui explore les grandes questions philosophiques à travers un récit captivant qui met au défi le lecteur de remettre en question ses propres perceptions de la vie et de la mort.", genre: "Fiction Philosophique", genreColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)", link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)" },
                 { title: "OH MY GOD", author: "Par Pedro G. Guirao", description: "La Bible apocryphe de la FIN des temps. Première œuvre de l'auteur. Créée au même âge que le Christ sur la Croix. Des contes d'apparence décousue et d'aspect biblique messianique. Avec un message caché du créateur à l'Humanité.", genre: "Fiction Philosophique", genreColor: "linear-gradient(45deg, #FF8E53, #FFA726)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #FF8E53, #FFA726)" },
                 { title: "MANUEL ÉLÉMENTAIRE DE CONQUÊTE", author: "Par Pedro G. Guirao", description: "Une satire intelligente sur les relations humaines et les jeux de pouvoir dans la société moderne. Avec un humour philosophique, il dissèque les mécanismes de séduction, de manipulation et de conquête tant sur le plan personnel que professionnel, révélant des vérités inconfortables sur notre nature.", genre: "Fiction Philosophique", genreColor: "linear-gradient(45deg, #FFA726, #FFB74D)", link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FFA726, #FFB74D)" },
-                { title: "TOCATA ET FUGUE DU LIEUTENANT ESCALI", author: "Par Pedro G. Guirao", description: "Les débuts du lieutenant Escali dans un thriller qui allie suspense policier et réflexions existentielles profondes. Une enquête criminelle se transforme en un voyage dans les abîmes de l'âme humaine, où chaque indice révélé remet en question non seulement la culpabilité du criminel, mais la nature même de la justice et de la moralité.", genre: "Thriller Existentiel", genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)" },
+                { title: "TOCATA ET FUGUE DU LIEUTENANT ESCALI", author: "Par Pedro G. Guirao", description: "Les débuts du lieutenant Escali dans un thriller qui allie suspense policier et réflexions existentielles profondes. Une enquête criminelle se transforme en un voyage dans les abîmes de l'âme humaine, où chaque indice révélé remet en question non seulement la culpabilité du criminel, mais la nature même de la justice et de la moralité.", genre: "Thriller Existentiel", genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", trailer: `${GITHUB_BASE_URL}BOKKTRAILER%20VIDEOS%20ESCALI.MP4` },
                 { title: "ESCALI'S BLUES", author: "Par Pedro G. Guirao", description: "La suite qui approfondit l'univers du lieutenant Escali. Plus sombre et complexe que son prédécesseur, cette œuvre explore les traumatismes du passé tout en faisant face à une nouvelle affaire qui remet en question ses convictions les plus profondes. Un blues littéraire qui allie musique, mystère et philosophie dans une symphonie de tension et de révélation personnelle.", genre: "Thriller Existentiel", genreColor: "linear-gradient(45deg, #26A69A, #00897B)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #26A69A, #00897B)" },
                 { title: "EXODES", author: "Par Kia P. Cabdill", description: "Un space opera épique qui raconte le destin de l'humanité dans sa quête de nouveaux mondes. Lorsque la Terre devient inhabitable, des flottes de réfugiés spatiaux entreprennent un voyage désespéré vers l'inconnu. Entre conflits intergalactiques, dilemmes éthiques et découvertes qui défient notre compréhension de l'univers, EXODES est une réflexion sur la survie, l'espoir et ce que signifie vraiment être humain.", genre: "Space Opera - Science-Fiction", genreColor: "linear-gradient(45deg, #8E44AD, #9B59B6)", link: "https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #8E44AD, #9B59B6)" }
             ],
@@ -1649,7 +1666,7 @@
                 { title: "ENDE", author: "Von Pedro G. Guirao", description: "Eine tiefgreifende Reflexion über die Grenzen der menschlichen Existenz und die Bedeutung des Endes. Ein Werk, das die großen philosophischen Fragen durch eine fesselnde Erzählung erforscht, die den Leser herausfordert, seine eigenen Wahrnehmungen von Leben und Tod zu hinterfragen.", genre: "Philosophische Fiktion", genreColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)", link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)" },
                 { title: "OH MY GOD", author: "Von Pedro G. Guirao", description: "Die apokryphe Bibel vom ENDE der Tage. Das erste Werk des Autors. Entstanden im selben Alter wie Christus am Kreuz. Scheinbar unzusammenhängende Geschichten mit messianisch-biblischem Aspekt. Mit einer verborgenen Botschaft des Schöpfers an die Menschheit.", genre: "Philosophische Fiktion", genreColor: "linear-gradient(45deg, #FF8E53, #FFA726)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #FF8E53, #FFA726)" },
                 { title: "GRUNDLAGEN DER EROBERUNG", author: "Von Pedro G. Guirao", description: "Eine intelligente Satire über menschliche Beziehungen und Machtspiele in der modernen Gesellschaft. Mit philosophischem Humor seziert es die Mechanismen der Verführung, Manipulation und Eroberung im persönlichen wie im beruflichen Bereich und enthüllt unbequeme Wahrheiten über unsere Natur.", genre: "Philosophische Fiktion", genreColor: "linear-gradient(45deg, #FFA726, #FFB74D)", link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FFA726, #FFB74D)" },
-                { title: "TOCCATA UND FUGE DER LEUTNANTIN ESCALI", author: "Von Pedro G. Guirao", description: "Das Debüt von Leutnantin Escali in einem Thriller, der Polizeispannung mit tiefen existenziellen Reflexionen verbindet. Eine strafrechtliche Untersuchung wird zu einer Reise in die Abgründe der menschlichen Seele, bei der jeder aufgedeckte Hinweis nicht nur die Schuld des Verbrechers, sondern die Natur von Gerechtigkeit und Moral selbst in Frage stellt.", genre: "Existentialistischer Thriller", genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)" },
+                { title: "TOCCATA UND FUGE DER LEUTNANTIN ESCALI", author: "Von Pedro G. Guirao", description: "Das Debüt von Leutnantin Escali in einem Thriller, der Polizeispannung mit tiefen existenziellen Reflexionen verbindet. Eine strafrechtliche Untersuchung wird zu einer Reise in die Abgründe der menschlichen Seele, bei der jeder aufgedeckte Hinweis nicht nur die Schuld des Verbrechers, sondern die Natur von Gerechtigkeit und Moral selbst in Frage stellt.", genre: "Existentialistischer Thriller", genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", trailer: `${GITHUB_BASE_URL}BOKKTRAILER%20VIDEOS%20ESCALI.MP4` },
                 { title: "ESCALI'S BLUES", author: "Von Pedro G. Guirao", description: "Die Fortsetzung, die tiefer in das Universum von Leutnantin Escali eintaucht. Düsterer und komplexer als sein Vorgänger, erforscht dieses Werk vergangene Traumata, während es sich einem neuen Fall stellt, der ihre tiefsten Überzeugungen herausfordert. Ein literarischer Blues, der Musik, Mysterium und Philosophie in einer Symphonie aus Spannung und persönlicher Offenbarung verbindet.", genre: "Existentialistischer Thriller", genreColor: "linear-gradient(45deg, #26A69A, #00897B)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #26A69A, #00897B)" },
                 { title: "EXODUS", author: "Von Kia P. Cabdill", description: "Eine epische Weltraumoper, die das Schicksal der Menschheit auf ihrer Suche nach neuen Welten erzählt. Als die Erde unbewohnbar wird, begeben sich Flotten von Weltraumflüchtlingen auf eine verzweifelte Reise ins Unbekannte. Inmitten intergalaktischer Konflikte, ethischer Dilemmata und Entdeckungen, die unser Verständnis des Universums herausfordern, ist EXODUS eine Reflexion über Überleben, Hoffnung und was es wirklich bedeutet, ein Mensch zu sein.", genre: "Space Opera - Science-Fiction", genreColor: "linear-gradient(45deg, #8E44AD, #9B59B6)", link: "https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #8E44AD, #9B59B6)" }
             ],
@@ -1657,7 +1674,7 @@
                 { title: "FI", author: "Per Pedro G. Guirao", description: "Una reflexió profunda sobre els límits de l'existència humana i el significat del final. Una obra que explora les grans preguntes filosòfiques a través d'una narrativa envoltant que desafia el lector a qüestionar les seves pròpies percepcions sobre la vida i la mort.", genre: "Ficció Filosòfica", genreColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)", link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)" },
                 { title: "OH MY GOD", author: "Per Pedro G. Guirao", description: "La Bíblia Apòcrifa de la FI dels dies. Primera obra de l'autor. Creada amb la mateixa edat de Crist a la Creu. Contes d'aparença inconnexa i d'aspecte bíblic messiànic. Amb missatge ocult del creador a la Humanitat.", genre: "Ficció Filosòfica", genreColor: "linear-gradient(45deg, #FF8E53, #FFA726)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #FF8E53, #FFA726)" },
                 { title: "MANUAL BÀSIC DE CONQUESTA", author: "Per Pedro G. Guirao", description: "Una sàtira intel·ligent sobre les relacions humanes i els jocs de poder a la societat moderna. Amb humor filosòfic, dissecciona els mecanismes de seducció, manipulació i conquesta tant en l'àmbit personal com professional, revelant veritats incòmodes sobre la nostra naturalesa.", genre: "Ficció Filosòfica", genreColor: "linear-gradient(45deg, #FFA726, #FFB74D)", link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FFA726, #FFB74D)" },
-                { title: "TOCATA I FUGA DE LA TINENT ESCALI", author: "Per Pedro G. Guirao", description: "El debut de la Tinent Escali en un thriller que combina suspens policial amb profundes reflexions existencials. Una investigació criminal es converteix en un viatge cap als abismes de l'ànima humana, on cada pista revelada qüestiona no només la culpabilitat del criminal, sinó la naturalesa mateixa de la justícia i la moralitat.", genre: "Thriller Existencialista", genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)" },
+                { title: "TOCATA I FUGA DE LA TINENT ESCALI", author: "Per Pedro G. Guirao", description: "El debut de la Tinent Escali en un thriller que combina suspens policial amb profundes reflexions existencials. Una investigació criminal es converteix en un viatge cap als abismes de l'ànima humana, on cada pista revelada qüestiona no només la culpabilitat del criminal, sinó la naturalesa mateixa de la justícia i la moralitat.", genre: "Thriller Existencialista", genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", trailer: `${GITHUB_BASE_URL}BOKKTRAILER%20VIDEOS%20ESCALI.MP4` },
                 { title: "ESCALI'S BLUES", author: "Per Pedro G. Guirao", description: "La seqüela que aprofundeix en l'univers de la Tinent Escali. Més fosca i complexa que la seva predecessora, aquesta obra explora els traumes del passat mentre s'enfronta a un nou cas que desafia les seves conviccions més profundes. Un blues literari que combina música, misteri i filosofia en una simfonia de tensió i revelació personal.", genre: "Thriller Existencialista", genreColor: "linear-gradient(45deg, #26A69A, #00897B)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #26A69A, #00897B)" },
                 { title: "ÈXODES", author: "Per Kia P. Cabdill", description: "Una èpica space opera que narra el destí de la humanitat en la seva recerca de nous mons. Quan la Terra es torna inhabitable, flotes de refugiats espacials emprenen un viatge desesperat cap al desconegut. Entre conflictes intergalàctics, dilemes ètics i descobriments que desafien la nostra comprensió de l'univers, ÈXODES és una reflexió sobre la supervivència, l'esperança i el que realment significa ser humà.", genre: "Space Opera - Ciència Ficció", genreColor: "linear-gradient(45deg, #8E44AD, #9B59B6)", link: "https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #8E44AD, #9B59B6)" }
             ]
@@ -1687,6 +1704,14 @@
             linkEl.style.background = currentBookData.linkColor;
             const linkText = translations[lang][currentBookData.linkKey] || 'View';
             linkEl.innerHTML = `<span>📖</span> ${linkText}`;
+            
+            const trailerLinkEl = document.getElementById('bookTrailerLink');
+            if (currentBookData.trailer) {
+                trailerLinkEl.href = currentBookData.trailer;
+                trailerLinkEl.style.display = 'inline-flex';
+            } else {
+                trailerLinkEl.style.display = 'none';
+            }
         }
 
         function updateCarousel() {
@@ -1800,22 +1825,26 @@
         }
 
         function animateTextBlocks() {
-            const textBlocks = document.querySelectorAll('.text-block');
-            if(textBlocks.length === 0) return;
-            let currentBlock = 0;
-            
-            textBlocks.forEach(block => block.classList.remove('highlight'));
-            if(textBlocks[currentBlock]) {
-                textBlocks[currentBlock].classList.add('highlight');
-            }
+            if (textAnimationInterval) clearInterval(textAnimationInterval);
 
-            setInterval(() => {
-                textBlocks.forEach(block => block.classList.remove('highlight'));
-                currentBlock = (currentBlock + 1) % textBlocks.length;
-                if(textBlocks[currentBlock]) {
-                   textBlocks[currentBlock].classList.add('highlight');
-                }
-            }, 2000);
+            const textBlocks = document.querySelectorAll('.text-block');
+            if (textBlocks.length === 0) return;
+
+            let currentBlockIndex = 0;
+
+            const updateHighlight = () => {
+                textBlocks.forEach((block, index) => {
+                    if (index === currentBlockIndex) {
+                        block.classList.add('highlight');
+                    } else {
+                        block.classList.remove('highlight');
+                    }
+                });
+                currentBlockIndex = (currentBlockIndex + 1) % textBlocks.length;
+            };
+
+            updateHighlight();
+            textAnimationInterval = setInterval(updateHighlight, 2000);
         }
         
         function setImages() {
