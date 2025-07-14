@@ -177,12 +177,13 @@
             }
         }
 
+        /* NUEVOS ESTILOS MODERNOS PARA LOS BOTONES PRINCIPALES */
         .nav-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 40px 0;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+            padding: 20px;
             animation: slideInDown 0.8s ease-out 0.8s both;
         }
 
@@ -197,42 +198,285 @@
             }
         }
 
-        .nav-link {
-            background: linear-gradient(45deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
-            color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255,255,255,0.3);
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .modern-nav-button {
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 25px;
+            border-radius: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 1rem;
+            min-height: 80px;
             overflow: hidden;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2" fill="%23F2C811"/><rect x="4" y="6" width="16" height="12" rx="1" fill="%23FFEB3B"/><rect x="6" y="8" width="4" height="8" fill="%23E91E63"/><rect x="11" y="6" width="4" height="10" fill="%232196F3"/><rect x="16" y="10" width="2" height="6" fill="%234CAF50"/></svg>') 14 14, pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            border: 2px solid transparent;
+            backdrop-filter: blur(10px);
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            z-index: 1;
         }
 
-        .nav-link::before {
+        /* Efecto de ondas en hover */
+        .modern-nav-button::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+
+        .modern-nav-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Efecto de partículas flotantes */
+        .modern-nav-button::after {
+            content: '';
+            position: absolute;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
+            top: 0;
+            left: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.8s ease;
+            z-index: -1;
         }
 
-        .nav-link:hover::before {
-            left: 100%;
+        .modern-nav-button:hover::after {
+            transform: translateX(100%);
         }
 
-        .nav-link:hover {
-            background: linear-gradient(45deg, rgba(255,255,255,0.3), rgba(255,255,255,0.2));
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        /* Animación de pulsación */
+        .modern-nav-button:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .modern-nav-button:active {
+            transform: translateY(-4px) scale(1.02);
+            transition: all 0.1s ease;
+        }
+
+        /* Iconos animados dentro de los botones */
+        .button-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.4s ease;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+        }
+
+        .modern-nav-button:hover .button-icon {
+            transform: translateY(-50%) scale(1.2) rotate(10deg);
+            filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.7)) brightness(1.2);
+        }
+
+        /* Texto con efecto de typing */
+        .button-text {
+            position: relative;
+            z-index: 2;
+            margin-left: 80px;
+            transition: all 0.3s ease;
+        }
+
+        .modern-nav-button:hover .button-text {
+            transform: translateX(10px);
+            text-shadow: 3px 3px 12px rgba(0,0,0,0.8);
+        }
+
+        /* Botón de Ventas */
+        .btn-ventas {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+            background-size: 200% 200%;
+            animation: gradientMove 4s ease infinite;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-ventas:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 50%, #9b59b6 100%);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Botón de Fútbol */
+        .btn-futbol {
+            background: linear-gradient(135deg, #1e3a2e 0%, #0f2419 50%, #1e3a2e 100%);
+            background-size: 200% 200%;
+            animation: gradientMove 4s ease infinite 1s;
+            box-shadow: 0 15px 35px rgba(30, 58, 46, 0.4);
+        }
+
+        .btn-futbol:hover {
+            background: linear-gradient(135deg, #0f2419 0%, #1e3a2e 50%, #2c5530 100%);
+            box-shadow: 0 25px 50px rgba(30, 58, 46, 0.6);
+        }
+
+        /* Botón de Presencia */
+        .btn-presencia {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #f093fb 100%);
+            background-size: 200% 200%;
+            animation: gradientMove 4s ease infinite 2s;
+            box-shadow: 0 15px 35px rgba(240, 147, 251, 0.4);
+        }
+
+        .btn-presencia:hover {
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 50%, #ff6b9d 100%);
+            box-shadow: 0 25px 50px rgba(240, 147, 251, 0.6);
+        }
+
+        /* Botón de Coches */
+        .btn-coches {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ffecd2 100%);
+            background-size: 200% 200%;
+            animation: gradientMove 4s ease infinite 3s;
+            box-shadow: 0 15px 35px rgba(252, 182, 159, 0.4);
+            color: #333 !important;
+            text-shadow: 1px 1px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .btn-coches:hover {
+            background: linear-gradient(135deg, #fcb69f 0%, #ffecd2 50%, #ffb88c 100%);
+            box-shadow: 0 25px 50px rgba(252, 182, 159, 0.6);
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Efectos de partículas en hover */
+        .modern-nav-button:hover {
+            animation: buttonPulse 2s infinite;
+        }
+
+        @keyframes buttonPulse {
+            0% { box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+            50% { box-shadow: 0 25px 50px rgba(0,0,0,0.4), 0 0 30px rgba(255,255,255,0.2); }
+            100% { box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        }
+
+        /* Iconos específicos mejorados */
+        .icon-chart {
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+
+        .icon-chart::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 8px;
+            height: 20px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 2px;
+            animation: chartBar1 2s ease infinite;
+        }
+
+        .icon-chart::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 12px;
+            width: 8px;
+            height: 30px;
+            background: rgba(255,255,255,1);
+            border-radius: 2px;
+            animation: chartBar2 2s ease infinite 0.2s;
+        }
+
+        @keyframes chartBar1 {
+            0%, 100% { height: 20px; }
+            50% { height: 35px; }
+        }
+
+        @keyframes chartBar2 {
+            0%, 100% { height: 30px; }
+            50% { height: 15px; }
+        }
+
+        .icon-soccer {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle at 30% 30%, #fff 25%, #000 26%, #000 30%, #fff 31%);
+            border-radius: 50%;
+            position: relative;
+            animation: soccerSpin 3s linear infinite;
+        }
+
+        @keyframes soccerSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .icon-clock {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.9);
+            border-radius: 50%;
+            position: relative;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .icon-clock::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 12px;
+            height: 2px;
+            background: white;
+            transform-origin: left center;
+            transform: translate(-100%, -50%) rotate(0deg);
+            animation: clockHand 4s linear infinite;
+            border-radius: 1px;
+        }
+
+        @keyframes clockHand {
+            0% { transform: translate(-100%, -50%) rotate(0deg); }
+            100% { transform: translate(-100%, -50%) rotate(360deg); }
+        }
+
+        .icon-car {
+            width: 40px;
+            height: 20px;
+            background: #FF4444;
+            border-radius: 8px;
+            position: relative;
+            animation: carMove 3s ease-in-out infinite;
+        }
+
+        .icon-car::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 5px;
+            width: 8px;
+            height: 8px;
+            background: #333;
+            border-radius: 50%;
+            box-shadow: 20px 0 0 #333;
+        }
+
+        @keyframes carMove {
+            0%, 100% { transform: translateX(0px); }
+            50% { transform: translateX(10px); }
         }
 
         .dashboard-grid {
@@ -415,112 +659,6 @@
             height: 300px;
         }
 
-        /* BOTONES TEMÁTICOS */
-        button.btn-ventas {
-            background: linear-gradient(135deg, #667eea, #764ba2) !important;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6) !important;
-        }
-
-        button.btn-ventas:hover {
-            background: linear-gradient(135deg, #764ba2, #667eea) !important;
-            transform: translateY(-3px) !important;
-        }
-
-        button.btn-futbol {
-            background: linear-gradient(135deg, #2c3e50, #34495e) !important;
-            box-shadow: 0 10px 30px rgba(44, 62, 80, 0.6) !important;
-        }
-
-        button.btn-futbol:hover {
-            background: linear-gradient(135deg, #34495e, #2c3e50) !important;
-            transform: translateY(-3px) !important;
-        }
-
-        button.btn-presencia {
-            background: linear-gradient(135deg, #f093fb, #f5576c) !important;
-            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.6) !important;
-        }
-
-        button.btn-presencia:hover {
-            background: linear-gradient(135deg, #f5576c, #f093fb) !important;
-            transform: translateY(-3px) !important;
-        }
-
-        button.btn-coches {
-            background: linear-gradient(135deg, #ffecd2, #fcb69f) !important;
-            box-shadow: 0 10px 30px rgba(252, 182, 159, 0.6) !important;
-            color: #333 !important;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8) !important;
-        }
-
-        button.btn-coches:hover {
-            background: linear-gradient(135deg, #fcb69f, #ffecd2) !important;
-            transform: translateY(-3px) !important;
-        }
-
-        /* Override para botones privados - debe ir después */
-
-        /* ESTILOS BASE PARA TODOS LOS BOTONES */
-        .btn-ventas, .btn-futbol, .btn-presencia, .btn-coches {
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-        }
-
-        /* BOTONES ESPECÍFICOS */
-        .btn-ventas {
-            background: linear-gradient(135deg, #667eea, #764ba2) !important;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6) !important;
-        }
-
-        .btn-ventas:hover {
-            background: linear-gradient(135deg, #764ba2, #667eea) !important;
-            transform: translateY(-3px) !important;
-        }
-
-        .btn-futbol {
-            background: linear-gradient(135deg, #2c3e50, #34495e) !important;
-            box-shadow: 0 10px 30px rgba(44, 62, 80, 0.6) !important;
-        }
-
-        .btn-futbol:hover {
-            background: linear-gradient(135deg, #34495e, #2c3e50) !important;
-            transform: translateY(-3px) !important;
-        }
-
-        .btn-presencia {
-            background: linear-gradient(135deg, #f093fb, #f5576c) !important;
-            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.6) !important;
-        }
-
-        .btn-presencia:hover {
-            background: linear-gradient(135deg, #f5576c, #f093fb) !important;
-            transform: translateY(-3px) !important;
-        }
-
-        .btn-coches {
-            background: linear-gradient(135deg, #ffecd2, #fcb69f) !important;
-            box-shadow: 0 10px 30px rgba(252, 182, 159, 0.6) !important;
-            color: #333 !important;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8) !important;
-        }
-
-        .btn-coches:hover {
-            background: linear-gradient(135deg, #fcb69f, #ffecd2) !important;
-            transform: translateY(-3px) !important;
-        }
-
         .gallery-modal {
             display: none;
             position: fixed;
@@ -648,8 +786,18 @@
             }
             
             .nav-links {
-                flex-direction: column;
-                align-items: center;
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .modern-nav-button {
+                min-height: 70px;
+                padding: 20px;
+            }
+
+            .button-text {
+                margin-left: 60px;
+                font-size: 0.9rem;
             }
             
             .gallery-images {
@@ -681,286 +829,11 @@
             </div>
             
             <div class="nav-links">
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiYTJjN2E3MjAtZDdhMC00NmE5LThhZmEtMjU1MzA1ZDAzZDI2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" style="background: linear-gradient(135deg, #667eea, #764ba2) !important; color: white !important; padding: 20px 30px !important; border-radius: 25px !important; text-decoration: none !important; font-weight: bold !important; text-transform: uppercase !important; letter-spacing: 1px !important; position: relative !important; overflow: hidden !important; min-height: 60px !important; display: flex !important; align-items: center !important; justify-content: center !important;">
-                    <!-- Barras de gráfico muy visibles -->
-                    <div style="position: absolute; bottom: 8px; left: 15px; width: 8px; height: 15px; background: rgba(255,255,255,0.8); border-radius: 2px;"></div>
-                    <div style="position: absolute; bottom: 8px; left: 28px; width: 8px; height: 25px; background: rgba(255,255,255,0.9); border-radius: 2px;"></div>
-                    <div style="position: absolute; bottom: 8px; left: 41px; width: 8px; height: 35px; background: rgba(255,255,255,1); border-radius: 2px;"></div>
-                    <div style="position: absolute; bottom: 8px; left: 54px; width: 8px; height: 45px; background: rgba(255,255,255,0.9); border-radius: 2px;"></div>
-                    <div style="position: absolute; bottom: 8px; left: 67px; width: 8px; height: 38px; background: rgba(255,255,255,0.85); border-radius: 2px;"></div>
-                    <span style="position: relative; z-index: 2; margin-left: 50px;">ANÁLISIS DE VENTAS</span>
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiYTJjN2E3MjAtZDdhMC00NmE5LThhZmEtMjU1MzA1ZDAzZDI2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-ventas">
+                    <div class="button-icon">
+                        <div class="icon-chart"></div>
+                    </div>
+                    <span class="button-text">ANÁLISIS DE VENTAS</span>
                 </a>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiMGRlZjM5MjQtYjE0MC00MWMwLTllNjQtYmYwMTFlN2Y2NWE2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" style="background: linear-gradient(135deg, #1e3a2e, #0f2419) !important; color: white !important; padding: 20px 30px !important; border-radius: 25px !important; text-decoration: none !important; font-weight: bold !important; text-transform: uppercase !important; letter-spacing: 1px !important; position: relative !important; overflow: hidden !important; min-height: 60px !important; display: flex !important; align-items: center !important; justify-content: center !important;">
-                    <!-- Campo de fútbol -->
-                    <div style="position: absolute; inset: 8px; border: 2px solid rgba(255,255,255,0.4); border-radius: 8px; background: linear-gradient(45deg, #1e3a2e 0%, #0f2419 100%);"></div>
-                    <!-- Línea central -->
-                    <div style="position: absolute; top: 50%; left: 8px; right: 8px; height: 2px; background: rgba(255,255,255,0.6);"></div>
-                    <!-- Círculo central -->
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 25px; height: 25px; border: 2px solid rgba(255,255,255,0.6); border-radius: 50%;"></div>
-                    <!-- Porterías -->
-                    <div style="position: absolute; top: 30%; left: 8px; width: 12px; height: 40%; border: 2px solid rgba(255,255,255,0.8); border-left: none; border-radius: 0 4px 4px 0;"></div>
-                    <div style="position: absolute; top: 30%; right: 8px; width: 12px; height: 40%; border: 2px solid rgba(255,255,255,0.8); border-right: none; border-radius: 4px 0 0 4px;"></div>
-                    <span style="position: relative; z-index: 2;">LIGA DE FÚTBOL</span>
-                </a>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiNDVlNWVhZGEtZjNjYi00NmM4LTg2NzEtMDQzZDNkY2YzMmE5IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9&pageName=ReportSection" target="_blank" style="background: linear-gradient(135deg, #f093fb, #f5576c) !important; color: white !important; padding: 20px 30px !important; border-radius: 25px !important; text-decoration: none !important; font-weight: bold !important; text-transform: uppercase !important; letter-spacing: 1px !important; position: relative !important; overflow: hidden !important; min-height: 60px !important; display: flex !important; align-items: center !important; justify-content: center !important;">
-                    <!-- Reloj grande y simple -->
-                    <div style="position: absolute; top: 10px; left: 15px; width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.9); border-radius: 50%; background: rgba(255,255,255,0.1);"></div>
-                    <!-- Manecillas muy visibles -->
-                    <div style="position: absolute; top: 22px; left: 27px; width: 12px; height: 2px; background: white; transform-origin: left center; transform: rotate(-30deg); border-radius: 1px;"></div>
-                    <div style="position: absolute; top: 27px; left: 27px; width: 8px; height: 2px; background: white; transform-origin: left center; transform: rotate(90deg); border-radius: 1px;"></div>
-                    <!-- Centro del reloj -->
-                    <div style="position: absolute; top: 28px; left: 33px; width: 4px; height: 4px; background: white; border-radius: 50%;"></div>
-                    <!-- Marcas de las horas -->
-                    <div style="position: absolute; top: 12px; left: 33px; width: 2px; height: 6px; background: rgba(255,255,255,0.7);"></div>
-                    <div style="position: absolute; top: 42px; left: 33px; width: 2px; height: 6px; background: rgba(255,255,255,0.7);"></div>
-                    <div style="position: absolute; top: 28px; left: 17px; width: 6px; height: 2px; background: rgba(255,255,255,0.7);"></div>
-                    <div style="position: absolute; top: 28px; left: 47px; width: 6px; height: 2px; background: rgba(255,255,255,0.7);"></div>
-                    <span style="position: relative; z-index: 2; margin-left: 30px;">CONTROL DE PRESENCIA</span>
-                </a>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiMmIwNDBjZjItNWJmMi00OWFlLWI4OWEtZmJhY2QwN2M4NjMwIiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" style="background: linear-gradient(135deg, #ffecd2, #fcb69f) !important; color: #333 !important; padding: 20px 30px !important; border-radius: 25px !important; text-decoration: none !important; font-weight: bold !important; text-transform: uppercase !important; letter-spacing: 1px !important; position: relative !important; overflow: hidden !important; min-height: 60px !important; display: flex !important; align-items: center !important; justify-content: center !important;">
-                    <!-- COCHE REALISTA -->
-                    <!-- Carrocería principal -->
-                    <div style="position: absolute; top: 20px; left: 15px; width: 60px; height: 20px; background: #FF4444; border-radius: 8px 8px 4px 4px; border: 2px solid #CC0000;"></div>
-                    <!-- Techo -->
-                    <div style="position: absolute; top: 15px; left: 25px; width: 35px; height: 15px; background: #FF4444; border-radius: 8px 8px 0 0; border: 2px solid #CC0000;"></div>
-                    <!-- Parabrisas delantero -->
-                    <div style="position: absolute; top: 17px; left: 55px; width: 12px; height: 12px; background: #87CEEB; border-radius: 0 6px 0 0; border: 1px solid #4682B4;"></div>
-                    <!-- Parabrisas trasero -->
-                    <div style="position: absolute; top: 17px; left: 27px; width: 10px; height: 12px; background: #87CEEB; border-radius: 6px 0 0 0; border: 1px solid #4682B4;"></div>
-                    <!-- Ventanas laterales -->
-                    <div style="position: absolute; top: 17px; left: 40px; width: 12px; height: 12px; background: #87CEEB; border: 1px solid #4682B4;"></div>
-                    <!-- Ruedas con llantas -->
-                    <div style="position: absolute; top: 35px; left: 22px; width: 14px; height: 14px; background: #222; border-radius: 50%; border: 2px solid #444;">
-                        <div style="position: absolute; top: 3px; left: 3px; width: 6px; height: 6px; background: #888; border-radius: 50%;"></div>
-                    </div>
-                    <div style="position: absolute; top: 35px; left: 55px; width: 14px; height: 14px; background: #222; border-radius: 50%; border: 2px solid #444;">
-                        <div style="position: absolute; top: 3px; left: 3px; width: 6px; height: 6px; background: #888; border-radius: 50%;"></div>
-                    </div>
-                    <!-- Faro delantero -->
-                    <div style="position: absolute; top: 25px; left: 75px; width: 6px; height: 8px; background: #FFD700; border-radius: 3px; border: 1px solid #FFA500;"></div>
-                    <!-- Parachoques -->
-                    <div style="position: absolute; top: 33px; left: 75px; width: 4px; height: 6px; background: #CCCCCC; border-radius: 2px;"></div>
-                    <span style="position: relative; z-index: 2; margin-left: 60px;">ALQUILER DE COCHES</span>
-                </a>
-            </div>
-        </div>
 
-        <div class="dashboard-grid">
-            <!-- Dashboard de Ventas -->
-            <div class="dashboard-card legacy" onclick="openGallery('ventas')">
-                <div class="card-image">
-                    <img src="images/ventas1.jpg" alt="Dashboard de Ventas - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#ff6b6b,#4ecdc4);color:white;font-size:3rem;\'>📊</div>'">
-                </div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="card-title">📊 Análisis de Ventas</h3>
-                        <span class="status-badge status-legacy">Legacy Público</span>
-                    </div>
-                    <p class="card-description">
-                        Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.
-                    </p>
-                    <button style="background: red !important; color: white !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('ventas')">📊 Ver todas las páginas (3)</button>
-                </div>
-            </div>
-
-            <!-- Dashboard de Fútbol -->
-            <div class="dashboard-card legacy" onclick="openGallery('futbol')">
-                <div class="card-image">
-                    <img src="images/futbol1.jpg" alt="Dashboard Liga de Fútbol - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#4ecdc4,#45b7d1);color:white;font-size:3rem;\'>⚽</div>'">
-                </div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="card-title">⚽ Liga de Fútbol</h3>
-                        <span class="status-badge status-legacy">Legacy Público</span>
-                    </div>
-                    <p class="card-description">
-                        Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.
-                    </p>
-                    <button style="background: blue !important; color: white !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('futbol')">⚽ Ver todas las páginas (2)</button>
-                </div>
-            </div>
-
-            <!-- Dashboard de Vacaciones/Bajas -->
-            <div class="dashboard-card legacy" onclick="openGallery('vacaciones')">
-                <div class="card-image">
-                    <img src="images/bajas1.jpg" alt="Dashboard Entradas/Salidas/Vacaciones - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#96ceb4,#ffeaa7);color:white;font-size:3rem;\'>📅</div>'">
-                </div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="card-title">📅 Control de Presencia</h3>
-                        <span class="status-badge status-legacy">Legacy Público</span>
-                    </div>
-                    <p class="card-description">
-                        Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.
-                    </p>
-                    <button style="background: green !important; color: white !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('vacaciones')">🕐 Ver todas las páginas (2)</button>
-                </div>
-            </div>
-
-            <!-- Dashboard de Alquiler de Coches (AHORA LEGACY) -->
-            <div class="dashboard-card legacy" onclick="openGallery('alquilercoches')">
-                <div class="card-image">
-                    <img src="images/alquilercoches1.jpg" alt="Dashboard de Alquiler de Coches - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#fd7e14,#ffc107);color:white;font-size:3rem;\'>🚗</div>'">
-                </div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="card-title">🚗 Alquiler de Coches</h3>
-                        <span class="status-badge status-legacy">Legacy Público</span>
-                    </div>
-                    <p class="card-description">
-                        Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>2 páginas interactivas</strong> con KPIs del sector automovilístico.
-                    </p>
-                    <button style="background: orange !important; color: black !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('alquilercoches')">🚗 Ver todas las páginas (2)</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal de Galería -->
-        <div id="galleryModal" class="gallery-modal">
-            <div class="gallery-content">
-                <div class="gallery-header">
-                    <h3 id="galleryTitle" class="gallery-title">Dashboard</h3>
-                    <button class="close-gallery" onclick="closeGallery()">✕</button>
-                </div>
-                <div id="galleryImages" class="gallery-images">
-                    <!-- Las imágenes se cargarán dinámicamente -->
-                </div>
-            </div>
-        </div>
-
-        <div class="info-section">
-            <h2>🎯 Sobre estos Dashboards</h2>
-            <p class="info-text">
-                Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: 
-                comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público 
-                como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos.
-            </p>
-        </div>
-    </div>
-
-    <script>
-        // Configuración de dashboards con sus imágenes
-        const dashboards = {
-            ventas: {
-                title: "📊 Análisis de Ventas - Dashboard Completo",
-                images: ["images/ventas1.jpg", "images/ventas2.jpg", "images/ventas3.jpg"]
-            },
-            futbol: {
-                title: "⚽ Liga de Fútbol - Estadísticas Deportivas",
-                images: ["images/futbol1.jpg", "images/futbol2.jpg"]
-            },
-            vacaciones: {
-                title: "📅 Control de Presencia - Gestión de Personal",
-                images: ["images/bajas1.jpg", "images/bajas2.jpg"]
-            },
-            alquilercoches: {
-                title: "🚗 Alquiler de Coches - Análisis del Sector Automovilístico",
-                images: ["images/alquilercoches1.jpg", "images/alquilercoches2.jpg"]
-            }
-        };
-
-        function openGallery(dashboardKey) {
-            const dashboard = dashboards[dashboardKey];
-            if (!dashboard) return;
-
-            const modal = document.getElementById('galleryModal');
-            const title = document.getElementById('galleryTitle');
-            const imagesContainer = document.getElementById('galleryImages');
-
-            title.textContent = dashboard.title;
-            
-            // Limpiar contenedor
-            imagesContainer.innerHTML = '';
-            
-            // Añadir imágenes
-            dashboard.images.forEach((imageSrc, index) => {
-                const img = document.createElement('img');
-                img.src = imageSrc;
-                img.alt = `${dashboard.title} - Página ${index + 1}`;
-                img.className = 'gallery-image';
-                img.onerror = function() {
-                    this.style.display = 'none';
-                };
-                imagesContainer.appendChild(img);
-            });
-
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeGallery() {
-            const modal = document.getElementById('galleryModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Cerrar galería con ESC
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeGallery();
-            }
-        });
-
-        // Cerrar galería al hacer click fuera del contenido
-        document.getElementById('galleryModal').addEventListener('click', function(event) {
-            if (event.target === this) {
-                closeGallery();
-            }
-        });
-
-        // Animación secuencial del texto descriptivo
-        function animateTextBlocks() {
-            const textBlocks = document.querySelectorAll('.text-block');
-            let currentBlock = 0;
-
-            function highlightNext() {
-                // Remover highlight de todos los bloques
-                textBlocks.forEach(block => block.classList.remove('highlight'));
-                
-                // Añadir highlight al bloque actual
-                if (textBlocks[currentBlock]) {
-                    textBlocks[currentBlock].classList.add('highlight');
-                }
-                
-                // Avanzar al siguiente bloque
-                currentBlock = (currentBlock + 1) % textBlocks.length;
-                
-                // Si completamos un ciclo, esperar más tiempo antes del siguiente
-                const delay = currentBlock === 0 ? 3000 : 1500;
-                setTimeout(highlightNext, delay);
-            }
-
-            // Iniciar la animación después de que cargue la página
-            setTimeout(highlightNext, 2000);
-        }
-
-        // Iniciar la animación cuando se carga la página
-        document.addEventListener('DOMContentLoaded', function() {
-            animateTextBlocks();
-            createFloatingParticles();
-        });
-
-        // Crear partículas flotantes decorativas
-        function createFloatingParticles() {
-            const container = document.querySelector('.container');
-            
-            for (let i = 0; i < 15; i++) {
-                const particle = document.createElement('div');
-                particle.style.cssText = `
-                    position: absolute;
-                    width: ${Math.random() * 6 + 2}px;
-                    height: ${Math.random() * 6 + 2}px;
-                    background: rgba(255, 255, 255, 0.3);
-                    border-radius: 50%;
-                    pointer-events: none;
-                    left: ${Math.random() * 100}%;
-                    top: ${Math.random() * 100}%;
-                    animation: float ${Math.random() * 3 + 2}s ease-in-out infinite;
-                    animation-delay: ${Math.random() * 2}s;
-                `;
-                container.appendChild(particle);
-            }
-        }
-    </script>
-</body>
-</html>
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiMGRlZjM5MjQtYjE0MC00MWMwLTllNjQtYmYwMTFlN2
