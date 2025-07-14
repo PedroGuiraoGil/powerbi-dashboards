@@ -183,10 +183,12 @@
 
         .text-block {
             transition: all 0.6s ease;
-            display: inline;
+            display: inline-block; /* CORREGIDO: Permite que 'transform' funcione */
+            opacity: 0.7;
         }
 
         .text-block.highlight {
+            opacity: 1;
             transform: scale(1.15);
             color: #ffffff;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
@@ -1164,7 +1166,7 @@
                     <h1 data-translate="mainName">Pedro Guirao Gil</h1>
                 </div>
                 <div class="profile-content">
-                    <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/yo.jpg" alt="Pedro Guirao Gil" class="profile-image" onerror="this.src='https://placehold.co/120x120/764ba2/ffffff?text=PGG'">
+                    <img id="profile-pic" src="" alt="Pedro Guirao Gil" class="profile-image" onerror="this.src='https://placehold.co/120x120/764ba2/ffffff?text=PGG'">
                     <div class="profile-info">
                         <p class="animated-text" data-translate="roles" data-html="true">
                             <span class="text-block" data-block="0">Especialista en <span class="powerbi-brand">Power BI</span> y Microsoft <span class="excel-brand">EXCEL</span></span> • 
@@ -1300,22 +1302,22 @@
                 <div class="books-carousel">
                     <div class="books-container">
                         <div class="book-cover active" data-index="0" onclick="goToBook(0)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/FIN.png" alt="FIN - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FF6B6B/ffffff?text=FIN'">
+                            <img id="book-cover-0" src="" alt="FIN - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FF6B6B/ffffff?text=FIN'">
                         </div>
                         <div class="book-cover next" data-index="1" onclick="goToBook(1)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/OH%20MY%20GOD.jpg" alt="OH MY GOD - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FF8E53/ffffff?text=OMG'">
+                            <img id="book-cover-1" src="" alt="OH MY GOD - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FF8E53/ffffff?text=OMG'">
                         </div>
                         <div class="book-cover far-next" data-index="2" onclick="goToBook(2)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/MANUAL%20BASICO%20DE%20CONQUISTA.jpg" alt="MANUAL BÁSICO DE CONQUISTA - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FFA726/ffffff?text=Manual'">
+                            <img id="book-cover-2" src="" alt="MANUAL BÁSICO DE CONQUISTA - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FFA726/ffffff?text=Manual'">
                         </div>
                         <div class="book-cover hidden-next" data-index="3" onclick="goToBook(3)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/TOCATA%20Y%20FUGA%20DE%20LA%20TENIENTE%20ESCALI.jpg" alt="TOCATA Y FUGA DE LA TENIENTE ESCALI - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/4ECDC4/ffffff?text=TOCATA'">
+                            <img id="book-cover-3" src="" alt="TOCATA Y FUGA DE LA TENIENTE ESCALI - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/4ECDC4/ffffff?text=TOCATA'">
                         </div>
                         <div class="book-cover hidden-next" data-index="4" onclick="goToBook(4)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ESCALIS%20BLUES.jpg" alt="ESCALI'S BLUES - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/26A69A/ffffff?text=BLUES'">
+                            <img id="book-cover-4" src="" alt="ESCALI'S BLUES - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/26A69A/ffffff?text=BLUES'">
                         </div>
                         <div class="book-cover hidden-next" data-index="5" onclick="goToBook(5)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/EXODOS.jpg" alt="ÉXODOS - Kia P. Cabdill" onerror="this.src='https://placehold.co/220x330/8E44AD/ffffff?text=ÉXODOS'">
+                            <img id="book-cover-5" src="" alt="ÉXODOS - Kia P. Cabdill" onerror="this.src='https://placehold.co/220x330/8E44AD/ffffff?text=ÉXODOS'">
                         </div>
                     </div>
                 </div>
@@ -1607,6 +1609,16 @@
                 ]
             }
         };
+        
+        const bookImageSources = [
+            `${GITHUB_BASE_URL}FIN.png`,
+            `${GITHUB_BASE_URL}OH%20MY%20GOD.jpg`,
+            `${GITHUB_BASE_URL}MANUAL%20BASICO%20DE%20CONQUISTA.jpg`,
+            `${GITHUB_BASE_URL}TOCATA%20Y%20FUGA%20DE%20LA%20TENIENTE%20ESCALI.jpg`,
+            `${GITHUB_BASE_URL}ESCALIS%20BLUES.jpg`,
+            `${GITHUB_BASE_URL}EXODOS.jpg`
+        ];
+
 
         const booksData = {
             es: [
@@ -1791,14 +1803,36 @@
             const textBlocks = document.querySelectorAll('.text-block');
             if(textBlocks.length === 0) return;
             let currentBlock = 0;
+            
+            textBlocks.forEach(block => block.classList.remove('highlight'));
+            if(textBlocks[currentBlock]) {
+                textBlocks[currentBlock].classList.add('highlight');
+            }
+
             setInterval(() => {
                 textBlocks.forEach(block => block.classList.remove('highlight'));
-                textBlocks[currentBlock].classList.add('highlight');
                 currentBlock = (currentBlock + 1) % textBlocks.length;
+                if(textBlocks[currentBlock]) {
+                   textBlocks[currentBlock].classList.add('highlight');
+                }
             }, 2000);
         }
+        
+        function setImages() {
+            const timestamp = new Date().getTime(); // Cache buster
+            document.getElementById('profile-pic').src = `${GITHUB_BASE_URL}yo.jpg?t=${timestamp}`;
+            
+            bookImageSources.forEach((src, index) => {
+                const imgElement = document.getElementById(`book-cover-${index}`);
+                if (imgElement) {
+                    imgElement.src = `${src}?t=${timestamp}`;
+                }
+            });
+        }
+
 
         document.addEventListener('DOMContentLoaded', function() {
+            setImages();
             animateTextBlocks();
             
             // Crear indicadores del carrusel
