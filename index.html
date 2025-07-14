@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedro Guirao Gil - Analista de Datos y Novelista</title>
+    <title data-translate="pageTitle">Pedro Guirao Gil - Analista de Datos y Novelista</title>
     <style>
+        /* ESTILOS GENERALES Y DE FONDO */
         * {
             margin: 0;
             padding: 0;
@@ -38,12 +39,50 @@
             padding: 20px;
             position: relative;
         }
+        
+        /* SELECTOR DE IDIOMA */
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 5px;
+            display: flex;
+            gap: 5px;
+            z-index: 100;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
 
+        .lang-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .lang-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        
+        .lang-btn.active {
+            border-color: #4ecdc4;
+            transform: scale(1.1);
+        }
+
+        /* HEADER Y PERFIL */
         .header {
             text-align: center;
             color: white;
             margin-bottom: 60px;
-            padding: 40px 0;
+            padding-top: 80px; /* Espacio para el selector de idioma */
         }
 
         .profile-section {
@@ -185,7 +224,7 @@
             }
         }
 
-        /* Sección de navegación con tabs */
+        /* NAVEGACIÓN POR PESTAÑAS */
         .section-tabs {
             display: flex;
             justify-content: center;
@@ -231,7 +270,7 @@
             display: block;
         }
 
-        /* ESTILOS PARA LA SECCIÓN DE DASHBOARDS */
+        /* SECCIÓN DE DASHBOARDS */
         .nav-links {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -331,7 +370,6 @@
             text-shadow: 3px 3px 12px rgba(0,0,0,0.8);
         }
 
-        /* Estilos específicos para cada botón */
         .btn-ventas {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
             background-size: 200% 200%;
@@ -575,7 +613,6 @@
             box-shadow: 0 25px 50px rgba(255, 149, 0, 0.5);
         }
 
-        /* Carrusel de portadas */
         .books-carousel {
             position: relative;
             height: 450px;
@@ -695,6 +732,7 @@
             color: #666;
             margin-bottom: 25px;
             text-align: justify;
+            min-height: 100px; /* Altura mínima para evitar saltos */
         }
 
         .book-genre {
@@ -939,7 +977,7 @@
             }
         }
 
-        /* Modal de Galería */
+        /* MODAL DE GALERÍA */
         .gallery-modal {
             display: none;
             position: fixed;
@@ -998,8 +1036,20 @@
             max-height: 70vh;
             overflow-y: auto;
         }
-
+        
+        /* DISEÑO RESPONSIVE */
         @media (max-width: 768px) {
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+            .lang-btn {
+                width: 35px;
+                height: 35px;
+            }
+            .header {
+                padding-top: 60px;
+            }
             .profile-section {
                 flex-direction: column;
                 text-align: center;
@@ -1042,7 +1092,6 @@
                 width: 250px;
             }
 
-            /* Responsive para carrusel de libros */
             .books-container {
                 width: 100%;
             }
@@ -1084,16 +1133,24 @@
 </head>
 <body>
     <div class="container">
+        <!-- SELECTOR DE IDIOMA -->
+        <div class="language-switcher">
+            <button class="lang-btn" style="background-image: url('https://flagcdn.com/es.svg');" onclick="changeLanguage('es')" data-lang="es" title="Español"></button>
+            <button class="lang-btn" style="background-image: url('https://flagcdn.com/gb.svg');" onclick="changeLanguage('en')" data-lang="en" title="English"></button>
+            <button class="lang-btn" style="background-image: url('https://flagcdn.com/fr.svg');" onclick="changeLanguage('fr')" data-lang="fr" title="Français"></button>
+            <button class="lang-btn" style="background-image: url('https://flagcdn.com/de.svg');" onclick="changeLanguage('de')" data-lang="de" title="Deutsch"></button>
+            <button class="lang-btn" style="background-image: url('https://flagcdn.com/ad.svg');" onclick="changeLanguage('ca')" data-lang="ca" title="Català"></button> <!-- Usando bandera de Andorra para Catalán -->
+        </div>
+
         <div class="header">
             <div class="profile-section">
                 <div style="display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap;">
-                    <h1>Pedro Guirao Gil</h1>
-                    <img src="images/Yo (3).jpg" alt="Pedro Guirao Gil" style="width: 120px; height: 120px; border-radius: 50%; border: 4px solid white; box-shadow: 0 15px 30px rgba(0,0,0,0.3); object-fit: cover;" onerror="this.src='images/yo.jpg'; this.onerror=function(){this.style.display='none'};">
+                    <h1 data-translate="mainName">Pedro Guirao Gil</h1>
                 </div>
                 <div class="profile-content">
-                    <img src="images/pedro-guirao.jpg" alt="Pedro Guirao Gil" class="profile-image" onerror="this.style.display='none'">
+                    <img src="https://placehold.co/120x120/764ba2/ffffff?text=PGG" alt="Pedro Guirao Gil" class="profile-image" onerror="this.src='https://placehold.co/120x120/764ba2/ffffff?text=PGG'">
                     <div class="profile-info">
-                        <p class="animated-text">
+                        <p class="animated-text" data-translate="roles" data-html="true">
                             <span class="text-block" data-block="0">Especialista en <span class="powerbi-brand">Power BI</span> y Microsoft <span class="excel-brand">EXCEL</span></span> • 
                             <span class="text-block" data-block="1">Formador</span> • 
                             <span class="text-block" data-block="2">Consultor</span> • 
@@ -1106,10 +1163,10 @@
             
             <!-- Navegación por pestañas -->
             <div class="section-tabs">
-                <button class="tab-button active" onclick="showSection('dashboards')">
+                <button class="tab-button active" onclick="showSection('dashboards')" data-translate="tabDashboards">
                     📊 DASHBOARDS POWER BI
                 </button>
-                <button class="tab-button" onclick="showSection('books')">
+                <button class="tab-button" onclick="showSection('books')" data-translate="tabNovels">
                     📚 MIS NOVELAS
                 </button>
             </div>
@@ -1119,31 +1176,20 @@
         <div id="dashboards" class="section-content active">
             <div class="nav-links">
                 <a href="https://app.powerbi.com/view?r=eyJrIjoiYTJjN2E3MjAtZDdhMC00NmE5LThhZmEtMjU1MzA1ZDAzZDI2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-ventas">
-                    <div class="button-icon">
-                        <div class="icon-chart"></div>
-                    </div>
-                    <span class="button-text">ANÁLISIS DE VENTAS</span>
+                    <div class="button-icon"><div class="icon-chart"></div></div>
+                    <span class="button-text" data-translate="salesAnalysisBtn">ANÁLISIS DE VENTAS</span>
                 </a>
-
                 <a href="https://app.powerbi.com/view?r=eyJrIjoiMGRlZjM5MjQtYjE0MC00MWMwLTllNjQtYmYwMTFlN2Y2NWE2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-futbol">
-                    <div class="button-icon">
-                        <div class="icon-soccer"></div>
-                    </div>
-                    <span class="button-text">LIGA DE FÚTBOL</span>
+                    <div class="button-icon"><div class="icon-soccer"></div></div>
+                    <span class="button-text" data-translate="soccerLeagueBtn">LIGA DE FÚTBOL</span>
                 </a>
-
                 <a href="https://app.powerbi.com/view?r=eyJrIjoiNDVlNWVhZGEtZjNjYi00NmM4LTg2NzEtMDQzZDNkY2YzMmE5IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9&pageName=ReportSection" target="_blank" class="modern-nav-button btn-presencia">
-                    <div class="button-icon">
-                        <div class="icon-clock"></div>
-                    </div>
-                    <span class="button-text">CONTROL DE PRESENCIA</span>
+                    <div class="button-icon"><div class="icon-clock"></div></div>
+                    <span class="button-text" data-translate="attendanceBtn">CONTROL DE PRESENCIA</span>
                 </a>
-
                 <a href="https://app.powerbi.com/view?r=eyJrIjoiMmIwNDBjZjItNWJmMi00OWFlLWI4OWEtZmJhY2QwN2M4NjMwIiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-coches">
-                    <div class="button-icon">
-                        <div class="icon-car"></div>
-                    </div>
-                    <span class="button-text">ALQUILER DE COCHES</span>
+                    <div class="button-icon"><div class="icon-car"></div></div>
+                    <span class="button-text" data-translate="carRentalBtn">ALQUILER DE COCHES</span>
                 </a>
             </div>
 
@@ -1151,75 +1197,72 @@
                 <!-- Dashboard de Ventas -->
                 <div class="dashboard-card" onclick="openGallery('ventas')">
                     <div class="card-image">
-                        <img src="images/ventas1.jpg" alt="Dashboard de Ventas - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#ff6b6b,#4ecdc4);color:white;font-size:3rem;\'>📊</div>'">
+                        <img src="https://placehold.co/600x400/ff6b6b/ffffff?text=Ventas" alt="Dashboard de Ventas" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#ff6b6b,#4ecdc4);color:white;font-size:3rem;\'>📊</div>'">
                     </div>
                     <div class="card-content">
                         <div class="card-header">
-                            <h3 class="card-title">📊 Análisis de Ventas</h3>
-                            <span class="status-badge">Legacy Público</span>
+                            <h3 class="card-title" data-translate="salesCardTitle">📊 Análisis de Ventas</h3>
+                            <span class="status-badge" data-translate="legacyBadge">Legacy Público</span>
                         </div>
-                        <p class="card-description">
+                        <p class="card-description" data-translate="salesCardDesc" data-html="true">
                             Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.
                         </p>
-                        <button style="background: red !important; color: white !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('ventas')">📊 Ver todas las páginas (3)</button>
+                        <button style="background: red !important;" class="view-button" onclick="openGallery('ventas')" data-translate="salesCardBtn">📊 Ver todas las páginas (3)</button>
                     </div>
                 </div>
-
                 <!-- Dashboard de Fútbol -->
                 <div class="dashboard-card" onclick="openGallery('futbol')">
                     <div class="card-image">
-                        <img src="images/futbol1.jpg" alt="Dashboard Liga de Fútbol - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#4ecdc4,#45b7d1);color:white;font-size:3rem;\'>⚽</div>'">
+                         <img src="https://placehold.co/600x400/4ecdc4/ffffff?text=Fútbol" alt="Dashboard de Fútbol" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#4ecdc4,#45b7d1);color:white;font-size:3rem;\'>⚽</div>'">
                     </div>
                     <div class="card-content">
                         <div class="card-header">
-                            <h3 class="card-title">⚽ Liga de Fútbol</h3>
-                            <span class="status-badge">Legacy Público</span>
+                            <h3 class="card-title" data-translate="soccerCardTitle">⚽ Liga de Fútbol</h3>
+                            <span class="status-badge" data-translate="legacyBadge">Legacy Público</span>
                         </div>
-                        <p class="card-description">
+                        <p class="card-description" data-translate="soccerCardDesc" data-html="true">
                             Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.
                         </p>
-                        <button style="background: blue !important; color: white !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('futbol')">⚽ Ver todas las páginas (2)</button>
+                        <button style="background: blue !important;" class="view-button" onclick="openGallery('futbol')" data-translate="soccerCardBtn">⚽ Ver todas las páginas (2)</button>
                     </div>
                 </div>
-
                 <!-- Dashboard de Vacaciones/Bajas -->
                 <div class="dashboard-card" onclick="openGallery('vacaciones')">
                     <div class="card-image">
-                        <img src="images/bajas1.jpg" alt="Dashboard Entradas/Salidas/Vacaciones - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#96ceb4,#ffeaa7);color:white;font-size:3rem;\'>📅</div>'">
+                        <img src="https://placehold.co/600x400/96ceb4/ffffff?text=Presencia" alt="Dashboard de Presencia" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#96ceb4,#ffeaa7);color:white;font-size:3rem;\'>📅</div>'">
                     </div>
                     <div class="card-content">
                         <div class="card-header">
-                            <h3 class="card-title">📅 Control de Presencia</h3>
-                            <span class="status-badge">Legacy Público</span>
+                            <h3 class="card-title" data-translate="attendanceCardTitle">📅 Control de Presencia</h3>
+                            <span class="status-badge" data-translate="legacyBadge">Legacy Público</span>
                         </div>
-                        <p class="card-description">
+                        <p class="card-description" data-translate="attendanceCardDesc" data-html="true">
                             Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.
                         </p>
-                        <button style="background: green !important; color: white !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('vacaciones')">🕐 Ver todas las páginas (2)</button>
+                        <button style="background: green !important;" class="view-button" onclick="openGallery('vacaciones')" data-translate="attendanceCardBtn">🕐 Ver todas las páginas (2)</button>
                     </div>
                 </div>
-
                 <!-- Dashboard de Alquiler de Coches -->
                 <div class="dashboard-card" onclick="openGallery('alquilercoches')">
                     <div class="card-image">
-                        <img src="images/alquiler1.jpg" alt="Dashboard de Alquiler de Coches - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#fd7e14,#ffc107);color:white;font-size:3rem;\'>🚗</div>'">
+                        <img src="https://placehold.co/600x400/fd7e14/ffffff?text=Coches" alt="Dashboard de Alquiler de Coches" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#fd7e14,#ffc107);color:white;font-size:3rem;\'>🚗</div>'">
                     </div>
                     <div class="card-content">
                         <div class="card-header">
-                            <h3 class="card-title">🚗 Alquiler de Coches</h3>
-                            <span class="status-badge">Legacy Público</span>
+                            <h3 class="card-title" data-translate="carRentalCardTitle">🚗 Alquiler de Coches</h3>
+                            <span class="status-badge" data-translate="legacyBadge">Legacy Público</span>
                         </div>
-                        <p class="card-description">
+                        <p class="card-description" data-translate="carRentalCardDesc" data-html="true">
                             Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>4 páginas interactivas</strong> con KPIs del sector automovilístico.
                         </p>
-                        <button style="background: orange !important; color: black !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('alquilercoches')">🚗 Ver todas las páginas (4)</button>
+                        <button style="background: orange !important; color: black !important;" class="view-button" onclick="openGallery('alquilercoches')" data-translate="carRentalCardBtn">🚗 Ver todas las páginas (4)</button>
                     </div>
                 </div>
             </div>
 
             <div class="info-section">
-                <h2>🎯 Sobre estos Dashboards</h2>
-                <p class="info-text">
+                <h2 data-translate="aboutDashboardsTitle">🎯 Sobre estos Dashboards</h2>
+                <p class="info-text" data-translate="aboutDashboardsText">
                     Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: 
                     comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público 
                     como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos.
@@ -1227,253 +1270,383 @@
             </div>
         </div>
 
-        <!-- Sección de Libros - SOLO CARRUSEL -->
+        <!-- Sección de Libros -->
         <div id="books" class="section-content">
             <div class="books-section">
                 <div class="books-header">
-                    <h2 class="books-title">📚 Mi Faceta Literaria</h2>
-                    <p class="books-subtitle">
+                    <h2 class="books-title" data-translate="literaryFacetTitle">📚 Mi Faceta Literaria</h2>
+                    <p class="books-subtitle" data-translate="literaryFacetSubtitle">
                         Exploro mundos imaginarios a través de la escritura, desde la ciencia ficción hasta el thriller, 
                         siempre buscando conectar con los lectores a través de historias que combinan entretenimiento y reflexión.
                     </p>
                 </div>
 
-                <!-- Carrusel de portadas -->
                 <div class="books-carousel">
                     <div class="books-container">
-                        <!-- Libro 1: FIN -->
                         <div class="book-cover active" data-index="0" onclick="goToBook(0)">
-                            <img src="images/FIN.png" alt="FIN - Pedro G. Guirao" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(45deg,#FF6B6B,#FF8E53);display:flex;align-items:center;justify-content:center;color:white;font-size:4rem;border-radius:15px;\'>📖</div>'">
+                            <img src="https://placehold.co/220x330/FF6B6B/ffffff?text=FIN" alt="FIN - Pedro G. Guirao" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(45deg,#FF6B6B,#FF8E53);display:flex;align-items:center;justify-content:center;color:white;font-size:4rem;border-radius:15px;\'>📖</div>'">
                         </div>
-
-                        <!-- Libro 2: OH MY GOD -->
                         <div class="book-cover next" data-index="1" onclick="goToBook(1)">
-                            <img src="images/OH MY GOD.jpg" alt="OH MY GOD - Pedro G. Guirao" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(45deg,#FF8E53,#FFA726);display:flex;align-items:center;justify-content:center;color:white;font-size:4rem;border-radius:15px;\'>🙏</div>'">
+                            <img src="https://placehold.co/220x330/FF8E53/ffffff?text=OMG" alt="OH MY GOD - Pedro G. Guirao" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(45deg,#FF8E53,#FFA726);display:flex;align-items:center;justify-content:center;color:white;font-size:4rem;border-radius:15px;\'>🙏</div>'">
                         </div>
-
-                        <!-- Libro 3: MANUAL BÁSICO DE CONQUISTA -->
                         <div class="book-cover far-next" data-index="2" onclick="goToBook(2)">
-                            <img src="images/MANUAL BASICO DE CONQUISTA.jpg" alt="MANUAL BÁSICO DE CONQUISTA - Pedro G. Guirao" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(45deg,#FFA726,#FFB74D);display:flex;align-items:center;justify-content:center;color:white;font-size:4rem;border-radius:15px;\'>🎯</div>'">
+                            <img src="https://placehold.co/220x330/FFA726/ffffff?text=Manual" alt="MANUAL BÁSICO DE CONQUISTA - Pedro G. Guirao" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(45deg,#FFA726,#FFB74D);display:flex;align-items:center;justify-content:center;color:white;font-size:4rem;border-radius:15px;\'>🎯</div>'">
                         </div>
-
-                        <!-- Libro 4: TOCATA Y FUGA -->
                         <div class="book-cover hidden-next" data-index="3" onclick="goToBook(3)">
-                            <img src="images/TOCATA Y FUGA DE LA TENIENTE ESCALI.jpg" alt="TOCATA Y FUGA DE LA TENIENTE ESCALI - Pedro G. Guirao" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(45deg,#4ECDC4,#26A69A);display:flex;align-items:center;justify-content:center;color:white;font-size:4rem;border-radius:15px;\'>🎼</div>'">
+                            <img src="https://placehold.co/220x330/4ECDC4/ffffff?text=TOCATA" alt="TOCATA Y FUGA DE LA TENIENTE ESCALI - Pedro G. Guirao" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(45deg,#4ECDC4,#26A69A);display:flex;align-items:center;justify-content:center;color:white;font-size:4rem;border-radius:15px;\'>🎼</div>'">
                         </div>
-
-                        <!-- Libro 5: ESCALI'S BLUES -->
                         <div class="book-cover hidden-next" data-index="4" onclick="goToBook(4)">
-                            <img src="images/ESCALIS BLUES.jpg" alt="ESCALI'S BLUES - Pedro G. Guirao" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(45deg,#26A69A,#00897B);display:flex;align-items:center;justify-content:center;color:white;font-size:4rem;border-radius:15px;\'>🎷</div>'">
+                            <img src="https://placehold.co/220x330/26A69A/ffffff?text=BLUES" alt="ESCALI'S BLUES - Pedro G. Guirao" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(45deg,#26A69A,#00897B);display:flex;align-items:center;justify-content:center;color:white;font-size:4rem;border-radius:15px;\'>🎷</div>'">
                         </div>
-
-                        <!-- Libro 6: ÉXODOS -->
                         <div class="book-cover hidden-next" data-index="5" onclick="goToBook(5)">
-                            <img src="images/EXODOS.jpg" alt="ÉXODOS - Kia P. Cabdill" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(45deg,#8E44AD,#9B59B6);display:flex;align-items:center;justify-content:center;color:white;font-size:4rem;border-radius:15px;\'>🌌</div>'">
+                            <img src="https://placehold.co/220x330/8E44AD/ffffff?text=ÉXODOS" alt="ÉXODOS - Kia P. Cabdill" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(45deg,#8E44AD,#9B59B6);display:flex;align-items:center;justify-content:center;color:white;font-size:4rem;border-radius:15px;\'>🌌</div>'">
                         </div>
                     </div>
                 </div>
 
-                <!-- Información del libro actual -->
                 <div class="book-info" id="bookInfo">
-                    <h3 class="book-title" id="bookTitle">FIN</h3>
-                    <p class="book-author" id="bookAuthor">Por Pedro G. Guirao</p>
-                    <p class="book-description" id="bookDescription">Una reflexión profunda sobre los límites de la existencia humana y el significado del final. Una obra que explora las grandes preguntas filosóficas a través de una narrativa envolvente que desafía al lector a cuestionar sus propias percepciones sobre la vida y la muerte.</p>
-                    <span class="book-genre" id="bookGenre" style="background: linear-gradient(45deg, #FF6B6B, #FF8E53);">Ficción Filosófica</span>
+                    <h3 class="book-title" id="bookTitle"></h3>
+                    <p class="book-author" id="bookAuthor"></p>
+                    <p class="book-description" id="bookDescription"></p>
+                    <span class="book-genre" id="bookGenre"></span>
                     <div>
-                        <a href="https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/ref=tmm_kin_swatch_0?_encoding=UTF8&dib_tag=se&dib=eyJ2IjoiMSJ9.6A_MzvFnAk2N0yalauznZ2xZOGXFl0yUb7ZGi1VHNBHGjHj071QN20LucGBJIEps.PvcM39Ry6GFVvhBsNCXzqVQwTeeg2i5IBpzQhw-3foA&qid=1752505191&sr=1-1" target="_blank" class="book-link" id="bookLink" style="background: linear-gradient(45deg, #FF6B6B, #FF8E53);">
-                            <span>📖</span> Ver en Amazon
+                        <a href="#" target="_blank" class="book-link" id="bookLink">
+                            <span>📖</span> <span data-translate="viewOnAmazon">Ver en Amazon</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- Controles -->
                 <div class="carousel-controls">
                     <button class="nav-button" onclick="prevBook()">←</button>
-                    
-                    <div class="indicators">
-                        <div class="indicator active" onclick="goToBook(0)"></div>
-                        <div class="indicator" onclick="goToBook(1)"></div>
-                        <div class="indicator" onclick="goToBook(2)"></div>
-                        <div class="indicator" onclick="goToBook(3)"></div>
-                        <div class="indicator" onclick="goToBook(4)"></div>
-                        <div class="indicator" onclick="goToBook(5)"></div>
-                    </div>
-                    
+                    <div class="indicators"></div>
                     <button class="nav-button" onclick="nextBook()">→</button>
                 </div>
 
                 <div class="autoplay-control">
-                    <button class="autoplay-btn" onclick="toggleAutoplay()">⏸️ Pausar Carrusel</button>
+                    <button class="autoplay-btn" onclick="toggleAutoplay()"></button>
                 </div>
             </div>
         </div>
 
-        <!-- Modal de Galería (para los dashboards) -->
+        <!-- Modal de Galería -->
         <div id="galleryModal" class="gallery-modal">
             <div class="gallery-content">
                 <div class="gallery-header">
-                    <h3 id="galleryTitle" class="gallery-title">Dashboard</h3>
+                    <h3 id="galleryTitle" class="gallery-title"></h3>
                     <button class="close-gallery" onclick="closeGallery()">✕</button>
                 </div>
-                <div id="galleryImages" class="gallery-images">
-                    <!-- Las imágenes se cargarán dinámicamente -->
-                </div>
+                <div id="galleryImages" class="gallery-images"></div>
             </div>
         </div>
     </div>
 
     <script>
-        // Variables globales
+        // --- SISTEMA DE TRADUCCIÓN ---
+        const translations = {
+            es: {
+                pageTitle: "Pedro Guirao Gil - Analista de Datos y Novelista",
+                mainName: "Pedro Guirao Gil",
+                roles: `<span class="text-block" data-block="0">Especialista en <span class="powerbi-brand">Power BI</span> y Microsoft <span class="excel-brand">EXCEL</span></span> • <span class="text-block" data-block="1">Formador</span> • <span class="text-block" data-block="2">Consultor</span> • <span class="text-block" data-block="3">Automatización en la extracción y depuración de datos</span> • <span class="text-block" data-block="4"><span class="novelist-brand">Novelista</span></span>`,
+                tabDashboards: "📊 DASHBOARDS POWER BI",
+                tabNovels: "📚 MIS NOVELAS",
+                salesAnalysisBtn: "ANÁLISIS DE VENTAS",
+                soccerLeagueBtn: "LIGA DE FÚTBOL",
+                attendanceBtn: "CONTROL DE PRESENCIA",
+                carRentalBtn: "ALQUILER DE COCHES",
+                salesCardTitle: "📊 Análisis de Ventas",
+                legacyBadge: "Legacy Público",
+                salesCardDesc: "Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.",
+                salesCardBtn: "📊 Ver todas las páginas (3)",
+                soccerCardTitle: "⚽ Liga de Fútbol",
+                soccerCardDesc: "Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.",
+                soccerCardBtn: "⚽ Ver todas las páginas (2)",
+                attendanceCardTitle: "📅 Control de Presencia",
+                attendanceCardDesc: "Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.",
+                attendanceCardBtn: "🕐 Ver todas las páginas (2)",
+                carRentalCardTitle: "🚗 Alquiler de Coches",
+                carRentalCardDesc: "Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>4 páginas interactivas</strong> con KPIs del sector automovilístico.",
+                carRentalCardBtn: "🚗 Ver todas las páginas (4)",
+                aboutDashboardsTitle: "🎯 Sobre estos Dashboards",
+                aboutDashboardsText: "Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos.",
+                literaryFacetTitle: "📚 Mi Faceta Literaria",
+                literaryFacetSubtitle: "Exploro mundos imaginarios a través de la escritura, desde la ciencia ficción hasta el thriller, siempre buscando conectar con los lectores a través de historias que combinan entretenimiento y reflexión.",
+                viewOnAmazon: "Ver en Amazon",
+                viewOnKobo: "Ver en Kobo",
+                pauseCarousel: "⏸️ Pausar Carrusel",
+                resumeCarousel: "▶️ Reanudar Carrusel",
+                gallerySalesTitle: "📊 Análisis de Ventas - Dashboard Completo",
+                gallerySoccerTitle: "⚽ Liga de Fútbol - Estadísticas Deportivas",
+                galleryAttendanceTitle: "📅 Control de Presencia - Gestión de Personal",
+                galleryCarRentalTitle: "🚗 Alquiler de Coches - Análisis del Sector Automovilístico",
+            },
+            en: {
+                pageTitle: "Pedro Guirao Gil - Data Analyst & Novelist",
+                mainName: "Pedro Guirao Gil",
+                roles: `<span class="text-block" data-block="0">Specialist in <span class="powerbi-brand">Power BI</span> and Microsoft <span class="excel-brand">EXCEL</span></span> • <span class="text-block" data-block="1">Trainer</span> • <span class="text-block" data-block="2">Consultant</span> • <span class="text-block" data-block="3">Automation in data extraction and cleaning</span> • <span class="text-block" data-block="4"><span class="novelist-brand">Novelist</span></span>`,
+                tabDashboards: "📊 POWER BI DASHBOARDS",
+                tabNovels: "📚 MY NOVELS",
+                salesAnalysisBtn: "SALES ANALYSIS",
+                soccerLeagueBtn: "SOCCER LEAGUE",
+                attendanceBtn: "ATTENDANCE TRACKING",
+                carRentalBtn: "CAR RENTAL",
+                salesCardTitle: "📊 Sales Analysis",
+                legacyBadge: "Public Legacy",
+                salesCardDesc: "Complete sales analysis dashboard with main KPIs, time evolution, and detailed segmentation. <strong>3 interactive pages</strong> with commercial performance metrics.",
+                salesCardBtn: "📊 View all pages (3)",
+                soccerCardTitle: "⚽ Soccer League",
+                soccerCardDesc: "Complete statistical analysis of a soccer league with standings, player and team statistics. <strong>2 interactive pages</strong> with advanced sports metrics.",
+                soccerCardBtn: "⚽ View all pages (2)",
+                attendanceCardTitle: "📅 Attendance Tracking",
+                attendanceCardDesc: "Complete tracking of attendance, check-ins, check-outs, vacations, and leaves for staff. <strong>2 interactive pages</strong> with human resources management and calendars.",
+                attendanceCardBtn: "🕐 View all pages (2)",
+                carRentalCardTitle: "🚗 Car Rental",
+                carRentalCardDesc: "Dashboard for vehicle rental analysis with profitability, occupancy, and market trend metrics. <strong>4 interactive pages</strong> with automotive sector KPIs.",
+                carRentalCardBtn: "🚗 View all pages (4)",
+                aboutDashboardsTitle: "🎯 About these Dashboards",
+                aboutDashboardsText: "These dashboards represent real-world cases of Power BI implementation in various sectors: commercial, sports, human resources, and automotive. All maintain public access as legacy examples, ideal for business demos and specialized training in data analysis.",
+                literaryFacetTitle: "📚 My Literary Side",
+                literaryFacetSubtitle: "I explore imaginary worlds through writing, from science fiction to thrillers, always seeking to connect with readers through stories that combine entertainment and reflection.",
+                viewOnAmazon: "View on Amazon",
+                viewOnKobo: "View on Kobo",
+                pauseCarousel: "⏸️ Pause Carousel",
+                resumeCarousel: "▶️ Resume Carousel",
+                gallerySalesTitle: "📊 Sales Analysis - Complete Dashboard",
+                gallerySoccerTitle: "⚽ Soccer League - Sports Statistics",
+                galleryAttendanceTitle: "📅 Attendance Tracking - Staff Management",
+                galleryCarRentalTitle: "🚗 Car Rental - Automotive Sector Analysis",
+            },
+            fr: {
+                pageTitle: "Pedro Guirao Gil - Analyste de Données & Romancier",
+                mainName: "Pedro Guirao Gil",
+                roles: `<span class="text-block" data-block="0">Spécialiste en <span class="powerbi-brand">Power BI</span> et Microsoft <span class="excel-brand">EXCEL</span></span> • <span class="text-block" data-block="1">Formateur</span> • <span class="text-block" data-block="2">Consultant</span> • <span class="text-block" data-block="3">Automatisation de l'extraction et du nettoyage des données</span> • <span class="text-block" data-block="4"><span class="novelist-brand">Romancier</span></span>`,
+                tabDashboards: "📊 TABLEAUX DE BORD POWER BI",
+                tabNovels: "📚 MES ROMANS",
+                salesAnalysisBtn: "ANALYSE DES VENTES",
+                soccerLeagueBtn: "LIGUE DE FOOTBALL",
+                attendanceBtn: "SUIVI DE PRÉSENCE",
+                carRentalBtn: "LOCATION DE VOITURES",
+                salesCardTitle: "📊 Analyse des Ventes",
+                legacyBadge: "Héritage Public",
+                salesCardDesc: "Tableau de bord complet d'analyse des ventes avec les principaux KPI, l'évolution temporelle et une segmentation détaillée. <strong>3 pages interactives</strong> avec des métriques de performance commerciale.",
+                salesCardBtn: "📊 Voir toutes les pages (3)",
+                soccerCardTitle: "⚽ Ligue de Football",
+                soccerCardDesc: "Analyse statistique complète d'une ligue de football avec classements, statistiques des joueurs et des équipes. <strong>2 pages interactives</strong> avec des métriques sportives avancées.",
+                soccerCardBtn: "⚽ Voir toutes les pages (2)",
+                attendanceCardTitle: "📅 Suivi de Présence",
+                attendanceCardDesc: "Contrôle complet de la présence, des arrivées, des départs, des vacances et des congés du personnel. <strong>2 pages interactives</strong> avec gestion des ressources humaines et calendriers.",
+                attendanceCardBtn: "🕐 Voir toutes les pages (2)",
+                carRentalCardTitle: "🚗 Location de Voitures",
+                carRentalCardDesc: "Tableau de bord d'analyse de la location de véhicules avec des métriques de rentabilité, d'occupation et de tendances du marché. <strong>4 pages interactives</strong> avec des KPI du secteur automobile.",
+                carRentalCardBtn: "🚗 Voir toutes les pages (4)",
+                aboutDashboardsTitle: "🎯 À propos de ces Tableaux de Bord",
+                aboutDashboardsText: "Ces tableaux de bord représentent des cas réels de mise en œuvre de Power BI dans différents secteurs : commercial, sportif, ressources humaines et automobile. Tous conservent un accès public en tant qu'exemples hérités, idéaux pour les démos commerciales et la formation spécialisée en analyse de données.",
+                literaryFacetTitle: "📚 Ma Facette Littéraire",
+                literaryFacetSubtitle: "J'explore des mondes imaginaires à travers l'écriture, de la science-fiction au thriller, cherchant toujours à me connecter avec les lecteurs à travers des histoires qui allient divertissement et réflexion.",
+                viewOnAmazon: "Voir sur Amazon",
+                viewOnKobo: "Voir sur Kobo",
+                pauseCarousel: "⏸️ Mettre en Pause",
+                resumeCarousel: "▶️ Reprendre",
+                gallerySalesTitle: "📊 Analyse des Ventes - Tableau de Bord Complet",
+                gallerySoccerTitle: "⚽ Ligue de Football - Statistiques Sportives",
+                galleryAttendanceTitle: "📅 Suivi de Présence - Gestion du Personnel",
+                galleryCarRentalTitle: "🚗 Location de Voitures - Analyse du Secteur Automobile",
+            },
+            de: {
+                pageTitle: "Pedro Guirao Gil - Datenanalyst & Romanautor",
+                mainName: "Pedro Guirao Gil",
+                roles: `<span class="text-block" data-block="0">Spezialist für <span class="powerbi-brand">Power BI</span> und Microsoft <span class="excel-brand">EXCEL</span></span> • <span class="text-block" data-block="1">Trainer</span> • <span class="text-block" data-block="2">Berater</span> • <span class="text-block" data-block="3">Automatisierung der Datenextraktion und -bereinigung</span> • <span class="text-block" data-block="4"><span class="novelist-brand">Romanautor</span></span>`,
+                tabDashboards: "📊 POWER BI DASHBOARDS",
+                tabNovels: "📚 MEINE ROMANE",
+                salesAnalysisBtn: "VERKAUFSANALYSE",
+                soccerLeagueBtn: "FUSSBALL-LIGA",
+                attendanceBtn: "ANWESENHEITSKONTROLLE",
+                carRentalBtn: "AUTOVERMIETUNG",
+                salesCardTitle: "📊 Verkaufsanalyse",
+                legacyBadge: "Öffentliches Legacy",
+                salesCardDesc: "Vollständiges Dashboard zur Verkaufsanalyse mit den wichtigsten KPIs, zeitlicher Entwicklung und detaillierter Segmentierung. <strong>3 interaktive Seiten</strong> mit kommerziellen Leistungsmetriken.",
+                salesCardBtn: "📊 Alle Seiten anzeigen (3)",
+                soccerCardTitle: "⚽ Fußball-Liga",
+                soccerCardDesc: "Vollständige statistische Analyse einer Fußball-Liga mit Tabellen, Spieler- und Mannschaftsstatistiken. <strong>2 interaktive Seiten</strong> mit fortgeschrittenen Sportmetriken.",
+                soccerCardBtn: "⚽ Alle Seiten anzeigen (2)",
+                attendanceCardTitle: "📅 Anwesenheitskontrolle",
+                attendanceCardDesc: "Vollständige Kontrolle über Anwesenheit, Kommen, Gehen, Urlaub und Abwesenheiten des Personals. <strong>2 interaktive Seiten</strong> mit Personalmanagement und Kalendern.",
+                attendanceCardBtn: "🕐 Alle Seiten anzeigen (2)",
+                carRentalCardTitle: "🚗 Autovermietung",
+                carRentalCardDesc: "Dashboard zur Analyse der Fahrzeugvermietung mit Rentabilitäts-, Auslastungs- und Markttrendmetriken. <strong>4 interaktive Seiten</strong> mit KPIs aus dem Automobilsektor.",
+                carRentalCardBtn: "🚗 Alle Seiten anzeigen (4)",
+                aboutDashboardsTitle: "🎯 Über diese Dashboards",
+                aboutDashboardsText: "Diese Dashboards stellen reale Fälle der Power BI-Implementierung in verschiedenen Sektoren dar: Handel, Sport, Personalwesen und Automobil. Alle behalten den öffentlichen Zugang als Legacy-Beispiele bei, ideal für kommerzielle Demos und spezialisierte Schulungen in der Datenanalyse.",
+                literaryFacetTitle: "📚 Meine literarische Seite",
+                literaryFacetSubtitle: "Ich erkunde imaginäre Welten durch das Schreiben, von Science-Fiction bis zum Thriller, immer auf der Suche nach einer Verbindung zu den Lesern durch Geschichten, die Unterhaltung und Reflexion verbinden.",
+                viewOnAmazon: "Auf Amazon ansehen",
+                viewOnKobo: "Auf Kobo ansehen",
+                pauseCarousel: "⏸️ Karussell anhalten",
+                resumeCarousel: "▶️ Karussell fortsetzen",
+                gallerySalesTitle: "📊 Verkaufsanalyse - Vollständiges Dashboard",
+                gallerySoccerTitle: "⚽ Fußball-Liga - Sportstatistiken",
+                galleryAttendanceTitle: "📅 Anwesenheitskontrolle - Personalverwaltung",
+                galleryCarRentalTitle: "🚗 Autovermietung - Analyse des Automobilsektors",
+            },
+            ca: {
+                pageTitle: "Pedro Guirao Gil - Analista de Dades i Novel·lista",
+                mainName: "Pedro Guirao Gil",
+                roles: `<span class="text-block" data-block="0">Especialista en <span class="powerbi-brand">Power BI</span> i Microsoft <span class="excel-brand">EXCEL</span></span> • <span class="text-block" data-block="1">Formador</span> • <span class="text-block" data-block="2">Consultor</span> • <span class="text-block" data-block="3">Automatització en l'extracció i depuració de dades</span> • <span class="text-block" data-block="4"><span class="novelist-brand">Novel·lista</span></span>`,
+                tabDashboards: "📊 DASHBOARDS POWER BI",
+                tabNovels: "📚 LES MEVES NOVEL·LES",
+                salesAnalysisBtn: "ANÀLISI DE VENDES",
+                soccerLeagueBtn: "LLIGA DE FUTBOL",
+                attendanceBtn: "CONTROL DE PRESÈNCIA",
+                carRentalBtn: "LLOGUER DE COTXES",
+                salesCardTitle: "📊 Anàlisi de Vendes",
+                legacyBadge: "Llegat Públic",
+                salesCardDesc: "Dashboard complet d'anàlisi de vendes amb KPIs principals, evolució temporal i segmentació detallada. <strong>3 pàgines interactives</strong> amb mètriques de performance comercial.",
+                salesCardBtn: "📊 Veure totes les pàgines (3)",
+                soccerCardTitle: "⚽ Lliga de Futbol",
+                soccerCardDesc: "Anàlisi estadística completa de lliga de futbol amb classificacions, estadístiques de jugadors i equips. <strong>2 pàgines interactives</strong> amb mètriques esportives avançades.",
+                soccerCardBtn: "⚽ Veure totes les pàgines (2)",
+                attendanceCardTitle: "📅 Control de Presència",
+                attendanceCardDesc: "Control complet de presència, entrades, sortides, vacances i baixes del personal. <strong>2 pàgines interactives</strong> amb gestió de recursos humans i calendaris.",
+                attendanceCardBtn: "🕐 Veure totes les pàgines (2)",
+                carRentalCardTitle: "🚗 Lloguer de Cotxes",
+                carRentalCardDesc: "Dashboard d'anàlisi de lloguer de vehicles amb mètriques de rendibilitat, ocupació i tendències del mercat. <strong>4 pàgines interactives</strong> amb KPIs del sector automobilístic.",
+                carRentalCardBtn: "🚗 Veure totes les pàgines (4)",
+                aboutDashboardsTitle: "🎯 Sobre aquests Dashboards",
+                aboutDashboardsText: "Aquests dashboards representen casos reals d'implementació de Power BI en diferents sectors: comercial, esportiu, recursos humans i automobilístic. Tots mantenen accés públic com a exemples legacy, ideals per a demos comercials i formació especialitzada en anàlisi de dades.",
+                literaryFacetTitle: "📚 La Meva Faceta Literària",
+                literaryFacetSubtitle: "Exploro mons imaginaris a través de l'escriptura, des de la ciència-ficció fins al thriller, sempre buscant connectar amb els lectors a través d'històries que combinen entreteniment i reflexió.",
+                viewOnAmazon: "Veure a Amazon",
+                viewOnKobo: "Veure a Kobo",
+                pauseCarousel: "⏸️ Pausa Carrusel",
+                resumeCarousel: "▶️ Reprèn Carrusel",
+                gallerySalesTitle: "📊 Anàlisi de Vendes - Dashboard Complet",
+                gallerySoccerTitle: "⚽ Lliga de Futbol - Estadístiques Esportives",
+                galleryAttendanceTitle: "📅 Control de Presència - Gestió de Personal",
+                galleryCarRentalTitle: "🚗 Lloguer de Cotxes - Anàlisi del Sector Automobilístic",
+            }
+        };
+
+        function changeLanguage(lang) {
+            if (!translations[lang]) {
+                console.error(`Language ${lang} not found.`);
+                return;
+            }
+            
+            // Guardar el idioma seleccionado
+            localStorage.setItem('preferredLanguage', lang);
+
+            // Actualizar el atributo lang del HTML
+            document.documentElement.lang = lang;
+
+            // Traducir todos los elementos con el atributo data-translate
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    if (el.getAttribute('data-html') === 'true') {
+                        el.innerHTML = translations[lang][key];
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            // Actualizar botones de idioma
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+
+            // Actualizar datos de los libros y el carrusel
+            updateBookInfo();
+            updateAutoplayButtonText();
+        }
+
+        // --- LÓGICA DEL SITIO ---
         let currentBook = 0;
         let autoplayInterval;
         let isAutoplayActive = true;
         const totalBooks = 6;
 
-        // Configuración de dashboards con sus imágenes
         const dashboards = {
             ventas: {
-                title: "📊 Análisis de Ventas - Dashboard Completo",
-                images: ["images/ventas1.jpg", "images/ventas2.jpg", "images/ventas3.jpg"]
+                images: ["https://placehold.co/800x600/ff6b6b/ffffff?text=Ventas+1", "https://placehold.co/800x600/ff6b6b/ffffff?text=Ventas+2", "https://placehold.co/800x600/ff6b6b/ffffff?text=Ventas+3"]
             },
             futbol: {
-                title: "⚽ Liga de Fútbol - Estadísticas Deportivas",
-                images: ["images/futbol1.jpg", "images/futbol2.jpg"]
+                images: ["https://placehold.co/800x600/4ecdc4/ffffff?text=Fútbol+1", "https://placehold.co/800x600/4ecdc4/ffffff?text=Fútbol+2"]
             },
             vacaciones: {
-                title: "📅 Control de Presencia - Gestión de Personal",
-                images: ["images/bajas1.jpg", "images/bajas2.jpg"]
+                images: ["https://placehold.co/800x600/96ceb4/ffffff?text=Presencia+1", "https://placehold.co/800x600/96ceb4/ffffff?text=Presencia+2"]
             },
             alquilercoches: {
-                title: "🚗 Alquiler de Coches - Análisis del Sector Automovilístico",
-                images: ["images/alquiler1.jpg", "images/alquiler2.jpg", "images/alquiler3.jpg", "images/alquiler4.jpg"]
+                images: ["https://placehold.co/800x600/fd7e14/ffffff?text=Coches+1", "https://placehold.co/800x600/fd7e14/ffffff?text=Coches+2", "https://placehold.co/800x600/fd7e14/ffffff?text=Coches+3", "https://placehold.co/800x600/fd7e14/ffffff?text=Coches+4"]
             }
         };
 
-        // Base de datos de libros con toda la información - ORDEN CORRECTO FINAL
-        const booksData = [
-            // Índice 0 - FIN (primera portada en HTML)
-            {
-                title: "FIN",
-                author: "Por Pedro G. Guirao",
-                description: "Una reflexión profunda sobre los límites de la existencia humana y el significado del final. Una obra que explora las grandes preguntas filosóficas a través de una narrativa envolvente que desafía al lector a cuestionar sus propias percepciones sobre la vida y la muerte.",
-                genre: "Ficción Filosófica",
-                genreColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)",
-                link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/ref=tmm_kin_swatch_0?_encoding=UTF8&dib_tag=se&dib=eyJ2IjoiMSJ9.6A_MzvFnAk2N0yalauznZ2xZOGXFl0yUb7ZGi1VHNBHGjHj071QN20LucGBJIEps.PvcM39Ry6GFVvhBsNCXzqVQwTeeg2i5IBpzQhw-3foA&qid=1752505191&sr=1-1",
-                linkText: "Ver en Amazon",
-                linkColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)"
-            },
-            // Índice 1 - OH MY GOD (segunda portada en HTML) - ¡AÑADIDO!
-            {
-                title: "OH MY GOD",
-                author: "Por Pedro G. Guirao",
-                description: "La Biblia Apócrifa del FIN de los días. Primera obra del autor. Creada con la misma edad de Cristo en la Cruz. Cuentos de apariencia inconexa y de aspecto bíblico mesiánico. Con mensaje oculto del creador a la Humanidad.",
-                genre: "Ficción Filosófica",
-                genreColor: "linear-gradient(45deg, #FF8E53, #FFA726)",
-                link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao&ac=1&acp=pedro+g+guirao&ac.author=pedro+g+guirao&sort=Temperature&fclanguages=es",
-                linkText: "Ver en Kobo",
-                linkColor: "linear-gradient(45deg, #FF8E53, #FFA726)"
-            },
-            // Índice 2 - MANUAL BÁSICO DE CONQUISTA (tercera portada en HTML)
-            {
-                title: "MANUAL BÁSICO DE CONQUISTA",
-                author: "Por Pedro G. Guirao",
-                description: "Una sátira inteligente sobre las relaciones humanas y los juegos de poder en la sociedad moderna. Con humor filosófico, disecciona los mecanismos de seducción, manipulación y conquista tanto en el ámbito personal como profesional, revelando verdades incómodas sobre nuestra naturaleza.",
-                genre: "Ficción Filosófica",
-                genreColor: "linear-gradient(45deg, #FFA726, #FFB74D)",
-                link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/ref=sr_1_1?dib=eyJ2IjoiMSJ9.tmyylQfKGGx2v7Pa1FQPEHTkmibi0MFYU6RWXjUwEHI.XrvAYKEAR807cOBIE-pzns0-Z1ObNLVDqRhrkrFOjdM&dib_tag=se&qid=1752505246&refinements=p_27%3APedro+G.+Guirao&s=digital-text&sr=1-1&text=Pedro+G.+Guirao",
-                linkText: "Ver en Amazon",
-                linkColor: "linear-gradient(45deg, #FFA726, #FFB74D)"
-            },
-            // Índice 3 - TOCATA Y FUGA DE LA TENIENTE ESCALI (cuarta portada en HTML)
-            {
-                title: "TOCATA Y FUGA DE LA TENIENTE ESCALI",
-                author: "Por Pedro G. Guirao",
-                description: "El debut de la Teniente Escali en un thriller que combina suspense policial con profundas reflexiones existenciales. Una investigación criminal se convierte en un viaje hacia los abismos del alma humana, donde cada pista revelada cuestiona no solo la culpabilidad del criminal, sino la naturaleza misma de la justicia y la moralidad.",
-                genre: "Thriller Existencialista",
-                genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)",
-                link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI&i=digital-text&__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=BA5E5DIC2EIO&sprefix=tocata+y+fuga+de+la+teniente+escali%2Cdigital-text%2C73&ref=nb_sb_noss",
-                linkText: "Ver en Amazon",
-                linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)"
-            },
-            // Índice 4 - ESCALI'S BLUES (quinta portada en HTML)
-            {
-                title: "ESCALI'S BLUES",
-                author: "Por Pedro G. Guirao",
-                description: "La secuela que profundiza en el universo de la Teniente Escali. Más oscura y compleja que su predecesora, esta obra explora los traumas del pasado mientras enfrenta un nuevo caso que desafía sus convicciones más profundas. Un blues literario que combina música, misterio y filosofía en una sinfonía de tensión y revelación personal.",
-                genre: "Thriller Existencialista",
-                genreColor: "linear-gradient(45deg, #26A69A, #00897B)",
-                link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao&ac=1&acp=pedro+g+guirao&ac.author=pedro+g+guirao&sort=Temperature&fclanguages=es",
-                linkText: "Ver en Kobo",
-                linkColor: "linear-gradient(45deg, #26A69A, #00897B)"
-            },
-            // Índice 5 - ÉXODOS (sexta portada en HTML)
-            {
-                title: "ÉXODOS",
-                author: "Por Kia P. Cabdill",
-                description: "Una épica space opera que narra el destino de la humanidad en su búsqueda de nuevos mundos. Cuando la Tierra se vuelve inhabitable, flotas de refugiados espaciales emprenden un viaje desesperado hacia lo desconocido. Entre conflictos intergalácticos, dilemas éticos y descubrimientos que desafían nuestra comprensión del universo, ÉXODOS es una reflexión sobre la supervivencia, la esperanza y lo que realmente significa ser humano.",
-                genre: "Space Opera - Ciencia Ficción",
-                genreColor: "linear-gradient(45deg, #8E44AD, #9B59B6)",
-                link: "https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill&s=relevancerank&text=Kia+P.+Cabdill&ref=dp_byline_sr_ebooks_1",
-                linkText: "Ver en Amazon (Kia P. Cabdill)",
-                linkColor: "linear-gradient(45deg, #8E44AD, #9B59B6)"
-            }
-        ];
+        const booksData = {
+            es: [
+                { title: "FIN", author: "Por Pedro G. Guirao", description: "Una reflexión profunda sobre los límites de la existencia humana y el significado del final. Una obra que explora las grandes preguntas filosóficas a través de una narrativa envolvente que desafía al lector a cuestionar sus propias percepciones sobre la vida y la muerte.", genre: "Ficción Filosófica", genreColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)", link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)" },
+                { title: "OH MY GOD", author: "Por Pedro G. Guirao", description: "La Biblia Apócrifa del FIN de los días. Primera obra del autor. Creada con la misma edad de Cristo en la Cruz. Cuentos de apariencia inconexa y de aspecto bíblico mesiánico. Con mensaje oculto del creador a la Humanidad.", genre: "Ficción Filosófica", genreColor: "linear-gradient(45deg, #FF8E53, #FFA726)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #FF8E53, #FFA726)" },
+                { title: "MANUAL BÁSICO DE CONQUISTA", author: "Por Pedro G. Guirao", description: "Una sátira inteligente sobre las relaciones humanas y los juegos de poder en la sociedad moderna. Con humor filosófico, disecciona los mecanismos de seducción, manipulación y conquista tanto en el ámbito personal como profesional, revelando verdades incómodas sobre nuestra naturaleza.", genre: "Ficción Filosófica", genreColor: "linear-gradient(45deg, #FFA726, #FFB74D)", link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FFA726, #FFB74D)" },
+                { title: "TOCATA Y FUGA DE LA TENIENTE ESCALI", author: "Por Pedro G. Guirao", description: "El debut de la Teniente Escali en un thriller que combina suspense policial con profundas reflexiones existenciales. Una investigación criminal se convierte en un viaje hacia los abismos del alma humana, donde cada pista revelada cuestiona no solo la culpabilidad del criminal, sino la naturaleza misma de la justicia y la moralidad.", genre: "Thriller Existencialista", genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)" },
+                { title: "ESCALI'S BLUES", author: "Por Pedro G. Guirao", description: "La secuela que profundiza en el universo de la Teniente Escali. Más oscura y compleja que su predecesora, esta obra explora los traumas del pasado mientras enfrenta un nuevo caso que desafía sus convicciones más profundas. Un blues literario que combina música, misterio y filosofía en una sinfonía de tensión y revelación personal.", genre: "Thriller Existencialista", genreColor: "linear-gradient(45deg, #26A69A, #00897B)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #26A69A, #00897B)" },
+                { title: "ÉXODOS", author: "Por Kia P. Cabdill", description: "Una épica space opera que narra el destino de la humanidad en su búsqueda de nuevos mundos. Cuando la Tierra se vuelve inhabitable, flotas de refugiados espaciales emprenden un viaje desesperado hacia lo desconocido. Entre conflictos intergalácticos, dilemas éticos y descubrimientos que desafían nuestra comprensión del universo, ÉXODOS es una reflexión sobre la supervivencia, la esperanza y lo que realmente significa ser humano.", genre: "Space Opera - Ciencia Ficción", genreColor: "linear-gradient(45deg, #8E44AD, #9B59B6)", link: "https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #8E44AD, #9B59B6)" }
+            ],
+            en: [
+                { title: "THE END", author: "By Pedro G. Guirao", description: "A profound reflection on the limits of human existence and the meaning of the end. A work that explores the great philosophical questions through an engaging narrative that challenges the reader to question their own perceptions of life and death.", genre: "Philosophical Fiction", genreColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)", link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)" },
+                { title: "OH MY GOD", author: "By Pedro G. Guirao", description: "The Apocryphal Bible of the END of days. The author's first work. Created at the same age as Christ on the Cross. Seemingly disconnected stories with a messianic biblical aspect. With a hidden message from the creator to Humanity.", genre: "Philosophical Fiction", genreColor: "linear-gradient(45deg, #FF8E53, #FFA726)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #FF8E53, #FFA726)" },
+                { title: "BASIC CONQUEST MANUAL", author: "By Pedro G. Guirao", description: "An intelligent satire on human relationships and power games in modern society. With philosophical humor, it dissects the mechanisms of seduction, manipulation, and conquest in both personal and professional spheres, revealing uncomfortable truths about our nature.", genre: "Philosophical Fiction", genreColor: "linear-gradient(45deg, #FFA726, #FFB74D)", link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FFA726, #FFB74D)" },
+                { title: "LIEUTENANT ESCALI'S TOCCATA AND FUGUE", author: "By Pedro G. Guirao", description: "Lieutenant Escali's debut in a thriller that combines police suspense with deep existential reflections. A criminal investigation becomes a journey into the abyss of the human soul, where each revealed clue questions not only the criminal's guilt but the very nature of justice and morality.", genre: "Existentialist Thriller", genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)" },
+                { title: "ESCALI'S BLUES", author: "By Pedro G. Guirao", description: "The sequel that delves deeper into Lieutenant Escali's universe. Darker and more complex than its predecessor, this work explores past traumas while facing a new case that challenges her deepest convictions. A literary blues that combines music, mystery, and philosophy in a symphony of tension and personal revelation.", genre: "Existentialist Thriller", genreColor: "linear-gradient(45deg, #26A69A, #00897B)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #26A69A, #00897B)" },
+                { title: "EXODUS", author: "By Kia P. Cabdill", description: "An epic space opera that chronicles the fate of humanity in its search for new worlds. When Earth becomes uninhabitable, fleets of space refugees embark on a desperate journey into the unknown. Amidst intergalactic conflicts, ethical dilemmas, and discoveries that challenge our understanding of the universe, EXODUS is a reflection on survival, hope, and what it truly means to be human.", genre: "Space Opera - Sci-Fi", genreColor: "linear-gradient(45deg, #8E44AD, #9B59B6)", link: "https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #8E44AD, #9B59B6)" }
+            ],
+            fr: [
+                { title: "FIN", author: "Par Pedro G. Guirao", description: "Une réflexion profonde sur les limites de l'existence humaine et le sens de la fin. Une œuvre qui explore les grandes questions philosophiques à travers un récit captivant qui met au défi le lecteur de remettre en question ses propres perceptions de la vie et de la mort.", genre: "Fiction Philosophique", genreColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)", link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)" },
+                { title: "OH MY GOD", author: "Par Pedro G. Guirao", description: "La Bible apocryphe de la FIN des temps. Première œuvre de l'auteur. Créée au même âge que le Christ sur la Croix. Des contes d'apparence décousue et d'aspect biblique messianique. Avec un message caché du créateur à l'Humanité.", genre: "Fiction Philosophique", genreColor: "linear-gradient(45deg, #FF8E53, #FFA726)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #FF8E53, #FFA726)" },
+                { title: "MANUEL ÉLÉMENTAIRE DE CONQUÊTE", author: "Par Pedro G. Guirao", description: "Une satire intelligente sur les relations humaines et les jeux de pouvoir dans la société moderne. Avec un humour philosophique, il dissèque les mécanismes de séduction, de manipulation et de conquête tant sur le plan personnel que professionnel, révélant des vérités inconfortables sur notre nature.", genre: "Fiction Philosophique", genreColor: "linear-gradient(45deg, #FFA726, #FFB74D)", link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FFA726, #FFB74D)" },
+                { title: "TOCATA ET FUGUE DU LIEUTENANT ESCALI", author: "Par Pedro G. Guirao", description: "Les débuts du lieutenant Escali dans un thriller qui allie suspense policier et réflexions existentielles profondes. Une enquête criminelle se transforme en un voyage dans les abîmes de l'âme humaine, où chaque indice révélé remet en question non seulement la culpabilité du criminel, mais la nature même de la justice et de la moralité.", genre: "Thriller Existentiel", genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)" },
+                { title: "ESCALI'S BLUES", author: "Par Pedro G. Guirao", description: "La suite qui approfondit l'univers du lieutenant Escali. Plus sombre et complexe que son prédécesseur, cette œuvre explore les traumatismes du passé tout en faisant face à une nouvelle affaire qui remet en question ses convictions les plus profondes. Un blues littéraire qui allie musique, mystère et philosophie dans une symphonie de tension et de révélation personnelle.", genre: "Thriller Existentiel", genreColor: "linear-gradient(45deg, #26A69A, #00897B)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #26A69A, #00897B)" },
+                { title: "EXODES", author: "Par Kia P. Cabdill", description: "Un space opera épique qui raconte le destin de l'humanité dans sa quête de nouveaux mondes. Lorsque la Terre devient inhabitable, des flottes de réfugiés spatiaux entreprennent un voyage désespéré vers l'inconnu. Entre conflits intergalactiques, dilemmes éthiques et découvertes qui défient notre compréhension de l'univers, EXODES est une réflexion sur la survie, l'espoir et ce que signifie vraiment être humain.", genre: "Space Opera - Science-Fiction", genreColor: "linear-gradient(45deg, #8E44AD, #9B59B6)", link: "https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #8E44AD, #9B59B6)" }
+            ],
+            de: [
+                { title: "ENDE", author: "Von Pedro G. Guirao", description: "Eine tiefgreifende Reflexion über die Grenzen der menschlichen Existenz und die Bedeutung des Endes. Ein Werk, das die großen philosophischen Fragen durch eine fesselnde Erzählung erforscht, die den Leser herausfordert, seine eigenen Wahrnehmungen von Leben und Tod zu hinterfragen.", genre: "Philosophische Fiktion", genreColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)", link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)" },
+                { title: "OH MY GOD", author: "Von Pedro G. Guirao", description: "Die apokryphe Bibel vom ENDE der Tage. Das erste Werk des Autors. Entstanden im selben Alter wie Christus am Kreuz. Scheinbar unzusammenhängende Geschichten mit messianisch-biblischem Aspekt. Mit einer verborgenen Botschaft des Schöpfers an die Menschheit.", genre: "Philosophische Fiktion", genreColor: "linear-gradient(45deg, #FF8E53, #FFA726)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #FF8E53, #FFA726)" },
+                { title: "GRUNDLAGEN DER EROBERUNG", author: "Von Pedro G. Guirao", description: "Eine intelligente Satire über menschliche Beziehungen und Machtspiele in der modernen Gesellschaft. Mit philosophischem Humor seziert es die Mechanismen der Verführung, Manipulation und Eroberung im persönlichen wie im beruflichen Bereich und enthüllt unbequeme Wahrheiten über unsere Natur.", genre: "Philosophische Fiktion", genreColor: "linear-gradient(45deg, #FFA726, #FFB74D)", link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FFA726, #FFB74D)" },
+                { title: "TOCCATA UND FUGE DER LEUTNANTIN ESCALI", author: "Von Pedro G. Guirao", description: "Das Debüt von Leutnantin Escali in einem Thriller, der Polizeispannung mit tiefen existenziellen Reflexionen verbindet. Eine strafrechtliche Untersuchung wird zu einer Reise in die Abgründe der menschlichen Seele, bei der jeder aufgedeckte Hinweis nicht nur die Schuld des Verbrechers, sondern die Natur von Gerechtigkeit und Moral selbst in Frage stellt.", genre: "Existentialistischer Thriller", genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)" },
+                { title: "ESCALI'S BLUES", author: "Von Pedro G. Guirao", description: "Die Fortsetzung, die tiefer in das Universum von Leutnantin Escali eintaucht. Düsterer und komplexer als sein Vorgänger, erforscht dieses Werk vergangene Traumata, während es sich einem neuen Fall stellt, der ihre tiefsten Überzeugungen herausfordert. Ein literarischer Blues, der Musik, Mysterium und Philosophie in einer Symphonie aus Spannung und persönlicher Offenbarung verbindet.", genre: "Existentialistischer Thriller", genreColor: "linear-gradient(45deg, #26A69A, #00897B)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #26A69A, #00897B)" },
+                { title: "EXODUS", author: "Von Kia P. Cabdill", description: "Eine epische Weltraumoper, die das Schicksal der Menschheit auf ihrer Suche nach neuen Welten erzählt. Als die Erde unbewohnbar wird, begeben sich Flotten von Weltraumflüchtlingen auf eine verzweifelte Reise ins Unbekannte. Inmitten intergalaktischer Konflikte, ethischer Dilemmata und Entdeckungen, die unser Verständnis des Universums herausfordern, ist EXODUS eine Reflexion über Überleben, Hoffnung und was es wirklich bedeutet, ein Mensch zu sein.", genre: "Space Opera - Science-Fiction", genreColor: "linear-gradient(45deg, #8E44AD, #9B59B6)", link: "https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #8E44AD, #9B59B6)" }
+            ],
+            ca: [
+                { title: "FI", author: "Per Pedro G. Guirao", description: "Una reflexió profunda sobre els límits de l'existència humana i el significat del final. Una obra que explora les grans preguntes filosòfiques a través d'una narrativa envoltant que desafia el lector a qüestionar les seves pròpies percepcions sobre la vida i la mort.", genre: "Ficció Filosòfica", genreColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)", link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)" },
+                { title: "OH MY GOD", author: "Per Pedro G. Guirao", description: "La Bíblia Apòcrifa de la FI dels dies. Primera obra de l'autor. Creada amb la mateixa edat de Crist a la Creu. Contes d'aparença inconnexa i d'aspecte bíblic messiànic. Amb missatge ocult del creador a la Humanitat.", genre: "Ficció Filosòfica", genreColor: "linear-gradient(45deg, #FF8E53, #FFA726)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #FF8E53, #FFA726)" },
+                { title: "MANUAL BÀSIC DE CONQUESTA", author: "Per Pedro G. Guirao", description: "Una sàtira intel·ligent sobre les relacions humanes i els jocs de poder a la societat moderna. Amb humor filosòfic, dissecciona els mecanismes de seducció, manipulació i conquesta tant en l'àmbit personal com professional, revelant veritats incòmodes sobre la nostra naturalesa.", genre: "Ficció Filosòfica", genreColor: "linear-gradient(45deg, #FFA726, #FFB74D)", link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #FFA726, #FFB74D)" },
+                { title: "TOCATA I FUGA DE LA TINENT ESCALI", author: "Per Pedro G. Guirao", description: "El debut de la Tinent Escali en un thriller que combina suspens policial amb profundes reflexions existencials. Una investigació criminal es converteix en un viatge cap als abismes de l'ànima humana, on cada pista revelada qüestiona no només la culpabilitat del criminal, sinó la naturalesa mateixa de la justícia i la moralitat.", genre: "Thriller Existencialista", genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)" },
+                { title: "ESCALI'S BLUES", author: "Per Pedro G. Guirao", description: "La seqüela que aprofundeix en l'univers de la Tinent Escali. Més fosca i complexa que la seva predecessora, aquesta obra explora els traumes del passat mentre s'enfronta a un nou cas que desafia les seves conviccions més profundes. Un blues literari que combina música, misteri i filosofia en una simfonia de tensió i revelació personal.", genre: "Thriller Existencialista", genreColor: "linear-gradient(45deg, #26A69A, #00897B)", link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", linkKey: "viewOnKobo", linkColor: "linear-gradient(45deg, #26A69A, #00897B)" },
+                { title: "ÈXODES", author: "Per Kia P. Cabdill", description: "Una èpica space opera que narra el destí de la humanitat en la seva recerca de nous mons. Quan la Terra es torna inhabitable, flotes de refugiats espacials emprenen un viatge desesperat cap al desconegut. Entre conflictes intergalàctics, dilemes ètics i descobriments que desafien la nostra comprensió de l'univers, ÈXODES és una reflexió sobre la supervivència, l'esperança i el que realment significa ser humà.", genre: "Space Opera - Ciència Ficció", genreColor: "linear-gradient(45deg, #8E44AD, #9B59B6)", link: "https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill", linkKey: "viewOnAmazon", linkColor: "linear-gradient(45deg, #8E44AD, #9B59B6)" }
+            ]
+        };
 
-        // Función para cambiar entre secciones
         function showSection(sectionName) {
-            // Ocultar todas las secciones
-            const sections = document.querySelectorAll('.section-content');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Remover clase active de todos los botones
-            const buttons = document.querySelectorAll('.tab-button');
-            buttons.forEach(button => {
-                button.classList.remove('active');
-            });
-
-            // Mostrar la sección seleccionada
+            document.querySelectorAll('.section-content').forEach(section => section.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
             document.getElementById(sectionName).classList.add('active');
-
-            // Activar el botón correspondiente
-            event.target.classList.add('active');
+            event.currentTarget.classList.add('active');
         }
 
-        // FUNCIONES DEL CARRUSEL DE LIBROS
         function updateBookInfo() {
-            // Verificar que tenemos los datos
-            if (!booksData || !booksData[currentBook]) {
-                console.error('No hay datos para el libro:', currentBook);
-                return;
-            }
-            
-            const book = booksData[currentBook];
-            console.log('Actualizando libro:', currentBook, book.title);
-            
-            // Verificar que los elementos existen antes de actualizarlos
-            const titleEl = document.getElementById('bookTitle');
-            const authorEl = document.getElementById('bookAuthor');
-            const descriptionEl = document.getElementById('bookDescription');
+            const lang = document.documentElement.lang || 'es';
+            const currentBookData = booksData[lang][currentBook];
+            if (!currentBookData) return;
+
+            document.getElementById('bookTitle').textContent = currentBookData.title;
+            document.getElementById('bookAuthor').textContent = currentBookData.author;
+            document.getElementById('bookDescription').textContent = currentBookData.description;
             const genreEl = document.getElementById('bookGenre');
+            genreEl.textContent = currentBookData.genre;
+            genreEl.style.background = currentBookData.genreColor;
+            
             const linkEl = document.getElementById('bookLink');
-            
-            if (!titleEl || !authorEl || !descriptionEl || !genreEl || !linkEl) {
-                console.error('Elementos DOM no encontrados');
-                return;
-            }
-            
-            // Actualizar contenido
-            titleEl.textContent = book.title;
-            authorEl.textContent = book.author;
-            descriptionEl.textContent = book.description;
-            genreEl.textContent = book.genre;
-            genreEl.style.background = book.genreColor;
-            linkEl.href = book.link;
-            linkEl.style.background = book.linkColor;
-            linkEl.innerHTML = `<span>📖</span> ${book.linkText}`;
-            
-            console.log('Información actualizada correctamente para:', book.title);
+            linkEl.href = currentBookData.link;
+            linkEl.style.background = currentBookData.linkColor;
+            const linkText = translations[lang][currentBookData.linkKey] || 'View';
+            linkEl.innerHTML = `<span>📖</span> ${linkText}`;
         }
 
         function updateCarousel() {
@@ -1482,82 +1655,80 @@
             
             covers.forEach((cover, index) => {
                 cover.className = 'book-cover';
-                
-                const diff = index - currentBook;
-                
-                if (diff === 0) {
-                    cover.classList.add('active');
-                } else if (diff === 1 || (currentBook === totalBooks - 1 && index === 0)) {
-                    cover.classList.add('next');
-                } else if (diff === -1 || (currentBook === 0 && index === totalBooks - 1)) {
-                    cover.classList.add('prev');
-                } else if (diff === 2 || (currentBook >= totalBooks - 2 && index < 2)) {
-                    cover.classList.add('far-next');
-                } else if (diff === -2 || (currentBook <= 1 && index >= totalBooks - 2)) {
-                    cover.classList.add('far-prev');
-                } else if (diff > 0) {
-                    cover.classList.add('hidden-next');
-                } else {
-                    cover.classList.add('hidden');
+                let diff = index - currentBook;
+                if (Math.abs(diff) > totalBooks / 2) {
+                    diff = diff > 0 ? diff - totalBooks : diff + totalBooks;
+                }
+
+                switch (diff) {
+                    case 0: cover.classList.add('active'); break;
+                    case 1: cover.classList.add('next'); break;
+                    case -1: cover.classList.add('prev'); break;
+                    case 2: cover.classList.add('far-next'); break;
+                    case -2: cover.classList.add('far-prev'); break;
+                    default: cover.classList.add(diff > 0 ? 'hidden-next' : 'hidden'); break;
                 }
             });
             
-            // Actualizar indicadores
             indicators.forEach((indicator, index) => {
                 indicator.classList.toggle('active', index === currentBook);
             });
 
-            // Actualizar información del libro - SINCRONIZADO
             updateBookInfo();
         }
 
         function nextBook() {
             currentBook = (currentBook + 1) % totalBooks;
-            console.log('Siguiente libro - currentBook:', currentBook); // Debug
             updateCarousel();
         }
 
         function prevBook() {
             currentBook = (currentBook - 1 + totalBooks) % totalBooks;
-            console.log('Libro anterior - currentBook:', currentBook); // Debug
             updateCarousel();
         }
 
         function goToBook(index) {
-            console.log('goToBook llamado con índice:', index);
             currentBook = index;
-            console.log('currentBook actualizado a:', currentBook);
-            
-            // Forzar actualización inmediata
-            setTimeout(() => {
-                updateCarousel();
-                console.log('Carrusel actualizado');
-            }, 10);
+            updateCarousel();
         }
 
         function startAutoplay() {
+            if (autoplayInterval) clearInterval(autoplayInterval);
             autoplayInterval = setInterval(nextBook, 4000);
         }
 
         function stopAutoplay() {
             clearInterval(autoplayInterval);
         }
-
-        function toggleAutoplay() {
+        
+        function updateAutoplayButtonText() {
+            const lang = document.documentElement.lang || 'es';
             const btn = document.querySelector('.autoplay-btn');
             if (isAutoplayActive) {
-                stopAutoplay();
-                btn.textContent = '▶️ Reanudar Carrusel';
-                isAutoplayActive = false;
+                btn.textContent = translations[lang].pauseCarousel;
             } else {
-                startAutoplay();
-                btn.textContent = '⏸️ Pausar Carrusel';
-                isAutoplayActive = true;
+                btn.textContent = translations[lang].resumeCarousel;
             }
         }
 
-        // FUNCIONES DE GALERÍA PARA DASHBOARDS
+        function toggleAutoplay() {
+            isAutoplayActive = !isAutoplayActive;
+            if (isAutoplayActive) {
+                startAutoplay();
+            } else {
+                stopAutoplay();
+            }
+            updateAutoplayButtonText();
+        }
+
         function openGallery(dashboardKey) {
+            const lang = document.documentElement.lang || 'es';
+            const keyMap = {
+                ventas: "gallerySalesTitle",
+                futbol: "gallerySoccerTitle",
+                vacaciones: "galleryAttendanceTitle",
+                alquilercoches: "galleryCarRentalTitle"
+            };
             const dashboard = dashboards[dashboardKey];
             if (!dashboard) return;
 
@@ -1565,28 +1736,20 @@
             const title = document.getElementById('galleryTitle');
             const imagesContainer = document.getElementById('galleryImages');
 
-            title.textContent = dashboard.title;
-            
-            // Limpiar contenedor
+            title.textContent = translations[lang][keyMap[dashboardKey]];
             imagesContainer.innerHTML = '';
             
-            // Añadir imágenes
             dashboard.images.forEach((imageSrc, index) => {
                 const img = document.createElement('img');
                 img.src = imageSrc;
-                img.alt = `${dashboard.title} - Página ${index + 1}`;
+                img.alt = `${title.textContent} - Page ${index + 1}`;
                 img.style.cssText = 'width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.3s ease;';
                 img.onmouseover = () => img.style.transform = 'scale(1.05)';
                 img.onmouseout = () => img.style.transform = 'scale(1)';
-                img.onerror = function() {
-                    this.style.display = 'none';
-                };
                 imagesContainer.appendChild(img);
             });
 
             modal.style.display = 'flex';
-            modal.style.alignItems = 'center';
-            modal.style.justifyContent = 'center';
             document.body.style.overflow = 'hidden';
         }
 
@@ -1596,161 +1759,47 @@
             document.body.style.overflow = 'auto';
         }
 
-        // ANIMACIONES Y EFECTOS
         function animateTextBlocks() {
             const textBlocks = document.querySelectorAll('.text-block');
+            if(textBlocks.length === 0) return;
             let currentBlock = 0;
-
-            function highlightNext() {
-                // Remover highlight de todos los bloques
+            setInterval(() => {
                 textBlocks.forEach(block => block.classList.remove('highlight'));
-                
-                // Añadir highlight al bloque actual
-                if (textBlocks[currentBlock]) {
-                    textBlocks[currentBlock].classList.add('highlight');
-                }
-                
-                // Avanzar al siguiente bloque
+                textBlocks[currentBlock].classList.add('highlight');
                 currentBlock = (currentBlock + 1) % textBlocks.length;
-                
-                // Si completamos un ciclo, esperar más tiempo antes del siguiente
-                const delay = currentBlock === 0 ? 3000 : 1500;
-                setTimeout(highlightNext, delay);
-            }
-
-            // Iniciar la animación después de que cargue la página
-            setTimeout(highlightNext, 2000);
+            }, 2000);
         }
 
-        function createFloatingParticles() {
-            const container = document.querySelector('.container');
-            
-            for (let i = 0; i < 15; i++) {
-                const particle = document.createElement('div');
-                particle.style.cssText = `
-                    position: absolute;
-                    width: ${Math.random() * 6 + 2}px;
-                    height: ${Math.random() * 6 + 2}px;
-                    background: rgba(255, 255, 255, 0.3);
-                    border-radius: 50%;
-                    pointer-events: none;
-                    left: ${Math.random() * 100}%;
-                    top: ${Math.random() * 100}%;
-                    animation: float ${Math.random() * 3 + 2}s ease-in-out infinite;
-                    animation-delay: ${Math.random() * 2}s;
-                `;
-                container.appendChild(particle);
-            }
-        }
-
-        function initButtonAnimations() {
-            const buttons = document.querySelectorAll('.modern-nav-button');
-            
-            buttons.forEach((button, index) => {
-                // Efecto de entrada escalonada
-                button.style.animationDelay = `${1 + index * 0.2}s`;
-                
-                // Añadir barras adicionales al gráfico del botón de ventas
-                if (button.classList.contains('btn-ventas')) {
-                    const icon = button.querySelector('.icon-chart');
-                    
-                    // Agregar más barras del gráfico
-                    const bar3 = document.createElement('div');
-                    bar3.style.cssText = `
-                        position: absolute;
-                        bottom: 0;
-                        left: 24px;
-                        width: 8px;
-                        height: 25px;
-                        background: rgba(255,255,255,0.8);
-                        border-radius: 2px;
-                        animation: chartBar3 2s ease infinite 0.4s;
-                    `;
-                    
-                    const style = document.createElement('style');
-                    style.textContent = `
-                        @keyframes chartBar3 {
-                            0%, 100% { height: 25px; }
-                            50% { height: 40px; }
-                        }
-                    `;
-                    document.head.appendChild(style);
-                    icon.appendChild(bar3);
-                }
-            });
-        }
-
-        // EVENT LISTENERS
         document.addEventListener('DOMContentLoaded', function() {
             animateTextBlocks();
-            createFloatingParticles();
-            initButtonAnimations();
             
-            // VERIFICAR ARRAY DE LIBROS
-            console.log('=== VERIFICACIÓN DEL ARRAY booksData ===');
-            console.log('Total de libros:', booksData.length);
-            booksData.forEach((book, index) => {
-                console.log(`Índice ${index}: ${book.title}`);
-            });
-            console.log('=== FIN VERIFICACIÓN ===');
+            // Crear indicadores del carrusel
+            const indicatorsContainer = document.querySelector('.indicators');
+            for (let i = 0; i < totalBooks; i++) {
+                const indicator = document.createElement('div');
+                indicator.classList.add('indicator');
+                indicator.onclick = () => goToBook(i);
+                indicatorsContainer.appendChild(indicator);
+            }
+
+            // Cargar idioma preferido o detectar navegador
+            const preferredLanguage = localStorage.getItem('preferredLanguage');
+            const browserLanguage = navigator.language.split('-')[0];
+            const initialLang = preferredLanguage || (translations[browserLanguage] ? browserLanguage : 'es');
             
-            // Inicializar carrusel correctamente
-            console.log('Inicializando carrusel con libro:', currentBook);
+            changeLanguage(initialLang);
             updateCarousel();
             startAutoplay();
             
-            // Verificar que los elementos DOM existen
-            console.log('Elementos DOM:', {
-                title: document.getElementById('bookTitle'),
-                author: document.getElementById('bookAuthor'),
-                description: document.getElementById('bookDescription'),
-                genre: document.getElementById('bookGenre'),
-                link: document.getElementById('bookLink')
-            });
-            
-            // Test manual - agregar botón de prueba
-            setTimeout(() => {
-                console.log('=== TEST MANUAL CORREGIDO ===');
-                console.log('Probando cambio a OH MY GOD (índice 1)...');
-                console.log('Libro en índice 1:', booksData[1] ? booksData[1].title : 'NO EXISTE');
-                goToBook(1);
-            }, 3000);
-        });
-
-        // Pausar en hover del carrusel
-        document.addEventListener('DOMContentLoaded', function() {
             const carousel = document.querySelector('.books-carousel');
             if (carousel) {
                 carousel.addEventListener('mouseenter', stopAutoplay);
-                carousel.addEventListener('mouseleave', () => {
-                    if (isAutoplayActive) startAutoplay();
-                });
+                carousel.addEventListener('mouseleave', () => { if (isAutoplayActive) startAutoplay(); });
             }
-        });
 
-        // Cerrar galería con ESC
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeGallery();
-            }
-        });
-
-        // Cerrar galería al hacer click fuera del contenido
-        document.getElementById('galleryModal').addEventListener('click', function(event) {
-            if (event.target === this) {
-                closeGallery();
-            }
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeGallery(); });
+            document.getElementById('galleryModal').addEventListener('click', function(e) { if (e.target === this) closeGallery(); });
         });
     </script>
 </body>
-</html>linear-gradient(45deg, #FF6B6B, #FF8E53)"
-            },
-            {
-                title: "OH MY GOD",
-                author: "Por Pedro G. Guirao",
-                description: "Una exploración audaz de la espiritualidad contemporánea y las crisis de fe en el mundo moderno. A través de personajes complejos, esta obra examina la relación entre lo divino y lo humano, cuestionando dogmas y abriendo nuevos caminos de comprensión espiritual.",
-                genre: "Ficción Filosófica",
-                genreColor: "linear-gradient(45deg, #FF8E53, #FFA726)",
-                link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao&ac=1&acp=pedro+g+guirao&ac.author=pedro+g+guirao&sort=Temperature&fclanguages=es",
-                linkText: "Ver en Kobo",
-                linkColor: "
+</html>
