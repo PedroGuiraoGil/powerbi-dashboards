@@ -906,24 +906,23 @@
                 font-size: 0.9rem;
             }
 
-            .carousel-container {
+            .books-carousel {
                 padding: 20px 10px !important;
             }
 
-            .carousel-track {
-                gap: 15px !important;
+            .book-slide > div {
+                flex-direction: column !important;
+                text-align: center !important;
             }
 
-            .book-card {
-                flex: 0 0 250px !important;
+            .book-slide > div > div:first-child {
+                flex: 0 0 200px !important;
+                width: 100% !important;
+                margin-bottom: 20px !important;
             }
 
-            #categoryTitle {
-                font-size: 1.4rem !important;
-            }
-
-            #categoryDescription {
-                font-size: 0.9rem !important;
+            .book-slide > div > div:last-child {
+                padding: 20px !important;
             }
 
             .books-grid {
@@ -1386,175 +1385,144 @@
             authorElements.forEach(el => el.remove());
         }
 
-        // Variables del carrusel
-        let currentSlide = 0;
-        let autoplayInterval;
-        let isAutoplayActive = true;
-        
-        // Configuración de categorías
-        const categories = {
+        // Variables del carrusel de libros
+        let currentBookSlide = 0;
+        let bookAutoplayInterval;
+        let isBookAutoplayActive = true;
+        const totalBookSlides = 6;
+
+        // Configuración de categorías para los libros
+        const bookCategories = {
             filosofica: {
                 title: "💭 Ficción Filosófica",
-                description: "Obras que exploran las grandes preguntas de la existencia humana a través de narrativas envolventes.",
+                description: "Obras que exploran las grandes preguntas de la existencia humana",
                 color: "#FF6B6B"
             },
             thriller: {
                 title: "🔍 Thrillers Existencialistas",
-                description: "Serie de la Teniente Escali: suspense policial con profundas reflexiones sobre la naturaleza humana.",
+                description: "Serie de la Teniente Escali: suspense policial con reflexiones profundas",
                 color: "#4ECDC4"
             },
             ciencia: {
                 title: "🚀 Space Opera - Ciencia Ficción",
-                description: "Épicas aventuras espaciales que exploran el destino de la humanidad en el cosmos.",
+                description: "Épicas aventuras espaciales que exploran el destino de la humanidad",
                 color: "#8E44AD"
             }
         };
 
-        // Obtener todas las tarjetas de libros
-        const bookCards = document.querySelectorAll('.book-card');
-        const totalSlides = bookCards.length;
-
-        // Función para actualizar el carrusel
-        function updateCarousel() {
-            const track = document.querySelector('.carousel-track');
-            const offset = currentSlide * -310; // 280px ancho + 30px gap
-            track.style.transform = `translateX(${offset}px)`;
+        // Función para actualizar el carrusel de libros
+        function updateBookCarousel() {
+            const slides = document.querySelectorAll('.book-slide');
             
-            // Actualizar libro central (agrandar)
-            bookCards.forEach((card, index) => {
-                if (index === currentSlide) {
-                    card.style.transform = 'scale(1.1)';
-                    card.style.zIndex = '10';
-                    card.style.boxShadow = '0 25px 50px rgba(0,0,0,0.2)';
+            slides.forEach((slide, index) => {
+                if (index === currentBookSlide) {
+                    slide.style.opacity = '1';
+                    slide.style.transform = 'translateX(0)';
+                    slide.style.zIndex = '10';
+                } else if (index < currentBookSlide) {
+                    slide.style.opacity = '0';
+                    slide.style.transform = 'translateX(-100%)';
+                    slide.style.zIndex = '1';
                 } else {
-                    card.style.transform = 'scale(1)';
-                    card.style.zIndex = '1';
-                    card.style.boxShadow = '0 15px 35px rgba(0,0,0,0.1)';
+                    slide.style.opacity = '0';
+                    slide.style.transform = 'translateX(100%)';
+                    slide.style.zIndex = '1';
                 }
             });
             
             // Actualizar encabezado de categoría
-            updateCategoryHeader();
+            updateBookCategoryHeader();
             
             // Actualizar indicadores
-            updateIndicators();
+            updateBookIndicators();
         }
 
-        // Función para actualizar el encabezado de categoría
-        function updateCategoryHeader() {
-            const currentCard = bookCards[currentSlide];
-            const category = currentCard.dataset.category;
-            const categoryInfo = categories[category];
+        // Función para actualizar el encabezado de categoría de libros
+        function updateBookCategoryHeader() {
+            const currentSlide = document.querySelectorAll('.book-slide')[currentBookSlide];
+            const category = currentSlide.dataset.category;
+            const categoryInfo = bookCategories[category];
             
-            document.getElementById('categoryTitle').textContent = categoryInfo.title;
-            document.getElementById('categoryDescription').textContent = categoryInfo.description;
-            document.getElementById('categoryTitle').style.color = categoryInfo.color;
+            document.getElementById('currentCategory').textContent = categoryInfo.title;
+            document.getElementById('currentCategoryDesc').textContent = categoryInfo.description;
+            document.getElementById('currentCategory').style.color = categoryInfo.color;
         }
 
-        // Función para crear indicadores
-        function createIndicators() {
-            const indicatorsContainer = document.getElementById('indicators');
-            indicatorsContainer.innerHTML = '';
-            
-            for (let i = 0; i < totalSlides; i++) {
-                const indicator = document.createElement('div');
-                indicator.style.cssText = `
-                    width: 12px;
-                    height: 12px;
-                    border-radius: 50%;
-                    background: ${i === currentSlide ? '#8E44AD' : 'rgba(142,68,173,0.3)'};
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                `;
-                indicator.addEventListener('click', () => goToSlide(i));
-                indicatorsContainer.appendChild(indicator);
-            }
-        }
-
-        // Función para actualizar indicadores
-        function updateIndicators() {
-            const indicators = document.querySelectorAll('#indicators div');
+        // Función para actualizar indicadores de libros
+        function updateBookIndicators() {
+            const indicators = document.querySelectorAll('.indicator');
             indicators.forEach((indicator, index) => {
-                indicator.style.background = index === currentSlide ? '#8E44AD' : 'rgba(142,68,173,0.3)';
+                if (index === currentBookSlide) {
+                    indicator.style.background = '#8E44AD';
+                } else {
+                    indicator.style.background = 'rgba(142,68,173,0.3)';
+                }
             });
         }
 
-        // Navegación manual
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateCarousel();
+        // Navegación del carrusel de libros
+        function nextBook() {
+            currentBookSlide = (currentBookSlide + 1) % totalBookSlides;
+            updateBookCarousel();
         }
 
-        function previousSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateCarousel();
+        function prevBook() {
+            currentBookSlide = (currentBookSlide - 1 + totalBookSlides) % totalBookSlides;
+            updateBookCarousel();
         }
 
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
+        function goToBook(index) {
+            currentBookSlide = index;
+            updateBookCarousel();
         }
 
-        // Autoplay
-        function startAutoplay() {
-            autoplayInterval = setInterval(nextSlide, 3000);
+        // Autoplay para libros
+        function startBookAutoplay() {
+            bookAutoplayInterval = setInterval(nextBook, 4000); // Cambia cada 4 segundos
         }
 
-        function stopAutoplay() {
-            clearInterval(autoplayInterval);
+        function stopBookAutoplay() {
+            clearInterval(bookAutoplayInterval);
         }
 
         function toggleAutoplay() {
-            const btn = document.getElementById('autoplayBtn');
-            if (isAutoplayActive) {
-                stopAutoplay();
-                btn.innerHTML = '▶️ Reanudar Carrusel';
-                isAutoplayActive = false;
+            const btn = document.getElementById('autoplayToggle');
+            if (isBookAutoplayActive) {
+                stopBookAutoplay();
+                btn.innerHTML = '▶️ Reanudar';
+                isBookAutoplayActive = false;
             } else {
-                startAutoplay();
-                btn.innerHTML = '⏸️ Pausar Carrusel';
-                isAutoplayActive = true;
+                startBookAutoplay();
+                btn.innerHTML = '⏸️ Pausar';
+                isBookAutoplayActive = true;
             }
         }
 
-        // Pausar autoplay al hover
-        function setupHoverControls() {
-            const carousel = document.querySelector('.carousel-container');
-            carousel.addEventListener('mouseenter', stopAutoplay);
-            carousel.addEventListener('mouseleave', () => {
-                if (isAutoplayActive) startAutoplay();
-            });
+        // Pausar autoplay al hacer hover en el carrusel de libros
+        function setupBookHoverControls() {
+            const carousel = document.querySelector('.books-carousel');
+            if (carousel) {
+                carousel.addEventListener('mouseenter', stopBookAutoplay);
+                carousel.addEventListener('mouseleave', () => {
+                    if (isBookAutoplayActive) startBookAutoplay();
+                });
+            }
         }
 
-        // Agregar efectos hover a las tarjetas
-        function setupBookCardEffects() {
-            bookCards.forEach(card => {
-                const overlay = card.querySelector('.book-overlay');
-                const img = card.querySelector('img');
-                
-                card.addEventListener('mouseenter', () => {
-                    overlay.style.opacity = '1';
-                    img.style.transform = 'scale(1.1)';
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    overlay.style.opacity = '0';
-                    img.style.transform = 'scale(1)';
-                });
-                
-                card.addEventListener('click', () => {
-                    showBookInfo(card.dataset.book);
-                });
-            });
+        // Inicializar carrusel de libros
+        function initBookCarousel() {
+            updateBookCarousel();
+            setupBookHoverControls();
+            startBookAutoplay();
         }
 
-        // Inicializar carrusel cuando el DOM esté listo
-        function initCarousel() {
-            createIndicators();
-            updateCarousel();
-            setupHoverControls();
-            setupBookCardEffects();
-            startAutoplay();
+        // Limpiar las funciones anteriores que ya no usamos
+        function showBookInfo(bookKey) {
+            // Función legacy - mantenemos por si acaso
+        }
+
+        function closeBookPanel() {
+            // Función legacy - mantenemos por si acaso
         }
 
         // Variables para el control de páginas de libros (legacy - mantenemos por compatibilidad)
@@ -1674,7 +1642,7 @@
             animateTextBlocks();
             createFloatingParticles();
             initButtonAnimations();
-            initCarousel(); // Inicializar el carrusel
+            initBookCarousel(); // Inicializar el carrusel de libros
         });
 
         // Crear partículas flotantes decorativas
