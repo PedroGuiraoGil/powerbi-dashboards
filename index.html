@@ -414,13 +414,40 @@
         .icon-soccer {
             width: 40px;
             height: 40px;
-            background: radial-gradient(circle at 30% 30%, #fff 25%, #000 26%, #000 30%, #fff 31%);
-            border-radius: 50%;
             position: relative;
-            animation: soccerSpin 3s linear infinite;
+            animation: soccerFloat 3s ease-in-out infinite;
         }
 
-        @keyframes soccerSpin {
+        /* Balón de fútbol simple y reconocible */
+        .icon-soccer::before {
+            content: '⚽';
+            position: absolute;
+            font-size: 24px;
+            top: 2px;
+            left: 2px;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+            animation: soccerRotate 4s linear infinite;
+        }
+
+        /* Gráfico de barras de estadísticas */
+        .icon-soccer::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 16px;
+            height: 16px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 3px;
+            border: 1px solid rgba(0,0,0,0.2);
+        }
+
+        @keyframes soccerFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+
+        @keyframes soccerRotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
@@ -454,29 +481,43 @@
         }
 
         .icon-car {
-            width: 40px;
-            height: 20px;
-            background: #FF4444;
-            border-radius: 8px;
+            width: 50px;
+            height: 25px;
             position: relative;
-            animation: carMove 3s ease-in-out infinite;
+            animation: carDrive 3s ease-in-out infinite;
         }
 
+        /* Carrocería principal del coche */
         .icon-car::before {
             content: '';
             position: absolute;
-            bottom: -8px;
-            left: 5px;
-            width: 8px;
-            height: 8px;
-            background: #333;
-            border-radius: 50%;
-            box-shadow: 20px 0 0 #333;
+            bottom: 8px;
+            left: 0;
+            width: 50px;
+            height: 12px;
+            background: linear-gradient(45deg, #FF4444, #CC0000);
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        @keyframes carMove {
+        /* Techo y ventanas */
+        .icon-car::after {
+            content: '';
+            position: absolute;
+            bottom: 15px;
+            left: 12px;
+            width: 26px;
+            height: 10px;
+            background: linear-gradient(45deg, #FF4444, #CC0000);
+            border-radius: 8px 8px 2px 2px;
+            border-top: 2px solid #87CEEB;
+        }
+
+        @keyframes carDrive {
             0%, 100% { transform: translateX(0px); }
+            25% { transform: translateX(5px); }
             50% { transform: translateX(10px); }
+            75% { transform: translateX(5px); }
         }
 
         .dashboard-grid {
@@ -1113,32 +1154,141 @@
                     icon.appendChild(bar3);
                 }
                 
+                // Mejorar animación del balón de fútbol con estadísticas
+                if (button.classList.contains('btn-futbol')) {
+                    const icon = button.querySelector('.icon-soccer');
+                    
+                    // Añadir mini gráfico de barras para estadísticas
+                    const statsContainer = document.createElement('div');
+                    statsContainer.style.cssText = `
+                        position: absolute;
+                        bottom: 2px;
+                        right: 2px;
+                        width: 14px;
+                        height: 14px;
+                        background: rgba(255,255,255,0.95);
+                        border-radius: 2px;
+                        border: 1px solid rgba(0,0,0,0.2);
+                        display: flex;
+                        align-items: end;
+                        justify-content: center;
+                        gap: 1px;
+                        padding: 2px;
+                    `;
+                    
+                    // Barras del mini gráfico
+                    const bar1 = document.createElement('div');
+                    bar1.style.cssText = `
+                        width: 2px;
+                        height: 4px;
+                        background: #4CAF50;
+                        border-radius: 1px;
+                        animation: statsBar1 2s ease infinite;
+                    `;
+                    
+                    const bar2 = document.createElement('div');
+                    bar2.style.cssText = `
+                        width: 2px;
+                        height: 7px;
+                        background: #2196F3;
+                        border-radius: 1px;
+                        animation: statsBar2 2s ease infinite 0.2s;
+                    `;
+                    
+                    const bar3 = document.createElement('div');
+                    bar3.style.cssText = `
+                        width: 2px;
+                        height: 5px;
+                        background: #FF9800;
+                        border-radius: 1px;
+                        animation: statsBar3 2s ease infinite 0.4s;
+                    `;
+                    
+                    const statsStyle = document.createElement('style');
+                    statsStyle.textContent = `
+                        @keyframes statsBar1 {
+                            0%, 100% { height: 4px; }
+                            50% { height: 8px; }
+                        }
+                        @keyframes statsBar2 {
+                            0%, 100% { height: 7px; }
+                            50% { height: 3px; }
+                        }
+                        @keyframes statsBar3 {
+                            0%, 100% { height: 5px; }
+                            50% { height: 9px; }
+                        }
+                    `;
+                    document.head.appendChild(statsStyle);
+                    
+                    statsContainer.appendChild(bar1);
+                    statsContainer.appendChild(bar2);
+                    statsContainer.appendChild(bar3);
+                    icon.appendChild(statsContainer);
+                }
+                
                 // Mejorar animación del coche
                 if (button.classList.contains('btn-coches')) {
                     const icon = button.querySelector('.icon-car');
                     
-                    // Añadir efecto de humo
-                    const smoke = document.createElement('div');
-                    smoke.style.cssText = `
+                    // Añadir ruedas giratorias
+                    const wheel1 = document.createElement('div');
+                    wheel1.style.cssText = `
                         position: absolute;
-                        top: -5px;
-                        right: -5px;
-                        width: 3px;
-                        height: 3px;
-                        background: rgba(255,255,255,0.6);
+                        bottom: 0;
+                        left: 8px;
+                        width: 10px;
+                        height: 10px;
+                        background: #333;
                         border-radius: 50%;
-                        animation: smoke 1s ease infinite;
+                        border: 2px solid #666;
+                        animation: wheelSpin 1s linear infinite;
                     `;
                     
-                    const smokeStyle = document.createElement('style');
-                    smokeStyle.textContent = `
-                        @keyframes smoke {
-                            0% { opacity: 0.6; transform: scale(1) translateY(0); }
-                            100% { opacity: 0; transform: scale(1.5) translateY(-10px); }
+                    const wheel2 = document.createElement('div');
+                    wheel2.style.cssText = `
+                        position: absolute;
+                        bottom: 0;
+                        right: 8px;
+                        width: 10px;
+                        height: 10px;
+                        background: #333;
+                        border-radius: 50%;
+                        border: 2px solid #666;
+                        animation: wheelSpin 1s linear infinite;
+                    `;
+                    
+                    // Añadir faro delantero
+                    const headlight = document.createElement('div');
+                    headlight.style.cssText = `
+                        position: absolute;
+                        bottom: 12px;
+                        right: -2px;
+                        width: 6px;
+                        height: 6px;
+                        background: #FFD700;
+                        border-radius: 50%;
+                        box-shadow: 0 0 8px #FFD700;
+                        animation: headlightBlink 2s ease infinite;
+                    `;
+                    
+                    const wheelStyle = document.createElement('style');
+                    wheelStyle.textContent = `
+                        @keyframes wheelSpin {
+                            0% { transform: rotate(0deg); }
+                            100% { transform: rotate(360deg); }
+                        }
+                        @keyframes headlightBlink {
+                            0%, 90% { opacity: 1; }
+                            95% { opacity: 0.3; }
+                            100% { opacity: 1; }
                         }
                     `;
-                    document.head.appendChild(smokeStyle);
-                    icon.appendChild(smoke);
+                    document.head.appendChild(wheelStyle);
+                    
+                    icon.appendChild(wheel1);
+                    icon.appendChild(wheel2);
+                    icon.appendChild(headlight);
                 }
             });
         }
