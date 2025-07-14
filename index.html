@@ -1022,35 +1022,168 @@
                     </a>
                 </div>
 
-                <div class="books-grid">
-                    <div class="book-card">
-                        <div class="book-emoji">🚀</div>
-                        <h3 class="book-title">Novelas de Ciencia Ficción</h3>
-                        <p class="book-description">
-                            Exploro futuros posibles, tecnologías emergentes y las implicaciones de los avances científicos 
-                            en la sociedad humana. Mis historias de ciencia ficción combinan rigor científico con narrativas emocionantes.
+                <!-- Sección destacada de Ciencia Ficción Internacional -->
+                <div style="background: linear-gradient(135deg, rgba(155,89,182,0.15), rgba(78,205,196,0.15)); border-radius: 25px; padding: 40px; margin-bottom: 50px; border: 3px solid rgba(155,89,182,0.3); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent, rgba(155,89,182,0.1), transparent); animation: bookShine 8s linear infinite; pointer-events: none;"></div>
+                    <div style="text-align: center; position: relative; z-index: 2;">
+                        <div style="font-size: 4rem; margin-bottom: 20px; animation: bookFloat 3s ease-in-out infinite;">🌌</div>
+                        <h3 style="font-size: 2rem; color: #8E44AD; margin-bottom: 15px; font-weight: bold;">ÉXODOS - Space Opera Internacional</h3>
+                        <h4 style="font-size: 1.3rem; color: #6C3483; margin-bottom: 20px; font-style: italic;">Bajo el seudónimo: Kia P. Cabdill</h4>
+                        <p style="color: #555; font-size: 1.1rem; line-height: 1.6; margin-bottom: 25px;">
+                            Una épica space opera que ha trascendido fronteras, siendo traducida a múltiples idiomas y 
+                            llegando a lectores de diferentes culturas. Una historia de supervivencia, tecnología y humanidad en el cosmos.
                         </p>
-                        <span class="book-genre">Ciencia Ficción</span>
+                        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
+                            <span style="background: linear-gradient(45deg, #FF6B6B, #FF8E53); color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">🇪🇸 Español</span>
+                            <span style="background: linear-gradient(45deg, #4ECDC4, #44A08D); color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">🇩🇪 Alemán</span>
+                            <span style="background: linear-gradient(45deg, #45B7D1, #96C93D); color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">🇫🇷 Francés</span>
+                            <span style="background: linear-gradient(45deg, #96CEB4, #FFEAA7); color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">🇬🇧 Inglés</span>
+                        </div>
+                        <a href="https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill&s=relevancerank&text=Kia+P.+Cabdill&ref=dp_byline_sr_ebooks_1" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(45deg, #8E44AD, #9B59B6); color: white; text-decoration: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(142,68,173,0.3); text-transform: uppercase; letter-spacing: 1px;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 35px rgba(142,68,173,0.4)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0 10px 25px rgba(142,68,173,0.3)'">
+                            <span style="font-size: 1.2rem;">🚀</span>
+                            Ver ÉXODOS en Amazon (Kia P. Cabdill)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Secciones por categorías literarias -->
+                <div style="margin-bottom: 50px;">
+                    <h3 style="text-align: center; font-size: 2rem; color: #8E44AD; margin-bottom: 30px; font-weight: bold;">📚 Mi Catálogo Literario Completo</h3>
+                    
+                    <!-- FICCIÓN FILOSÓFICA -->
+                    <div style="margin-bottom: 50px;">
+                        <h4 style="font-size: 1.5rem; color: #FF6B6B; margin-bottom: 25px; text-align: center; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
+                            💭 Ficción Filosófica
+                        </h4>
+                        <div class="books-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+                            <!-- FIN -->
+                            <div class="book-card" style="border-left: 5px solid #FF6B6B;">
+                                <div style="width: 100%; height: 200px; overflow: hidden; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+                                    <img src="images/fin-portada.jpg" alt="FIN - Pedro G. Guirao" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:200px;background:linear-gradient(45deg,#FF6B6B,#FF8E53);color:white;font-size:3rem;\'>🌅</div>'">
+                                </div>
+                                <h3 class="book-title">FIN</h3>
+                                <p class="book-description">
+                                    Una reflexión profunda sobre los límites de la existencia humana y el significado del final. 
+                                    Una obra que explora las grandes preguntas filosóficas a través de una narrativa envolvente 
+                                    que desafía al lector a cuestionar sus propias percepciones sobre la vida y la muerte.
+                                </p>
+                                <span class="book-genre" style="background: linear-gradient(45deg, #FF6B6B, #FF8E53);">Ficción Filosófica</span>
+                                <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #f0f0f0;">
+                                    <a href="https://writinglife.kobo.com/ebooks#ebooklibrary/authors" target="_blank" style="color: #FF6B6B; text-decoration: none; font-weight: bold;">📍 Ver en Kobo Writing Life</a>
+                                </div>
+                            </div>
+
+                            <!-- OH MY GOD -->
+                            <div class="book-card" style="border-left: 5px solid #FF8E53;">
+                                <div style="width: 100%; height: 200px; overflow: hidden; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+                                    <img src="images/oh-my-god-portada.jpg" alt="OH MY GOD - Pedro G. Guirao" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:200px;background:linear-gradient(45deg,#FF8E53,#FFA726);color:white;font-size:3rem;\'>🙏</div>'">
+                                </div>
+                                <h3 class="book-title">OH MY GOD</h3>
+                                <p class="book-description">
+                                    Una exploración audaz de la espiritualidad contemporánea y las crisis de fe en el mundo moderno. 
+                                    A través de personajes complejos, esta obra examina la relación entre lo divino y lo humano, 
+                                    cuestionando dogmas y abriendo nuevos caminos de comprensión espiritual.
+                                </p>
+                                <span class="book-genre" style="background: linear-gradient(45deg, #FF8E53, #FFA726);">Ficción Filosófica</span>
+                                <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #f0f0f0;">
+                                    <a href="https://writinglife.kobo.com/ebooks#ebooklibrary/authors" target="_blank" style="color: #FF8E53; text-decoration: none; font-weight: bold;">📍 Ver en Kobo Writing Life</a>
+                                </div>
+                            </div>
+
+                            <!-- MANUAL BÁSICO DE CONQUISTA -->
+                            <div class="book-card" style="border-left: 5px solid #FFA726;">
+                                <div style="width: 100%; height: 200px; overflow: hidden; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+                                    <img src="images/manual-basico-conquista-portada.jpg" alt="MANUAL BÁSICO DE CONQUISTA - Pedro G. Guirao" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:200px;background:linear-gradient(45deg,#FFA726,#FFB74D);color:white;font-size:3rem;\'>🎯</div>'">
+                                </div>
+                                <h3 class="book-title">MANUAL BÁSICO DE CONQUISTA</h3>
+                                <p class="book-description">
+                                    Una sátira inteligente sobre las relaciones humanas y los juegos de poder en la sociedad moderna. 
+                                    Con humor filosófico, disecciona los mecanismos de seducción, manipulación y conquista 
+                                    tanto en el ámbito personal como profesional, revelando verdades incómodas sobre nuestra naturaleza.
+                                </p>
+                                <span class="book-genre" style="background: linear-gradient(45deg, #FFA726, #FFB74D);">Ficción Filosófica</span>
+                                <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #f0f0f0;">
+                                    <a href="https://writinglife.kobo.com/ebooks#ebooklibrary/authors" target="_blank" style="color: #FFA726; text-decoration: none; font-weight: bold;">📍 Ver en Kobo Writing Life</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="book-card">
-                        <div class="book-emoji">🔍</div>
-                        <h3 class="book-title">Thrillers y Suspense</h3>
-                        <p class="book-description">
-                            Narrativas llenas de tensión, misterios por resolver y personajes complejos que navegan 
-                            por situaciones límite. Cada página busca mantener al lector en vilo hasta el desenlace final.
-                        </p>
-                        <span class="book-genre">Thriller</span>
+                    <!-- THRILLERS EXISTENCIALISTAS -->
+                    <div style="margin-bottom: 50px;">
+                        <h4 style="font-size: 1.5rem; color: #4ECDC4; margin-bottom: 25px; text-align: center; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
+                            🔍 Thrillers Existencialistas - Serie Teniente Escali
+                        </h4>
+                        <div class="books-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
+                            <!-- TOCATA Y FUGA DE LA TENIENTE ESCALI -->
+                            <div class="book-card" style="border-left: 5px solid #4ECDC4;">
+                                <div style="width: 100%; height: 250px; overflow: hidden; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+                                    <img src="images/tocata-fuga-escali-portada.jpg" alt="TOCATA Y FUGA DE LA TENIENTE ESCALI - Pedro G. Guirao" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:250px;background:linear-gradient(45deg,#4ECDC4,#26A69A);color:white;font-size:3rem;\'>🎼</div>'">
+                                </div>
+                                <h3 class="book-title">TOCATA Y FUGA DE LA TENIENTE ESCALI</h3>
+                                <p class="book-description">
+                                    El debut de la Teniente Escali en un thriller que combina suspense policial con profundas reflexiones existenciales. 
+                                    Una investigación criminal se convierte en un viaje hacia los abismos del alma humana, 
+                                    donde cada pista revelada cuestiona no solo la culpabilidad del criminal, sino la naturaleza misma de la justicia y la moralidad.
+                                </p>
+                                <span class="book-genre" style="background: linear-gradient(45deg, #4ECDC4, #26A69A);">Thriller Existencialista</span>
+                                <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #f0f0f0;">
+                                    <a href="https://writinglife.kobo.com/ebooks#ebooklibrary/authors" target="_blank" style="color: #4ECDC4; text-decoration: none; font-weight: bold;">📍 Ver en Kobo Writing Life</a>
+                                </div>
+                            </div>
+
+                            <!-- ESCALI'S BLUES -->
+                            <div class="book-card" style="border-left: 5px solid #26A69A;">
+                                <div style="width: 100%; height: 250px; overflow: hidden; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+                                    <img src="images/escalis-blues-portada.jpg" alt="ESCALI'S BLUES - Pedro G. Guirao" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:250px;background:linear-gradient(45deg,#26A69A,#00897B);color:white;font-size:3rem;\'>🎷</div>'">
+                                </div>
+                                <h3 class="book-title">ESCALI'S BLUES</h3>
+                                <p class="book-description">
+                                    La secuela que profundiza en el universo de la Teniente Escali. Más oscura y compleja que su predecesora, 
+                                    esta obra explora los traumas del pasado mientras enfrenta un nuevo caso que desafía 
+                                    sus convicciones más profundas. Un blues literario que combina música, misterio y filosofía 
+                                    en una sinfonía de tensión y revelación personal.
+                                </p>
+                                <span class="book-genre" style="background: linear-gradient(45deg, #26A69A, #00897B);">Thriller Existencialista</span>
+                                <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #f0f0f0;">
+                                    <a href="https://writinglife.kobo.com/ebooks#ebooklibrary/authors" target="_blank" style="color: #26A69A; text-decoration: none; font-weight: bold;">📍 Ver en Kobo Writing Life</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="book-card">
-                        <div class="book-emoji">💭</div>
-                        <h3 class="book-title">Ficción Contemporánea</h3>
-                        <p class="book-description">
-                            Historias que reflejan la realidad actual, explorando temas sociales, relaciones humanas 
-                            y los desafíos de la vida moderna con una perspectiva única y reflexiva.
-                        </p>
-                        <span class="book-genre">Ficción</span>
+                    <!-- CIENCIA FICCIÓN SPACE OPERA -->
+                    <div style="margin-bottom: 30px;">
+                        <h4 style="font-size: 1.5rem; color: #8E44AD; margin-bottom: 25px; text-align: center; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
+                            🚀 Space Opera - Distribución Internacional
+                        </h4>
+                        <div class="books-grid" style="grid-template-columns: 1fr;">
+                            <!-- ÉXODOS -->
+                            <div class="book-card" style="border-left: 5px solid #8E44AD; background: linear-gradient(135deg, rgba(142,68,173,0.05), rgba(155,89,182,0.05)); max-width: 600px; margin: 0 auto;">
+                                <div style="width: 100%; height: 300px; overflow: hidden; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
+                                    <img src="images/exodos-portada.jpg" alt="ÉXODOS - Kia P. Cabdill" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#8E44AD,#9B59B6);color:white;font-size:4rem;\'>🌌</div>'">
+                                </div>
+                                <h3 class="book-title" style="color: #8E44AD;">ÉXODOS</h3>
+                                <h4 style="font-size: 1rem; color: #6C3483; margin-bottom: 15px; font-style: italic;">Por Kia P. Cabdill</h4>
+                                <p class="book-description">
+                                    Una épica space opera que narra el destino de la humanidad en su búsqueda de nuevos mundos. 
+                                    Cuando la Tierra se vuelve inhabitable, flotas de refugiados espaciales emprenden un viaje 
+                                    desesperado hacia lo desconocido. Entre conflictos intergalácticos, dilemas éticos y 
+                                    descubrimientos que desafían nuestra comprensión del universo, ÉXODOS es una reflexión 
+                                    sobre la supervivencia, la esperanza y lo que realmente significa ser humano.
+                                </p>
+                                <span class="book-genre" style="background: linear-gradient(45deg, #8E44AD, #9B59B6);">Space Opera - Ciencia Ficción</span>
+                                <div style="margin-top: 20px; padding-top: 20px; border-top: 2px solid rgba(142,68,173,0.3);">
+                                    <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
+                                        <span style="background: rgba(142,68,173,0.2); color: #8E44AD; padding: 5px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: bold;">🇪🇸 Español</span>
+                                        <span style="background: rgba(142,68,173,0.2); color: #8E44AD; padding: 5px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: bold;">🇩🇪 Alemán</span>
+                                        <span style="background: rgba(142,68,173,0.2); color: #8E44AD; padding: 5px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: bold;">🇫🇷 Francés</span>
+                                        <span style="background: rgba(142,68,173,0.2); color: #8E44AD; padding: 5px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: bold;">🇬🇧 Inglés</span>
+                                    </div>
+                                    <a href="https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill&s=relevancerank&text=Kia+P.+Cabdill&ref=dp_byline_sr_ebooks_1" target="_blank" style="color: #8E44AD; text-decoration: none; font-weight: bold; display: block; text-align: center;">🌍 Ver en Amazon Internacional - Todas las traducciones</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1249,7 +1382,7 @@
                     bar3.style.cssText = `
                         position: absolute;
                         bottom: 0;
-                        left: 24px;https://github.com/PedroGuiraoGil/powerbi-dashboards/blob/main/index.html
+                        left: 24px;
                         width: 8px;
                         height: 25px;
                         background: rgba(255,255,255,0.8);
