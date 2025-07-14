@@ -1428,6 +1428,9 @@
         function updateBookInfo() {
             const book = booksData[currentBook];
             
+            // Debug: verificar que estamos obteniendo el libro correcto
+            console.log('Actualizando libro:', currentBook, book.title);
+            
             document.getElementById('bookTitle').textContent = book.title;
             document.getElementById('bookAuthor').textContent = book.author;
             document.getElementById('bookDescription').textContent = book.description;
@@ -1475,17 +1478,20 @@
 
         function nextBook() {
             currentBook = (currentBook + 1) % totalBooks;
-            updateCarousel(); // Sincronización automática
+            console.log('Siguiente libro - currentBook:', currentBook); // Debug
+            updateCarousel();
         }
 
         function prevBook() {
             currentBook = (currentBook - 1 + totalBooks) % totalBooks;
-            updateCarousel(); // Sincronización automática
+            console.log('Libro anterior - currentBook:', currentBook); // Debug
+            updateCarousel();
         }
 
         function goToBook(index) {
             currentBook = index;
-            updateCarousel(); // Esto sincroniza automáticamente la portada con la información
+            console.log('Ir a libro - currentBook:', currentBook); // Debug
+            updateCarousel();
         }
 
         function startAutoplay() {
@@ -1639,8 +1645,18 @@
             createFloatingParticles();
             initButtonAnimations();
             // Inicializar carrusel correctamente
+            console.log('Inicializando carrusel con libro:', currentBook); // Debug
             updateCarousel(); // Esto asegura que la información inicial esté sincronizada
             startAutoplay();
+            
+            // Verificar que los elementos DOM existen
+            console.log('Elementos DOM:', {
+                title: document.getElementById('bookTitle'),
+                author: document.getElementById('bookAuthor'),
+                description: document.getElementById('bookDescription'),
+                genre: document.getElementById('bookGenre'),
+                link: document.getElementById('bookLink')
+            });
         });
 
         // Pausar en hover del carrusel
