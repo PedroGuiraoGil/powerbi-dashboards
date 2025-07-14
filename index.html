@@ -1236,11 +1236,6 @@
                         Exploro mundos imaginarios a través de la escritura, desde la ciencia ficción hasta el thriller, 
                         siempre buscando conectar con los lectores a través de historias que combinan entretenimiento y reflexión.
                     </p>
-                    
-                    <a href="https://www.amazon.es/s?i=stripbooks&rh=p_27%3APEDRO%2BG.%2BGUIRAO&ref=dp_byline_sr_book_1" target="_blank" class="amazon-button">
-                        <span style="font-size: 1.5rem;">📖</span>
-                        Ver todos mis libros en Amazon
-                    </a>
                 </div>
 
                 <!-- Carrusel de portadas -->
@@ -1474,23 +1469,23 @@
                 indicator.classList.toggle('active', index === currentBook);
             });
 
-            // Actualizar información del libro
+            // Actualizar información del libro - SINCRONIZADO
             updateBookInfo();
         }
 
         function nextBook() {
             currentBook = (currentBook + 1) % totalBooks;
-            updateCarousel();
+            updateCarousel(); // Sincronización automática
         }
 
         function prevBook() {
             currentBook = (currentBook - 1 + totalBooks) % totalBooks;
-            updateCarousel();
+            updateCarousel(); // Sincronización automática
         }
 
         function goToBook(index) {
             currentBook = index;
-            updateCarousel();
+            updateCarousel(); // Esto sincroniza automáticamente la portada con la información
         }
 
         function startAutoplay() {
@@ -1643,7 +1638,8 @@
             animateTextBlocks();
             createFloatingParticles();
             initButtonAnimations();
-            updateCarousel();
+            // Inicializar carrusel correctamente
+            updateCarousel(); // Esto asegura que la información inicial esté sincronizada
             startAutoplay();
         });
 
