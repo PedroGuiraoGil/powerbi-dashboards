@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power BI Dashboards - Pedro Guirao Gil</title>
+    <title>Pedro Guirao Gil - Analista de Datos y Novelista</title>
     <style>
         * {
             margin: 0;
@@ -160,8 +160,16 @@
             transition: all 0.6s ease;
         }
 
+        .novelist-brand {
+            font-weight: bold;
+            color: #9B59B6;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9), 0 0 15px rgba(155,89,182,0.8);
+            transition: all 0.6s ease;
+        }
+
         .text-block.highlight .powerbi-brand,
-        .text-block.highlight .excel-brand {
+        .text-block.highlight .excel-brand,
+        .text-block.highlight .novelist-brand {
             color: #ffffff !important;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
         }
@@ -177,25 +185,59 @@
             }
         }
 
-        /* NUEVOS ESTILOS MODERNOS PARA LOS BOTONES PRINCIPALES */
+        /* Sección de navegación con tabs */
+        .section-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 2px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-color: rgba(255,255,255,0.5);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .tab-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .section-content {
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        /* ESTILOS PARA LA SECCIÓN DE DASHBOARDS */
         .nav-links {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin: 60px 0;
             padding: 20px;
-            animation: slideInDown 0.8s ease-out 0.8s both;
-        }
-
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .modern-nav-button {
@@ -221,7 +263,6 @@
             z-index: 1;
         }
 
-        /* Efecto de ondas en hover */
         .modern-nav-button::before {
             content: '';
             position: absolute;
@@ -241,7 +282,6 @@
             height: 300px;
         }
 
-        /* Efecto de partículas flotantes */
         .modern-nav-button::after {
             content: '';
             position: absolute;
@@ -259,19 +299,12 @@
             transform: translateX(100%);
         }
 
-        /* Animación de pulsación */
         .modern-nav-button:hover {
             transform: translateY(-8px) scale(1.05);
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             border-color: rgba(255,255,255,0.5);
         }
 
-        .modern-nav-button:active {
-            transform: translateY(-4px) scale(1.02);
-            transition: all 0.1s ease;
-        }
-
-        /* Iconos animados dentro de los botones */
         .button-icon {
             position: absolute;
             left: 20px;
@@ -286,7 +319,6 @@
             filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.7)) brightness(1.2);
         }
 
-        /* Texto con efecto de typing */
         .button-text {
             position: relative;
             z-index: 2;
@@ -299,7 +331,7 @@
             text-shadow: 3px 3px 12px rgba(0,0,0,0.8);
         }
 
-        /* Botón de Ventas */
+        /* Estilos específicos para cada botón */
         .btn-ventas {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
             background-size: 200% 200%;
@@ -307,12 +339,6 @@
             box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
         }
 
-        .btn-ventas:hover {
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 50%, #9b59b6 100%);
-            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.6);
-        }
-
-        /* Botón de Fútbol */
         .btn-futbol {
             background: linear-gradient(135deg, #1e3a2e 0%, #0f2419 50%, #1e3a2e 100%);
             background-size: 200% 200%;
@@ -320,12 +346,6 @@
             box-shadow: 0 15px 35px rgba(30, 58, 46, 0.4);
         }
 
-        .btn-futbol:hover {
-            background: linear-gradient(135deg, #0f2419 0%, #1e3a2e 50%, #2c5530 100%);
-            box-shadow: 0 25px 50px rgba(30, 58, 46, 0.6);
-        }
-
-        /* Botón de Presencia */
         .btn-presencia {
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #f093fb 100%);
             background-size: 200% 200%;
@@ -333,12 +353,6 @@
             box-shadow: 0 15px 35px rgba(240, 147, 251, 0.4);
         }
 
-        .btn-presencia:hover {
-            background: linear-gradient(135deg, #f5576c 0%, #f093fb 50%, #ff6b9d 100%);
-            box-shadow: 0 25px 50px rgba(240, 147, 251, 0.6);
-        }
-
-        /* Botón de Coches */
         .btn-coches {
             background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ffecd2 100%);
             background-size: 200% 200%;
@@ -348,29 +362,13 @@
             text-shadow: 1px 1px 4px rgba(255,255,255,0.8) !important;
         }
 
-        .btn-coches:hover {
-            background: linear-gradient(135deg, #fcb69f 0%, #ffecd2 50%, #ffb88c 100%);
-            box-shadow: 0 25px 50px rgba(252, 182, 159, 0.6);
-        }
-
         @keyframes gradientMove {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Efectos de partículas en hover */
-        .modern-nav-button:hover {
-            animation: buttonPulse 2s infinite;
-        }
-
-        @keyframes buttonPulse {
-            0% { box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-            50% { box-shadow: 0 25px 50px rgba(0,0,0,0.4), 0 0 30px rgba(255,255,255,0.2); }
-            100% { box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-        }
-
-        /* Iconos específicos mejorados */
+        /* Iconos para dashboards */
         .icon-chart {
             width: 40px;
             height: 40px;
@@ -418,7 +416,6 @@
             animation: soccerFloat 3s ease-in-out infinite;
         }
 
-        /* Balón de fútbol simple y reconocible */
         .icon-soccer::before {
             content: '⚽';
             position: absolute;
@@ -427,19 +424,6 @@
             left: 2px;
             filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
             animation: soccerRotate 4s linear infinite;
-        }
-
-        /* Gráfico de barras de estadísticas */
-        .icon-soccer::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 16px;
-            height: 16px;
-            background: rgba(255,255,255,0.9);
-            border-radius: 3px;
-            border: 1px solid rgba(0,0,0,0.2);
         }
 
         @keyframes soccerFloat {
@@ -487,7 +471,6 @@
             animation: carDrive 3s ease-in-out infinite;
         }
 
-        /* Carrocería principal del coche */
         .icon-car::before {
             content: '';
             position: absolute;
@@ -500,7 +483,6 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        /* Techo y ventanas */
         .icon-car::after {
             content: '';
             position: absolute;
@@ -520,23 +502,193 @@
             75% { transform: translateX(5px); }
         }
 
+        /* ESTILOS PARA LA SECCIÓN DE LIBROS */
+        .books-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 30px;
+            padding: 50px;
+            margin: 40px 0;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .books-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(155,89,182,0.1), transparent);
+            animation: bookShine 6s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes bookShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .books-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .books-title {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #9B59B6, #8E44AD, #6C3483);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .books-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .amazon-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #FF9500 0%, #FF7A00 50%, #FF9500 100%);
+            color: white;
+            text-decoration: none;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 30px 0;
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 30px rgba(255, 149, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .amazon-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+            z-index: -1;
+        }
+
+        .amazon-button:hover::before {
+            left: 100%;
+        }
+
+        .amazon-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(255, 149, 0, 0.5);
+        }
+
+        .amazon-icon {
+            font-size: 1.5rem;
+            animation: amazonPulse 2s ease infinite;
+        }
+
+        @keyframes amazonPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid transparent;
+        }
+
+        .book-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(155,89,182,0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .book-card:hover::before {
+            left: 100%;
+        }
+
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(155,89,182,0.2);
+            border-color: rgba(155,89,182,0.3);
+        }
+
+        .book-emoji {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 20px;
+            display: block;
+            animation: bookFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes bookFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+
+        .book-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #8E44AD;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .book-description {
+            color: #666;
+            line-height: 1.6;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .book-genre {
+            display: inline-block;
+            background: linear-gradient(45deg, #9B59B6, #8E44AD);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
         .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
             gap: 40px;
             margin-bottom: 60px;
-            animation: slideInUp 0.8s ease-out 1s both;
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .dashboard-card {
@@ -550,34 +702,10 @@
             position: relative;
         }
 
-        .dashboard-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-            z-index: 1;
-        }
-
-        .dashboard-card:hover::before {
-            left: 100%;
-        }
-
         .dashboard-card:hover {
             transform: translateY(-15px) scale(1.02);
             box-shadow: 0 35px 70px rgba(0,0,0,0.25);
             border-image: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1) 1;
-        }
-
-        .dashboard-card.legacy {
-            border-image: linear-gradient(45deg, #28a745, #20c997) 1;
-        }
-
-        .dashboard-card.private {
-            border-image: linear-gradient(45deg, #fd7e14, #ffc107) 1;
         }
 
         .card-image {
@@ -627,33 +755,7 @@
             text-transform: uppercase;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .status-badge::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: badgeShine 2s linear infinite;
-            border-radius: 20px;
-        }
-
-        @keyframes badgeShine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .status-legacy {
             background: linear-gradient(45deg, #28a745, #20c997);
-        }
-
-        .status-private {
-            background: linear-gradient(45deg, #fd7e14, #ffc107);
         }
 
         .card-description {
@@ -679,104 +781,6 @@
             overflow: hidden;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
             z-index: 2;
-        }
-
-        .view-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-            z-index: 1;
-        }
-
-        .view-button:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .gallery-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 1000;
-            padding: 20px;
-        }
-
-        .gallery-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .gallery-content {
-            max-width: 90vw;
-            max-height: 90vh;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .gallery-header {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .gallery-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .close-gallery {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .close-gallery:hover {
-            background: rgba(255,255,255,0.3);
-            transform: scale(1.1);
-        }
-
-        .gallery-images {
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 20px;
-            max-height: 70vh;
-            overflow-y: auto;
-        }
-
-        .gallery-image {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-image:hover {
-            transform: scale(1.05);
         }
 
         .info-section {
@@ -840,9 +844,18 @@
                 margin-left: 60px;
                 font-size: 0.9rem;
             }
-            
-            .gallery-images {
+
+            .books-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .section-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tab-button {
+                width: 250px;
             }
         }
     </style>
@@ -853,7 +866,6 @@
             <div class="profile-section">
                 <div style="display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap;">
                     <h1>Pedro Guirao Gil</h1>
-                    <!-- Tu imagen desde GitHub -->
                     <img src="images/Yo (3).jpg" alt="Pedro Guirao Gil" style="width: 120px; height: 120px; border-radius: 50%; border: 4px solid white; box-shadow: 0 15px 30px rgba(0,0,0,0.3); object-fit: cover;" onerror="this.src='images/yo.jpg'; this.onerror=function(){this.style.display='none'};">
                 </div>
                 <div class="profile-content">
@@ -863,12 +875,26 @@
                             <span class="text-block" data-block="0">Especialista en <span class="powerbi-brand">Power BI</span> y Microsoft <span class="excel-brand">EXCEL</span></span> • 
                             <span class="text-block" data-block="1">Formador</span> • 
                             <span class="text-block" data-block="2">Consultor</span> • 
-                            <span class="text-block" data-block="3">Automatización en la extracción y depuración de datos y Visibilidad</span>
+                            <span class="text-block" data-block="3">Automatización en la extracción y depuración de datos</span> • 
+                            <span class="text-block" data-block="4"><span class="novelist-brand">Novelista</span></span>
                         </p>
                     </div>
                 </div>
             </div>
             
+            <!-- Navegación por pestañas -->
+            <div class="section-tabs">
+                <button class="tab-button active" onclick="showSection('dashboards')">
+                    📊 DASHBOARDS POWER BI
+                </button>
+                <button class="tab-button" onclick="showSection('books')">
+                    📚 MIS NOVELAS
+                </button>
+            </div>
+        </div>
+
+        <!-- Sección de Dashboards -->
+        <div id="dashboards" class="section-content active">
             <div class="nav-links">
                 <a href="https://app.powerbi.com/view?r=eyJrIjoiYTJjN2E3MjAtZDdhMC00NmE5LThhZmEtMjU1MzA1ZDAzZDI2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-ventas">
                     <div class="button-icon">
@@ -898,98 +924,161 @@
                     <span class="button-text">ALQUILER DE COCHES</span>
                 </a>
             </div>
+
+            <div class="dashboard-grid">
+                <!-- Dashboard de Ventas -->
+                <div class="dashboard-card" onclick="openGallery('ventas')">
+                    <div class="card-image">
+                        <img src="images/ventas1.jpg" alt="Dashboard de Ventas - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#ff6b6b,#4ecdc4);color:white;font-size:3rem;\'>📊</div>'">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title">📊 Análisis de Ventas</h3>
+                            <span class="status-badge">Legacy Público</span>
+                        </div>
+                        <p class="card-description">
+                            Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.
+                        </p>
+                        <button style="background: red !important; color: white !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('ventas')">📊 Ver todas las páginas (3)</button>
+                    </div>
+                </div>
+
+                <!-- Dashboard de Fútbol -->
+                <div class="dashboard-card" onclick="openGallery('futbol')">
+                    <div class="card-image">
+                        <img src="images/futbol1.jpg" alt="Dashboard Liga de Fútbol - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#4ecdc4,#45b7d1);color:white;font-size:3rem;\'>⚽</div>'">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title">⚽ Liga de Fútbol</h3>
+                            <span class="status-badge">Legacy Público</span>
+                        </div>
+                        <p class="card-description">
+                            Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.
+                        </p>
+                        <button style="background: blue !important; color: white !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('futbol')">⚽ Ver todas las páginas (2)</button>
+                    </div>
+                </div>
+
+                <!-- Dashboard de Vacaciones/Bajas -->
+                <div class="dashboard-card" onclick="openGallery('vacaciones')">
+                    <div class="card-image">
+                        <img src="images/bajas1.jpg" alt="Dashboard Entradas/Salidas/Vacaciones - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#96ceb4,#ffeaa7);color:white;font-size:3rem;\'>📅</div>'">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title">📅 Control de Presencia</h3>
+                            <span class="status-badge">Legacy Público</span>
+                        </div>
+                        <p class="card-description">
+                            Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.
+                        </p>
+                        <button style="background: green !important; color: white !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('vacaciones')">🕐 Ver todas las páginas (2)</button>
+                    </div>
+                </div>
+
+                <!-- Dashboard de Alquiler de Coches -->
+                <div class="dashboard-card" onclick="openGallery('alquilercoches')">
+                    <div class="card-image">
+                        <img src="images/alquilercoches1.jpg" alt="Dashboard de Alquiler de Coches - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#fd7e14,#ffc107);color:white;font-size:3rem;\'>🚗</div>'">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title">🚗 Alquiler de Coches</h3>
+                            <span class="status-badge">Legacy Público</span>
+                        </div>
+                        <p class="card-description">
+                            Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>2 páginas interactivas</strong> con KPIs del sector automovilístico.
+                        </p>
+                        <button style="background: orange !important; color: black !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('alquilercoches')">🚗 Ver todas las páginas (2)</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h2>🎯 Sobre estos Dashboards</h2>
+                <p class="info-text">
+                    Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: 
+                    comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público 
+                    como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos.
+                </p>
+            </div>
         </div>
 
-        <div class="dashboard-grid">
-            <!-- Dashboard de Ventas -->
-            <div class="dashboard-card legacy" onclick="openGallery('ventas')">
-                <div class="card-image">
-                    <img src="images/ventas1.jpg" alt="Dashboard de Ventas - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#ff6b6b,#4ecdc4);color:white;font-size:3rem;\'>📊</div>'">
-                </div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="card-title">📊 Análisis de Ventas</h3>
-                        <span class="status-badge status-legacy">Legacy Público</span>
-                    </div>
-                    <p class="card-description">
-                        Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.
+        <!-- Sección de Libros -->
+        <div id="books" class="section-content">
+            <div class="books-section">
+                <div class="books-header">
+                    <h2 class="books-title">📚 Mi Faceta Literaria</h2>
+                    <p class="books-subtitle">
+                        Además de mi experiencia en análisis de datos, también exploro mundos imaginarios a través de la escritura. 
+                        Mis novelas abarcan desde la ciencia ficción hasta el thriller, siempre buscando conectar con los lectores 
+                        a través de historias que combinan entretenimiento y reflexión.
                     </p>
-                    <button style="background: red !important; color: white !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('ventas')">📊 Ver todas las páginas (3)</button>
+                    
+                    <a href="https://www.amazon.es/s?i=stripbooks&rh=p_27%3APEDRO%2BG.%2BGUIRAO&ref=dp_byline_sr_book_1" target="_blank" class="amazon-button">
+                        <span class="amazon-icon">📖</span>
+                        Ver todos mis libros en Amazon
+                    </a>
                 </div>
-            </div>
 
-            <!-- Dashboard de Fútbol -->
-            <div class="dashboard-card legacy" onclick="openGallery('futbol')">
-                <div class="card-image">
-                    <img src="images/futbol1.jpg" alt="Dashboard Liga de Fútbol - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#4ecdc4,#45b7d1);color:white;font-size:3rem;\'>⚽</div>'">
-                </div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="card-title">⚽ Liga de Fútbol</h3>
-                        <span class="status-badge status-legacy">Legacy Público</span>
+                <div class="books-grid">
+                    <div class="book-card">
+                        <div class="book-emoji">🚀</div>
+                        <h3 class="book-title">Novelas de Ciencia Ficción</h3>
+                        <p class="book-description">
+                            Exploro futuros posibles, tecnologías emergentes y las implicaciones de los avances científicos 
+                            en la sociedad humana. Mis historias de ciencia ficción combinan rigor científico con narrativas emocionantes.
+                        </p>
+                        <span class="book-genre">Ciencia Ficción</span>
                     </div>
-                    <p class="card-description">
-                        Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.
-                    </p>
-                    <button style="background: blue !important; color: white !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('futbol')">⚽ Ver todas las páginas (2)</button>
-                </div>
-            </div>
 
-            <!-- Dashboard de Vacaciones/Bajas -->
-            <div class="dashboard-card legacy" onclick="openGallery('vacaciones')">
-                <div class="card-image">
-                    <img src="images/bajas1.jpg" alt="Dashboard Entradas/Salidas/Vacaciones - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#96ceb4,#ffeaa7);color:white;font-size:3rem;\'>📅</div>'">
-                </div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="card-title">📅 Control de Presencia</h3>
-                        <span class="status-badge status-legacy">Legacy Público</span>
+                    <div class="book-card">
+                        <div class="book-emoji">🔍</div>
+                        <h3 class="book-title">Thrillers y Suspense</h3>
+                        <p class="book-description">
+                            Narrativas llenas de tensión, misterios por resolver y personajes complejos que navegan 
+                            por situaciones límite. Cada página busca mantener al lector en vilo hasta el desenlace final.
+                        </p>
+                        <span class="book-genre">Thriller</span>
                     </div>
-                    <p class="card-description">
-                        Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.
-                    </p>
-                    <button style="background: green !important; color: white !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('vacaciones')">🕐 Ver todas las páginas (2)</button>
-                </div>
-            </div>
 
-            <!-- Dashboard de Alquiler de Coches (AHORA LEGACY) -->
-            <div class="dashboard-card legacy" onclick="openGallery('alquilercoches')">
-                <div class="card-image">
-                    <img src="images/alquilercoches1.jpg" alt="Dashboard de Alquiler de Coches - Página 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:300px;background:linear-gradient(45deg,#fd7e14,#ffc107);color:white;font-size:3rem;\'>🚗</div>'">
-                </div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="card-title">🚗 Alquiler de Coches</h3>
-                        <span class="status-badge status-legacy">Legacy Público</span>
+                    <div class="book-card">
+                        <div class="book-emoji">💭</div>
+                        <h3 class="book-title">Ficción Contemporánea</h3>
+                        <p class="book-description">
+                            Historias que reflejan la realidad actual, explorando temas sociales, relaciones humanas 
+                            y los desafíos de la vida moderna con una perspectiva única y reflexiva.
+                        </p>
+                        <span class="book-genre">Ficción</span>
                     </div>
-                    <p class="card-description">
-                        Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>2 páginas interactivas</strong> con KPIs del sector automovilístico.
+                </div>
+
+                <div style="text-align: center; margin-top: 50px; padding: 30px; background: linear-gradient(135deg, rgba(155,89,182,0.1), rgba(142,68,173,0.1)); border-radius: 20px; border: 2px solid rgba(155,89,182,0.2);">
+                    <h3 style="color: #8E44AD; margin-bottom: 20px; font-size: 1.5rem;">✨ Descubre mi universo literario</h3>
+                    <p style="color: #666; font-size: 1.1rem; line-height: 1.6; margin-bottom: 25px;">
+                        Cada libro es una ventana a mundos diferentes, donde la imaginación se encuentra con la reflexión. 
+                        Mis historias buscan entretener, pero también invitar a la reflexión sobre temas universales y contemporáneos.
                     </p>
-                    <button style="background: orange !important; color: black !important; border: none !important; padding: 15px 30px !important; border-radius: 30px !important; font-size: 1.1rem !important; font-weight: bold !important; cursor: pointer !important; width: 100% !important; text-transform: uppercase !important; letter-spacing: 1px !important;" onclick="openGallery('alquilercoches')">🚗 Ver todas las páginas (2)</button>
+                    <a href="https://www.amazon.es/s?i=stripbooks&rh=p_27%3APEDRO%2BG.%2BGUIRAO&ref=dp_byline_sr_book_1" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(45deg, #9B59B6, #8E44AD); color: white; text-decoration: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(155,89,182,0.3);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 35px rgba(155,89,182,0.4)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0 10px 25px rgba(155,89,182,0.3)'">
+                        <span style="font-size: 1.2rem;">📚</span>
+                        Explorar mi catálogo completo
+                    </a>
                 </div>
             </div>
         </div>
 
-        <!-- Modal de Galería -->
-        <div id="galleryModal" class="gallery-modal">
-            <div class="gallery-content">
-                <div class="gallery-header">
-                    <h3 id="galleryTitle" class="gallery-title">Dashboard</h3>
-                    <button class="close-gallery" onclick="closeGallery()">✕</button>
+        <!-- Modal de Galería (mantenemos el original para los dashboards) -->
+        <div id="galleryModal" class="gallery-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; padding: 20px;">
+            <div class="gallery-content" style="max-width: 90vw; max-height: 90vh; background: white; border-radius: 20px; overflow: hidden; position: relative; margin: auto; top: 50%; transform: translateY(-50%);">
+                <div class="gallery-header" style="background: linear-gradient(45deg, #ff6b6b, #4ecdc4); color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 id="galleryTitle" class="gallery-title" style="font-size: 1.5rem; font-weight: bold;">Dashboard</h3>
+                    <button class="close-gallery" onclick="closeGallery()" style="background: rgba(255,255,255,0.2); border: none; color: white; font-size: 1.5rem; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease;">✕</button>
                 </div>
-                <div id="galleryImages" class="gallery-images">
+                <div id="galleryImages" class="gallery-images" style="padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; max-height: 70vh; overflow-y: auto;">
                     <!-- Las imágenes se cargarán dinámicamente -->
                 </div>
             </div>
-        </div>
-
-        <div class="info-section">
-            <h2>🎯 Sobre estos Dashboards</h2>
-            <p class="info-text">
-                Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: 
-                comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público 
-                como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos.
-            </p>
         </div>
     </div>
 
@@ -1014,6 +1103,27 @@
             }
         };
 
+        // Función para cambiar entre secciones
+        function showSection(sectionName) {
+            // Ocultar todas las secciones
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remover clase active de todos los botones
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Mostrar la sección seleccionada
+            document.getElementById(sectionName).classList.add('active');
+
+            // Activar el botón correspondiente
+            event.target.classList.add('active');
+        }
+
         function openGallery(dashboardKey) {
             const dashboard = dashboards[dashboardKey];
             if (!dashboard) return;
@@ -1032,20 +1142,24 @@
                 const img = document.createElement('img');
                 img.src = imageSrc;
                 img.alt = `${dashboard.title} - Página ${index + 1}`;
-                img.className = 'gallery-image';
+                img.style.cssText = 'width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.3s ease;';
+                img.onmouseover = () => img.style.transform = 'scale(1.05)';
+                img.onmouseout = () => img.style.transform = 'scale(1)';
                 img.onerror = function() {
                     this.style.display = 'none';
                 };
                 imagesContainer.appendChild(img);
             });
 
-            modal.classList.add('active');
+            modal.style.display = 'flex';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
             document.body.style.overflow = 'hidden';
         }
 
         function closeGallery() {
             const modal = document.getElementById('galleryModal');
-            modal.classList.remove('active');
+            modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
 
@@ -1135,7 +1249,7 @@
                     bar3.style.cssText = `
                         position: absolute;
                         bottom: 0;
-                        left: 24px;
+                        left: 24px;https://github.com/PedroGuiraoGil/powerbi-dashboards/blob/main/index.html
                         width: 8px;
                         height: 25px;
                         background: rgba(255,255,255,0.8);
@@ -1152,143 +1266,6 @@
                     `;
                     document.head.appendChild(style);
                     icon.appendChild(bar3);
-                }
-                
-                // Mejorar animación del balón de fútbol con estadísticas
-                if (button.classList.contains('btn-futbol')) {
-                    const icon = button.querySelector('.icon-soccer');
-                    
-                    // Añadir mini gráfico de barras para estadísticas
-                    const statsContainer = document.createElement('div');
-                    statsContainer.style.cssText = `
-                        position: absolute;
-                        bottom: 2px;
-                        right: 2px;
-                        width: 14px;
-                        height: 14px;
-                        background: rgba(255,255,255,0.95);
-                        border-radius: 2px;
-                        border: 1px solid rgba(0,0,0,0.2);
-                        display: flex;
-                        align-items: end;
-                        justify-content: center;
-                        gap: 1px;
-                        padding: 2px;
-                    `;
-                    
-                    // Barras del mini gráfico
-                    const bar1 = document.createElement('div');
-                    bar1.style.cssText = `
-                        width: 2px;
-                        height: 4px;
-                        background: #4CAF50;
-                        border-radius: 1px;
-                        animation: statsBar1 2s ease infinite;
-                    `;
-                    
-                    const bar2 = document.createElement('div');
-                    bar2.style.cssText = `
-                        width: 2px;
-                        height: 7px;
-                        background: #2196F3;
-                        border-radius: 1px;
-                        animation: statsBar2 2s ease infinite 0.2s;
-                    `;
-                    
-                    const bar3 = document.createElement('div');
-                    bar3.style.cssText = `
-                        width: 2px;
-                        height: 5px;
-                        background: #FF9800;
-                        border-radius: 1px;
-                        animation: statsBar3 2s ease infinite 0.4s;
-                    `;
-                    
-                    const statsStyle = document.createElement('style');
-                    statsStyle.textContent = `
-                        @keyframes statsBar1 {
-                            0%, 100% { height: 4px; }
-                            50% { height: 8px; }
-                        }
-                        @keyframes statsBar2 {
-                            0%, 100% { height: 7px; }
-                            50% { height: 3px; }
-                        }
-                        @keyframes statsBar3 {
-                            0%, 100% { height: 5px; }
-                            50% { height: 9px; }
-                        }
-                    `;
-                    document.head.appendChild(statsStyle);
-                    
-                    statsContainer.appendChild(bar1);
-                    statsContainer.appendChild(bar2);
-                    statsContainer.appendChild(bar3);
-                    icon.appendChild(statsContainer);
-                }
-                
-                // Mejorar animación del coche
-                if (button.classList.contains('btn-coches')) {
-                    const icon = button.querySelector('.icon-car');
-                    
-                    // Añadir ruedas giratorias
-                    const wheel1 = document.createElement('div');
-                    wheel1.style.cssText = `
-                        position: absolute;
-                        bottom: 0;
-                        left: 8px;
-                        width: 10px;
-                        height: 10px;
-                        background: #333;
-                        border-radius: 50%;
-                        border: 2px solid #666;
-                        animation: wheelSpin 1s linear infinite;
-                    `;
-                    
-                    const wheel2 = document.createElement('div');
-                    wheel2.style.cssText = `
-                        position: absolute;
-                        bottom: 0;
-                        right: 8px;
-                        width: 10px;
-                        height: 10px;
-                        background: #333;
-                        border-radius: 50%;
-                        border: 2px solid #666;
-                        animation: wheelSpin 1s linear infinite;
-                    `;
-                    
-                    // Añadir faro delantero
-                    const headlight = document.createElement('div');
-                    headlight.style.cssText = `
-                        position: absolute;
-                        bottom: 12px;
-                        right: -2px;
-                        width: 6px;
-                        height: 6px;
-                        background: #FFD700;
-                        border-radius: 50%;
-                        box-shadow: 0 0 8px #FFD700;
-                        animation: headlightBlink 2s ease infinite;
-                    `;
-                    
-                    const wheelStyle = document.createElement('style');
-                    wheelStyle.textContent = `
-                        @keyframes wheelSpin {
-                            0% { transform: rotate(0deg); }
-                            100% { transform: rotate(360deg); }
-                        }
-                        @keyframes headlightBlink {
-                            0%, 90% { opacity: 1; }
-                            95% { opacity: 0.3; }
-                            100% { opacity: 1; }
-                        }
-                    `;
-                    document.head.appendChild(wheelStyle);
-                    
-                    icon.appendChild(wheel1);
-                    icon.appendChild(wheel2);
-                    icon.appendChild(headlight);
                 }
             });
         }
