@@ -879,9 +879,11 @@
                         Tu navegador no soporta el elemento de video.
                     </video>
                     <div id="videoFallback" class="video-fallback" style="display: none;">
-                        <p>🎬 Video no disponible en el reproductor</p>
-                        <p>Puedes <a id="videoDownloadLink" href="#" download>descargar el video aquí</a></p>
-                        <p><small>O intenta abrirlo en una nueva pestaña: <a id="videoDirectLink" href="#" target="_blank">Enlace directo</a></small></p>
+                        <p>🎬 Video no disponible para reproducción web</p>
+                        <p>Este video tiene un formato que no es compatible con la reproducción directa en navegadores.</p>
+                        <p>Puedes <a id="videoDownloadLink" href="#" download>⬇️ descargar el video aquí</a> para verlo en tu reproductor favorito</p>
+                        <p><small>O intenta abrirlo en una nueva pestaña: <a id="videoDirectLink" href="#" target="_blank">🔗 Enlace directo</a></small></p>
+                        <p><small><em>Nota: Algunos videos están optimizados para descarga y no para streaming web</em></small></p>
                     </div>
                 </div>
             </div>
@@ -1208,6 +1210,10 @@
             videoFallback.style.display = 'none';
             videoPlayer.style.display = 'block';
 
+            // Variables para detectar problemas de reproducción
+            var hasVideoData = false;
+            var playbackStarted = false;
+
             // Manejar errores de carga
             videoPlayer.onerror = function() {
                 console.log('Error cargando video:', videoSrc);
@@ -1217,18 +1223,46 @@
 
             videoPlayer.onloadeddata = function() {
                 console.log('Video cargado correctamente');
+                hasVideoData = true;
                 videoFallback.style.display = 'none';
                 videoPlayer.style.display = 'block';
             };
 
-            // Timeout para mostrar fallback si no carga en 5 segundos
-            setTimeout(function() {
-                if (videoPlayer.readyState === 0) {
-                    console.log('Video no se pudo cargar - mostrando fallback');
+            // Detectar si el video tiene dimensiones válidas
+            videoPlayer.onloadedmetadata = function() {
+                console.log('Metadatos cargados - Dimensiones:', videoPlayer.videoWidth, 'x', videoPlayer.videoHeight);
+                if (videoPlayer.videoWidth === 0 || videoPlayer.videoHeight === 0) {
+                    console.log('Video sin dimensiones válidas - mostrando fallback');
                     videoPlayer.style.display = 'none';
                     videoFallback.style.display = 'block';
                 }
-            }, 5000);
+            };
+
+            // Detectar si realmente está reproduciendo
+            videoPlayer.ontimeupdate = function() {
+                if (!playbackStarted && videoPlayer.currentTime > 0) {
+                    playbackStarted = true;
+                    console.log('Reproducción iniciada correctamente');
+                }
+            };
+
+            // Timeout más agresivo para detectar problemas
+            setTimeout(function() {
+                if (videoPlayer.readyState === 0 || !hasVideoData) {
+                    console.log('Video no se pudo cargar después de 3 segundos - mostrando fallback');
+                    videoPlayer.style.display = 'none';
+                    videoFallback.style.display = 'block';
+                }
+            }, 3000);
+
+            // Timeout adicional para detectar video "fantasma" (carga pero no se ve)
+            setTimeout(function() {
+                if (hasVideoData && videoPlayer.currentTime > 0 && (videoPlayer.videoWidth === 0 || videoPlayer.videoHeight === 0)) {
+                    console.log('Video detectado como "fantasma" - tiene audio pero no video visible');
+                    videoPlayer.style.display = 'none';
+                    videoFallback.style.display = 'block';
+                }
+            }, 8000);
 
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
