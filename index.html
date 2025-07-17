@@ -668,10 +668,10 @@
             </div>
             
             <div class="section-tabs">
-                <button class="tab-button active" onclick="showSection('dashboards')">
+                <button class="tab-button active" onclick="showSection('dashboards'); return false;">
                     📊 DASHBOARDS POWER BI
                 </button>
-                <button class="tab-button" onclick="showSection('books')">
+                <button class="tab-button" onclick="showSection('books'); return false;">
                     📚 MIS NOVELAS
                 </button>
             </div>
@@ -943,8 +943,8 @@
                 genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", 
                 link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", 
                 linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", 
-                trailer: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER%20VIDEOS%20ESCALI.mp4",
-                trailer2: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER%20VIDEOS%20ESCALI.mp4" 
+                trailer: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER%20VIDEOS%20ESCALI.mp4?v=1",
+                trailer2: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER-2-ESCALI.mp4?v=1" 
             },
             { 
                 title: "ESCALI'S BLUES", 
@@ -1054,7 +1054,7 @@
             if (currentBookData.trailer) {
                 trailerLinkEl.onclick = function(e) {
                     e.preventDefault();
-                    openVideo(currentBookData.trailer, currentBookData.title + ' - Booktrailer 1');
+                    openVideo(currentBookData.trailer, currentBookData.title + ' - Booktrailer Original');
                 };
                 trailerLinkEl.style.display = 'inline-flex';
             } else {
@@ -1064,7 +1064,7 @@
             if (currentBookData.trailer2) {
                 trailerLinkEl2.onclick = function(e) {
                     e.preventDefault();
-                    openVideo(currentBookData.trailer2, currentBookData.title + ' - Booktrailer 2');
+                    openVideo(currentBookData.trailer2, currentBookData.title + ' - Booktrailer Comprimido');
                 };
                 trailerLinkEl2.style.display = 'inline-flex';
             } else {
