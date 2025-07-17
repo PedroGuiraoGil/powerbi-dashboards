@@ -615,7 +615,7 @@
             .profile-section h1 {
                 font-size: 2.5rem;
             }
-
+            
             .nav-links {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -633,16 +633,16 @@
             .books-container {
                 width: 100%;
             }
-
+            
             .book-cover {
                 width: 150px;
                 height: 225px;
             }
-
+            
             .book-cover.prev, .book-cover.next {
                 transform: scale(0.8) translateX(-100px);
             }
-
+            
             .book-cover.next {
                 transform: scale(0.8) translateX(100px);
             }
@@ -666,7 +666,7 @@
                     <p>Especialista en Power BI y Microsoft Excel • Formador • Consultor • Novelista</p>
                 </div>
             </div>
-
+            
             <div class="section-tabs">
                 <button class="tab-button active" onclick="showSection('dashboards')">
                     📊 DASHBOARDS POWER BI
@@ -944,7 +944,6 @@
                 link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", 
                 linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", 
                 trailer: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER%20VIDEOS%20ESCALI.mp4",
-                trailer2: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER-2-ESCALI-COMPRIMIDO.mp4" 
                 trailer2: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER%20VIDEOS%20ESCALI.mp4" 
             },
             { 
@@ -969,19 +968,28 @@
 
         // Función para cambiar secciones
         function showSection(sectionName) {
+            // Obtener el evento actual
+            var clickedButton = event ? event.currentTarget : null;
+            
             var sections = document.querySelectorAll('.section-content');
             var buttons = document.querySelectorAll('.tab-button');
-
+            
             sections.forEach(function(section) {
                 section.classList.remove('active');
             });
-
+            
             buttons.forEach(function(button) {
                 button.classList.remove('active');
             });
-
-            document.getElementById(sectionName).classList.add('active');
-            event.currentTarget.classList.add('active');
+            
+            var targetSection = document.getElementById(sectionName);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            }
         }
 
         // Funciones de galería de dashboards
@@ -992,7 +1000,7 @@
                 presencia: "📅 Control de Presencia - Gestión de Personal",
                 coches: "🚗 Alquiler de Coches - Análisis del Sector Automovilístico"
             };
-
+            
             var dashboard = dashboards[dashboardKey];
             if (!dashboard) return;
 
@@ -1002,7 +1010,7 @@
 
             title.textContent = titleMap[dashboardKey];
             imagesContainer.innerHTML = '';
-
+            
             dashboard.images.forEach(function(imageSrc, index) {
                 var img = document.createElement('img');
                 img.src = imageSrc;
@@ -1031,18 +1039,18 @@
             document.getElementById('bookTitle').textContent = currentBookData.title;
             document.getElementById('bookAuthor').textContent = currentBookData.author;
             document.getElementById('bookDescription').textContent = currentBookData.description;
-
+            
             var genreEl = document.getElementById('bookGenre');
             genreEl.textContent = currentBookData.genre;
             genreEl.style.background = currentBookData.genreColor;
-
+            
             var linkEl = document.getElementById('bookLink');
             linkEl.href = currentBookData.link;
             linkEl.style.background = currentBookData.linkColor;
-
+            
             var trailerLinkEl = document.getElementById('bookTrailerLink');
             var trailerLinkEl2 = document.getElementById('bookTrailerLink2');
-
+            
             if (currentBookData.trailer) {
                 trailerLinkEl.onclick = function(e) {
                     e.preventDefault();
@@ -1067,11 +1075,11 @@
         function updateCarousel() {
             var covers = document.querySelectorAll('.book-cover');
             var indicators = document.querySelectorAll('.indicator');
-
+            
             covers.forEach(function(cover, index) {
                 cover.className = 'book-cover';
                 var diff = index - currentBook;
-
+                
                 if (Math.abs(diff) > totalBooks / 2) {
                     diff = diff > 0 ? diff - totalBooks : diff + totalBooks;
                 }
@@ -1091,7 +1099,7 @@
                         break;
                 }
             });
-
+            
             indicators.forEach(function(indicator, index) {
                 if (index === currentBook) {
                     indicator.classList.add('active');
@@ -1130,7 +1138,7 @@
         function toggleAutoplay() {
             isAutoplayActive = !isAutoplayActive;
             var btn = document.getElementById('autoplayBtn');
-
+            
             if (isAutoplayActive) {
                 startAutoplay();
                 btn.textContent = '⏸️ Pausar Carrusel';
@@ -1158,7 +1166,7 @@
         function closeVideo() {
             var modal = document.getElementById('videoModal');
             var videoPlayer = document.getElementById('videoPlayer');
-
+            
             videoPlayer.pause();
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
@@ -1179,7 +1187,7 @@
 
             updateCarousel();
             startAutoplay();
-
+            
             // Pausar autoplay al hacer hover en el carrusel
             var carousel = document.querySelector('.books-carousel');
             if (carousel) {
@@ -1196,7 +1204,7 @@
                     closeGallery();
                 }
             });
-
+            
             document.getElementById('videoModal').addEventListener('click', function(e) { 
                 if (e.target === this) closeVideo(); 
             });
