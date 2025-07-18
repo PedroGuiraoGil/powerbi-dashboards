@@ -182,6 +182,9 @@
                         <button class="book-link" id="bookTrailerLink2" style="display: none; background: #8b0000;">
                             <span>🎥</span> Ver Booktrailer 2
                         </button>
+                        <button class="book-link" id="bookAudioLink" style="display: none; background: #2E8B57;">
+                            <span>🎧</span> Escuchar Audio
+                        </button>
                     </div>
                 </div>
 
@@ -197,7 +200,31 @@
             </div>
         </div>
 
-        <!-- Modal de Video -->
+        <!-- Modal de Audio -->
+        <div id="audioModal" class="audio-modal">
+            <div class="audio-content">
+                <div class="audio-header">
+                    <h3 class="audio-title" id="audioTitle">🎧 Audio Libro</h3>
+                    <button class="close-audio" onclick="closeAudio()">✕</button>
+                </div>
+                <div class="audio-player">
+                    <audio id="audioPlayer" controls preload="metadata" style="width: 100%;">
+                        <source id="audioSource" src="" type="audio/mpeg">
+                        <source id="audioSourceOgg" src="" type="audio/ogg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                    <div class="audio-info">
+                        <p><strong>🎧 Disfruta de este fragmento de audio</strong></p>
+                        <p>Experiencia inmersiva de la narrativa completa</p>
+                    </div>
+                    <div id="audioFallback" class="audio-fallback" style="display: none;">
+                        <p>🎧 Audio no disponible para reproducción web</p>
+                        <p>Este archivo tiene un formato que no es compatible con la reproducción directa en navegadores.</p>
+                        <p>Puedes <a id="audioDownloadLink" href="#" download>⬇️ descargar el audio aquí</a> para escucharlo en tu reproductor favorito</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="videoModal" class="video-modal">
             <div class="video-content">
                 <div class="video-header">
@@ -433,7 +460,9 @@
                 genreColor: "linear-gradient(45deg, #8E44AD, #9B59B6)", 
                 link: "https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill", 
                 linkColor: "linear-gradient(45deg, #8E44AD, #9B59B6)",
-                linkText: { es: "📖 Ver en Amazon", en: "📖 View on Amazon" }
+                linkText: { es: "📖 Ver en Amazon", en: "📖 View on Amazon" },
+                audio: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/EXODOSESPANO.mp3",
+                audioText: { es: "🎧 Escuchar Audio", en: "🎧 Listen Audio" }
             }
         ];
 
@@ -611,6 +640,7 @@
             
             var trailerLinkEl = document.getElementById('bookTrailerLink');
             var trailerLinkEl2 = document.getElementById('bookTrailerLink2');
+            var audioLinkEl = document.getElementById('bookAudioLink');
             
             if (currentBookData.trailer) {
                 trailerLinkEl.onclick = function(e) {
@@ -632,6 +662,17 @@
                 trailerLinkEl2.style.display = 'inline-flex';
             } else {
                 trailerLinkEl2.style.display = 'none';
+            }
+
+            if (currentBookData.audio) {
+                audioLinkEl.onclick = function(e) {
+                    e.preventDefault();
+                    openAudio(currentBookData.audio, currentBookData.title + (lang === 'es' ? ' - Audio Libro' : ' - Audio Book'));
+                };
+                audioLinkEl.innerHTML = '<span>🎧</span> ' + (currentBookData.audioText ? currentBookData.audioText[lang] : (lang === 'es' ? 'Escuchar Audio' : 'Listen Audio'));
+                audioLinkEl.style.display = 'inline-flex';
+            } else {
+                audioLinkEl.style.display = 'none';
             }
         }
 
@@ -715,7 +756,69 @@
             }
         }
 
-        // Funciones de video
+        // Funciones de audio
+        function openAudio(audioSrc, title) {
+            var modal = document.getElementById('audioModal');
+            var audioTitle = document.getElementById('audioTitle');
+            var audioSource = document.getElementById('audioSource');
+            var audioSourceOgg = document.getElementById('audioSourceOgg');
+            var audioPlayer = document.getElementById('audioPlayer');
+            var audioFallback = document.getElementById('audioFallback');
+            var downloadLink = document.getElementById('audioDownloadLink');
+
+            audioTitle.textContent = '🎧 ' + title;
+            
+            // Configurar fuentes de audio
+            audioSource.src = audioSrc;
+            audioSourceOgg.src = audioSrc.replace('.mp3', '.ogg');
+            
+            // Configurar enlace de descarga
+            downloadLink.href = audioSrc;
+            downloadLink.download = title + '.mp3';
+            
+            // Resetear el audio
+            audioPlayer.load();
+            audioFallback.style.display = 'none';
+            audioPlayer.style.display = 'block';
+
+            var hasAudioData = false;
+
+            // Manejar errores de carga
+            audioPlayer.onerror = function() {
+                console.log('Error cargando audio:', audioSrc);
+                audioPlayer.style.display = 'none';
+                audioFallback.style.display = 'block';
+            };
+
+            audioPlayer.onloadeddata = function() {
+                console.log('Audio cargado correctamente');
+                hasAudioData = true;
+                audioFallback.style.display = 'none';
+                audioPlayer.style.display = 'block';
+            };
+
+            // Timeout para detectar problemas
+            setTimeout(function() {
+                if (audioPlayer.readyState === 0 || !hasAudioData) {
+                    console.log('Audio no se pudo cargar después de 3 segundos - mostrando fallback');
+                    audioPlayer.style.display = 'none';
+                    audioFallback.style.display = 'block';
+                }
+            }, 3000);
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAudio() {
+            var modal = document.getElementById('audioModal');
+            var audioPlayer = document.getElementById('audioPlayer');
+            
+            audioPlayer.pause();
+            audioPlayer.currentTime = 0;
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
         function openVideo(videoSrc, title) {
             var modal = document.getElementById('videoModal');
             var videoTitle = document.getElementById('videoTitle');
@@ -836,6 +939,7 @@
                     closeVideo();
                     closeGallery();
                     closeImageModal();
+                    closeAudio();
                 } else if (e.key === 'ArrowLeft') {
                     navigateImage(-1);
                 } else if (e.key === 'ArrowRight') {
@@ -853,6 +957,10 @@
 
             document.getElementById('imageModal').addEventListener('click', function(e) { 
                 if (e.target === this) closeImageModal(); 
+            });
+
+            document.getElementById('audioModal').addEventListener('click', function(e) { 
+                if (e.target === this) closeAudio(); 
             });
         });
     </script>
@@ -1452,7 +1560,100 @@
             color: white;
         }
 
-        .video-modal, .gallery-modal {
+        .audio-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .audio-content {
+            max-width: 600px;
+            max-height: 400px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            margin: auto;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .audio-header {
+            background: linear-gradient(45deg, #2E8B57, #3CB371);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .audio-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .close-audio {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .audio-player {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 200px;
+        }
+
+        .audio-player audio {
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .audio-info {
+            text-align: center;
+            color: #333;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .audio-fallback {
+            color: #333;
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 20px;
+        }
+
+        .audio-fallback a {
+            color: #2E8B57;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .audio-fallback a:hover {
+            text-decoration: underline;
+        }
             display: none;
             position: fixed;
             top: 0;
