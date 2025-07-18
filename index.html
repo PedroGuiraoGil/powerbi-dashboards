@@ -788,6 +788,59 @@
             cursor: not-allowed;
         }
 
+        /* Flechas laterales para navegación directa */
+        .side-nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, rgba(255,107,107,0.9), rgba(78,205,196,0.9));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .side-nav-arrow:hover:not(:disabled) {
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        }
+
+        .side-nav-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: translateY(-50%) scale(0.8);
+        }
+
+        .side-nav-arrow.left {
+            left: 30px;
+        }
+
+        .side-nav-arrow.right {
+            right: 30px;
+        }
+
+        /* Efecto hover para mostrar las flechas más claramente */
+        .image-modal-content:hover .side-nav-arrow:not(:disabled) {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .image-modal-content .side-nav-arrow {
+            opacity: 0.7;
+        }
+
         .image-counter {
             color: white;
             font-size: 1.1rem;
@@ -840,6 +893,21 @@
 
             .book-title {
                 font-size: 1.5rem;
+            }
+
+            /* Ajustes para flechas laterales en móvil */
+            .side-nav-arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .side-nav-arrow.left {
+                left: 15px;
+            }
+
+            .side-nav-arrow.right {
+                right: 15px;
             }
         }
     </style>
@@ -1070,6 +1138,10 @@
                 <div style="position: relative;">
                     <img id="imageModalImg" src="" alt="">
                     <button class="image-modal-close" onclick="closeImageModal()">✕</button>
+                    
+                    <!-- Flechas laterales para navegación directa -->
+                    <button class="side-nav-arrow left" id="sideNavLeft" onclick="navigateImage(-1)">‹</button>
+                    <button class="side-nav-arrow right" id="sideNavRight" onclick="navigateImage(1)">›</button>
                 </div>
                 <div class="image-navigation">
                     <button class="image-nav-btn" id="prevImageBtn" onclick="navigateImage(-1)">←</button>
@@ -1266,15 +1338,21 @@
             var counter = document.getElementById('imageCounter');
             var prevBtn = document.getElementById('prevImageBtn');
             var nextBtn = document.getElementById('nextImageBtn');
+            var sideNavLeft = document.getElementById('sideNavLeft');
+            var sideNavRight = document.getElementById('sideNavRight');
             
             img.src = currentGallery[imageIndex];
             img.alt = galleryTitle + ' - Página ' + (imageIndex + 1);
             title.textContent = galleryTitle + ' - Página ' + (imageIndex + 1);
             counter.textContent = (imageIndex + 1) + ' de ' + currentGallery.length;
             
-            // Habilitar/deshabilitar botones de navegación
+            // Habilitar/deshabilitar botones de navegación (inferiores)
             prevBtn.disabled = imageIndex === 0;
             nextBtn.disabled = imageIndex === currentGallery.length - 1;
+            
+            // Habilitar/deshabilitar flechas laterales
+            sideNavLeft.disabled = imageIndex === 0;
+            sideNavRight.disabled = imageIndex === currentGallery.length - 1;
             
             modal.style.display = 'flex';
         }
