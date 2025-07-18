@@ -1,4 +1,863 @@
-<!DOCTYPE html>
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- Selector de idioma -->
+            <div class="language-selector">
+                <button class="lang-btn active" onclick="changeLanguage('es')" data-lang="es">🇪🇸 ES</button>
+                <button class="lang-btn" onclick="changeLanguage('en')" data-lang="en">🇬🇧 EN</button>
+            </div>
+            
+            <div class="profile-section">
+                <h1>Pedro Guirao Gil</h1>
+                <div class="profile-info">
+                    <div class="highlight-text">
+                        <span class="part" data-part="0" data-text-es="Especialista en Power BI y Microsoft Excel" data-text-en="Power BI and Microsoft Excel Specialist">Especialista en Power BI y Microsoft Excel</span>
+                        <span> • </span>
+                        <span class="part" data-part="1" data-text-es="Formador" data-text-en="Trainer">Formador</span>
+                        <span> • </span>
+                        <span class="part" data-part="2" data-text-es="Consultor" data-text-en="Consultant">Consultor</span>
+                        <span> • </span>
+                        <span class="part" data-part="3" data-text-es="Novelista" data-text-en="Novelist">Novelista</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-tabs">
+                <button class="tab-button active" onclick="showSection('dashboards'); return false;" data-text-es="📊 DASHBOARDS POWER BI" data-text-en="📊 POWER BI DASHBOARDS">
+                    📊 DASHBOARDS POWER BI
+                </button>
+                <button class="tab-button" onclick="showSection('books'); return false;" data-text-es="📚 MIS NOVELAS" data-text-en="📚 MY NOVELS">
+                    📚 MIS NOVELAS
+                </button>
+            </div>
+        </div>
+
+        <!-- Sección de Dashboards -->
+        <div id="dashboards" class="section-content active">
+            <div class="nav-links">
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiYTJjN2E3MjAtZDdhMC00NmE5LThhZmEtMjU1MzA1ZDAzZDI2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-ventas" data-text-es="📊 ANÁLISIS DE VENTAS" data-text-en="📊 SALES ANALYSIS">
+                    📊 ANÁLISIS DE VENTAS
+                </a>
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiMGRlZjM5MjQtYjE0MC00MWMwLTllNjQtYmYwMTFlN2Y2NWE2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-futbol" data-text-es="⚽ LIGA DE FÚTBOL" data-text-en="⚽ FOOTBALL LEAGUE">
+                    ⚽ LIGA DE FÚTBOL
+                </a>
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiNDVlNWVhZGEtZjNjYi00NmM4LTg2NzEtMDQzZDNkY2YzMmE5IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9&pageName=ReportSection" target="_blank" class="modern-nav-button btn-presencia" data-text-es="📅 CONTROL DE PRESENCIA" data-text-en="📅 ATTENDANCE CONTROL">
+                    📅 CONTROL DE PRESENCIA
+                </a>
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiMmIwNDBjZjItNWJmMi00OWFlLWI4OWEtZmJhY2QwN2M4NjMwIiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-coches" data-text-es="🚗 ALQUILER DE COCHES" data-text-en="🚗 CAR RENTAL">
+                    🚗 ALQUILER DE COCHES
+                </a>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="dashboard-card" onclick="openGallery('ventas')">
+                    <div class="card-image">
+                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas1.jpg" alt="Dashboard de Ventas" onerror="this.src='https://placehold.co/600x400/ff6b6b/ffffff?text=Ventas'">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title">📊 Análisis de Ventas</h3>
+                            <span class="status-badge">Legacy Público</span>
+                        </div>
+                        <p class="card-description">
+                            Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.
+                        </p>
+                        <button class="view-button" onclick="openGallery('ventas')" style="background: linear-gradient(45deg, #667eea, #764ba2);">
+                            📊 Ver todas las páginas (3)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dashboard-card" onclick="openGallery('futbol')">
+                    <div class="card-image">
+                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol1.jpg" alt="Dashboard de Fútbol" onerror="this.src='https://placehold.co/600x400/4ecdc4/ffffff?text=Futbol'">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title">⚽ Liga de Fútbol</h3>
+                            <span class="status-badge">Legacy Público</span>
+                        </div>
+                        <p class="card-description">
+                            Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.
+                        </p>
+                        <button class="view-button" onclick="openGallery('futbol')" style="background: linear-gradient(45deg, #1e3a2e, #0f2419);">
+                            ⚽ Ver todas las páginas (2)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dashboard-card" onclick="openGallery('presencia')">
+                    <div class="card-image">
+                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas1.jpg" alt="Dashboard de Presencia" onerror="this.src='https://placehold.co/600x400/96ceb4/ffffff?text=Presencia'">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title">📅 Control de Presencia</h3>
+                            <span class="status-badge">Legacy Público</span>
+                        </div>
+                        <p class="card-description">
+                            Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.
+                        </p>
+                        <button class="view-button" onclick="openGallery('presencia')" style="background: linear-gradient(45deg, #f093fb, #f5576c);">
+                            🕐 Ver todas las páginas (2)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dashboard-card" onclick="openGallery('coches')">
+                    <div class="card-image">
+                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler1.jpg" alt="Dashboard de Alquiler" onerror="this.src='https://placehold.co/600x400/fd7e14/ffffff?text=Coches'">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title">🚗 Alquiler de Coches</h3>
+                            <span class="status-badge">Legacy Público</span>
+                        </div>
+                        <p class="card-description">
+                            Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>4 páginas interactivas</strong> con KPIs del sector automovilístico.
+                        </p>
+                        <button class="view-button" onclick="openGallery('coches')" style="background: linear-gradient(45deg, #ffecd2, #fcb69f); color: #333;">
+                            🚗 Ver todas las páginas (4)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h2 data-text-es="🎯 Sobre estos Dashboards" data-text-en="🎯 About these Dashboards">🎯 Sobre estos Dashboards</h2>
+                <p class="info-text" data-text-es="Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos." data-text-en="These dashboards represent real implementation cases of Power BI in different sectors: commercial, sports, human resources and automotive. All maintain public access as legacy examples, ideal for commercial demos and specialized training in data analysis.">
+                    Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: 
+                    comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público 
+                    como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos.
+                </p>
+            </div>
+        </div>
+
+        <!-- Sección de Libros -->
+        <div id="books" class="section-content">
+            <div class="books-section">
+                <h2 class="books-title" data-text-es="📚 Mi Faceta Literaria" data-text-en="📚 My Literary Side">📚 Mi Faceta Literaria</h2>
+                <p class="books-subtitle" data-text-es="Exploro mundos imaginarios a través de la escritura, desde la ciencia ficción hasta el thriller, siempre buscando conectar con los lectores a través de historias que combinan entretenimiento y reflexión." data-text-en="I explore imaginary worlds through writing, from science fiction to thriller, always seeking to connect with readers through stories that combine entertainment and reflection.">
+                    Exploro mundos imaginarios a través de la escritura, desde la ciencia ficción hasta el thriller, 
+                    siempre buscando conectar con los lectores a través de historias que combinan entretenimiento y reflexión.
+                </p>
+
+                <div class="books-carousel">
+                    <div class="books-container">
+                        <div class="book-cover active" data-index="0" onclick="goToBook(0)">
+                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/FIN.png" alt="FIN - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FF6B6B/ffffff?text=FIN'">
+                        </div>
+                        <div class="book-cover next" data-index="1" onclick="goToBook(1)">
+                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/OH%20MY%20GOD.jpg" alt="OH MY GOD - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FF8E53/ffffff?text=OMG'">
+                        </div>
+                        <div class="book-cover hidden" data-index="2" onclick="goToBook(2)">
+                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/MANUAL%20BASICO%20DE%20CONQUISTA.jpg" alt="MANUAL BÁSICO DE CONQUISTA - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FFA726/ffffff?text=Manual'">
+                        </div>
+                        <div class="book-cover hidden" data-index="3" onclick="goToBook(3)">
+                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/TOCATA%20Y%20FUGA%20DE%20LA%20TENIENTE%20ESCALI.jpg" alt="TOCATA Y FUGA DE LA TENIENTE ESCALI - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/4ECDC4/ffffff?text=TOCATA'">
+                        </div>
+                        <div class="book-cover hidden" data-index="4" onclick="goToBook(4)">
+                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ESCALIS%20BLUES.jpg" alt="ESCALI'S BLUES - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/26A69A/ffffff?text=BLUES'">
+                        </div>
+                        <div class="book-cover hidden" data-index="5" onclick="goToBook(5)">
+                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/EXODOS.jpg" alt="ÉXODOS - Kia P. Cabdill" onerror="this.src='https://placehold.co/220x330/8E44AD/ffffff?text=ÉXODOS'">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-info" id="bookInfo">
+                    <h3 class="book-title" id="bookTitle"></h3>
+                    <p class="book-author" id="bookAuthor"></p>
+                    <p class="book-description" id="bookDescription"></p>
+                    <span class="book-genre" id="bookGenre"></span>
+                    <div class="book-links-container">
+                        <a href="#" target="_blank" class="book-link" id="bookLink">
+                            <span>📖</span> Ver en Amazon
+                        </a>
+                        <button class="book-link" id="bookTrailerLink" style="display: none; background: #c0392b;">
+                            <span>🎬</span> Ver Booktrailer
+                        </button>
+                        <button class="book-link" id="bookTrailerLink2" style="display: none; background: #8b0000;">
+                            <span>🎥</span> Ver Booktrailer 2
+                        </button>
+                    </div>
+                </div>
+
+                <div class="carousel-controls">
+                    <button class="nav-button" onclick="prevBook()">←</button>
+                    <div class="indicators" id="indicators"></div>
+                    <button class="nav-button" onclick="nextBook()">→</button>
+                </div>
+
+                <div class="autoplay-control">
+                    <button class="autoplay-btn" onclick="toggleAutoplay()" id="autoplayBtn" data-text-es="⏸️ Pausar Carrusel" data-text-en="⏸️ Pause Carousel">⏸️ Pausar Carrusel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Video -->
+        <div id="videoModal" class="video-modal">
+            <div class="video-content">
+                <div class="video-header">
+                    <h3 class="video-title" id="videoTitle">🎬 Booktrailer</h3>
+                    <button class="close-video" onclick="closeVideo()">✕</button>
+                </div>
+                <div class="video-player">
+                    <video id="videoPlayer" controls preload="metadata" style="max-width: 100%; height: auto;">
+                        <source id="videoSource" src="" type="video/mp4">
+                        <source id="videoSourceWebm" src="" type="video/webm">
+                        <source id="videoSourceOgv" src="" type="video/ogg">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                    <div id="videoFallback" class="video-fallback" style="display: none;">
+                        <p>🎬 Video no disponible para reproducción web</p>
+                        <p>Este video tiene un formato que no es compatible con la reproducción directa en navegadores.</p>
+                        <p>Puedes <a id="videoDownloadLink" href="#" download>⬇️ descargar el video aquí</a> para verlo en tu reproductor favorito</p>
+                        <p><small>O intenta abrirlo en una nueva pestaña: <a id="videoDirectLink" href="#" target="_blank">🔗 Enlace directo</a></small></p>
+                        <p><small><em>Nota: Algunos videos están optimizados para descarga y no para streaming web</em></small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Galería -->
+        <div id="galleryModal" class="gallery-modal">
+            <div class="gallery-content">
+                <div class="gallery-header">
+                    <h3 id="galleryTitle" class="gallery-title"></h3>
+                    <button class="close-gallery" onclick="closeGallery()">✕</button>
+                </div>
+                <div id="galleryImages" class="gallery-images"></div>
+            </div>
+        </div>
+
+        <!-- Modal para imagen ampliada -->
+        <div id="imageModal" class="image-modal">
+            <div class="image-modal-content">
+                <div class="image-modal-header" id="imageModalTitle"></div>
+                <div style="position: relative;">
+                    <img id="imageModalImg" src="" alt="">
+                    <button class="image-modal-close" onclick="closeImageModal()">✕</button>
+                    
+                    <!-- Flechas laterales para navegación directa -->
+                    <button class="side-nav-arrow left" id="sideNavLeft" onclick="navigateImage(-1)">‹</button>
+                    <button class="side-nav-arrow right" id="sideNavRight" onclick="navigateImage(1)">›</button>
+                </div>
+                <div class="image-navigation">
+                    <button class="image-nav-btn" id="prevImageBtn" onclick="navigateImage(-1)">←</button>
+                    <div class="image-counter" id="imageCounter"></div>
+                    <button class="image-nav-btn" id="nextImageBtn" onclick="navigateImage(1)">→</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        var currentBook = 0;
+        var autoplayInterval;
+        var isAutoplayActive = true;
+        var totalBooks = 6;
+        var currentGallery = null;
+        var currentImageIndex = 0;
+        var currentLanguage = 'es';
+
+        // Datos de dashboards
+        var dashboards = {
+            ventas: {
+                images: [
+                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas1.jpg",
+                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas2.jpg",
+                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas3.jpg"
+                ]
+            },
+            futbol: {
+                images: [
+                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol1.jpg",
+                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol2.jpg"
+                ]
+            },
+            presencia: {
+                images: [
+                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas1.jpg",
+                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas2.jpg"
+                ]
+            },
+            coches: {
+                images: [
+                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler1.jpg",
+                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler2.jpg",
+                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler3.jpg",
+                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler4.jpg"
+                ]
+            }
+        };
+
+        // Traducciones
+        var translations = {
+            es: {
+                dashboardTitles: {
+                    ventas: "📊 Análisis de Ventas - Dashboard Completo",
+                    futbol: "⚽ Liga de Fútbol - Estadísticas Deportivas", 
+                    presencia: "📅 Control de Presencia - Gestión de Personal",
+                    coches: "🚗 Alquiler de Coches - Análisis del Sector Automovilístico"
+                },
+                cardTitles: {
+                    ventas: "📊 Análisis de Ventas",
+                    futbol: "⚽ Liga de Fútbol",
+                    presencia: "📅 Control de Presencia",
+                    coches: "🚗 Alquiler de Coches"
+                },
+                cardDescriptions: {
+                    ventas: "Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.",
+                    futbol: "Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.",
+                    presencia: "Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.",
+                    coches: "Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>4 páginas interactivas</strong> con KPIs del sector automovilístico."
+                },
+                cardButtons: {
+                    ventas: "📊 Ver todas las páginas (3)",
+                    futbol: "⚽ Ver todas las páginas (2)",
+                    presencia: "🕐 Ver todas las páginas (2)",
+                    coches: "🚗 Ver todas las páginas (4)"
+                }
+            },
+            en: {
+                dashboardTitles: {
+                    ventas: "📊 Sales Analysis - Complete Dashboard",
+                    futbol: "⚽ Football League - Sports Statistics",
+                    presencia: "📅 Attendance Control - Personnel Management", 
+                    coches: "🚗 Car Rental - Automotive Sector Analysis"
+                },
+                cardTitles: {
+                    ventas: "📊 Sales Analysis",
+                    futbol: "⚽ Football League",
+                    presencia: "📅 Attendance Control",
+                    coches: "🚗 Car Rental"
+                },
+                cardDescriptions: {
+                    ventas: "Complete sales analysis dashboard with main KPIs, temporal evolution and detailed segmentation. <strong>3 interactive pages</strong> with commercial performance metrics.",
+                    futbol: "Complete statistical analysis of football league with rankings, player and team statistics. <strong>2 interactive pages</strong> with advanced sports metrics.",
+                    presencia: "Complete attendance control, entries, exits, vacations and staff leave. <strong>2 interactive pages</strong> with human resources management and calendars.",
+                    coches: "Vehicle rental analysis dashboard with profitability metrics, occupancy and market trends. <strong>4 interactive pages</strong> with automotive sector KPIs."
+                },
+                cardButtons: {
+                    ventas: "📊 View all pages (3)",
+                    futbol: "⚽ View all pages (2)",
+                    presencia: "🕐 View all pages (2)",
+                    coches: "🚗 View all pages (4)"
+                }
+            }
+        };
+
+        // Datos de libros con traducciones
+        var booksData = [
+            { 
+                title: "FIN", 
+                author: { es: "Por Pedro G. Guirao", en: "By Pedro G. Guirao" },
+                description: { 
+                    es: "Una reflexión profunda sobre los límites de la existencia humana y el significado del final. Una obra que explora las grandes preguntas filosóficas a través de una narrativa envolvente.", 
+                    en: "A deep reflection on the limits of human existence and the meaning of the end. A work that explores great philosophical questions through an engaging narrative."
+                },
+                genre: { es: "Ficción Filosófica", en: "Philosophical Fiction" },
+                genreColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)", 
+                link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/", 
+                linkColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)",
+                linkText: { es: "📖 Ver en Amazon", en: "📖 View on Amazon" }
+            },
+            { 
+                title: "OH MY GOD", 
+                author: { es: "Por Pedro G. Guirao", en: "By Pedro G. Guirao" },
+                description: { 
+                    es: "La Biblia Apócrifa del FIN de los días. Primera obra del autor. Creada con la misma edad de Cristo en la Cruz. Cuentos de apariencia inconexa y de aspecto bíblico mesiánico.", 
+                    en: "The Apocryphal Bible of the END of days. Author's first work. Created at the same age as Christ on the Cross. Stories of seemingly disconnected appearance and messianic biblical aspect."
+                },
+                genre: { es: "Ficción Filosófica", en: "Philosophical Fiction" },
+                genreColor: "linear-gradient(45deg, #FF8E53, #FFA726)", 
+                link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", 
+                linkColor: "linear-gradient(45deg, #FF8E53, #FFA726)",
+                linkText: { es: "📖 Ver en Kobo", en: "📖 View on Kobo" }
+            },
+            { 
+                title: "MANUAL BÁSICO DE CONQUISTA", 
+                author: { es: "Por Pedro G. Guirao", en: "By Pedro G. Guirao" },
+                description: { 
+                    es: "Una sátira inteligente sobre las relaciones humanas y los juegos de poder en la sociedad moderna. Con humor filosófico, disecciona los mecanismos de seducción, manipulación y conquista.", 
+                    en: "An intelligent satire about human relationships and power games in modern society. With philosophical humor, it dissects the mechanisms of seduction, manipulation and conquest."
+                },
+                genre: { es: "Ficción Filosófica", en: "Philosophical Fiction" },
+                genreColor: "linear-gradient(45deg, #FFA726, #FFB74D)", 
+                link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/", 
+                linkColor: "linear-gradient(45deg, #FFA726, #FFB74D)",
+                linkText: { es: "📖 Ver en Amazon", en: "📖 View on Amazon" }
+            },
+            { 
+                title: "TOCATA Y FUGA DE LA TENIENTE ESCALI", 
+                author: { es: "Por Pedro G. Guirao", en: "By Pedro G. Guirao" },
+                description: { 
+                    es: "El debut de la Teniente Escali en un thriller que combina suspense policial con profundas reflexiones existenciales. Una investigación criminal se convierte en un viaje hacia los abismos del alma humana.", 
+                    en: "Lieutenant Escali's debut in a thriller that combines police suspense with deep existential reflections. A criminal investigation becomes a journey into the depths of the human soul."
+                },
+                genre: { es: "Thriller Existencialista", en: "Existentialist Thriller" },
+                genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", 
+                link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", 
+                linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", 
+                trailer: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER%20VIDEOS%20ESCALI.mp4?v=1",
+                trailer2: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER-2-ESCALI.mp4?v=1",
+                linkText: { es: "📖 Ver en Amazon", en: "📖 View on Amazon" },
+                trailerText: { es: "🎬 Ver Booktrailer", en: "🎬 Watch Booktrailer" },
+                trailer2Text: { es: "🎥 Ver Booktrailer 2", en: "🎥 Watch Booktrailer 2" }
+            },
+            { 
+                title: "ESCALI'S BLUES", 
+                author: { es: "Por Pedro G. Guirao", en: "By Pedro G. Guirao" },
+                description: { 
+                    es: "La secuela que profundiza en el universo de la Teniente Escali. Más oscura y compleja que su predecesora, esta obra explora los traumas del pasado mientras enfrenta un nuevo caso.", 
+                    en: "The sequel that delves deeper into Lieutenant Escali's universe. Darker and more complex than its predecessor, this work explores past traumas while facing a new case."
+                },
+                genre: { es: "Thriller Existencialista", en: "Existentialist Thriller" },
+                genreColor: "linear-gradient(45deg, #26A69A, #00897B)", 
+                link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", 
+                linkColor: "linear-gradient(45deg, #26A69A, #00897B)",
+                linkText: { es: "📖 Ver en Kobo", en: "📖 View on Kobo" }
+            },
+            { 
+                title: "ÉXODOS", 
+                author: { es: "Por Kia P. Cabdill", en: "By Kia P. Cabdill" },
+                description: { 
+                    es: "Una épica space opera que narra el destino de la humanidad en su búsqueda de nuevos mundos. Cuando la Tierra se vuelve inhabitable, flotas de refugiados espaciales emprenden un viaje desesperado hacia lo desconocido.", 
+                    en: "An epic space opera that narrates humanity's destiny in its search for new worlds. When Earth becomes uninhabitable, fleets of space refugees embark on a desperate journey into the unknown."
+                },
+                genre: { es: "Space Opera - Ciencia Ficción", en: "Space Opera - Science Fiction" },
+                genreColor: "linear-gradient(45deg, #8E44AD, #9B59B6)", 
+                link: "https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill", 
+                linkColor: "linear-gradient(45deg, #8E44AD, #9B59B6)",
+                linkText: { es: "📖 Ver en Amazon", en: "📖 View on Amazon" }
+            }
+        ];
+
+        // Función para cambiar idioma
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Actualizar botones de idioma
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Actualizar todos los elementos con traducción
+            document.querySelectorAll('[data-text-es]').forEach(function(element) {
+                var textKey = lang === 'es' ? 'data-text-es' : 'data-text-en';
+                element.textContent = element.getAttribute(textKey);
+            });
+            
+            // Actualizar tarjetas de dashboard
+            updateDashboardCards();
+            
+            // Actualizar información del libro actual
+            updateBookInfo();
+        }
+
+        // Función para actualizar las tarjetas de dashboard
+        function updateDashboardCards() {
+            var cards = document.querySelectorAll('.dashboard-card');
+            var dashboardKeys = ['ventas', 'futbol', 'presencia', 'coches'];
+            
+            cards.forEach(function(card, index) {
+                if (index < dashboardKeys.length) {
+                    var key = dashboardKeys[index];
+                    var title = card.querySelector('.card-title');
+                    var description = card.querySelector('.card-description');
+                    var button = card.querySelector('.view-button');
+                    
+                    if (title) title.textContent = translations[currentLanguage].cardTitles[key];
+                    if (description) description.innerHTML = translations[currentLanguage].cardDescriptions[key];
+                    if (button) button.textContent = translations[currentLanguage].cardButtons[key];
+                }
+            });
+        }
+
+        // Función para cambiar secciones
+        function showSection(sectionName) {
+            var clickedButton = event ? event.currentTarget : null;
+            
+            var sections = document.querySelectorAll('.section-content');
+            var buttons = document.querySelectorAll('.tab-button');
+            
+            sections.forEach(function(section) {
+                section.classList.remove('active');
+            });
+            
+            buttons.forEach(function(button) {
+                button.classList.remove('active');
+            });
+            
+            var targetSection = document.getElementById(sectionName);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            }
+        }
+
+        // Funciones de galería de dashboards
+        function openGallery(dashboardKey) {
+            var dashboard = dashboards[dashboardKey];
+            if (!dashboard) return;
+
+            currentGallery = dashboard.images;
+            var modal = document.getElementById('galleryModal');
+            var title = document.getElementById('galleryTitle');
+            var imagesContainer = document.getElementById('galleryImages');
+
+            title.textContent = translations[currentLanguage].dashboardTitles[dashboardKey];
+            imagesContainer.innerHTML = '';
+            
+            dashboard.images.forEach(function(imageSrc, index) {
+                var imageWrapper = document.createElement('div');
+                imageWrapper.className = 'gallery-image';
+                imageWrapper.onclick = function() { openImageModal(index, translations[currentLanguage].dashboardTitles[dashboardKey]); };
+                
+                var img = document.createElement('img');
+                img.src = imageSrc;
+                img.alt = title.textContent + ' - Página ' + (index + 1);
+                
+                var overlay = document.createElement('div');
+                overlay.className = 'image-overlay';
+                overlay.innerHTML = (currentLanguage === 'es' ? '🔍 Ver ampliada<br>Página ' : '🔍 View enlarged<br>Page ') + (index + 1);
+                
+                imageWrapper.appendChild(img);
+                imageWrapper.appendChild(overlay);
+                imagesContainer.appendChild(imageWrapper);
+            });
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGallery() {
+            var modal = document.getElementById('galleryModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            currentGallery = null;
+        }
+
+        // Funciones para modal de imagen ampliada
+        function openImageModal(imageIndex, galleryTitle) {
+            if (!currentGallery || !currentGallery[imageIndex]) return;
+            
+            currentImageIndex = imageIndex;
+            var modal = document.getElementById('imageModal');
+            var img = document.getElementById('imageModalImg');
+            var title = document.getElementById('imageModalTitle');
+            var counter = document.getElementById('imageCounter');
+            var prevBtn = document.getElementById('prevImageBtn');
+            var nextBtn = document.getElementById('nextImageBtn');
+            var sideNavLeft = document.getElementById('sideNavLeft');
+            var sideNavRight = document.getElementById('sideNavRight');
+            
+            img.src = currentGallery[imageIndex];
+            img.alt = galleryTitle + ' - ' + (currentLanguage === 'es' ? 'Página ' : 'Page ') + (imageIndex + 1);
+            title.textContent = galleryTitle + ' - ' + (currentLanguage === 'es' ? 'Página ' : 'Page ') + (imageIndex + 1);
+            counter.textContent = (imageIndex + 1) + (currentLanguage === 'es' ? ' de ' : ' of ') + currentGallery.length;
+            
+            // Habilitar/deshabilitar botones de navegación
+            prevBtn.disabled = imageIndex === 0;
+            nextBtn.disabled = imageIndex === currentGallery.length - 1;
+            sideNavLeft.disabled = imageIndex === 0;
+            sideNavRight.disabled = imageIndex === currentGallery.length - 1;
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeImageModal() {
+            var modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        function navigateImage(direction) {
+            var newIndex = currentImageIndex + direction;
+            if (newIndex >= 0 && newIndex < currentGallery.length) {
+                var galleryTitle = document.getElementById('galleryTitle').textContent;
+                openImageModal(newIndex, galleryTitle);
+            }
+        }
+
+        // Función para actualizar información del libro
+        function updateBookInfo() {
+            var currentBookData = booksData[currentBook];
+            if (!currentBookData) return;
+
+            var lang = currentLanguage;
+
+            document.getElementById('bookTitle').textContent = currentBookData.title;
+            document.getElementById('bookAuthor').textContent = typeof currentBookData.author === 'object' ? currentBookData.author[lang] : currentBookData.author;
+            document.getElementById('bookDescription').textContent = typeof currentBookData.description === 'object' ? currentBookData.description[lang] : currentBookData.description;
+            
+            var genreEl = document.getElementById('bookGenre');
+            genreEl.textContent = typeof currentBookData.genre === 'object' ? currentBookData.genre[lang] : currentBookData.genre;
+            genreEl.style.background = currentBookData.genreColor;
+            
+            var linkEl = document.getElementById('bookLink');
+            linkEl.href = currentBookData.link;
+            linkEl.style.background = currentBookData.linkColor;
+            linkEl.innerHTML = '<span>📖</span> ' + (currentBookData.linkText ? currentBookData.linkText[lang] : (lang === 'es' ? 'Ver en Amazon' : 'View on Amazon'));
+            
+            var trailerLinkEl = document.getElementById('bookTrailerLink');
+            var trailerLinkEl2 = document.getElementById('bookTrailerLink2');
+            
+            if (currentBookData.trailer) {
+                trailerLinkEl.onclick = function(e) {
+                    e.preventDefault();
+                    openVideo(currentBookData.trailer, currentBookData.title + (lang === 'es' ? ' - Booktrailer Original' : ' - Original Booktrailer'));
+                };
+                trailerLinkEl.innerHTML = '<span>🎬</span> ' + (currentBookData.trailerText ? currentBookData.trailerText[lang] : (lang === 'es' ? 'Ver Booktrailer' : 'Watch Booktrailer'));
+                trailerLinkEl.style.display = 'inline-flex';
+            } else {
+                trailerLinkEl.style.display = 'none';
+            }
+
+            if (currentBookData.trailer2) {
+                trailerLinkEl2.onclick = function(e) {
+                    e.preventDefault();
+                    openVideo(currentBookData.trailer2, currentBookData.title + (lang === 'es' ? ' - Booktrailer Comprimido' : ' - Compressed Booktrailer'));
+                };
+                trailerLinkEl2.innerHTML = '<span>🎥</span> ' + (currentBookData.trailer2Text ? currentBookData.trailer2Text[lang] : (lang === 'es' ? 'Ver Booktrailer 2' : 'Watch Booktrailer 2'));
+                trailerLinkEl2.style.display = 'inline-flex';
+            } else {
+                trailerLinkEl2.style.display = 'none';
+            }
+        }
+
+        function updateCarousel() {
+            var covers = document.querySelectorAll('.book-cover');
+            var indicators = document.querySelectorAll('.indicator');
+            
+            covers.forEach(function(cover, index) {
+                cover.className = 'book-cover';
+                var diff = index - currentBook;
+                
+                if (Math.abs(diff) > totalBooks / 2) {
+                    diff = diff > 0 ? diff - totalBooks : diff + totalBooks;
+                }
+
+                switch (diff) {
+                    case 0: 
+                        cover.classList.add('active'); 
+                        break;
+                    case 1: 
+                        cover.classList.add('next'); 
+                        break;
+                    case -1: 
+                        cover.classList.add('prev'); 
+                        break;
+                    default: 
+                        cover.classList.add(diff > 0 ? 'hidden-next' : 'hidden'); 
+                        break;
+                }
+            });
+            
+            indicators.forEach(function(indicator, index) {
+                if (index === currentBook) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+
+            updateBookInfo();
+        }
+
+        function nextBook() {
+            currentBook = (currentBook + 1) % totalBooks;
+            updateCarousel();
+        }
+
+        function prevBook() {
+            currentBook = (currentBook - 1 + totalBooks) % totalBooks;
+            updateCarousel();
+        }
+
+        function goToBook(index) {
+            currentBook = index;
+            updateCarousel();
+        }
+
+        function startAutoplay() {
+            if (autoplayInterval) clearInterval(autoplayInterval);
+            autoplayInterval = setInterval(nextBook, 4000);
+        }
+
+        function stopAutoplay() {
+            clearInterval(autoplayInterval);
+        }
+
+        function toggleAutoplay() {
+            isAutoplayActive = !isAutoplayActive;
+            var btn = document.getElementById('autoplayBtn');
+            
+            if (isAutoplayActive) {
+                startAutoplay();
+                btn.textContent = currentLanguage === 'es' ? '⏸️ Pausar Carrusel' : '⏸️ Pause Carousel';
+                btn.setAttribute('data-text-es', '⏸️ Pausar Carrusel');
+                btn.setAttribute('data-text-en', '⏸️ Pause Carousel');
+            } else {
+                stopAutoplay();
+                btn.textContent = currentLanguage === 'es' ? '▶️ Reanudar Carrusel' : '▶️ Resume Carousel';
+                btn.setAttribute('data-text-es', '▶️ Reanudar Carrusel');
+                btn.setAttribute('data-text-en', '▶️ Resume Carousel');
+            }
+        }
+
+        // Funciones de video
+        function openVideo(videoSrc, title) {
+            var modal = document.getElementById('videoModal');
+            var videoTitle = document.getElementById('videoTitle');
+            var videoSource = document.getElementById('videoSource');
+            var videoSourceWebm = document.getElementById('videoSourceWebm');
+            var videoSourceOgv = document.getElementById('videoSourceOgv');
+            var videoPlayer = document.getElementById('videoPlayer');
+            var videoFallback = document.getElementById('videoFallback');
+            var downloadLink = document.getElementById('videoDownloadLink');
+            var directLink = document.getElementById('videoDirectLink');
+
+            videoTitle.textContent = '🎬 ' + title;
+            
+            videoSource.src = videoSrc;
+            videoSourceWebm.src = videoSrc.replace('.mp4', '.webm');
+            videoSourceOgv.src = videoSrc.replace('.mp4', '.ogv');
+            
+            downloadLink.href = videoSrc;
+            downloadLink.download = title + '.mp4';
+            directLink.href = videoSrc;
+            
+            videoPlayer.load();
+            videoFallback.style.display = 'none';
+            videoPlayer.style.display = 'block';
+
+            var hasVideoData = false;
+
+            videoPlayer.onerror = function() {
+                videoPlayer.style.display = 'none';
+                videoFallback.style.display = 'block';
+            };
+
+            videoPlayer.onloadeddata = function() {
+                hasVideoData = true;
+                videoFallback.style.display = 'none';
+                videoPlayer.style.display = 'block';
+            };
+
+            setTimeout(function() {
+                if (videoPlayer.readyState === 0 || !hasVideoData) {
+                    videoPlayer.style.display = 'none';
+                    videoFallback.style.display = 'block';
+                }
+            }, 3000);
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(function() {
+                if (videoPlayer.readyState >= 2) {
+                    videoPlayer.play().catch(function(error) {
+                        console.log('Autoplay no permitido:', error);
+                    });
+                }
+            }, 1000);
+        }
+
+        function closeVideo() {
+            var modal = document.getElementById('videoModal');
+            var videoPlayer = document.getElementById('videoPlayer');
+            
+            videoPlayer.pause();
+            videoPlayer.currentTime = 0;
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Función para animación de texto destacado
+        function startHighlightAnimation() {
+            var parts = document.querySelectorAll('.highlight-text .part');
+            var currentIndex = 0;
+            
+            function highlightNext() {
+                parts.forEach(function(part) {
+                    part.classList.remove('highlight');
+                });
+                
+                if (parts[currentIndex]) {
+                    parts[currentIndex].classList.add('highlight');
+                }
+                
+                currentIndex = (currentIndex + 1) % parts.length;
+            }
+            
+            highlightNext();
+            setInterval(highlightNext, 2000);
+        }
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            // Crear indicadores del carrusel
+            var indicatorsContainer = document.getElementById('indicators');
+            for (var i = 0; i < totalBooks; i++) {
+                var indicator = document.createElement('div');
+                indicator.classList.add('indicator');
+                indicator.onclick = (function(index) {
+                    return function() { goToBook(index); };
+                })(i);
+                indicatorsContainer.appendChild(indicator);
+            }
+
+            updateCarousel();
+            startAutoplay();
+            startHighlightAnimation();
+            
+            // Pausar autoplay al hacer hover
+            var carousel = document.querySelector('.books-carousel');
+            if (carousel) {
+                carousel.addEventListener('mouseenter', stopAutoplay);
+                carousel.addEventListener('mouseleave', function() { 
+                    if (isAutoplayActive) startAutoplay(); 
+                });
+            }
+
+            // Eventos de teclado y clic
+            document.addEventListener('keydown', function(e) { 
+                if (e.key === 'Escape') {
+                    closeVideo();
+                    closeGallery();
+                    closeImageModal();
+                } else if (e.key === 'ArrowLeft') {
+                    navigateImage(-1);
+                } else if (e.key === 'ArrowRight') {
+                    navigateImage(1);
+                }
+            });
+            
+            document.getElementById('videoModal').addEventListener('click', function(e) { 
+                if (e.target === this) closeVideo(); 
+            });
+
+            document.getElementById('galleryModal').addEventListener('click', function(e) { 
+                if (e.target === this) closeGallery(); 
+            });
+
+            document.getElementById('imageModal').addEventListener('click', function(e) { 
+                if (e.target === this) closeImageModal(); 
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -42,6 +901,44 @@
             color: white;
             margin-bottom: 60px;
             padding-top: 40px;
+            position: relative;
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .lang-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-color: rgba(255,255,255,0.5);
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
         .profile-section h1 {
@@ -59,11 +956,6 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
-        }
-
-        .profile-info p {
-            font-size: 1.3rem;
-            opacity: 0.95;
         }
 
         .profile-info .highlight-text {
@@ -707,7 +1599,6 @@
             opacity: 1;
         }
 
-        /* Modal para imagen ampliada */
         .image-modal {
             display: none;
             position: fixed;
@@ -811,7 +1702,6 @@
             cursor: not-allowed;
         }
 
-        /* Flechas laterales para navegación directa */
         .side-nav-arrow {
             position: absolute;
             top: 50%;
@@ -854,7 +1744,6 @@
             right: 30px;
         }
 
-        /* Efecto hover para mostrar las flechas más claramente */
         .image-modal-content:hover .side-nav-arrow:not(:disabled) {
             opacity: 1;
             transform: translateY(-50%) scale(1.1);
@@ -918,7 +1807,6 @@
                 font-size: 1.5rem;
             }
 
-            /* Ajustes para flechas laterales en móvil */
             .side-nav-arrow {
                 width: 50px;
                 height: 50px;
@@ -933,777 +1821,3 @@
                 right: 15px;
             }
         }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <div class="profile-section">
-                <h1>Pedro Guirao Gil</h1>
-                <div class="profile-info">
-                    <div class="highlight-text">
-                        <span class="part" data-part="0">Especialista en Power BI y Microsoft Excel</span>
-                        <span> • </span>
-                        <span class="part" data-part="1">Formador</span>
-                        <span> • </span>
-                        <span class="part" data-part="2">Consultor</span>
-                        <span> • </span>
-                        <span class="part" data-part="3">Novelista</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="section-tabs">
-                <button class="tab-button active" onclick="showSection('dashboards'); return false;">
-                    📊 DASHBOARDS POWER BI
-                </button>
-                <button class="tab-button" onclick="showSection('books'); return false;">
-                    📚 MIS NOVELAS
-                </button>
-            </div>
-        </div>
-
-        <!-- Sección de Dashboards -->
-        <div id="dashboards" class="section-content active">
-            <div class="nav-links">
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiYTJjN2E3MjAtZDdhMC00NmE5LThhZmEtMjU1MzA1ZDAzZDI2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-ventas">
-                    📊 ANÁLISIS DE VENTAS
-                </a>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiMGRlZjM5MjQtYjE0MC00MWMwLTllNjQtYmYwMTFlN2Y2NWE2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-futbol">
-                    ⚽ LIGA DE FÚTBOL
-                </a>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiNDVlNWVhZGEtZjNjYi00NmM4LTg2NzEtMDQzZDNkY2YzMmE5IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9&pageName=ReportSection" target="_blank" class="modern-nav-button btn-presencia">
-                    📅 CONTROL DE PRESENCIA
-                </a>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiMmIwNDBjZjItNWJmMi00OWFlLWI4OWEtZmJhY2QwN2M4NjMwIiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-coches">
-                    🚗 ALQUILER DE COCHES
-                </a>
-            </div>
-
-            <div class="dashboard-grid">
-                <div class="dashboard-card" onclick="openGallery('ventas')">
-                    <div class="card-image">
-                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas1.jpg" alt="Dashboard de Ventas" onerror="this.src='https://placehold.co/600x400/ff6b6b/ffffff?text=Ventas'">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <h3 class="card-title">📊 Análisis de Ventas</h3>
-                            <span class="status-badge">Legacy Público</span>
-                        </div>
-                        <p class="card-description">
-                            Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.
-                        </p>
-                        <button class="view-button" onclick="openGallery('ventas')" style="background: linear-gradient(45deg, #667eea, #764ba2);">
-                            📊 Ver todas las páginas (3)
-                        </button>
-                    </div>
-                </div>
-
-                <div class="dashboard-card" onclick="openGallery('futbol')">
-                    <div class="card-image">
-                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol1.jpg" alt="Dashboard de Fútbol" onerror="this.src='https://placehold.co/600x400/4ecdc4/ffffff?text=Futbol'">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <h3 class="card-title">⚽ Liga de Fútbol</h3>
-                            <span class="status-badge">Legacy Público</span>
-                        </div>
-                        <p class="card-description">
-                            Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.
-                        </p>
-                        <button class="view-button" onclick="openGallery('futbol')" style="background: linear-gradient(45deg, #1e3a2e, #0f2419);">
-                            ⚽ Ver todas las páginas (2)
-                        </button>
-                    </div>
-                </div>
-
-                <div class="dashboard-card" onclick="openGallery('presencia')">
-                    <div class="card-image">
-                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas1.jpg" alt="Dashboard de Presencia" onerror="this.src='https://placehold.co/600x400/96ceb4/ffffff?text=Presencia'">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <h3 class="card-title">📅 Control de Presencia</h3>
-                            <span class="status-badge">Legacy Público</span>
-                        </div>
-                        <p class="card-description">
-                            Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.
-                        </p>
-                        <button class="view-button" onclick="openGallery('presencia')" style="background: linear-gradient(45deg, #f093fb, #f5576c);">
-                            🕐 Ver todas las páginas (2)
-                        </button>
-                    </div>
-                </div>
-
-                <div class="dashboard-card" onclick="openGallery('coches')">
-                    <div class="card-image">
-                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler1.jpg" alt="Dashboard de Alquiler" onerror="this.src='https://placehold.co/600x400/fd7e14/ffffff?text=Coches'">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <h3 class="card-title">🚗 Alquiler de Coches</h3>
-                            <span class="status-badge">Legacy Público</span>
-                        </div>
-                        <p class="card-description">
-                            Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>4 páginas interactivas</strong> con KPIs del sector automovilístico.
-                        </p>
-                        <button class="view-button" onclick="openGallery('coches')" style="background: linear-gradient(45deg, #ffecd2, #fcb69f); color: #333;">
-                            🚗 Ver todas las páginas (4)
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-section">
-                <h2>🎯 Sobre estos Dashboards</h2>
-                <p class="info-text">
-                    Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: 
-                    comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público 
-                    como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos.
-                </p>
-            </div>
-        </div>
-
-        <!-- Sección de Libros -->
-        <div id="books" class="section-content">
-            <div class="books-section">
-                <h2 class="books-title">📚 Mi Faceta Literaria</h2>
-                <p class="books-subtitle">
-                    Exploro mundos imaginarios a través de la escritura, desde la ciencia ficción hasta el thriller, 
-                    siempre buscando conectar con los lectores a través de historias que combinan entretenimiento y reflexión.
-                </p>
-
-                <div class="books-carousel">
-                    <div class="books-container">
-                        <div class="book-cover active" data-index="0" onclick="goToBook(0)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/FIN.png" alt="FIN - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FF6B6B/ffffff?text=FIN'">
-                        </div>
-                        <div class="book-cover next" data-index="1" onclick="goToBook(1)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/OH%20MY%20GOD.jpg" alt="OH MY GOD - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FF8E53/ffffff?text=OMG'">
-                        </div>
-                        <div class="book-cover hidden" data-index="2" onclick="goToBook(2)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/MANUAL%20BASICO%20DE%20CONQUISTA.jpg" alt="MANUAL BÁSICO DE CONQUISTA - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FFA726/ffffff?text=Manual'">
-                        </div>
-                        <div class="book-cover hidden" data-index="3" onclick="goToBook(3)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/TOCATA%20Y%20FUGA%20DE%20LA%20TENIENTE%20ESCALI.jpg" alt="TOCATA Y FUGA DE LA TENIENTE ESCALI - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/4ECDC4/ffffff?text=TOCATA'">
-                        </div>
-                        <div class="book-cover hidden" data-index="4" onclick="goToBook(4)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ESCALIS%20BLUES.jpg" alt="ESCALI'S BLUES - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/26A69A/ffffff?text=BLUES'">
-                        </div>
-                        <div class="book-cover hidden" data-index="5" onclick="goToBook(5)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/EXODOS.jpg" alt="ÉXODOS - Kia P. Cabdill" onerror="this.src='https://placehold.co/220x330/8E44AD/ffffff?text=ÉXODOS'">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="book-info" id="bookInfo">
-                    <h3 class="book-title" id="bookTitle"></h3>
-                    <p class="book-author" id="bookAuthor"></p>
-                    <p class="book-description" id="bookDescription"></p>
-                    <span class="book-genre" id="bookGenre"></span>
-                    <div class="book-links-container">
-                        <a href="#" target="_blank" class="book-link" id="bookLink">
-                            <span>📖</span> Ver en Amazon
-                        </a>
-                        <button class="book-link" id="bookTrailerLink" style="display: none; background: #c0392b;">
-                            <span>🎬</span> Ver Booktrailer
-                        </button>
-                        <button class="book-link" id="bookTrailerLink2" style="display: none; background: #8b0000;">
-                            <span>🎥</span> Ver Booktrailer 2
-                        </button>
-                    </div>
-                </div>
-
-                <div class="carousel-controls">
-                    <button class="nav-button" onclick="prevBook()">←</button>
-                    <div class="indicators" id="indicators"></div>
-                    <button class="nav-button" onclick="nextBook()">→</button>
-                </div>
-
-                <div class="autoplay-control">
-                    <button class="autoplay-btn" onclick="toggleAutoplay()" id="autoplayBtn">⏸️ Pausar Carrusel</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal de Video -->
-        <div id="videoModal" class="video-modal">
-            <div class="video-content">
-                <div class="video-header">
-                    <h3 class="video-title" id="videoTitle">🎬 Booktrailer</h3>
-                    <button class="close-video" onclick="closeVideo()">✕</button>
-                </div>
-                <div class="video-player">
-                    <video id="videoPlayer" controls preload="metadata" style="max-width: 100%; height: auto;">
-                        <source id="videoSource" src="" type="video/mp4">
-                        <source id="videoSourceWebm" src="" type="video/webm">
-                        <source id="videoSourceOgv" src="" type="video/ogg">
-                        Tu navegador no soporta el elemento de video.
-                    </video>
-                    <div id="videoFallback" class="video-fallback" style="display: none;">
-                        <p>🎬 Video no disponible para reproducción web</p>
-                        <p>Este video tiene un formato que no es compatible con la reproducción directa en navegadores.</p>
-                        <p>Puedes <a id="videoDownloadLink" href="#" download>⬇️ descargar el video aquí</a> para verlo en tu reproductor favorito</p>
-                        <p><small>O intenta abrirlo en una nueva pestaña: <a id="videoDirectLink" href="#" target="_blank">🔗 Enlace directo</a></small></p>
-                        <p><small><em>Nota: Algunos videos están optimizados para descarga y no para streaming web</em></small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal de Galería -->
-        <div id="galleryModal" class="gallery-modal">
-            <div class="gallery-content">
-                <div class="gallery-header">
-                    <h3 id="galleryTitle" class="gallery-title"></h3>
-                    <button class="close-gallery" onclick="closeGallery()">✕</button>
-                </div>
-                <div id="galleryImages" class="gallery-images"></div>
-            </div>
-        </div>
-
-        <!-- Modal para imagen ampliada -->
-        <div id="imageModal" class="image-modal">
-            <div class="image-modal-content">
-                <div class="image-modal-header" id="imageModalTitle"></div>
-                <div style="position: relative;">
-                    <img id="imageModalImg" src="" alt="">
-                    <button class="image-modal-close" onclick="closeImageModal()">✕</button>
-                    
-                    <!-- Flechas laterales para navegación directa -->
-                    <button class="side-nav-arrow left" id="sideNavLeft" onclick="navigateImage(-1)">‹</button>
-                    <button class="side-nav-arrow right" id="sideNavRight" onclick="navigateImage(1)">›</button>
-                </div>
-                <div class="image-navigation">
-                    <button class="image-nav-btn" id="prevImageBtn" onclick="navigateImage(-1)">←</button>
-                    <div class="image-counter" id="imageCounter"></div>
-                    <button class="image-nav-btn" id="nextImageBtn" onclick="navigateImage(1)">→</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Variables globales - declaradas una sola vez
-        var currentBook = 0;
-        var autoplayInterval;
-        var isAutoplayActive = true;
-        var totalBooks = 6;
-        var currentGallery = null;
-        var currentImageIndex = 0;
-
-        // Datos de dashboards
-        var dashboards = {
-            ventas: {
-                images: [
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas1.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas2.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas3.jpg"
-                ]
-            },
-            futbol: {
-                images: [
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol1.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol2.jpg"
-                ]
-            },
-            presencia: {
-                images: [
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas1.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas2.jpg"
-                ]
-            },
-            coches: {
-                images: [
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler1.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler2.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler3.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler4.jpg"
-                ]
-            }
-        };
-
-        // Datos de libros
-        var booksData = [
-            { 
-                title: "FIN", 
-                author: "Por Pedro G. Guirao", 
-                description: "Una reflexión profunda sobre los límites de la existencia humana y el significado del final. Una obra que explora las grandes preguntas filosóficas a través de una narrativa envolvente.", 
-                genre: "Ficción Filosófica", 
-                genreColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)", 
-                link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/", 
-                linkColor: "linear-gradient(45deg, #FF6B6B, #FF8E53)" 
-            },
-            { 
-                title: "OH MY GOD", 
-                author: "Por Pedro G. Guirao", 
-                description: "La Biblia Apócrifa del FIN de los días. Primera obra del autor. Creada con la misma edad de Cristo en la Cruz. Cuentos de apariencia inconexa y de aspecto bíblico mesiánico.", 
-                genre: "Ficción Filosófica", 
-                genreColor: "linear-gradient(45deg, #FF8E53, #FFA726)", 
-                link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", 
-                linkColor: "linear-gradient(45deg, #FF8E53, #FFA726)" 
-            },
-            { 
-                title: "MANUAL BÁSICO DE CONQUISTA", 
-                author: "Por Pedro G. Guirao", 
-                description: "Una sátira inteligente sobre las relaciones humanas y los juegos de poder en la sociedad moderna. Con humor filosófico, disecciona los mecanismos de seducción, manipulación y conquista.", 
-                genre: "Ficción Filosófica", 
-                genreColor: "linear-gradient(45deg, #FFA726, #FFB74D)", 
-                link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/", 
-                linkColor: "linear-gradient(45deg, #FFA726, #FFB74D)" 
-            },
-            { 
-                title: "TOCATA Y FUGA DE LA TENIENTE ESCALI", 
-                author: "Por Pedro G. Guirao", 
-                description: "El debut de la Teniente Escali en un thriller que combina suspense policial con profundas reflexiones existenciales. Una investigación criminal se convierte en un viaje hacia los abismos del alma humana.", 
-                genre: "Thriller Existencialista", 
-                genreColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", 
-                link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI", 
-                linkColor: "linear-gradient(45deg, #4ECDC4, #26A69A)", 
-                trailer: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER%20VIDEOS%20ESCALI.mp4?v=1",
-                trailer2: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER-2-ESCALI.mp4?v=1" 
-            },
-            { 
-                title: "ESCALI'S BLUES", 
-                author: "Por Pedro G. Guirao", 
-                description: "La secuela que profundiza en el universo de la Teniente Escali. Más oscura y compleja que su predecesora, esta obra explora los traumas del pasado mientras enfrenta un nuevo caso.", 
-                genre: "Thriller Existencialista", 
-                genreColor: "linear-gradient(45deg, #26A69A, #00897B)", 
-                link: "https://www.kobo.com/es/es/search?query=pedro+g+guirao", 
-                linkColor: "linear-gradient(45deg, #26A69A, #00897B)" 
-            },
-            { 
-                title: "ÉXODOS", 
-                author: "Por Kia P. Cabdill", 
-                description: "Una épica space opera que narra el destino de la humanidad en su búsqueda de nuevos mundos. Cuando la Tierra se vuelve inhabitable, flotas de refugiados espaciales emprenden un viaje desesperado hacia lo desconocido.", 
-                genre: "Space Opera - Ciencia Ficción", 
-                genreColor: "linear-gradient(45deg, #8E44AD, #9B59B6)", 
-                link: "https://www.amazon.es/s?i=digital-text&rh=p_27%3AKia%2BP.%2BCabdill", 
-                linkColor: "linear-gradient(45deg, #8E44AD, #9B59B6)" 
-            }
-        ];
-
-        // Función para cambiar secciones
-        function showSection(sectionName) {
-            // Obtener el evento actual
-            var clickedButton = event ? event.currentTarget : null;
-            
-            var sections = document.querySelectorAll('.section-content');
-            var buttons = document.querySelectorAll('.tab-button');
-            
-            sections.forEach(function(section) {
-                section.classList.remove('active');
-            });
-            
-            buttons.forEach(function(button) {
-                button.classList.remove('active');
-            });
-            
-            var targetSection = document.getElementById(sectionName);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
-            
-            if (clickedButton) {
-                clickedButton.classList.add('active');
-            }
-        }
-
-        // Funciones de galería de dashboards
-        function openGallery(dashboardKey) {
-            var titleMap = {
-                ventas: "📊 Análisis de Ventas - Dashboard Completo",
-                futbol: "⚽ Liga de Fútbol - Estadísticas Deportivas",
-                presencia: "📅 Control de Presencia - Gestión de Personal",
-                coches: "🚗 Alquiler de Coches - Análisis del Sector Automovilístico"
-            };
-            
-            var dashboard = dashboards[dashboardKey];
-            if (!dashboard) return;
-
-            currentGallery = dashboard.images;
-            var modal = document.getElementById('galleryModal');
-            var title = document.getElementById('galleryTitle');
-            var imagesContainer = document.getElementById('galleryImages');
-
-            title.textContent = titleMap[dashboardKey];
-            imagesContainer.innerHTML = '';
-            
-            dashboard.images.forEach(function(imageSrc, index) {
-                var imageWrapper = document.createElement('div');
-                imageWrapper.className = 'gallery-image';
-                imageWrapper.onclick = function() { openImageModal(index, titleMap[dashboardKey]); };
-                
-                var img = document.createElement('img');
-                img.src = imageSrc;
-                img.alt = title.textContent + ' - Página ' + (index + 1);
-                
-                var overlay = document.createElement('div');
-                overlay.className = 'image-overlay';
-                overlay.innerHTML = '🔍 Ver ampliada<br>Página ' + (index + 1);
-                
-                imageWrapper.appendChild(img);
-                imageWrapper.appendChild(overlay);
-                imagesContainer.appendChild(imageWrapper);
-            });
-
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeGallery() {
-            var modal = document.getElementById('galleryModal');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            currentGallery = null;
-        }
-
-        // Funciones para modal de imagen ampliada
-        function openImageModal(imageIndex, galleryTitle) {
-            if (!currentGallery || !currentGallery[imageIndex]) return;
-            
-            currentImageIndex = imageIndex;
-            var modal = document.getElementById('imageModal');
-            var img = document.getElementById('imageModalImg');
-            var title = document.getElementById('imageModalTitle');
-            var counter = document.getElementById('imageCounter');
-            var prevBtn = document.getElementById('prevImageBtn');
-            var nextBtn = document.getElementById('nextImageBtn');
-            var sideNavLeft = document.getElementById('sideNavLeft');
-            var sideNavRight = document.getElementById('sideNavRight');
-            
-            img.src = currentGallery[imageIndex];
-            img.alt = galleryTitle + ' - Página ' + (imageIndex + 1);
-            title.textContent = galleryTitle + ' - Página ' + (imageIndex + 1);
-            counter.textContent = (imageIndex + 1) + ' de ' + currentGallery.length;
-            
-            // Habilitar/deshabilitar botones de navegación (inferiores)
-            prevBtn.disabled = imageIndex === 0;
-            nextBtn.disabled = imageIndex === currentGallery.length - 1;
-            
-            // Habilitar/deshabilitar flechas laterales
-            sideNavLeft.disabled = imageIndex === 0;
-            sideNavRight.disabled = imageIndex === currentGallery.length - 1;
-            
-            modal.style.display = 'flex';
-        }
-
-        function closeImageModal() {
-            var modal = document.getElementById('imageModal');
-            modal.style.display = 'none';
-        }
-
-        function navigateImage(direction) {
-            var newIndex = currentImageIndex + direction;
-            if (newIndex >= 0 && newIndex < currentGallery.length) {
-                var galleryTitle = document.getElementById('galleryTitle').textContent;
-                openImageModal(newIndex, galleryTitle);
-            }
-        }
-
-        // Funciones de libros
-        function updateBookInfo() {
-            var currentBookData = booksData[currentBook];
-            if (!currentBookData) return;
-
-            document.getElementById('bookTitle').textContent = currentBookData.title;
-            document.getElementById('bookAuthor').textContent = currentBookData.author;
-            document.getElementById('bookDescription').textContent = currentBookData.description;
-            
-            var genreEl = document.getElementById('bookGenre');
-            genreEl.textContent = currentBookData.genre;
-            genreEl.style.background = currentBookData.genreColor;
-            
-            var linkEl = document.getElementById('bookLink');
-            linkEl.href = currentBookData.link;
-            linkEl.style.background = currentBookData.linkColor;
-            
-            var trailerLinkEl = document.getElementById('bookTrailerLink');
-            var trailerLinkEl2 = document.getElementById('bookTrailerLink2');
-            
-            if (currentBookData.trailer) {
-                trailerLinkEl.onclick = function(e) {
-                    e.preventDefault();
-                    openVideo(currentBookData.trailer, currentBookData.title + ' - Booktrailer Original');
-                };
-                trailerLinkEl.style.display = 'inline-flex';
-            } else {
-                trailerLinkEl.style.display = 'none';
-            }
-
-            if (currentBookData.trailer2) {
-                trailerLinkEl2.onclick = function(e) {
-                    e.preventDefault();
-                    openVideo(currentBookData.trailer2, currentBookData.title + ' - Booktrailer Comprimido');
-                };
-                trailerLinkEl2.style.display = 'inline-flex';
-            } else {
-                trailerLinkEl2.style.display = 'none';
-            }
-        }
-
-        function updateCarousel() {
-            var covers = document.querySelectorAll('.book-cover');
-            var indicators = document.querySelectorAll('.indicator');
-            
-            covers.forEach(function(cover, index) {
-                cover.className = 'book-cover';
-                var diff = index - currentBook;
-                
-                if (Math.abs(diff) > totalBooks / 2) {
-                    diff = diff > 0 ? diff - totalBooks : diff + totalBooks;
-                }
-
-                switch (diff) {
-                    case 0: 
-                        cover.classList.add('active'); 
-                        break;
-                    case 1: 
-                        cover.classList.add('next'); 
-                        break;
-                    case -1: 
-                        cover.classList.add('prev'); 
-                        break;
-                    default: 
-                        cover.classList.add(diff > 0 ? 'hidden-next' : 'hidden'); 
-                        break;
-                }
-            });
-            
-            indicators.forEach(function(indicator, index) {
-                if (index === currentBook) {
-                    indicator.classList.add('active');
-                } else {
-                    indicator.classList.remove('active');
-                }
-            });
-
-            updateBookInfo();
-        }
-
-        function nextBook() {
-            currentBook = (currentBook + 1) % totalBooks;
-            updateCarousel();
-        }
-
-        function prevBook() {
-            currentBook = (currentBook - 1 + totalBooks) % totalBooks;
-            updateCarousel();
-        }
-
-        function goToBook(index) {
-            currentBook = index;
-            updateCarousel();
-        }
-
-        function startAutoplay() {
-            if (autoplayInterval) clearInterval(autoplayInterval);
-            autoplayInterval = setInterval(nextBook, 4000);
-        }
-
-        function stopAutoplay() {
-            clearInterval(autoplayInterval);
-        }
-
-        function toggleAutoplay() {
-            isAutoplayActive = !isAutoplayActive;
-            var btn = document.getElementById('autoplayBtn');
-            
-            if (isAutoplayActive) {
-                startAutoplay();
-                btn.textContent = '⏸️ Pausar Carrusel';
-            } else {
-                stopAutoplay();
-                btn.textContent = '▶️ Reanudar Carrusel';
-            }
-        }
-
-        // Funciones de video
-        function openVideo(videoSrc, title) {
-            var modal = document.getElementById('videoModal');
-            var videoTitle = document.getElementById('videoTitle');
-            var videoSource = document.getElementById('videoSource');
-            var videoSourceWebm = document.getElementById('videoSourceWebm');
-            var videoSourceOgv = document.getElementById('videoSourceOgv');
-            var videoPlayer = document.getElementById('videoPlayer');
-            var videoFallback = document.getElementById('videoFallback');
-            var downloadLink = document.getElementById('videoDownloadLink');
-            var directLink = document.getElementById('videoDirectLink');
-
-            videoTitle.textContent = '🎬 ' + title;
-            
-            // Configurar múltiples fuentes de video
-            videoSource.src = videoSrc;
-            videoSourceWebm.src = videoSrc.replace('.mp4', '.webm');
-            videoSourceOgv.src = videoSrc.replace('.mp4', '.ogv');
-            
-            // Configurar enlaces de fallback
-            downloadLink.href = videoSrc;
-            downloadLink.download = title + '.mp4';
-            directLink.href = videoSrc;
-            
-            // Resetear el video
-            videoPlayer.load();
-            videoFallback.style.display = 'none';
-            videoPlayer.style.display = 'block';
-
-            // Variables para detectar problemas de reproducción
-            var hasVideoData = false;
-            var playbackStarted = false;
-
-            // Manejar errores de carga
-            videoPlayer.onerror = function() {
-                console.log('Error cargando video:', videoSrc);
-                videoPlayer.style.display = 'none';
-                videoFallback.style.display = 'block';
-            };
-
-            videoPlayer.onloadeddata = function() {
-                console.log('Video cargado correctamente');
-                hasVideoData = true;
-                videoFallback.style.display = 'none';
-                videoPlayer.style.display = 'block';
-            };
-
-            // Detectar si el video tiene dimensiones válidas
-            videoPlayer.onloadedmetadata = function() {
-                console.log('Metadatos cargados - Dimensiones:', videoPlayer.videoWidth, 'x', videoPlayer.videoHeight);
-                if (videoPlayer.videoWidth === 0 || videoPlayer.videoHeight === 0) {
-                    console.log('Video sin dimensiones válidas - mostrando fallback');
-                    videoPlayer.style.display = 'none';
-                    videoFallback.style.display = 'block';
-                }
-            };
-
-            // Detectar si realmente está reproduciendo
-            videoPlayer.ontimeupdate = function() {
-                if (!playbackStarted && videoPlayer.currentTime > 0) {
-                    playbackStarted = true;
-                    console.log('Reproducción iniciada correctamente');
-                }
-            };
-
-            // Timeout más agresivo para detectar problemas
-            setTimeout(function() {
-                if (videoPlayer.readyState === 0 || !hasVideoData) {
-                    console.log('Video no se pudo cargar después de 3 segundos - mostrando fallback');
-                    videoPlayer.style.display = 'none';
-                    videoFallback.style.display = 'block';
-                }
-            }, 3000);
-
-            // Timeout adicional para detectar video "fantasma" (carga pero no se ve)
-            setTimeout(function() {
-                if (hasVideoData && videoPlayer.currentTime > 0 && (videoPlayer.videoWidth === 0 || videoPlayer.videoHeight === 0)) {
-                    console.log('Video detectado como "fantasma" - tiene audio pero no video visible');
-                    videoPlayer.style.display = 'none';
-                    videoFallback.style.display = 'block';
-                }
-            }, 8000);
-
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            
-            // Intentar reproducir automáticamente
-            setTimeout(function() {
-                if (videoPlayer.readyState >= 2) {
-                    videoPlayer.play().catch(function(error) {
-                        console.log('Autoplay no permitido:', error);
-                    });
-                }
-            }, 1000);
-        }
-
-        function closeVideo() {
-            var modal = document.getElementById('videoModal');
-            var videoPlayer = document.getElementById('videoPlayer');
-            
-            videoPlayer.pause();
-            videoPlayer.currentTime = 0;
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Inicialización
-        document.addEventListener('DOMContentLoaded', function() {
-            // Crear indicadores del carrusel
-            var indicatorsContainer = document.getElementById('indicators');
-            for (var i = 0; i < totalBooks; i++) {
-                var indicator = document.createElement('div');
-                indicator.classList.add('indicator');
-                indicator.onclick = (function(index) {
-                    return function() { goToBook(index); };
-                })(i);
-                indicatorsContainer.appendChild(indicator);
-            }
-
-            updateCarousel();
-            startAutoplay();
-            
-            // Iniciar animación de texto destacado
-            startHighlightAnimation();
-            
-            // Pausar autoplay al hacer hover en el carrusel
-            var carousel = document.querySelector('.books-carousel');
-            if (carousel) {
-                carousel.addEventListener('mouseenter', stopAutoplay);
-                carousel.addEventListener('mouseleave', function() { 
-                    if (isAutoplayActive) startAutoplay(); 
-                });
-            }
-
-            // Cerrar modales con ESC o clic fuera
-            document.addEventListener('keydown', function(e) { 
-                if (e.key === 'Escape') {
-                    closeVideo();
-                    closeGallery();
-                    closeImageModal();
-                } else if (e.key === 'ArrowLeft') {
-                    navigateImage(-1);
-                } else if (e.key === 'ArrowRight') {
-                    navigateImage(1);
-                }
-            });
-            
-            document.getElementById('videoModal').addEventListener('click', function(e) { 
-                if (e.target === this) closeVideo(); 
-            });
-
-            document.getElementById('galleryModal').addEventListener('click', function(e) { 
-                if (e.target === this) closeGallery(); 
-            });
-
-            document.getElementById('imageModal').addEventListener('click', function(e) { 
-                if (e.target === this) closeImageModal(); 
-            });
-        });
-
-        // Función para animación de texto destacado
-        function startHighlightAnimation() {
-            var parts = document.querySelectorAll('.highlight-text .part');
-            var currentIndex = 0;
-            
-            function highlightNext() {
-                // Remover highlight de todos
-                parts.forEach(function(part) {
-                    part.classList.remove('highlight');
-                });
-                
-                // Añadir highlight al actual
-                if (parts[currentIndex]) {
-                    parts[currentIndex].classList.add('highlight');
-                }
-                
-                // Avanzar al siguiente
-                currentIndex = (currentIndex + 1) % parts.length;
-            }
-            
-            // Comenzar inmediatamente
-            highlightNext();
-            
-            // Continuar cada 2 segundos
-            setInterval(highlightNext, 2000);
-        }
-    </script>
-</body>
-</html>
