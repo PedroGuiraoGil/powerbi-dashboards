@@ -66,6 +66,27 @@
             opacity: 0.95;
         }
 
+        .profile-info .highlight-text {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+
+        .highlight-text .part {
+            padding: 2px 8px;
+            border-radius: 15px;
+            transition: all 0.5s ease;
+            display: inline-block;
+            margin: 0 2px;
+        }
+
+        .highlight-text .part.highlight {
+            background: linear-gradient(45deg, rgba(255,107,107,0.8), rgba(78,205,196,0.8));
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-weight: bold;
+        }
+
         .section-tabs {
             display: flex;
             justify-content: center;
@@ -283,9 +304,11 @@
             margin-bottom: 30px;
             font-size: 2.2rem;
             text-align: center;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #ff6b6b);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: gradientShift 4s ease-in-out infinite;
             font-weight: bold;
         }
 
@@ -918,7 +941,15 @@
             <div class="profile-section">
                 <h1>Pedro Guirao Gil</h1>
                 <div class="profile-info">
-                    <p>Especialista en Power BI y Microsoft Excel • Formador • Consultor • Novelista</p>
+                    <div class="highlight-text">
+                        <span class="part" data-part="0">Especialista en Power BI y Microsoft Excel</span>
+                        <span> • </span>
+                        <span class="part" data-part="1">Formador</span>
+                        <span> • </span>
+                        <span class="part" data-part="2">Consultor</span>
+                        <span> • </span>
+                        <span class="part" data-part="3">Novelista</span>
+                    </div>
                 </div>
             </div>
             
@@ -1609,6 +1640,9 @@
             updateCarousel();
             startAutoplay();
             
+            // Iniciar animación de texto destacado
+            startHighlightAnimation();
+            
             // Pausar autoplay al hacer hover en el carrusel
             var carousel = document.querySelector('.books-carousel');
             if (carousel) {
@@ -1643,6 +1677,33 @@
                 if (e.target === this) closeImageModal(); 
             });
         });
+
+        // Función para animación de texto destacado
+        function startHighlightAnimation() {
+            var parts = document.querySelectorAll('.highlight-text .part');
+            var currentIndex = 0;
+            
+            function highlightNext() {
+                // Remover highlight de todos
+                parts.forEach(function(part) {
+                    part.classList.remove('highlight');
+                });
+                
+                // Añadir highlight al actual
+                if (parts[currentIndex]) {
+                    parts[currentIndex].classList.add('highlight');
+                }
+                
+                // Avanzar al siguiente
+                currentIndex = (currentIndex + 1) % parts.length;
+            }
+            
+            // Comenzar inmediatamente
+            highlightNext();
+            
+            // Continuar cada 2 segundos
+            setInterval(highlightNext, 2000);
+        }
     </script>
 </body>
 </html>
