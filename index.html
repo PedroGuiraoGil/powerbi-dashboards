@@ -3,8 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedro Guirao Gil - Analista de Datos y Novelista</title>
+    <title>IA Práctica: De Cero a Creador | Curso Inmersivo de Inteligencia Artificial</title>
     <style>
+        /* --- VARIABLES Y RESET --- */
+        :root {
+            --color-bg-dark: #0a0e27;
+            --color-bg-medium: #151a3a;
+            --color-bg-light: #1f2651;
+            --color-primary: #00d4ff;
+            --color-secondary: #ff00ff;
+            --color-accent: #ffcc00;
+            --color-success: #00ff88;
+            --color-danger: #ff0055;
+            --color-text: #e0e6ff;
+            --color-text-dim: #a5afd7;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #00d4ff 0%, #ff00ff 100%);
+            --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --shadow-glow: 0 0 30px rgba(0, 212, 255, 0.3);
+            --animation-float: float 6s ease-in-out infinite;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,1461 +31,2651 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(circle at 20% 50%, #ff6b6b 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, #4ecdc4 0%, transparent 50%),
-                        radial-gradient(circle at 40% 80%, #45b7d1 0%, transparent 50%),
-                        linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            background-size: 400% 400%;
-            animation: backgroundShift 15s ease infinite;
-            min-height: 100vh;
-            color: #333;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--color-bg-dark);
+            color: var(--color-text);
+            line-height: 1.7;
             overflow-x: hidden;
+            background-image: 
+                radial-gradient(ellipse at top right, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom left, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+        
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: var(--color-accent);
         }
 
-        @keyframes backgroundShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* --- ANIMACIONES --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
+        @keyframes glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 60px;
-            padding-top: 40px;
-            position: relative;
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
             display: flex;
-            gap: 10px;
-            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, var(--color-bg-dark) 0%, var(--color-bg-medium) 100%);
         }
 
-        .lang-btn {
-            background: rgba(255,255,255,0.2);
-            border: 2px solid rgba(255,255,255,0.3);
-            color: white;
-            padding: 8px 16px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            opacity: 0.2;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 20px;
+            animation: slideIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px rgba(0, 212, 255, 0.5);
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--color-text-dim);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-            font-size: 0.9rem;
+            padding: 25px 35px;
             backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            border-color: var(--color-primary);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: var(--color-text-dim);
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .lang-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        /* --- CONTAINER Y SECCIONES --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 0;
         }
 
-        .lang-btn.active {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            border-color: rgba(255,255,255,0.5);
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
         }
 
-        .profile-section h1 {
-            font-size: 3.5rem;
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
             margin-bottom: 20px;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #ff6b6b);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientShift 4s ease-in-out infinite;
+            position: relative;
+            display: inline-block;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-secondary);
+            border-radius: 2px;
         }
 
-        .profile-info .highlight-text {
+        .section-description {
+            color: var(--color-text-dim);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- MÓDULOS ACORDEÓN --- */
+        .modules-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .module-card {
+            background: linear-gradient(135deg, rgba(31, 38, 81, 0.8) 0%, rgba(21, 26, 58, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-secondary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .module-card:hover::before,
+        .module-card[open]::before {
+            opacity: 1;
+        }
+
+        .module-header {
+            padding: 35px;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .module-header:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .module-number {
+            position: absolute;
+            top: 35px;
+            right: 35px;
+            font-size: 3rem;
+            font-weight: 900;
+            opacity: 0.1;
+            color: var(--color-primary);
+        }
+
+        .module-header h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+            padding-right: 80px;
+        }
+
+        .module-subtitle {
+            color: var(--color-text-dim);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            padding-right: 80px;
+        }
+
+        .module-icon {
+            position: absolute;
+            right: 35px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .module-icon::before,
+        .module-icon::after {
+            content: '';
+            position: absolute;
+            background: var(--color-primary);
+            transition: all 0.3s ease;
+        }
+
+        .module-icon::before {
+            width: 100%;
+            height: 3px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .module-icon::after {
+            width: 3px;
+            height: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .module-card[open] .module-icon::after {
+            opacity: 0;
+            transform: translateX(-50%) rotate(90deg);
+        }
+
+        .module-content {
+            padding: 0 35px 35px 35px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        /* --- CONTENIDO DE MÓDULOS --- */
+        h4 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 40px 0 20px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        h4::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 24px;
+            background: var(--gradient-secondary);
+            border-radius: 2px;
+        }
+
+        h5 {
             font-size: 1.3rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 25px 0 15px 0;
             opacity: 0.95;
         }
 
-        .highlight-text .part {
-            padding: 2px 8px;
-            border-radius: 15px;
-            transition: all 0.5s ease;
-            display: inline-block;
-            margin: 0 2px;
-        }
-
-        .highlight-text .part.highlight {
-            background: linear-gradient(45deg, rgba(255,107,107,0.8), rgba(78,205,196,0.8));
-            color: white;
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            font-weight: bold;
-        }
-
-        .section-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 40px 0;
-            flex-wrap: wrap;
-        }
-
-        .tab-button {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            backdrop-filter: blur(10px);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .tab-button.active {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .tab-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-        }
-
-        .section-content {
-            display: none;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .section-content.active {
-            display: block;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .nav-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
-            padding: 20px;
-        }
-
-        .modern-nav-button {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
+        .content-block {
+            background: rgba(10, 14, 39, 0.5);
+            border-left: 3px solid var(--color-primary);
             padding: 25px;
-            border-radius: 20px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 1rem;
-            min-height: 80px;
-            transition: all 0.4s ease;
-            color: white;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            margin: 20px 0;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .practice-list ol {
+            list-style: none;
+            padding-left: 0;
+            counter-reset: practice-counter;
         }
 
-        .modern-nav-button:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .btn-ventas {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .btn-futbol {
-            background: linear-gradient(135deg, #1e3a2e 0%, #0f2419 100%);
-        }
-
-        .btn-presencia {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        .btn-coches {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            color: #333 !important;
-            text-shadow: 1px 1px 4px rgba(255,255,255,0.8) !important;
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .dashboard-card {
-            background: rgba(255,255,255,0.95);
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            transition: all 0.4s ease;
-            cursor: pointer;
-            border: 3px solid transparent;
-        }
-
-        .dashboard-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 35px 70px rgba(0,0,0,0.25);
-            border-color: rgba(255,107,107,0.5);
-        }
-
-        .card-image {
-            width: 100%;
-            height: 300px;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .dashboard-card:hover .card-image img {
-            transform: scale(1.05);
-        }
-
-        .card-content {
-            padding: 30px;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .practice-list li {
+            counter-increment: practice-counter;
             margin-bottom: 20px;
-        }
-
-        .card-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #333;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .status-badge {
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            color: white;
-            background: linear-gradient(45deg, #28a745, #20c997);
-        }
-
-        .card-description {
-            color: #666;
-            margin-bottom: 25px;
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-
-        .view-button {
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .view-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-
-        .info-section {
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 50px;
-            margin-top: 80px;
-            color: white;
-            border: 2px solid rgba(255,255,255,0.2);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-        }
-
-        .info-section h2 {
-            margin-bottom: 30px;
-            font-size: 2.2rem;
-            text-align: center;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #ff6b6b);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientShift 4s ease-in-out infinite;
-            font-weight: bold;
-        }
-
-        .info-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            text-align: center;
-            opacity: 0.9;
-        }
-
-        .books-section {
-            background: rgba(255,255,255,0.95);
-            border-radius: 30px;
-            padding: 50px;
-            margin: 40px 0;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            padding-left: 45px;
             position: relative;
-            overflow: hidden;
-        }
-
-        .books-title {
-            font-size: 2.5rem;
-            background: linear-gradient(45deg, #9B59B6, #8E44AD, #6C3483);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .books-subtitle {
-            font-size: 1.2rem;
-            color: #666;
+            font-size: 1.1rem;
             line-height: 1.6;
-            margin-bottom: 30px;
-            text-align: center;
         }
 
-        .books-carousel {
-            position: relative;
-            height: 450px;
-            margin: 40px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .books-container {
-            position: relative;
-            width: 900px;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .book-cover {
+        .practice-list li::before {
+            content: counter(practice-counter);
             position: absolute;
-            width: 220px;
-            height: 330px;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            transition: all 0.8s ease;
-            cursor: pointer;
-            overflow: hidden;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--gradient-secondary);
+            color: var(--color-bg-dark);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
         }
 
-        .book-cover img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
-        }
-
-        .book-cover.active {
-            z-index: 6;
-            transform: scale(1.15);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-        }
-
-        .book-cover.prev {
-            z-index: 3;
-            transform: scale(0.85) translateX(-180px);
-            opacity: 0.7;
-        }
-
-        .book-cover.next {
-            z-index: 3;
-            transform: scale(0.85) translateX(180px);
-            opacity: 0.7;
-        }
-
-        .book-cover.hidden {
-            z-index: 0;
-            transform: scale(0.5) translateX(-400px);
-            opacity: 0;
-        }
-
-        .book-cover.hidden-next {
-            z-index: 0;
-            transform: scale(0.5) translateX(400px);
-            opacity: 0;
-        }
-
-        .book-info {
-            background: rgba(255,255,255,0.95);
-            border-radius: 20px;
+        /* --- PRÁCTICAS --- */
+        .practice-box {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            border-image: var(--gradient-secondary) 1;
             padding: 30px;
             margin: 30px 0;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border: 2px solid rgba(142,68,173,0.2);
-            min-height: 220px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .book-title {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, #8E44AD, #9B59B6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .practice-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient-secondary);
+            border-radius: 15px;
+            opacity: 0.3;
+            z-index: -1;
+            filter: blur(10px);
         }
 
-        .book-author {
-            font-size: 1.1rem;
-            color: #6C3483;
-            font-style: italic;
-            margin-bottom: 20px;
+        .practice-box h4 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            color: var(--color-accent);
         }
 
-        .book-description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #666;
-            margin-bottom: 25px;
-            text-align: justify;
-        }
-
-        .book-genre {
-            display: inline-block;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 20px;
-            color: white;
-        }
-
-        .book-links-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .book-link {
+        .practice-number {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            color: white;
-            text-decoration: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border: none;
-        }
-
-        .book-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-
-        .carousel-controls {
-            display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .nav-button {
-            background: linear-gradient(45deg, #8E44AD, #9B59B6);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(142,68,173,0.3);
-        }
-
-        .nav-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 35px rgba(142,68,173,0.5);
-        }
-
-        .indicators {
-            display: flex;
-            gap: 12px;
-        }
-
-        .indicator {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: rgba(142,68,173,0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .indicator.active {
-            background: #8E44AD;
-            transform: scale(1.2);
-        }
-
-        .autoplay-control {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .autoplay-btn {
-            background: rgba(255,255,255,0.2);
-            color: #8E44AD;
-            border: 2px solid #8E44AD;
-            border-radius: 25px;
-            padding: 10px 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .autoplay-btn:hover {
-            background: #8E44AD;
-            color: white;
-        }
-
-        .audio-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 1000;
-            padding: 20px;
-        }
-
-        .audio-content {
-            max-width: 600px;
-            max-height: 400px;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            margin: auto;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .audio-header {
-            background: linear-gradient(45deg, #2E8B57, #3CB371);
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .audio-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .close-audio {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            font-size: 1.5rem;
             width: 40px;
             height: 40px;
+            background: var(--gradient-secondary);
             border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .audio-player {
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 200px;
-        }
-
-        .audio-player audio {
-            width: 100%;
-            max-width: 500px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .audio-info {
-            text-align: center;
-            color: #333;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        .audio-fallback {
-            color: #333;
-            text-align: center;
-            padding: 40px;
+            font-weight: 800;
             font-size: 1.2rem;
-            background: #f8f9fa;
+            color: var(--color-bg-dark);
+            margin-right: 15px;
+        }
+
+        /* --- CÓDIGO Y BOTÓN COPIAR --- */
+        code {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--color-primary);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.95rem;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .code-block {
+            background: rgba(10, 14, 39, 0.8);
+            border: 1px solid rgba(0, 212, 255, 0.2);
             border-radius: 10px;
-            margin: 20px;
-        }
-
-        .audio-fallback a {
-            color: #2E8B57;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .audio-fallback a:hover {
-            text-decoration: underline;
-        }
-
-        /* MEJORAS PARA EL MODAL DE VIDEO */
-        .video-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
-            padding: 0;
-            overflow-y: auto;
-        }
-
-        .video-content {
-            width: 100%;
-            min-height: 100vh;
-            background: #000;
-            display: flex;
-            flex-direction: column;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
             position: relative;
         }
-
-        .video-header {
-            background: linear-gradient(45deg, #c0392b, #8b0000);
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            flex-shrink: 0;
-        }
-
-        .video-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .close-video {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            font-size: 1.8rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: var(--color-primary);
+            padding: 5px 10px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .copy-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+        }
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+        .copy-btn.copied {
+            background-color: var(--color-success);
+            color: var(--color-bg-dark);
+            border-color: var(--color-success);
         }
 
-        .close-video:hover {
-            background: rgba(255,255,255,0.3);
-            transform: scale(1.1);
+        /* --- LISTAS --- */
+        ul {
+            list-style: none;
+            padding-left: 0;
         }
 
-        .video-player {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: #000;
-            padding: 20px;
-            min-height: calc(100vh - 80px);
-        }
-
-        .video-player video {
-            max-width: 100%;
-            max-height: 80vh;
-            width: auto;
-            height: auto;
-            border-radius: 10px;
-            background: #000;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .video-fallback {
-            color: white;
-            text-align: center;
-            padding: 40px;
-            font-size: 1.2rem;
-            background: #333;
-            border-radius: 10px;
-            margin: 20px;
-            max-width: 800px;
-        }
-
-        .video-fallback a {
-            color: #4ecdc4;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .video-fallback a:hover {
-            text-decoration: underline;
-        }
-
-        .gallery-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 1000;
-            padding: 20px;
-        }
-
-        .gallery-content {
-            max-width: 90vw;
-            max-height: 90vh;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
+        li {
             position: relative;
-            margin: auto;
-            top: 50%;
-            transform: translateY(-50%);
+            padding-left: 30px;
+            margin-bottom: 15px;
         }
 
-        .gallery-header {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+            font-size: 1.2rem;
+            top: -2px;
         }
 
-        .gallery-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .close-gallery {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .gallery-images {
-            padding: 20px;
+        /* --- HERRAMIENTAS GRID --- */
+        .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            max-height: 70vh;
-            overflow-y: auto;
+            margin: 30px 0;
         }
 
-        .gallery-image {
-            position: relative;
-            cursor: pointer;
-            border-radius: 10px;
-            overflow: hidden;
+        .tool-card {
+            background: rgba(31, 38, 81, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .gallery-image:hover {
-            transform: scale(1.03);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-
-        .gallery-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .image-overlay {
+        .tool-card::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, rgba(255,107,107,0.9), rgba(78,205,196,0.9));
+            background: var(--gradient-secondary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-primary);
+        }
+
+        .tool-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-secondary);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: all 0.3s ease;
-            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .tool-name {
             font-size: 1.2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-align: center;
+            font-weight: 600;
+            margin-bottom: 10px;
         }
 
-        .gallery-image:hover .image-overlay {
-            opacity: 1;
+        .tool-description {
+            color: var(--color-text-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
-        .image-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 1100;
-            padding: 20px;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .image-modal-content {
+        /* --- TIMELINE --- */
+        .timeline {
             position: relative;
-            max-width: 95vw;
-            max-height: 95vh;
+            padding: 20px 0;
+            margin: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            background: var(--color-bg-medium);
+            border: 3px solid var(--color-primary);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--color-primary);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            color: var(--color-text-dim);
+            line-height: 1.6;
+        }
+
+        /* --- CTA SECTION --- */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 30px;
+            padding: 60px;
+            margin: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cta-description {
+            font-size: 1.3rem;
+            color: var(--color-text-dim);
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 40px;
+            background: var(--gradient-secondary);
+            color: var(--color-bg-dark);
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--color-bg-dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 0;
+            margin-top: 100px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: var(--color-text-dim);
+        }
+
+        /* --- TOOL INDEX SECTION STYLES --- */
+        .tool-card-link {
+            background: rgba(31, 38, 81, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: block;
+            text-decoration: none;
+        }
+        .tool-card-link:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-primary);
+            background: rgba(31, 38, 81, 1);
+        }
+        .tool-card-link .tool-card-content {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            height: 100%;
+            padding: 25px;
+            color: inherit;
         }
-
-        .image-modal img {
-            max-width: 100%;
-            max-height: 85vh;
-            border-radius: 15px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            object-fit: contain;
+        .tool-card-link .tool-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--color-text);
         }
-
-        .image-modal-header {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-            letter-spacing: 0.5px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        .tool-card-link .tool-description {
+            color: var(--color-text-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex-grow: 1;
         }
-
-        .image-modal-close {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            background: rgba(255,255,255,0.9);
-            border: none;
-            color: #333;
-            font-size: 1.8rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
+        #tool-index h4 {
+            margin-top: 40px;
+            margin-bottom: 30px;
         }
-
-        .image-modal-close:hover {
-            background: #ff6b6b;
-            color: white;
-            transform: scale(1.1);
-        }
-
-        .image-navigation {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-            align-items: center;
-        }
-
-        .image-nav-btn {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .image-nav-btn:hover:not(:disabled) {
-            transform: scale(1.1);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-        }
-
-        .image-nav-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .side-nav-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(45deg, rgba(255,107,107,0.9), rgba(78,205,196,0.9));
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 70px;
-            height: 70px;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255,255,255,0.3);
-        }
-
-        .side-nav-arrow:hover:not(:disabled) {
-            transform: translateY(-50%) scale(1.15);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-        }
-
-        .side-nav-arrow:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-            transform: translateY(-50%) scale(0.8);
-        }
-
-        .side-nav-arrow.left {
-            left: 30px;
-        }
-
-        .side-nav-arrow.right {
-            right: 30px;
-        }
-
-        .image-modal-content:hover .side-nav-arrow:not(:disabled) {
-            opacity: 1;
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .image-modal-content .side-nav-arrow {
-            opacity: 0.7;
-        }
-
-        .image-counter {
-            color: white;
-            font-size: 1.1rem;
-            font-weight: bold;
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-
+        
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .profile-section h1 {
+            .hero h1 {
                 font-size: 2.5rem;
             }
             
-            .nav-links {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .section-tabs {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .tab-button {
-                width: 250px;
-            }
-
-            .books-container {
-                width: 100%;
+            .module-header {
+                padding: 25px;
             }
             
-            .book-cover {
-                width: 150px;
-                height: 225px;
+            .module-number {
+                font-size: 2rem;
+                top: 25px;
+                right: 25px;
             }
             
-            .book-cover.prev, .book-cover.next {
-                transform: scale(0.8) translateX(-100px);
+            .module-content {
+                padding: 0 25px 25px 25px;
             }
             
-            .book-cover.next {
-                transform: scale(0.8) translateX(100px);
+            .cta-section {
+                padding: 40px 20px;
             }
-
-            .book-info {
-                padding: 20px;
+            
+            .timeline::before {
+                left: 20px;
             }
-
-            .book-title {
-                font-size: 1.5rem;
+            
+            .timeline-item {
+                padding-left: 60px;
             }
-
-            .side-nav-arrow {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-            }
-
-            .side-nav-arrow.left {
-                left: 15px;
-            }
-
-            .side-nav-arrow.right {
-                right: 15px;
-            }
-
-            .video-player video {
-                max-height: 60vh;
+            
+            .timeline-item::before {
+                left: 10px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <!-- Selector de idioma -->
-            <div class="language-selector">
-                <button class="lang-btn active" onclick="changeLanguage('es')" data-lang="es">🇪🇸 ES</button>
-                <button class="lang-btn" onclick="changeLanguage('en')" data-lang="en">🇬🇧 EN</button>
-            </div>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>IA Práctica: De Cero a Creador</h1>
+            <p class="hero-subtitle">Domina las herramientas de Inteligencia Artificial que están transformando el mundo. Sin teoría aburrida, solo práctica pura.</p>
             
-            <div class="profile-section">
-                <h1>Pedro Guirao Gil</h1>
-                <div class="profile-info">
-                    <div class="highlight-text">
-                        <span class="part" data-part="0" data-text-es="Especialista en Power BI y Microsoft Excel" data-text-en="Power BI and Microsoft Excel Specialist">Especialista en Power BI y Microsoft Excel</span>
-                        <span> • </span>
-                        <span class="part" data-part="1" data-text-es="Formador" data-text-en="Trainer">Formador</span>
-                        <span> • </span>
-                        <span class="part" data-part="2" data-text-es="Consultor" data-text-en="Consultant">Consultor</span>
-                        <span> • </span>
-                        <span class="part" data-part="3" data-text-es="Novelista" data-text-en="Novelist">Novelista</span>
-                    </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Módulos Intensivos</div>
                 </div>
-            </div>
-            
-            <div class="section-tabs">
-                <button class="tab-button active" onclick="showSection('dashboards'); return false;" data-text-es="📊 DASHBOARDS POWER BI" data-text-en="📊 POWER BI DASHBOARDS">
-                    📊 DASHBOARDS POWER BI
-                </button>
-                <button class="tab-button" onclick="showSection('books'); return false;" data-text-es="📚 MIS NOVELAS" data-text-en="📚 MY NOVELS">
-                    📚 MIS NOVELAS
-                </button>
+                <div class="stat-card">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Prácticas Hands-On</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Herramientas IA</div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- Sección de Dashboards -->
-        <div id="dashboards" class="section-content active">
-            <div class="nav-links">
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiYTJjN2E3MjAtZDdhMC00NmE5LThhZmEtMjU1MzA1ZDAzZDI2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-ventas" data-text-es="📊 ANÁLISIS DE VENTAS" data-text-en="📊 SALES ANALYSIS">
-                    📊 ANÁLISIS DE VENTAS
-                </a>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiMGRlZjM5MjQtYjE0MC00MWMwLTllNjQtYmYwMTFlN2Y2NWE2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-futbol" data-text-es="⚽ LIGA DE FÚTBOL" data-text-en="⚽ FOOTBALL LEAGUE">
-                    ⚽ LIGA DE FÚTBOL
-                </a>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiNDVlNWVhZGEtZjNjYi00NmM4LTg2NzEtMDQzZDNkY2YzMmE5IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9&pageName=ReportSection" target="_blank" class="modern-nav-button btn-presencia" data-text-es="📅 CONTROL DE PRESENCIA" data-text-en="📅 ATTENDANCE CONTROL">
-                    📅 CONTROL DE PRESENCIA
-                </a>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiMmIwNDBjZjItNWJmMi00OWFlLWI4OWEtZmJhY2QwN2M4NjMwIiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-coches" data-text-es="🚗 ALQUILER DE COCHES" data-text-en="🚗 CAR RENTAL">
-                    🚗 ALQUILER DE COCHES
-                </a>
-            </div>
-
-            <div class="dashboard-grid">
-                <div class="dashboard-card" onclick="openGallery('ventas')">
-                    <div class="card-image">
-                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas1.jpg" alt="Dashboard de Ventas" onerror="this.src='https://placehold.co/600x400/ff6b6b/ffffff?text=Ventas'">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <h3 class="card-title">📊 Análisis de Ventas</h3>
-                            <span class="status-badge">Legacy Público</span>
-                        </div>
-                        <p class="card-description">
-                            Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.
-                        </p>
-                        <button class="view-button" onclick="openGallery('ventas')" style="background: linear-gradient(45deg, #667eea, #764ba2);">
-                            📊 Ver todas las páginas (3)
-                        </button>
-                    </div>
-                </div>
-
-                <div class="dashboard-card" onclick="openGallery('futbol')">
-                    <div class="card-image">
-                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol1.jpg" alt="Dashboard de Fútbol" onerror="this.src='https://placehold.co/600x400/4ecdc4/ffffff?text=Futbol'">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <h3 class="card-title">⚽ Liga de Fútbol</h3>
-                            <span class="status-badge">Legacy Público</span>
-                        </div>
-                        <p class="card-description">
-                            Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.
-                        </p>
-                        <button class="view-button" onclick="openGallery('futbol')" style="background: linear-gradient(45deg, #1e3a2e, #0f2419);">
-                            ⚽ Ver todas las páginas (2)
-                        </button>
-                    </div>
-                </div>
-
-                <div class="dashboard-card" onclick="openGallery('presencia')">
-                    <div class="card-image">
-                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas1.jpg" alt="Dashboard de Presencia" onerror="this.src='https://placehold.co/600x400/96ceb4/ffffff?text=Presencia'">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <h3 class="card-title">📅 Control de Presencia</h3>
-                            <span class="status-badge">Legacy Público</span>
-                        </div>
-                        <p class="card-description">
-                            Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.
-                        </p>
-                        <button class="view-button" onclick="openGallery('presencia')" style="background: linear-gradient(45deg, #f093fb, #f5576c);">
-                            🕐 Ver todas las páginas (2)
-                        </button>
-                    </div>
-                </div>
-
-                <div class="dashboard-card" onclick="openGallery('coches')">
-                    <div class="card-image">
-                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler1.jpg" alt="Dashboard de Alquiler" onerror="this.src='https://placehold.co/600x400/fd7e14/ffffff?text=Coches'">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <h3 class="card-title">🚗 Alquiler de Coches</h3>
-                            <span class="status-badge">Legacy Público</span>
-                        </div>
-                        <p class="card-description">
-                            Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>4 páginas interactivas</strong> con KPIs del sector automovilístico.
-                        </p>
-                        <button class="view-button" onclick="openGallery('coches')" style="background: linear-gradient(45deg, #ffecd2, #fcb69f); color: #333;">
-                            🚗 Ver todas las páginas (4)
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-section">
-                <h2 data-text-es="🎯 Sobre estos Dashboards" data-text-en="🎯 About these Dashboards">🎯 Sobre estos Dashboards</h2>
-                <p class="info-text" data-text-es="Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos." data-text-en="These dashboards represent real implementation cases of Power BI in different sectors: commercial, sports, human resources and automotive. All maintain public access as legacy examples, ideal for commercial demos and specialized training in data analysis.">
-                    Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: 
-                    comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público 
-                    como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos.
+    <!-- MAIN CONTENT -->
+    <main>
+        <section class="container">
+            <div class="section-header">
+                <h2 class="section-title">Temario Completo del Curso</h2>
+                <p class="section-description">
+                    Un viaje transformador donde cada sesión construye sobre la anterior. No solo aprenderás a usar herramientas, 
+                    sino a pensar y crear con IA como un verdadero profesional del futuro.
                 </p>
             </div>
-        </div>
 
-        <!-- Sección de Libros -->
-        <div id="books" class="section-content">
-            <div class="books-section">
-                <h2 class="books-title" data-text-es="📚 Mi Faceta Literaria" data-text-en="📚 My Literary Side">📚 Mi Faceta Literaria</h2>
-                <p class="books-subtitle" data-text-es="Exploro mundos imaginarios a través de la escritura, desde la ciencia ficción hasta el thriller, siempre buscando conectar con los lectores a través de historias que combinan entretenimiento y reflexión." data-text-en="I explore imaginary worlds through writing, from science fiction to thriller, always seeking to connect with readers through stories that combine entertainment and reflection.">
-                    Exploro mundos imaginarios a través de la escritura, desde la ciencia ficción hasta el thriller, 
-                    siempre buscando conectar con los lectores a través de historias que combinan entretenimiento y reflexión.
-                </p>
-
-                <div class="books-carousel">
-                    <div class="books-container">
-                        <div class="book-cover active" data-index="0" onclick="goToBook(0)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/FIN.png" alt="FIN - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FF6B6B/ffffff?text=FIN'">
-                        </div>
-                        <div class="book-cover next" data-index="1" onclick="goToBook(1)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/OH%20MY%20GOD.jpg" alt="OH MY GOD - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FF8E53/ffffff?text=OMG'">
-                        </div>
-                        <div class="book-cover hidden" data-index="2" onclick="goToBook(2)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/MANUAL%20BASICO%20DE%20CONQUISTA.jpg" alt="MANUAL BÁSICO DE CONQUISTA - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FFA726/ffffff?text=Manual'">
-                        </div>
-                        <div class="book-cover hidden" data-index="3" onclick="goToBook(3)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/TOCATA%20Y%20FUGA%20DE%20LA%20TENIENTE%20ESCALI.jpg" alt="TOCATA Y FUGA DE LA TENIENTE ESCALI - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/4ECDC4/ffffff?text=TOCATA'">
-                        </div>
-                        <div class="book-cover hidden" data-index="4" onclick="goToBook(4)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ESCALIS%20BLUES.jpg" alt="ESCALI'S BLUES - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/26A69A/ffffff?text=BLUES'">
-                        </div>
-                        <div class="book-cover hidden" data-index="5" onclick="goToBook(5)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/EXODOS.jpg" alt="ÉXODOS - Kia P. Cabdill" onerror="this.src='https://placehold.co/220x330/8E44AD/ffffff?text=ÉXODOS'">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="book-info" id="bookInfo">
-                    <h3 class="book-title" id="bookTitle"></h3>
-                    <p class="book-author" id="bookAuthor"></p>
-                    <p class="book-description" id="bookDescription"></p>
-                    <span class="book-genre" id="bookGenre"></span>
-                    <div class="book-links-container">
-                        <a href="#" target="_blank" class="book-link" id="bookLink">
-                            <span>📖</span> Ver en Amazon
-                        </a>
-                        <button class="book-link" id="bookTrailerLink" style="display: none; background: #c0392b;">
-                            <span>🎬</span> Ver Booktrailer
-                        </button>
-                        <button class="book-link" id="bookTrailerLink2" style="display: none; background: #8b0000;">
-                            <span>🎥</span> Ver Booktrailer 2
-                        </button>
-                        <button class="book-link" id="bookAudioLink" style="display: none; background: #2E8B57;">
-                            <span>🎧</span> Escuchar Audio
-                        </button>
-                    </div>
-                </div>
-
-                <div class="carousel-controls">
-                    <button class="nav-button" onclick="prevBook()">←</button>
-                    <div class="indicators" id="indicators"></div>
-                    <button class="nav-button" onclick="nextBook()">→</button>
-                </div>
-
-                <div class="autoplay-control">
-                    <button class="autoplay-btn" onclick="toggleAutoplay()" id="autoplayBtn" data-text-es="⏸️ Pausar Carrusel" data-text-en="⏸️ Pause Carousel">⏸️ Pausar Carrusel</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal de Audio -->
-        <div id="audioModal" class="audio-modal">
-            <div class="audio-content">
-                <div class="audio-header">
-                    <h3 class="audio-title" id="audioTitle">🎧 Audio Libro</h3>
-                    <button class="close-audio" onclick="closeAudio()">✕</button>
-                </div>
-                <div class="audio-player">
-                    <audio id="audioPlayer" controls preload="metadata" style="width: 100%;">
-                        <source id="audioSource" src="" type="audio/mpeg">
-                        <source id="audioSourceOgg" src="" type="audio/ogg">
-                        Tu navegador no soporta el elemento de audio.
-                    </audio>
-                    <div class="audio-info">
-                        <p><strong>🎧 Disfruta de este fragmento de audio</strong></p>
-                        <p>Experiencia inmersiva de la narrativa completa</p>
-                    </div>
-                    <div id="audioFallback" class="audio-fallback" style="display: none;">
-                        <p>🎧 Audio no disponible para reproducción web</p>
-                        <p>Este archivo tiene un formato que no es compatible con la reproducción directa en navegadores.</p>
-                        <p>Puedes <a id="audioDownloadLink" href="#" download>⬇️ descargar el audio aquí</a> para escucharlo en tu reproductor favorito</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal de Video MEJORADO -->
-        <div id="videoModal" class="video-modal">
-            <div class="video-content">
-                <div class="video-header">
-                    <h3 class="video-title" id="videoTitle">🎬 Booktrailer</h3>
-                    <button class="close-video" onclick="closeVideo()">✕</button>
-                </div>
-                <div class="video-player">
-                    <video id="videoPlayer" controls preload="metadata">
-                        <source id="videoSource" src="" type="video/mp4">
-                        <source id="videoSourceWebm" src="" type="video/webm">
-                        <source id="videoSourceOgv" src="" type="video/ogg">
-                        Tu navegador no soporta el elemento de video.
-                    </video>
-                    <div id="videoFallback" class="video-fallback" style="display: none;">
-                        <p>🎬 Video no disponible para reproducción web</p>
-                        <p>Este video tiene un formato que no es compatible con la reproducción directa en navegadores.</p>
-                        <p>Puedes <a id="videoDownloadLink" href="#" download>⬇️ descargar el video aquí</a> para verlo en tu reproductor favorito</p>
-                        <p><small>O intenta abrirlo en una nueva pestaña: <a id="videoDirectLink" href="#" target="_blank">🔗 Enlace directo</a></small></p>
-                        <p><small><em>Nota: Algunos videos están optimizados para descarga y no para streaming web</em></small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal de Galería -->
-        <div id="galleryModal" class="gallery-modal">
-            <div class="gallery-content">
-                <div class="gallery-header">
-                    <h3 id="galleryTitle" class="gallery-title"></h3>
-                    <button class="close-gallery" onclick="closeGallery()">✕</button>
-                </div>
-                <div id="galleryImages" class="gallery-images"></div>
-            </div>
-        </div>
-
-        <!-- Modal para imagen ampliada -->
-        <div id="imageModal" class="image-modal">
-            <div class="image-modal-content">
-                <div class="image-modal-header" id="imageModalTitle"></div>
-                <div style="position: relative;">
-                    <img id="imageModalImg" src="" alt="">
-                    <button class="image-modal-close" onclick="closeImageModal()">✕</button>
+            <div class="modules-grid">
+                <!-- MÓDULO 1 EXPANDIDO -->
+                <details class="module-card" open>
+                    <summary class="module-header">
+                        <span class="module-number">01</span>
+                        <h3>¡Hola, IA! Un Vistazo Rápido y a Jugar</h3>
+                        <p class="module-subtitle">Destruye los mitos, entiende la magia negra de los LLMs y empieza a crear desde el minuto uno. La teoría mínima necesaria para ser peligroso con IA.</p>
+                        <span class="module-icon"></span>
+                    </summary>
                     
-                    <!-- Flechas laterales para navegación directa -->
-                    <button class="side-nav-arrow left" id="sideNavLeft" onclick="navigateImage(-1)">‹</button>
-                    <button class="side-nav-arrow right" id="sideNavRight" onclick="navigateImage(1)">›</button>
+                    <div class="module-content">
+                        <h4>1. El Qué y el Porqué de la IA (La Única Teoría Necesaria)</h4>
+                        
+                        <div class="content-block">
+                            <h5>🧠 ¿Qué es realmente la IA?</h5>
+                            <p>Olvida las definiciones académicas. La IA es simplemente esto: <strong>enseñar a las máquinas a encontrar patrones</strong>. En lugar de decirle a un ordenador "si ves un gato, es porque tiene bigotes, cuatro patas y maúlla", le mostramos 10,000 fotos de gatos y dejamos que él descubra qué hace que un gato sea un gato.</p>
+                            
+                            <p>Es como enseñar a un niño, pero este niño puede procesar millones de ejemplos por segundo y nunca se cansa.</p>
+                        </div>
+
+                        <div class="content-block">
+                            <h5>🎭 La Caja Negra: El Misterio de los LLMs</h5>
+                            <p><strong>El concepto fundamental:</strong> Las IAs modernas son "cajas negras". Sabemos qué entra (tu prompt) y qué sale (la respuesta), pero el proceso interno es un misterio incluso para sus creadores.</p>
+                            
+                            <p><strong>Los números que marean:</strong></p>
+                            <ul>
+                                <li><strong>GPT-3:</strong> 175 mil millones de parámetros</li>
+                                <li><strong>GPT-4:</strong> Se estima en 1.7 billones de parámetros</li>
+                                <li><strong>Modelos futuros:</strong> Apuntando a los 10 billones</li>
+                            </ul>
+                            
+                            <p>Cada parámetro es como una neurona artificial. Para ponerlo en perspectiva: el cerebro humano tiene aproximadamente 86 mil millones de neuronas. ¡Los modelos de IA ya nos superan en cantidad!</p>
+                        </div>
+
+                        <div class="practice-box">
+                            <h4><span class="practice-number">1</span> Experimento: Entendiendo la Caja Negra</h4>
+                            <p><strong>Objetivo:</strong> Demostrar visualmente cómo funciona el aprendizaje de patrones.</p>
+                            <p><strong>Herramienta:</strong> <a href="https://playground.tensorflow.org/" target="_blank">TensorFlow Playground</a></p>
+                            <p><strong>Instrucciones:</strong></p>
+                            <ul>
+                                <li>Accede al playground y observa la red neuronal simple</li>
+                                <li>Cambia los datos de entrada (círculo, espiral, etc.)</li>
+                                <li>Añade o quita neuronas y observa cómo cambia el aprendizaje</li>
+                                <li>Reflexión: ¿Puedes predecir exactamente qué hará cada neurona? Esta es la "caja negra" en acción</li>
+                            </ul>
+                        </div>
+
+                        <div class="content-block">
+                            <h5>🌍 La IA Invisible en Tu Vida</h5>
+                            <p>La IA no es solo <a href="https://chat.openai.com/" target="_blank">ChatGPT</a>. Está en todas partes, trabajando silenciosamente:</p>
+                            
+                            <div class="tools-grid">
+                                <div class="tool-card">
+                                    <div class="tool-icon">🚗</div>
+                                    <div class="tool-name">En tu Coche</div>
+                                    <div class="tool-description">Control de crucero adaptativo, asistente de carril, reconocimiento de señales</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">📱</div>
+                                    <div class="tool-name">En tu Móvil</div>
+                                    <div class="tool-description">Face ID, predicción de texto, modo retrato en fotos</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🏠</div>
+                                    <div class="tool-name">En tu Casa</div>
+                                    <div class="tool-description">Alexa/Google Home, termostatos inteligentes, aspiradoras robot</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">💳</div>
+                                    <div class="tool-name">En tus Finanzas</div>
+                                    <div class="tool-description">Detección de fraude, scoring crediticio, trading algorítmico</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🎮</div>
+                                    <div class="tool-name">En tu Entretenimiento</div>
+                                    <div class="tool-description">NPCs en videojuegos, recomendaciones de Netflix, Spotify Discover</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🏥</div>
+                                    <div class="tool-name">En tu Salud</div>
+                                    <div class="tool-description">Diagnóstico por imagen, predicción de enfermedades, desarrollo de fármacos</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4>2. Timeline: La Evolución de la IA</h4>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-date">1950s</div>
+                                <div class="timeline-title">El Nacimiento del Sueño</div>
+                                <div class="timeline-description">Alan Turing propone el "Test de Turing". Se acuña el término "Inteligencia Artificial".</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">1966</div>
+                                <div class="timeline-title">ELIZA: La Primera Conversación</div>
+                                <div class="timeline-description">El primer chatbot que simulaba ser un psicoterapeuta. Muchos creyeron que era real.</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">1997</div>
+                                <div class="timeline-title">Deep Blue vs Kasparov</div>
+                                <div class="timeline-description">La IA derrota al campeón mundial de ajedrez. El mundo se da cuenta del potencial.</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">2012</div>
+                                <div class="timeline-title">El Big Bang del Deep Learning</div>
+                                <div class="timeline-description">AlexNet revoluciona la visión por computador. Comienza la era moderna de la IA.</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">2017</div>
+                                <div class="timeline-title">La Arquitectura Transformer</div>
+                                <div class="timeline-description">Google publica "Attention is All You Need". La base de todos los LLMs modernos.</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">2022</div>
+                                <div class="timeline-title">ChatGPT: La Explosión Pública</div>
+                                <div class="timeline-description">100 millones de usuarios en 2 meses. La IA conversacional llega a las masas.</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">2024-2025</div>
+                                <div class="timeline-title">La Era Multimodal</div>
+                                <div class="timeline-description">IAs que ven, escuchan, hablan y razonan. El futuro es ahora.</div>
+                            </div>
+                        </div>
+
+                        <h4>3. Primer Contacto: El Buffet de la IA</h4>
+                        
+                        <div class="practice-box">
+                            <h4><span class="practice-number">2</span> El Gran Tour de las IAs</h4>
+                            <p><strong>Objetivo:</strong> Experimentar con diferentes tipos de IA para entender sus capacidades y limitaciones.</p>
+                            
+                            <h5>Parte A: IA de Visión</h5>
+                            <ul>
+                                <li><strong>Herramienta 1:</strong> <a href="https://lens.google/" target="_blank">Google Lens</a> - Toma 3 fotos: un objeto, un texto en otro idioma, y una planta</li>
+                                <li><strong>Herramienta 2:</strong> <a href="https://quickdraw.withgoogle.com/" target="_blank">Quick, Draw!</a> - Juega 5 rondas y observa cómo la IA reconoce tus dibujos</li>
+                                <li><strong>Reflexión:</strong> ¿En qué fue más precisa? ¿Dónde falló?</li>
+                            </ul>
+                            
+                            <h5>Parte B: IA de Texto</h5>
+                            <ul>
+                                <li><strong><a href="https://chat.openai.com/" target="_blank">ChatGPT</a>:</strong> Pídele que escriba un haiku sobre tu profesión</li>
+                                <li><strong><a href="https://claude.ai/" target="_blank">Claude</a>:</strong> Pídele que analice el haiku y sugiera mejoras</li>
+                                <li><strong><a href="https://gemini.google.com/" target="_blank">Gemini</a>:</strong> Pídele que convierta el haiku en un rap</li>
+                                <li><strong>Comparación:</strong> ¿Qué diferencias notas en el estilo y creatividad?</li>
+                            </ul>
+                            
+                            <h5>Parte C: IA de Imagen</h5>
+                            <ul>
+                                <li><strong><a href="https://openai.com/dall-e-3" target="_blank">DALL-E 3</a>:</strong> <code>Un astronauta plantando flores en Marte, estilo Van Gogh</code></li>
+                                <li><strong><a href="https://www.midjourney.com/" target="_blank">Midjourney</a>:</strong> <code>cyberpunk coffee shop, neon lights, rainy night --ar 16:9</code></li>
+                                <li><strong><a href="https://stablediffusionweb.com/" target="_blank">Stable Diffusion</a>:</strong> <code>portrait of a robot reading a book, photorealistic, studio lighting</code></li>
+                            </ul>
+                            
+                            <h5>Parte D: IA Especializada</h5>
+                            <ul>
+                                <li><strong><a href="https://www.remove.bg/" target="_blank">Remove.bg</a>:</strong> Elimina el fondo de 3 fotos diferentes</li>
+                                <li><strong><a href="https://www.grammarly.com/" target="_blank">Grammarly</a>:</strong> Corrige un párrafo con errores intencionales</li>
+                                <li><strong><a href="https://www.notion.so/product/ai" target="_blank">Notion AI</a>:</strong> Resume un artículo largo</li>
+                            </ul>
+                        </div>
+
+                        <div class="practice-box">
+                            <h4><span class="practice-number">3</span> Experimento: IA Especialista vs Generalista</h4>
+                            <p><strong>Objetivo:</strong> Entender profundamente la diferencia entre IAs especializadas y generalistas.</p>
+                            
+                            <p><strong>El Reto del Traductor:</strong></p>
+                            <ol>
+                                <li>Toma este texto: "The ephemeral nature of cherry blossoms symbolizes the transient beauty of life"</li>
+                                <li>Tradúcelo al español usando:
+                                    <ul>
+                                        <li><a href="https://translate.google.com/" target="_blank">Google Translate</a> (IA especialista)</li>
+                                        <li><a href="https://www.deepl.com/" target="_blank">DeepL</a> (IA especialista avanzada)</li>
+                                        <li><a href="https://chat.openai.com/" target="_blank">ChatGPT</a> (IA generalista)</li>
+                                    </ul>
+                                </li>
+                                <li>Ahora pide a ChatGPT que no solo traduzca, sino que:
+                                    <ul>
+                                        <li>Explique el significado cultural</li>
+                                        <li>Sugiera metáforas equivalentes en español</li>
+                                        <li>Escriba un haiku inspirado en el concepto</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            <p><strong>Reflexión:</strong> ¿Cuándo es mejor usar una herramienta especializada? ¿Cuándo necesitas la flexibilidad de una IA generalista?</p>
+                        </div>
+
+                        <h4>4. Los Diferentes Tipos de IA: Tu Arsenal Digital</h4>
+                        
+                        <div class="content-block">
+                            <h5>🎯 IAs Especialistas: Los Expertos Láser</h5>
+                            <p>Como un cirujano con su bisturí, estas IAs hacen una cosa extraordinariamente bien:</p>
+                            
+                            <div class="tools-grid">
+                                <div class="tool-card">
+                                    <div class="tool-icon">🎨</div>
+                                    <div class="tool-name">Upscalers</div>
+                                    <div class="tool-description"><a href="https://github.com/xinntao/Real-ESRGAN" target="_blank">Real-ESRGAN</a>, <a href="https://www.topazlabs.com/" target="_blank">Topaz Labs</a> - Mejoran la resolución de imágenes</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🎵</div>
+                                    <div class="tool-name">Separadores de Audio</div>
+                                    <div class="tool-description"><a href="https://www.lalal.ai/" target="_blank">Lalal.ai</a>, <a href="https://vocalremover.org/" target="_blank">Vocal Remover</a> - Separan voces de instrumentos</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">📝</div>
+                                    <div class="tool-name">Transcriptores</div>
+                                    <div class="tool-description"><a href="https://openai.com/research/whisper" target="_blank">Whisper</a>, <a href="https://otter.ai/" target="_blank">Otter.ai</a> - Convierten audio en texto con precisión</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-block">
+                            <h5>🌈 IAs Generativas: Los Artistas Digitales</h5>
+                            <p>Las navajas suizas del mundo IA. Pueden crear, transformar y reimaginar:</p>
+                            
+                            <table style="width: 100%; margin-top: 20px; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="border-bottom: 2px solid var(--color-primary);">
+                                        <th style="padding: 15px; text-align: left;">Categoría</th>
+                                        <th style="padding: 15px; text-align: left;">Herramientas Top</th>
+                                        <th style="padding: 15px; text-align: left;">Superpoder</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                        <td style="padding: 15px;"><strong>Texto</strong></td>
+                                        <td style="padding: 15px;"><a href="https://openai.com/gpt-4" target="_blank">GPT-4</a>, <a href="https://www.anthropic.com/news/claude-3-family" target="_blank">Claude 3</a>, <a href="https://deepmind.google/technologies/gemini/" target="_blank">Gemini Ultra</a></td>
+                                        <td style="padding: 15px;">Escritura, análisis, código</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                        <td style="padding: 15px;"><strong>Imagen</strong></td>
+                                        <td style="padding: 15px;"><a href="https://www.midjourney.com/" target="_blank">Midjourney</a>, <a href="https://openai.com/dall-e-3" target="_blank">DALL-E 3</a>, <a href="https://stablediffusionweb.com/" target="_blank">Stable Diffusion</a></td>
+                                        <td style="padding: 15px;">Arte, diseño, conceptos</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                        <td style="padding: 15px;"><strong>Video</strong></td>
+                                        <td style="padding: 15px;"><a href="https://runwayml.com/" target="_blank">Runway</a>, <a href="https://pika.art/" target="_blank">Pika</a>, <a href="https://stability.ai/stable-video" target="_blank">Stable Video</a></td>
+                                        <td style="padding: 15px;">Animación, efectos, edición</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                        <td style="padding: 15px;"><strong>Audio</strong></td>
+                                        <td style="padding: 15px;"><a href="https://suno.com/" target="_blank">Suno</a>, <a href="https://www.udio.com/" target="_blank">Udio</a>, <a href="https://github.com/facebookresearch/audiocraft" target="_blank">MusicGen</a></td>
+                                        <td style="padding: 15px;">Música original, efectos</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 15px;"><strong>3D</strong></td>
+                                        <td style="padding: 15px;"><a href="https://www.meshy.ai/" target="_blank">Meshy</a>, <a href="https://spline.design/ai" target="_blank">Spline AI</a>, <a href="https://github.com/openai/point-e" target="_blank">Point-E</a></td>
+                                        <td style="padding: 15px;">Modelos 3D desde texto</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="practice-box">
+                            <h4><span class="practice-number">4</span> Proyecto: Tu Primera Creación Multi-IA</h4>
+                            <p><strong>Objetivo:</strong> Combinar diferentes IAs para crear algo único.</p>
+                            
+                            <p><strong>El Reto: Crea tu Superhéroe Personal</strong></p>
+                            <ol>
+                                <li><strong>Paso 1 - Concepto (<a href="https://chat.openai.com/" target="_blank">ChatGPT</a>):</strong>
+                                    <div class="code-block">
+                                        <button class="copy-btn">Copiar</button>
+                                        <code>Crea un superhéroe basado en mi profesión [tu profesión]. Dame su nombre, poderes, debilidad, y backstory en 200 palabras.</code>
+                                    </div>
+                                </li>
+                                <li><strong>Paso 2 - Diseño Visual (<a href="https://chat.openai.com/" target="_blank">ChatGPT</a>):</strong>
+                                    <div class="code-block">
+                                        <button class="copy-btn">Copiar</button>
+                                        <code>Describe detalladamente la apariencia visual de [nombre del superhéroe] para un generador de imágenes. Incluye: traje, colores, pose, ambiente.</code>
+                                    </div>
+                                </li>
+                                <li><strong>Paso 3 - Generación (<a href="https://openai.com/dall-e-3" target="_blank">DALL-E</a>/<a href="https://www.midjourney.com/" target="_blank">Midjourney</a>):</strong>
+                                    <p>Usa la descripción para generar 3 versiones diferentes</p>
+                                </li>
+                                <li><strong>Paso 4 - Logo (<a href="https://www.canva.com/" target="_blank">Canva</a> + <a href="https://www.remove.bg/" target="_blank">Remove.bg</a>):</strong>
+                                    <p>Crea un logo simple y elimina el fondo</p>
+                                </li>
+                                <li><strong>Paso 5 - Presentación (<a href="https://chat.openai.com/" target="_blank">ChatGPT</a>):</strong>
+                                    <div class="code-block">
+                                        <button class="copy-btn">Copiar</button>
+                                        <code>Escribe un tweet épico presentando a este superhéroe al mundo. Máximo 280 caracteres.</code>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- MÓDULO 2 EXPANDIDO -->
+                <details class="module-card">
+                    <summary class="module-header">
+                        <span class="module-number">02</span>
+                        <h3>Dominando la Conversación con IA</h3>
+                        <p class="module-subtitle">Transforma ChatGPT de un simple chatbot a tu co-piloto estratégico. Aprende el arte del prompting avanzado, el pensamiento estructurado y cómo hacer que la IA piense como tú quieres.</p>
+                        <span class="module-icon"></span>
+                    </summary>
+                    
+                    <div class="module-content">
+                        <h4>1. Nivel Básico: ChatGPT como Tu Asistente Personal Ultra</h4>
+                        
+                        <div class="content-block">
+                            <h5>🚀 Las 10 Tareas que Deberías Delegar Ya</h5>
+                            <p>Si aún no estás usando <a href="https://chat.openai.com/" target="_blank">ChatGPT</a> para estas tareas, estás perdiendo horas de tu vida:</p>
+                            
+                            <ol>
+                                <li><strong>Emails perfectos en segundos:</strong> Desde respuestas diplomáticas hasta solicitudes persuasivas</li>
+                                <li><strong>Síntesis de información:</strong> Convierte documentos de 50 páginas en 5 puntos clave</li>
+                                <li><strong>Brainstorming estructurado:</strong> Ideas organizadas por categorías, viabilidad y impacto</li>
+                                <li><strong>Revisión y mejora de textos:</strong> Tu editor personal 24/7</li>
+                                <li><strong>Planificación de proyectos:</strong> Cronogramas, tareas y dependencias</li>
+                                <li><strong>Análisis DAFO instantáneo:</strong> Para cualquier idea o decisión</li>
+                                <li><strong>Creación de plantillas:</strong> Documentos, presentaciones, procesos</li>
+                                <li><strong>Traducción contextual:</strong> No solo palabras, sino intención y tono</li>
+                                <li><strong>Generación de datos de prueba:</strong> Para desarrollo, presentaciones o demos</li>
+                                <li><strong>Explicaciones personalizadas:</strong> Cualquier tema, a tu nivel</li>
+                            </ol>
+                        </div>
+
+                        <div class="practice-box">
+                            <h4><span class="practice-number">5</span> Bootcamp de Productividad Extrema</h4>
+                            <p><strong>Objetivo:</strong> Dominar las funciones básicas pero poderosas de ChatGPT.</p>
+                            
+                            <h5>Reto 1: El Comunicador Maestro</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Tengo este email caótico de un cliente: [pega un email largo y confuso]. 
+Necesito:
+1. Los 3 puntos principales que requieren acción
+2. Un email de respuesta profesional confirmando que entendí todo
+3. Un mensaje de Slack para mi equipo resumiendo qué hacer</code>
+                            </div>
+                            
+                            <h5>Reto 2: El Sintetizador</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Te voy a pegar un artículo sobre [tema]. Quiero:
+- Resumen ejecutivo en 3 bullets
+- Las 5 ideas más innovadoras
+- 3 formas de aplicarlo a mi negocio de [tu negocio]
+- Un post de LinkedIn compartiendo el aprendizaje clave</code>
+                            </div>
+                            
+                            <h5>Reto 3: El Organizador</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Crea una tabla comparativa en markdown de los 5 mejores [producto/servicio] del mercado.
+Columnas: Nombre | Precio | Pros | Contras | Mejor para
+Ordénalos por relación calidad-precio.</code>
+                            </div>
+                            
+                            <h5>Reto 4: El Estratega Rápido</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Mi situación: [describe un problema real de tu trabajo]
+Dame:
+1. 3 soluciones creativas que no sean obvias
+2. Pros y contras de cada una
+3. Plan de acción para la mejor opción (5 pasos con deadlines)</code>
+                            </div>
+                            
+                            <h5>Reto 5: El Creador de Contenido</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Tema: [algo de tu expertise]
+Crea:
+1. 5 títulos virales para un artículo
+2. Outline del artículo (intro + 3 secciones + conclusión)
+3. La introducción completa (150 palabras, con gancho potente)
+4. 3 variantes para el CTA final</code>
+                            </div>
+                            
+                            <h5>Reto 6: El Analista de Datos</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Aquí hay datos de ventas del último trimestre: [pega datos]
+Analiza y dame:
+1. Las 3 tendencias más importantes
+2. Predicción para el próximo trimestre
+3. 3 acciones concretas para mejorar
+4. Un gráfico ASCII simple mostrando la tendencia</code>
+                            </div>
+                        </div>
+
+                        <h4>2. Nivel Intermedio: El Arte y Ciencia del Prompting</h4>
+                        
+                        <div class="content-block">
+                            <h5>🎯 La Fórmula Maestra del Prompting: ACTFOR</h5>
+                            <p>Olvida el básico "Actúa como...". Aquí está la fórmula completa que usan los pros:</p>
+                            
+                            <ul>
+                                <li><strong>A</strong>udience (Audiencia): ¿Para quién es esto?</li>
+                                <li><strong>C</strong>ontext (Contexto): ¿Cuál es la situación?</li>
+                                <li><strong>T</strong>ask (Tarea): ¿Qué necesitas exactamente?</li>
+                                <li><strong>F</strong>ormat (Formato): ¿Cómo lo quieres presentado?</li>
+                                <li><strong>O</strong>bjective (Objetivo): ¿Qué buscas lograr?</li>
+                                <li><strong>R</strong>estrictions (Restricciones): ¿Qué límites hay?</li>
+                            </ul>
+                        </div>
+
+                        <div class="practice-box">
+                            <h4><span class="practice-number">6</span> Masterclass: De Prompt Básico a Prompt Pro</h4>
+                            <p><strong>Objetivo:</strong> Transformar prompts mediocres en prompts extraordinarios.</p>
+                            
+                            <h5>Evolución de un Prompt:</h5>
+                            
+                            <p><strong>Nivel 1 - Principiante:</strong></p>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Escribe un post sobre productividad</code>
+                            </div>
+                            
+                            <p><strong>Nivel 2 - Intermedio:</strong></p>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Actúa como un experto en productividad. Escribe un post de LinkedIn sobre cómo ser más productivo trabajando desde casa.</code>
+                            </div>
+                            
+                            <p><strong>Nivel 3 - Avanzado:</strong></p>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Contexto: Soy un manager de equipo remoto en una startup tecnológica.
+Audiencia: Profesionales de 25-40 años que luchan con distracciones en casa.
+Tarea: Escribe un post de LinkedIn sobre productividad en trabajo remoto.
+Formato: 
+- Gancho potente (primera línea)
+- 3 estrategias poco convencionales
+- 1 anécdota personal
+- CTA al final
+- Máximo 150 palabras
+- Usa emojis estratégicamente
+Objetivo: Generar engagement y posicionarme como líder de pensamiento.
+Restricciones: No menciones apps de pago ni la técnica Pomodoro (muy trillada).</code>
+                            </div>
+                            
+                            <p><strong>Nivel 4 - Experto (con ejemplos):</strong></p>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>[Todo lo anterior] + 
+
+Aquí hay 2 posts míos anteriores que funcionaron bien:
+[Ejemplo 1]
+[Ejemplo 2]
+
+Mantén un tono similar pero con un ángulo fresco.</code>
+                            </div>
+                        </div>
+
+                        <div class="content-block">
+                            <h5>🔗 Técnicas Avanzadas de Prompting</h5>
+                            
+                            <h6>1. Chain-of-Thought (Cadena de Pensamiento)</h6>
+                            <p>Fuerza a la IA a mostrar su razonamiento paso a paso:</p>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Resuelve este problema mostrando tu razonamiento paso a paso:
+[Tu problema]
+Antes de darme la respuesta final, muéstrame cómo llegaste a ella.</code>
+                            </div>
+                            
+                            <h6>2. Few-Shot Learning</h6>
+                            <p>Dale ejemplos de lo que quieres:</p>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Convierte estas descripciones de producto en copies persuasivos:
+
+Ejemplo:
+Entrada: "Zapatos cómodos para caminar"
+Salida: "Zapatos que hacen que 10,000 pasos se sientan como caminar sobre nubes"
+
+Ahora convierte estos:
+1. "Café orgánico de comercio justo"
+2. "Curso online de marketing digital"</code>
+                            </div>
+                            
+                            <h6>3. Role-Playing Avanzado</h6>
+                            <p>No solo asignes un rol, define la personalidad completa:</p>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Eres Maya, una consultora de marca con 15 años de experiencia en Silicon Valley. 
+Características:
+- Directa pero empática
+- Usas metáforas del mundo tech
+- Siempre das ejemplos de empresas reales
+- Odias el marketing fluff
+- Tu frase favorita es "Los datos no mienten"
+
+Con esta personalidad, analiza mi propuesta de marca: [tu propuesta]</code>
+                            </div>
+                        </div>
+
+                        <div class="practice-box">
+                            <h4><span class="practice-number">7</span> El Laboratorio del Prompt Engineer</h4>
+                            <p><strong>Objetivo:</strong> Experimentar con técnicas avanzadas de prompting.</p>
+                            
+                            <h5>Experimento 1: Prompt Recursivo</h5>
+                            <p>Haz que ChatGPT mejore su propio trabajo:</p>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Paso 1: "Escribe 3 ideas para mejorar la retención de clientes en un SaaS"
+Paso 2: "Ahora actúa como un crítico experto. ¿Qué está mal con estas ideas?"
+Paso 3: "Basándote en las críticas, reescribe las ideas mejoradas"
+Paso 4: "Combina las 3 mejores partes en una súper-estrategia"</code>
+                            </div>
+                            
+                            <h5>Experimento 2: Perspectivas Múltiples</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Quiero lanzar [tu idea de producto/servicio].
+
+Dame feedback desde estas 3 perspectivas:
+1. Un inversor escéptico de Silicon Valley
+2. Tu cliente ideal súper emocionado
+3. Un competidor que quiere copiarte
+
+Formato: Cada uno escribe un párrafo en primera persona.</code>
+                            </div>
+                            
+                            <h5>Experimento 3: El Prompt Condicional</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Voy a describir mi situación empresarial. 
+
+Si identificas que el problema principal es de VENTAS, dame 5 tácticas de ventas agresivas.
+Si es de PRODUCTO, dame 5 mejoras de UX.
+Si es de EQUIPO, dame 5 estrategias de liderazgo.
+Si es de FINANCIERO, dame 5 formas de optimizar el cash flow.
+
+Mi situación: [describe tu situación]</code>
+                            </div>
+                        </div>
+
+                        <h4>3. Nivel Avanzado: ChatGPT como Sparring Partner Estratégico</h4>
+                        
+                        <div class="content-block">
+                            <h5>🥊 Técnicas de Sparring Intelectual</h5>
+                            
+                            <h6>1. El Abogado del Diablo Extremo</h6>
+                            <p>No te conformes con críticas suaves. Pide destrucción constructiva:</p>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Mi idea: [Tu idea]
+
+Actúa como mi peor enemigo inteligente. Quiero que:
+1. Encuentres los 5 agujeros más grandes en mi lógica
+2. Me des 3 razones por las que fracasaré espectacularmente
+3. Identifiques qué asunciones estoy haciendo sin darme cuenta
+4. Me muestres 2 competidores que ya lo intentaron y fracasaron
+
+Sé brutal pero constructivo. Después de destrozarme, dame 1 insight sobre cómo podría funcionar a pesar de todo.</code>
+                            </div>
+                            
+                            <h6>2. El Consultor de los 5 Porqués</h6>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Mi problema: [Tu problema]
+
+Aplica la técnica de los 5 porqués, pero hazlo como un consultor de McKinsey.
+Después de cada "por qué", dame:
+- La respuesta más probable
+- Una respuesta alternativa que no había considerado
+- Una pregunta de seguimiento que debería hacerme
+
+Al final, sintetiza la verdadera causa raíz y dame 3 soluciones sistémicas.</code>
+                            </div>
+                            
+                            <h6>3. El Simulador de Escenarios</h6>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Decisión que debo tomar: [Tu decisión]
+
+Simula estos 3 escenarios a 6 meses:
+1. Mejor caso posible (todo sale perfecto)
+2. Caso realista (mezcla de éxitos y problemas)
+3. Peor caso (Murphy's Law en acción)
+
+Para cada escenario:
+- Describe qué pasó mes a mes
+- Identifica los puntos de inflexión
+- Dame una métrica clave para monitorear
+- Sugiere un plan de contingencia</code>
+                            </div>
+                        </div>
+
+                        <div class="practice-box">
+                            <h4><span class="practice-number">8</span> War Room: Simulación de Crisis Empresarial</h4>
+                            <p><strong>Objetivo:</strong> Usar ChatGPT para simular y resolver una crisis empresarial compleja.</p>
+                            
+                            <h5>Escenario: La Crisis del Data Breach</h5>
+                            <p>Tu empresa (una app de fitness con 500K usuarios) acaba de sufrir un hackeo. Se filtraron emails y datos de salud.</p>
+                            
+                            <h5>Fase 1: Evaluación Inicial</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Actúa como mi equipo de crisis. Necesito:
+1. CEO: Evaluación del impacto en el negocio
+2. CTO: Análisis técnico de qué pasó
+3. Legal: Implicaciones legales y regulatorias
+4. PR: Cómo se ve esto en los medios
+5. CFO: Impacto financiero estimado
+
+Dame un reporte de cada uno (100 palabras por rol).</code>
+                            </div>
+                            
+                            <h5>Fase 2: Plan de Acción Inmediato</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Basándote en los reportes anteriores, crea:
+1. Checklist de acciones para las próximas 24 horas (priorizado)
+2. Script para el equipo de atención al cliente
+3. Borrador del comunicado de prensa
+4. Email para los usuarios afectados
+5. Talking points para el CEO</code>
+                            </div>
+                            
+                            <h5>Fase 3: Simulación de Preguntas Difíciles</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Actúa como:
+1. Periodista agresivo de TechCrunch haciéndome 5 preguntas incómodas
+2. Usuario furioso en Twitter (3 tweets virales negativos)
+3. Inversor principal preocupado (email pidiendo explicaciones)
+
+Después de cada uno, dame la mejor respuesta posible.</code>
+                            </div>
+                            
+                            <h5>Fase 4: Estrategia de Recuperación</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Diseña un plan de recuperación a 90 días:
+- Semana 1-2: Control de daños
+- Mes 1: Reconstrucción de confianza
+- Mes 2: Mejoras de seguridad visibles
+- Mes 3: Campaña de reposicionamiento
+
+Incluye métricas de éxito y presupuesto estimado.</code>
+                            </div>
+                        </div>
+
+                        <h4>4. Meta-Prompting: Enseñando a ChatGPT a Enseñarte</h4>
+                        
+                        <div class="practice-box">
+                            <h4><span class="practice-number">9</span> El Mentor IA Personalizado</h4>
+                            <p><strong>Objetivo:</strong> Configurar ChatGPT como tu mentor personal en cualquier área.</p>
+                            
+                            <h5>El Prompt de Configuración del Mentor</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Quiero que seas mi mentor personal en [área de interés]. 
+
+Primero, hazme estas preguntas para entender mi nivel y objetivos:
+1. ¿Cuál es mi experiencia actual en este tema? (0-10)
+2. ¿Qué quiero lograr específicamente?
+3. ¿Cuánto tiempo puedo dedicar por semana?
+4. ¿Aprendo mejor con ejemplos, teoría o práctica?
+5. ¿Qué me frustra más al aprender?
+
+Basándote en mis respuestas, crea:
+- Mi plan de aprendizaje personalizado de 30 días
+- Los 3 errores principales que debo evitar
+- Un ejercicio diario de 10 minutos
+- Cómo mediré mi progreso
+
+Luego, cada vez que hablemos, empieza preguntando: "¿Qué has practicado desde la última vez?"</code>
+                            </div>
+                            
+                            <h5>Sesiones de Mentoría Estructuradas</h5>
+                            <p>Usa este formato para cada sesión:</p>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Sesión de mentoría #[número] sobre [tema]
+
+1. REVISIÓN (5 min): ¿Qué aprendí la semana pasada?
+2. NUEVO CONCEPTO (10 min): Enséñame algo nuevo con un ejemplo real
+3. PRÁCTICA GUIADA (15 min): Dame un ejercicio y guíame mientras lo resuelvo
+4. REFLEXIÓN (5 min): ¿Qué fue lo más difícil? ¿Qué aha moment tuve?
+5. TAREA (5 min): ¿Qué debo practicar antes de la próxima sesión?</code>
+                            </div>
+                        </div>
+
+                        <div class="content-block">
+                            <h5>🧠 Frameworks Mentales Avanzados con ChatGPT</h5>
+                            
+                            <h6>Framework 1: Matriz de Decisión Ponderada</h6>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Necesito decidir entre: [Opción A] vs [Opción B] vs [Opción C]
+
+Crea una matriz de decisión con:
+1. 7 criterios relevantes para esta decisión
+2. Peso de cada criterio (1-10)
+3. Puntuación de cada opción en cada criterio (1-10)
+4. Cálculo ponderado final
+5. Análisis de sensibilidad: ¿qué criterio cambiaría la decisión si variara?
+6. La opción ganadora y por qué
+7. Banderas rojas de la opción ganadora</code>
+                            </div>
+                            
+                            <h6>Framework 2: Análisis Pre-Mortem</h6>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Mi proyecto: [Describe tu proyecto]
+
+Imagina que estamos en el futuro y el proyecto fracasó espectacularmente.
+1. Escribe el "obituario" del proyecto (qué salió mal)
+2. Identifica las 5 causas principales del fracaso
+3. Para cada causa, dame una señal de alerta temprana
+4. Crea un plan de mitigación para cada riesgo
+5. Define "circuit breakers": puntos donde pararíamos el proyecto</code>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- MÓDULO 3 EXPANDIDO -->
+                <details class="module-card">
+                    <summary class="module-header">
+                        <span class="module-number">03</span>
+                        <h3>Creación Multimedia con IA: El Estudio Creativo del Futuro</h3>
+                        <p class="module-subtitle">Conviértete en un director de arte digital. Domina la generación de imágenes, aprende a crear mundos visuales coherentes, y descubre cómo las IAs están redefiniendo la creatividad visual.</p>
+                        <span class="module-icon"></span>
+                    </summary>
+                    
+                    <div class="module-content">
+                        <h4>1. Fundamentos de la Generación Visual con IA</h4>
+                        
+                        <div class="content-block">
+                            <h5>🎨 La Nueva Era del Arte Digital</h5>
+                            <p>Las IAs no "crean" arte, lo <strong>sintetizan</strong> a partir de millones de referencias. Entender esto es clave para dominarlas.</p>
+                            
+                            <h6>Los 4 Pilares del Prompt Visual</h6>
+                            <ul>
+                                <li><strong>Sujeto:</strong> ¿Qué o quién es el protagonista?</li>
+                                <li><strong>Ambiente:</strong> ¿Dónde está? ¿Qué atmósfera tiene?</li>
+                                <li><strong>Estilo:</strong> ¿Cómo se ve? (fotorrealista, cartoon, pintura...)</li>
+                                <li><strong>Modificadores:</strong> Calidad, iluminación, ángulo, mood...</li>
+                            </ul>
+                        </div>
+
+                        <div class="practice-box">
+                            <h4><span class="practice-number">10</span> Laboratorio Visual: De lo Simple a lo Épico</h4>
+                            <p><strong>Objetivo:</strong> Entender cómo cada elemento del prompt afecta al resultado.</p>
+                            
+                            <h5>Experimento 1: El Poder de los Detalles</h5>
+                            <p>Genera estas 5 versiones del mismo concepto en <a href="https://openai.com/dall-e-3" target="_blank">DALL-E 3</a> o <a href="https://www.midjourney.com/" target="_blank">Midjourney</a>:</p>
+                            
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>v1: "un gato"
+v2: "un gato naranja sentado"
+v3: "un gato naranja sentado en un sillón victoriano"
+v4: "un gato naranja con ojos verdes, sentado elegantemente en un sillón victoriano de terciopelo rojo"
+v5: "un gato naranja con ojos verdes, sentado elegantemente en un sillón victoriano de terciopelo rojo, 
+    luz de ventana lateral, ambiente nostálgico, estilo pintura al óleo renacentista"</code>
+                            </div>
+                            
+                            <p><strong>Análisis:</strong> ¿En qué punto el detalle adicional deja de mejorar la imagen?</p>
+                            
+                            <h5>Experimento 2: Estilos Artísticos</h5>
+                            <p>Un mismo sujeto, 7 estilos diferentes:</p>
+                            
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Base: "retrato de una mujer con flores en el pelo"
+
+Añade estos estilos:
+1. ", fotografía de Annie Leibovitz"
+2. ", estilo Studio Ghibli"
+3. ", art nouveau de Alphonse Mucha"  
+4. ", cyberpunk 2077 concept art"
+5. ", pintura impresionista de Monet"
+6. ", ilustración de cómic de los 90s"
+7. ", hiperrealismo en grafito"</code>
+                            </div>
+                            
+                            <h5>Experimento 3: Control de Atmósfera</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Base: "una cafetería en París"
+
+Variaciones de mood:
+1. ", mañana lluviosa, melancólica, paleta fría"
+2. ", atardecer dorado, romántica, luz cálida"
+3. ", noche neon, futurista, cyberpunk"
+4. ", abandonada, post-apocalíptica, inquietante"
+5. ", navidad, acogedora, luces tintineantes"</code>
+                            </div>
+                        </div>
+
+                        <div class="content-block">
+                            <h5>🎯 Guía de Modificadores Profesionales</h5>
+                            
+                            <table style="width: 100%; margin-top: 20px; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="border-bottom: 2px solid var(--color-primary);">
+                                        <th style="padding: 15px; text-align: left;">Categoría</th>
+                                        <th style="padding: 15px; text-align: left;">Modificadores Power</th>
+                                        <th style="padding: 15px; text-align: left;">Efecto</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                        <td style="padding: 15px;"><strong>Calidad</strong></td>
+                                        <td style="padding: 15px;">8k, ultra detailed, masterpiece, award winning</td>
+                                        <td style="padding: 15px;">Mayor detalle y calidad</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                        <td style="padding: 15px;"><strong>Iluminación</strong></td>
+                                        <td style="padding: 15px;">golden hour, rim lighting, volumetric fog, studio lighting</td>
+                                        <td style="padding: 15px;">Control de ambiente</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                        <td style="padding: 15px;"><strong>Cámara</strong></td>
+                                        <td style="padding: 15px;">85mm, f/1.4, shallow DOF, wide angle, macro</td>
+                                        <td style="padding: 15px;">Perspectiva y enfoque</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                        <td style="padding: 15px;"><strong>Composición</strong></td>
+                                        <td style="padding: 15px;">rule of thirds, centered, symmetrical, dynamic pose</td>
+                                        <td style="padding: 15px;">Estructura visual</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 15px;"><strong>Mood</strong></td>
+                                        <td style="padding: 15px;">ethereal, moody, vibrant, melancholic, epic</td>
+                                        <td style="padding: 15px;">Tono emocional</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4>2. Nivel Intermedio: Coherencia Visual y Narrativa</h4>
+                        
+                        <div class="content-block">
+                            <h5>🔄 El Problema de la Consistencia (y Cómo Resolverlo)</h5>
+                            <p>El mayor reto en IA generativa: mantener personajes y escenarios consistentes. Aquí están las técnicas pro:</p>
+                            
+                            <h6>Técnica 1: El Prompt ADN</h6>
+                            <p>Crea una "huella genética" detallada de tu personaje:</p>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>PERSONAJE: Elena_2045
+- Mujer, 28 años, 1.70m
+- Cabello: bob asimétrico platino con mechas holográficas azules
+- Ojos: heterocromía (izquierdo verde, derecho gris)
+- Marca distintiva: cicatriz vertical en ceja derecha
+- Ropa base: chaqueta de cuero negro con LEDs rojos en las costuras
+- Accesorio único: gafas AR transparentes con marco dorado
+- Pose característica: mano izquierda en la cadera
+
+USAR EN CADA PROMPT: "Elena_2045: [descripción anterior] + [nueva acción/escena]"</code>
+                            </div>
+                            
+                            <h6>Técnica 2: Seeds y Referencias</h6>
+                            <p>En <a href="https://www.midjourney.com/" target="_blank">Midjourney</a>:</p>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>--seed 777 (usa el mismo número para mantener consistencia)
+--sref URL_de_imagen_referencia (para mantener estilo)</code>
+                            </div>
+                        </div>
+
+                        <div class="practice-box">
+                            <h4><span class="practice-number">11</span> Proyecto: Creación de un Personaje Completo</h4>
+                            <p><strong>Objetivo:</strong> Desarrollar un personaje consistente a través de múltiples imágenes.</p>
+                            
+                            <h5>Fase 1: Diseño del Personaje (<a href="https://chat.openai.com/" target="_blank">ChatGPT</a>)</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Crea un personaje original para una novela gráfica cyberpunk. Incluye:
+1. Nombre y trasfondo (200 palabras)
+2. Descripción física ULTRA detallada (cada rasgo único)
+3. 3 outfits diferentes pero reconocibles
+4. 5 poses/expresiones características
+5. Paleta de colores personal
+6. 3 objetos que siempre lleva</code>
+                            </div>
+                            
+                            <h5>Fase 2: Hoja de Referencia Visual</h5>
+                            <p>Genera estas imágenes:</p>
+                            <ul>
+                                <li><strong>Portrait hero:</strong> Primer plano, iluminación dramática</li>
+                                <li><strong>Full body:</strong> Pose de pie, fondo neutro</li>
+                                <li><strong>Expresiones:</strong> Grid 2x2 con 4 emociones</li>
+                                <li><strong>Acción:</strong> El personaje en una escena dinámica</li>
+                                <li><strong>Outfit variations:</strong> 3 versiones del personaje</li>
+                            </ul>
+                            
+                            <h5>Fase 3: Narrativa Visual</h5>
+                            <p>Crea 5 imágenes que cuenten una mini-historia:</p>
+                            <ol>
+                                <li>El personaje descubriendo algo misterioso</li>
+                                <li>Reacción de sorpresa/miedo</li>
+                                <li>Preparándose para la acción</li>
+                                <li>En medio del conflicto</li>
+                                <li>Resolución/victoria</li>
+                            </ol>
+                            
+                            <p><strong>Reto Extra:</strong> Mantén la coherencia visual en todas las imágenes</p>
+                        </div>
+
+                        <h4>3. Nivel Avanzado: Dirección de Arte y World-Building</h4>
+                        
+                        <div class="content-block">
+                            <h5>🌍 Creando Universos Visuales Coherentes</h5>
+                            <p>No solo creas imágenes, construyes mundos. Aprende a pensar como un director de arte de Pixar o Marvel.</p>
+                            
+                            <h6>El Framework de World-Building Visual</h6>
+                            <ol>
+                                <li><strong>Biblia Visual:</strong> Define las reglas estéticas de tu mundo</li>
+                                <li><strong>Paleta Cultural:</strong> Cómo se ve la tecnología, arquitectura, moda</li>
+                                <li><strong>Leyes Físicas:</strong> ¿Cómo funciona la luz, gravedad, clima?</li>
+                                <li><strong>Historia Visual:</strong> ¿Qué eventos moldearon este aspecto?</li>
+                                <li><strong>Contraste y Conflicto:</strong> Diferentes facciones/zonas tienen diferentes estéticas</li>
+                            </ol>
+                        </div>
+
+                        <div class="practice-box">
+                            <h4><span class="practice-number">12</span> Mega Proyecto: Concept Art para "Tu Película"</h4>
+                            <p><strong>Objetivo:</strong> Crear un portfolio de concept art profesional para un proyecto ficticio.</p>
+                            
+                            <h5>Paso 1: La Biblia del Mundo (<a href="https://chat.openai.com/" target="_blank">ChatGPT</a>)</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Actúa como un director de arte de Hollywood. Vamos a crear el concept art para una película llamada "[Tu título]".
+
+Género: [Elige: Sci-fi/Fantasy/Thriller/etc]
+Premisa: [1 párrafo]
+
+Crea:
+1. ESTÉTICA GENERAL
+   - 3 referencias visuales (películas/arte)
+   - Paleta de colores dominante
+   - Texturas y materiales clave
+   - Estilo de iluminación
+
+2. LOCACIONES (5)
+   - Nombre y propósito
+   - Descripción visual detallada
+   - Mood y atmósfera
+   - Elementos distintivos
+
+3. FACCIONES/GRUPOS (3)
+   - Estética distintiva de cada uno
+   - Colores y símbolos
+   - Arquitectura y tecnología
+
+4. ELEMENTOS ICÓNICOS
+   - 5 objetos/elementos visuales recurrentes
+   - Su significado en el mundo</code>
+                            </div>
+                            
+                            <h5>Paso 2: Concept Art - Locaciones</h5>
+                            <p>Genera 5 imágenes de locaciones, cada una con este approach:</p>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>1. ESTABLISHING SHOT: Vista panorámica épica
+2. MOOD PIECE: Misma locación, diferente hora/clima
+3. DETAIL SHOT: Zoom a un elemento arquitectónico único</code>
+                            </div>
+                            
+                            <h5>Paso 3: Diseño de Props y Tecnología</h5>
+                            <ul>
+                                <li>3 vehículos del mundo</li>
+                                <li>5 objetos cotidianos reimaginados</li>
+                                <li>2 armas o herramientas únicas</li>
+                                <li>Interfaz UI de la tecnología del mundo</li>
+                            </ul>
+                            
+                            <h5>Paso 4: Momento Clave</h5>
+                            <p>Crea 3 versiones de LA escena más importante:</p>
+                            <ul>
+                                <li>Versión A: Composición clásica</li>
+                                <li>Versión B: Ángulo dramático</li>
+                                <li>Versión C: Perspectiva única/experimental</li>
+                            </ul>
+                            
+                            <h5>Paso 5: Poster de Película</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Movie poster for "[Tu título]", [descripción de elementos clave], 
+dramatic lighting, epic composition, Hollywood blockbuster style, 
+starring [inventar nombres], directed by [tu nombre], 
+tagline "[crear tagline épico]", coming soon, IMAX, 
+professional movie poster design, high impact</code>
+                            </div>
+                        </div>
+
+                        <h4>4. Técnicas Profesionales y Trucos de la Industria</h4>
+                        
+                        <div class="content-block">
+                            <h5>💎 Secretos de los Pros</h5>
+                            
+                            <h6>Hack 1: El Método de Capas</h6>
+                            <p>Genera elementos por separado y combínalos:</p>
+                            <ul>
+                                <li>Fondo sin personajes</li>
+                                <li>Personaje en fondo neutro</li>
+                                <li>Efectos y atmósfera separados</li>
+                                <li>Combinar en Photoshop/Canva para control total</li>
+                            </ul>
+                            
+                            <h6>Hack 2: Prompt Negativo (<a href="https://www.midjourney.com/" target="_blank">Midjourney</a>)</h6>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>--no blur, extra fingers, distorted faces, low quality, watermark</code>
+                            </div>
+                            
+                            <h6>Hack 3: Controlnet y Poses</h6>
+                            <p>Usa referencias de poses reales para mantener anatomía correcta</p>
+                            
+                            <h6>Hack 4: El Remix Inteligente</h6>
+                            <p>En <a href="https://www.midjourney.com/" target="_blank">Midjourney</a>: Usa el botón V (variar) para iteraciones sutiles del mismo concepto</p>
+                        </div>
+
+                        <div class="practice-box">
+                            <h4><span class="practice-number">13</span> Challenge: Speed Art con IA</h4>
+                            <p><strong>Objetivo:</strong> Crear 10 piezas de arte coherentes en 30 minutos.</p>
+                            
+                            <p><strong>El Reto:</strong> Crea una mini galería de arte sobre "Ciudades del Futuro"</p>
+                            
+                            <p><strong>Restricciones:</strong></p>
+                            <ul>
+                                <li>Misma paleta de colores en todas</li>
+                                <li>Diferentes horas del día</li>
+                                <li>Diferentes ángulos/perspectivas</li>
+                                <li>Debe contar una historia visual</li>
+                            </ul>
+                            
+                            <p><strong>Prompt Base a Modificar:</strong></p>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>futuristic city, [HORA DEL DÍA], [PERSPECTIVA], 
+neon accent lights, flying vehicles, vertical gardens,
+cyberpunk aesthetic, ultra detailed, cinematic lighting,
+color palette: deep purple, teal, gold accents, 
+[ELEMENTO ÚNICO EN CADA IMAGEN]</code>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- MÓDULO 4 EXPANDIDO -->
+                <details class="module-card">
+                    <summary class="module-header">
+                        <span class="module-number">04</span>
+                        <h3>La Frontera de la IA: Multimedia, Automatización y el Futuro</h3>
+                        <p class="module-subtitle">Bienvenido al bleeding edge. Domina las IAs de video, música y voz. Aprende a crear flujos de trabajo que combinan múltiples IAs. Prepárate para lo que viene.</p>
+                        <span class="module-icon"></span>
+                    </summary>
+                    
+                    <div class="module-content">
+                        <h4>1. El Nuevo Ecosistema Multimedia con IA</h4>
+                        
+                        <div class="content-block">
+                            <h5>🎬 Video IA: La Revolución en Movimiento</h5>
+                            <p>El video con IA pasó de ser un sueño a una realidad práctica en 2024. Aquí está el estado del arte:</p>
+                            
+                            <div class="tools-grid">
+                                <div class="tool-card">
+                                    <div class="tool-icon">🎥</div>
+                                    <div class="tool-name"><a href="https://runwayml.com/" target="_blank">Runway Gen-3</a></div>
+                                    <div class="tool-description">Text-to-video y video-to-video. 10 segundos de magia pura.</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🎬</div>
+                                    <div class="tool-name"><a href="https://pika.art/" target="_blank">Pika Labs</a></div>
+                                    <div class="tool-description">Especialista en animación de personajes y lip-sync.</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🎞️</div>
+                                    <div class="tool-name"><a href="https://stability.ai/stable-video" target="_blank">Stable Video</a></div>
+                                    <div class="tool-description">Open source, control fino sobre el movimiento.</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🎭</div>
+                                    <div class="tool-name"><a href="https://www.heygen.com/" target="_blank">HeyGen</a></div>
+                                    <div class="tool-description">Avatares realistas que hablan tu guión.</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">✨</div>
+                                    <div class="tool-name"><a href="https://wonderdynamics.com/" target="_blank">Wonder Dynamics</a></div>
+                                    <div class="tool-description">Reemplaza actores con personajes CG automáticamente.</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🎨</div>
+                                    <div class="tool-name"><a href="https://kaiber.ai/" target="_blank">Kaiber</a></div>
+                                    <div class="tool-description">Transforma videos en arte animado psicodélico.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="practice-box">
+                            <h4><span class="practice-number">14</span> Laboratorio de Video IA</h4>
+                            <p><strong>Objetivo:</strong> Experimentar con diferentes tipos de generación de video.</p>
+                            
+                            <h5>Experimento 1: Text-to-Video Básico (<a href="https://runwayml.com/" target="_blank">Runway</a>)</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Prompt progresivo:
+1. "A butterfly landing on a flower"
+2. "A butterfly landing on a glowing neon flower in slow motion"
+3. "A mechanical butterfly with transparent wings landing on a cyberpunk flower, 
+   sparks flying, dramatic lighting, 4K"</code>
+                            </div>
+                            
+                            <h5>Experimento 2: Image-to-Video (<a href="https://pika.art/" target="_blank">Pika</a>)</h5>
+                            <p>Toma una imagen generada en el módulo anterior y:</p>
+                            <ul>
+                                <li>Añade movimiento sutil (viento, parpadeo)</li>
+                                <li>Añade acción dramática (explosión, transformación)</li>
+                                <li>Cambia la hora del día en movimiento</li>
+                            </ul>
+                            
+                            <h5>Experimento 3: Video Style Transfer (<a href="https://kaiber.ai/" target="_blank">Kaiber</a>)</h5>
+                            <ul>
+                                <li>Graba 5 segundos con tu móvil</li>
+                                <li>Transfórmalo en: anime, van gogh, cyberpunk</li>
+                                <li>Compara cuál mantiene mejor el movimiento original</li>
+                            </ul>
+                            
+                            <h5>Experimento 4: Avatar Hablante (<a href="https://www.heygen.com/" target="_blank">HeyGen</a>)</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Script de 30 segundos:
+"Hola, soy una IA y estoy aquí para demostrarte que el futuro ya llegó. 
+En solo segundos, puedo hablar cualquier idioma, con cualquier voz, 
+y parecer completamente real. ¿Aterrador? Quizás. 
+¿Increíble? Definitivamente."</code>
+                            </div>
+                        </div>
+
+                        <div class="content-block">
+                            <h5>🎵 Audio y Música con IA: El Nuevo Estudio de Grabación</h5>
+                            
+                            <h6>Las Herramientas que Están Cambiando la Industria Musical</h6>
+                            <div class="tools-grid">
+                                <div class="tool-card">
+                                    <div class="tool-icon">🎵</div>
+                                    <div class="tool-name"><a href="https://suno.com/" target="_blank">Suno AI</a></div>
+                                    <div class="tool-description">Crea canciones completas con letra desde texto.</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🎸</div>
+                                    <div class="tool-name"><a href="https://www.udio.com/" target="_blank">Udio</a></div>
+                                    <div class="tool-description">Rival de Suno con mejor control sobre géneros.</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🎹</div>
+                                    <div class="tool-name"><a href="https://www.aiva.ai/" target="_blank">AIVA</a></div>
+                                    <div class="tool-description">Especialista en música clásica y bandas sonoras.</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🎤</div>
+                                    <div class="tool-name"><a href="https://musicfy.lol/" target="_blank">Musicfy</a></div>
+                                    <div class="tool-description">Clona voces y crea covers con cualquier voz.</div>
+                                </div>
+                            </div>
+                            
+                            <h6>Voz IA: Más Allá de la Clonación</h6>
+                            <div class="tools-grid">
+                                <div class="tool-card">
+                                    <div class="tool-icon">🗣️</div>
+                                    <div class="tool-name"><a href="https://elevenlabs.io/" target="_blank">ElevenLabs</a></div>
+                                    <div class="tool-description">El rey de la síntesis de voz. Emociones reales.</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🎭</div>
+                                    <div class="tool-name"><a href="https://murf.ai/" target="_blank">Murf.ai</a></div>
+                                    <div class="tool-description">Voces profesionales para narraciones.</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🌐</div>
+                                    <div class="tool-name"><a href="https://www.rask.ai/" target="_blank">Rask AI</a></div>
+                                    <div class="tool-description">Dubbing automático a 60+ idiomas.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="practice-box">
+                            <h4><span class="practice-number">15</span> Estudio de Producción Musical IA</h4>
+                            <p><strong>Objetivo:</strong> Crear una producción musical completa usando solo IA.</p>
+                            
+                            <h5>Proyecto: El Jingle de Tu Marca Personal</h5>
+                            
+                            <h5>Paso 1: Concepto y Letra (<a href="https://chat.openai.com/" target="_blank">ChatGPT</a>)</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Crea un jingle de 30 segundos para mi marca personal.
+Mi profesión: [tu profesión]
+Mis valores: [3 valores]
+Mi personalidad: [3 adjetivos]
+
+Necesito:
+1. Letra pegadiza (4-6 líneas)
+2. Descripción del estilo musical ideal
+3. Instrumentos sugeridos
+4. Mood y energía
+5. Referencia de canciones similares</code>
+                            </div>
+                            
+                            <h5>Paso 2: Generación Musical (<a href="https://suno.com/" target="_blank">Suno AI</a>)</h5>
+                            <ul>
+                                <li>Versión A: Upbeat y energética</li>
+                                <li>Versión B: Profesional y sofisticada</li>
+                                <li>Versión C: Experimental y única</li>
+                            </ul>
+                            
+                            <h5>Paso 3: Voz en Off Complementaria (<a href="https://elevenlabs.io/" target="_blank">ElevenLabs</a>)</h5>
+                            <div class="code-block">
+                                <button class="copy-btn">Copiar</button>
+                                <code>Script: "[Tu nombre], [tu título]. [Tagline de 10 palabras]"
+Generar en:
+- Voz masculina profesional
+- Voz femenina enérgica
+- Voz con tu acento local</code>
+                            </div>
+                            
+                            <h5>Paso 4: Mezcla Final</h5>
+                            <p>Usa Audacity o cualquier editor para:</p>
+                            <ul>
+                                <li>Música de fondo (bajar volumen al 30%)</li>
+                                <li>Voz en off al principio</li>
+                                <li>Fade out profesional</li>
+                            </ul>
+                        </div>
+
+                        <h4>2. Flujos de Trabajo Multi-IA: Orquestación Avanzada</h4>
+                        
+                        <div class="content-block">
+                            <h5>🔄 El Arte de la Orquestación de IAs</h5>
+                            <p>No pienses en herramientas individuales. Piensa en <strong>pipelines de producción</strong>.</p>
+                            
+                            <h6>Pipeline 1: Contenido de Redes Sociales Automatizado</h6>
+                            <ol>
+                                <li><strong><a href="https://chat.openai.com/" target="_blank">ChatGPT</a>:</strong> Genera idea y guión</li>
+                                <li><strong><a href="https://www.midjourney.com/" target="_blank">Midjourney</a>:</strong> Crea visuales</li>
+                                <li><strong><a href="https://runwayml.com/" target="_blank">Runway</a>:</strong> Anima los visuales</li>
+                                <li><strong><a href="https://elevenlabs.io/" target="_blank">ElevenLabs</a>:</strong> Narración</li>
+                                <li><strong><a href="https://suno.com/" target="_blank">Suno</a>:</strong> Música de fondo</li>
+                                <li><strong><a href="https://www.capcut.com/" target="_blank">CapCut</a>:</strong> Edición final con IA</li>
+                            </ol>
+                            
+                            <h6>Pipeline 2: Curso Online Completo</h6>
+                            <ol>
+                                <li><strong><a href="https://chat.openai.com/" target="_blank">ChatGPT</a>:</strong> Curriculum y contenido</li>
+                                <li><strong><a href="https://gamma.app/" target="_blank">Gamma</a>:</strong> Presentaciones automáticas</li>
+                                <li><strong><a href="https://www.heygen.com/" target="_blank">HeyGen</a>:</strong> Profesor avatar</li>
+                                <li><strong><a href="https://openai.com/dall-e-3" target="_blank">DALL-E</a>:</strong> Ilustraciones</li>
+                                <li><strong><a href="https://openai.com/research/whisper" target="_blank">Whisper</a>:</strong> Subtítulos automáticos</li>
+                            </ol>
+                        </div>
+
+                        <div class="practice-box">
+                            <h4><span class="practice-number">16</span> MEGA PROYECTO: Tu Primer Producto Digital con IA</h4>
+                            <p><strong>Objetivo:</strong> Crear un producto digital completo listo para vender.</p>
+                            
+                            <h5>Opción A: Mini-Curso en Video</h5>
+                            <p><strong>Tema:</strong> "5 Técnicas de [Tu Expertise] en 5 Minutos"</p>
+                            
+                            <p><strong>Pipeline de Producción:</strong></p>
+                            <ol>
+                                <li><strong>Planificación (<a href="https://chat.openai.com/" target="_blank">ChatGPT</a>):</strong>
+                                    <ul>
+                                        <li>Outline del curso</li>
+                                        <li>Script para cada video</li>
+                                        <li>Puntos clave visuales</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Visuales (<a href="https://www.midjourney.com/" target="_blank">Midjourney</a> + <a href="https://www.canva.com/" target="_blank">Canva</a>):</strong>
+                                    <ul>
+                                        <li>Thumbnail del curso</li>
+                                        <li>Plantilla de slides</li>
+                                        <li>Ilustraciones clave</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Videos (<a href="https://www.heygen.com/" target="_blank">HeyGen</a> + <a href="https://runwayml.com/" target="_blank">Runway</a>):</strong>
+                                    <ul>
+                                        <li>Intro animada (10 seg)</li>
+                                        <li>5 videos de 1 minuto</li>
+                                        <li>Outro con CTA</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Audio (<a href="https://elevenlabs.io/" target="_blank">ElevenLabs</a> + <a href="https://suno.com/" target="_blank">Suno</a>):</strong>
+                                    <ul>
+                                        <li>Narración profesional</li>
+                                        <li>Música de fondo</li>
+                                        <li>Efectos de transición</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Post-producción:</strong>
+                                    <ul>
+                                        <li>Edición en CapCut/Premiere</li>
+                                        <li>Subtítulos con <a href="https://openai.com/research/whisper" target="_blank">Whisper</a></li>
+                                        <li>Exportar en 1080p</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Distribución:</strong>
+                                    <ul>
+                                        <li>Landing page (<a href="https://carrd.co/" target="_blank">Carrd</a> + ChatGPT)</li>
+                                        <li>Email sequence (ChatGPT)</li>
+                                        <li>Social media teasers</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            
+                            <h5>Opción B: Ebook Interactivo</h5>
+                            <p><strong>Tema:</strong> "La Guía Definitiva de [Tu Tema]"</p>
+                            
+                            <ol>
+                                <li><strong>Contenido (<a href="https://chat.openai.com/" target="_blank">ChatGPT</a> + <a href="https://claude.ai/" target="_blank">Claude</a>):</strong>
+                                    <ul>
+                                        <li>10 capítulos de 2000 palabras</li>
+                                        <li>Casos de estudio</li>
+                                        <li>Ejercicios prácticos</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Diseño (<a href="https://www.midjourney.com/" target="_blank">Midjourney</a> + <a href="https://www.canva.com/" target="_blank">Canva</a>):</strong>
+                                    <ul>
+                                        <li>Portada profesional</li>
+                                        <li>Ilustraciones por capítulo</li>
+                                        <li>Infografías</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Elementos Multimedia:</strong>
+                                    <ul>
+                                        <li>Videos explicativos cortos</li>
+                                        <li>Podcast complementario</li>
+                                        <li>Plantillas descargables</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <h4>3. Automatización y APIs: El Siguiente Nivel</h4>
+                        
+                        <div class="content-block">
+                            <h5>⚡ De Usuario a Constructor: Automatiza con IA</h5>
+                            
+                            <h6>Herramientas No-Code para Automatización IA</h6>
+                            <div class="tools-grid">
+                                <div class="tool-card">
+                                    <div class="tool-icon">⚡</div>
+                                    <div class="tool-name"><a href="https://zapier.com/" target="_blank">Zapier + AI</a></div>
+                                    <div class="tool-description">Conecta ChatGPT con 5000+ apps</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🤖</div>
+                                    <div class="tool-name"><a href="https://www.make.com/" target="_blank">Make (Integromat)</a></div>
+                                    <div class="tool-description">Flujos visuales complejos con IA</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🔧</div>
+                                    <div class="tool-name"><a href="https://bubble.io/" target="_blank">Bubble + AI Plugins</a></div>
+                                    <div class="tool-description">Apps completas con IA integrada</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="practice-box">
+                            <h4><span class="practice-number">17</span> Tu Primer Bot Automatizado</h4>
+                            <p><strong>Objetivo:</strong> Crear una automatización que use IA para resolver un problema real.</p>
+                            
+                            <h5>Proyecto: Asistente de Email Inteligente</h5>
+                            
+                            <p><strong>Flujo en <a href="https://zapier.com/" target="_blank">Zapier</a>:</strong></p>
+                            <ol>
+                                <li><strong>Trigger:</strong> Nuevo email en Gmail con etiqueta "Urgente"</li>
+                                <li><strong><a href="https://chat.openai.com/" target="_blank">ChatGPT</a>:</strong> Analiza el email y extrae:
+                                    <ul>
+                                        <li>Sentimiento (positivo/negativo/neutro)</li>
+                                        <li>Acciones requeridas</li>
+                                        <li>Nivel de prioridad</li>
+                                        <li>Resumen en 1 línea</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Condicional:</strong>
+                                    <ul>
+                                        <li>Si negativo → Notificación Slack inmediata</li>
+                                        <li>Si acción requerida → Crear tarea en Notion</li>
+                                        <li>Si pregunta → Draft de respuesta</li>
+                                    </ul>
+                                </li>
+                                <li><strong><a href="https://chat.openai.com/" target="_blank">ChatGPT</a>:</strong> Genera respuesta apropiada</li>
+                                <li><strong>Gmail:</strong> Crea borrador con la respuesta</li>
+                            </ol>
+                        </div>
+
+                        <h4>4. El Futuro de la IA: Qué Viene y Cómo Prepararte</h4>
+                        
+                        <div class="content-block">
+                            <h5>🔮 Las Tendencias que Definirán 2025-2027</h5>
+                            
+                            <h6>1. Agentes IA Autónomos</h6>
+                            <p>IAs que no solo responden, sino que actúan proactivamente:</p>
+                            <ul>
+                                <li><strong><a href="https://github.com/Significant-Gravitas/AutoGPT" target="_blank">AutoGPT</a>:</strong> IA que se asigna tareas a sí misma</li>
+                                <li><strong><a href="https://github.com/yoheinakajima/babyagi" target="_blank">BabyAGI</a>:</strong> Gestión autónoma de proyectos</li>
+                                <li><strong><a href="https://agentgpt.reworkd.ai/" target="_blank">AgentGPT</a>:</strong> Navegación web autónoma</li>
+                            </ul>
+                            
+                            <h6>2. IA Multimodal Nativa</h6>
+                            <p>Una sola IA que entiende y genera TODO:</p>
+                            <ul>
+                                <li>Texto + Imagen + Video + Audio + 3D</li>
+                                <li>Contexto persistente entre modalidades</li>
+                                <li>Razonamiento visual-textual integrado</li>
+                            </ul>
+                            
+                            <h6>3. Personalización Extrema</h6>
+                            <ul>
+                                <li>IAs que aprenden tu estilo</li>
+                                <li>Fine-tuning personal accesible</li>
+                                <li>Memoria a largo plazo</li>
+                            </ul>
+                            
+                            <h6>4. IA en el Edge</h6>
+                            <ul>
+                                <li>Modelos potentes en tu dispositivo</li>
+                                <li>Sin latencia, sin internet</li>
+                                <li>Privacidad total</li>
+                            </ul>
+                        </div>
+
+                        <div class="practice-box">
+                            <h4><span class="practice-number">18</span> Debate Final: Implicaciones y Ética</h4>
+                            <p><strong>Objetivo:</strong> Reflexión profunda sobre el impacto de la IA.</p>
+                            
+                            <h5>Temas de Debate Estructurado</h5>
+                            
+                            <h6>Ronda 1: El Futuro del Trabajo Creativo</h6>
+                            <ul>
+                                <li>¿Qué trabajos creativos cambiarán más en 5 años?</li>
+                                <li>¿Nuevas profesiones que surgirán?</li>
+                                <li>¿Cómo diferenciarse cuando todos tienen IA?</li>
+                            </ul>
+                            
+                            <h6>Ronda 2: Verdad y Autenticidad</h6>
+                            <ul>
+                                <li>¿Cómo verificaremos qué es real?</li>
+                                <li>¿Debería haber marcas de agua obligatorias?</li>
+                                <li>¿Qué pasa con el valor de lo "hecho a mano"?</li>
+                            </ul>
+                            
+                            <h6>Ronda 3: Preparación Personal</h6>
+                            <ul>
+                                <li>¿Qué habilidades son "a prueba de IA"?</li>
+                                <li>¿Cómo mantenerse actualizado?</li>
+                                <li>¿Cuál es tu estrategia personal?</li>
+                            </ul>
+                            
+                            <h6>Ejercicio Final: Tu Manifiesto IA</h6>
+                            <p>Cada participante escribe su "Manifiesto Personal de IA":</p>
+                            <ul>
+                                <li>Cómo usaré la IA éticamente</li>
+                                <li>Qué líneas no cruzaré</li>
+                                <li>Cómo la integraré en mi trabajo</li>
+                                <li>Mi visión del futuro ideal con IA</li>
+                            </ul>
+                        </div>
+
+                        <h4>5. Recursos y Comunidad: Tu Journey Continúa</h4>
+                        
+                        <div class="content-block">
+                            <h5>📚 Kit de Supervivencia del Explorador IA</h5>
+                            
+                            <h6>Recursos Esenciales</h6>
+                            <ul>
+                                <li><strong>Newsletters:</strong>
+                                    <ul>
+                                        <li>The Neuron</li>
+                                        <li>Ben's Bites</li>
+                                        <li>The Rundown</li>
+                                    </ul>
+                                </li>
+                                <li><strong>YouTube:</strong>
+                                    <ul>
+                                        <li>Matt Wolfe</li>
+                                        <li>Olivio Sarikas</li>
+                                        <li>AI Explained</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Comunidades:</strong>
+                                    <ul>
+                                        <li>r/singularity</li>
+                                        <li>Discord de Midjourney</li>
+                                        <li>Communities.openai.com</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Herramientas de Tracking:</strong>
+                                    <ul>
+                                        <li>There's an AI for That</li>
+                                        <li>Future Tools</li>
+                                        <li>AI Tool Directory</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="cta-section">
+                            <h2 class="cta-title">🚀 ¡Felicidades, AI Creator!</h2>
+                            <p class="cta-description">
+                                Has completado un viaje transformador. No solo aprendiste a usar herramientas, 
+                                aprendiste a pensar con IA. Ahora tienes el poder de crear cosas que hace un año 
+                                eran imposibles. El futuro está en tus manos.
+                            </p>
+                            <p style="font-size: 1.2rem; margin-top: 20px;">
+                                <strong>Recuerda:</strong> La IA es una herramienta de amplificación. 
+                                Amplifica tu creatividad, tu productividad, tu impacto. 
+                                Úsala sabiamente, éticamente, y sin límites creativos.
+                            </p>
+                            <p style="font-size: 1.5rem; margin-top: 30px; color: var(--color-primary);">
+                                ¡Ahora ve y crea el futuro! 🎨🤖✨
+                            </p>
+                        </div>
+                    </div>
+                </details>
+                
+                <!-- MÓDULO 5: DESAFÍOS PRÁCTICOS -->
+                <details class="module-card">
+                    <summary class="module-header">
+                        <span class="module-number">05</span>
+                        <h3>Desafíos Prácticos: Tu Portfolio de IA</h3>
+                        <p class="module-subtitle">Es hora de demostrar lo que has aprendido. Completa estos desafíos para construir un portfolio que demuestre tu dominio sobre la creación y estrategia con IA.</p>
+                        <span class="module-icon"></span>
+                    </summary>
+                    
+                    <div class="module-content">
+                        <h4>20 Desafíos para el Creador IA Moderno</h4>
+                        <div class="practice-list content-block">
+                           <ol>
+                                <li><strong>Nivel 1: El Resumidor Experto.</strong> Toma un artículo de 3000 palabras y crea un resumen de 150 palabras, una lista de 5 puntos clave y 3 preguntas que el artículo no responde.</li>
+                                <li><strong>Nivel 2: El Escritor de Emails Fantasma.</strong> Redacta tres versiones de un email para pedir un aumento de sueldo: una formal, una asertiva y una colaborativa.</li>
+                                <li><strong>Nivel 3: La Máquina de Ideas.</strong> Genera 20 ideas para un nuevo sabor de helado, categorízalas y elige las 3 más prometedoras con una breve justificación.</li>
+                                <li><strong>Nivel 4: El Traductor Cultural.</strong> Traduce un refrán popular de tu idioma al inglés y luego pide a la IA que explique el matiz cultural que se pierde en la traducción literal.</li>
+                                <li><strong>Nivel 5: El Community Manager Instantáneo.</strong> Crea 5 posts para Instagram sobre un hobby que te apasione, incluyendo sugerencias de imágenes y hashtags.</li>
+                                <li><strong>Nivel 6: El Director de Branding.</strong> Desarrolla un nombre, un eslogan y una descripción de la misión para una cafetería ficticia con temática espacial.</li>
+                                <li><strong>Nivel 7: El Cuentacuentos Visual.</strong> Escribe una historia infantil de 300 palabras y genera 3 ilustraciones clave que acompañen la narración.</li>
+                                <li><strong>Nivel 8: El Diseñador de Presentaciones.</strong> Crea el guion y la estructura de una presentación de 10 diapositivas para vender un coche volador a inversores.</li>
+                                <li><strong>Nivel 9: El Animador de Logos.</strong> Diseña un logo simple para una marca personal y luego crea un prompt para animarlo como un GIF de 5 segundos.</li>
+                                <li><strong>Nivel 10: El Productor de Podcasts.</strong> Genera un guion para una introducción de podcast de 30 segundos, crea la música de fondo y narra el guion con una voz de IA.</li>
+                                <li><strong>Nivel 11: El Estratega de Contenidos.</strong> Diseña un calendario de contenidos de una semana para una marca de ropa sostenible, incluyendo temas para blog, redes sociales y un video corto.</li>
+                                <li><strong>Nivel 12: El Creador de Tutoriales.</strong> Crea un guion detallado para un video tutorial de 2 minutos sobre "cómo hacer el café perfecto", genera las imágenes de los pasos y una voz en off.</li>
+                                <li><strong>Nivel 13: El Diseñador de Personajes.</strong> Crea una hoja de personaje completa para un videojuego de fantasía, incluyendo su historia, habilidades, y 4 vistas del personaje (frontal, trasera, lateral).</li>
+                                <li><strong>Nivel 14: El Arquitecto de Automatización.</strong> Diseña un flujo de trabajo en Zapier o Make que, cuando recibas un email con la palabra "factura", extraiga los datos y los añada a una hoja de cálculo de Google.</li>
+                                <li><strong>Nivel 15: El Compositor de Bandas Sonoras.</strong> Genera una canción completa de 2 minutos que podría ser la banda sonora de una escena de persecución en una película de ciencia ficción.</li>
+                                <li><strong>Nivel 16: El Director de Arte Cinematográfico.</strong> Crea un "mood board" visual con 10 imágenes que definan la estética de una película de terror gótico ambientada en el Amazonas.</li>
+                                <li><strong>Nivel 17: El Creador de Cursos Express.</strong> Desarrolla el temario y el contenido del primer módulo de un mini-curso online sobre "Introducción a la jardinería para apartamentos".</li>
+                                <li><strong>Nivel 18: El Autor Interactivo.</strong> Escribe el primer capítulo de un ebook y genera 3 ilustraciones, un resumen en audio y un breve video animado que lo complemente.</li>
+                                <li><strong>Nivel 19: El Ingeniero de Mentores IA.</strong> Crea un "Custom GPT" o un prompt de sistema avanzado que actúe como un coach de negociación, capaz de simular escenarios y dar feedback.</li>
+                                <li><strong>Nivel 20: El Arquitecto Web.</strong> Diseña y redacta todo el contenido para una página web de una sola página (landing page) para un producto ficticio, incluyendo la estructura, los textos, y los prompts para generar todas las imágenes necesarias.</li>
+                           </ol>
+                        </div>
+                    </div>
+                </details>
+
+            </div>
+        </section>
+
+        <!-- TOOL INDEX SECTION -->
+        <section class="container" id="tool-index">
+            <div class="section-header">
+                <h2 class="section-title">Índice de Referencia de Herramientas</h2>
+                <p class="section-description">
+                    Accede directamente a todas las herramientas de IA mencionadas en el curso. Tu arsenal digital, a un solo clic de distancia.
+                </p>
+            </div>
+
+            <!-- IA de Texto -->
+            <h4>IA de Texto y Conversación</h4>
+            <div class="tools-grid">
+                <div class="tool-card-link">
+                    <a href="https://chat.openai.com/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">ChatGPT</div>
+                            <div class="tool-description">El estándar de la industria para IA conversacional, escritura, código y razonamiento.</div>
+                        </div>
+                    </a>
                 </div>
-                <div class="image-navigation">
-                    <button class="image-nav-btn" id="prevImageBtn" onclick="navigateImage(-1)">←</button>
-                    <div class="image-counter" id="imageCounter"></div>
-                    <button class="image-nav-btn" id="nextImageBtn" onclick="navigateImage(1)">→</button>
+                <div class="tool-card-link">
+                    <a href="https://claude.ai/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">Claude</div>
+                            <div class="tool-description">Conocido por su gran ventana de contexto, ideal para analizar documentos largos y por su tono más "humano".</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="tool-card-link">
+                    <a href="https://gemini.google.com/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">Google Gemini</div>
+                            <div class="tool-description">Nativamente multimodal y profundamente integrado con el ecosistema de Google.</div>
+                        </div>
+                    </a>
                 </div>
             </div>
+
+            <!-- IA de Imagen -->
+            <h4>IA de Imagen</h4>
+            <div class="tools-grid">
+                <div class="tool-card-link">
+                    <a href="https://www.midjourney.com/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">Midjourney</div>
+                            <div class="tool-description">El rey de la calidad artística y la estética cinematográfica. Funciona a través de Discord.</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="tool-card-link">
+                    <a href="https://openai.com/dall-e-3" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">DALL-E 3</div>
+                            <div class="tool-description">Integrado en ChatGPT, excelente para seguir prompts complejos y generar texto dentro de las imágenes.</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="tool-card-link">
+                    <a href="https://stablediffusionweb.com/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">Stable Diffusion</div>
+                            <div class="tool-description">La opción de código abierto, ofrece un control sin precedentes a través de modelos y extensiones.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- IA de Video -->
+            <h4>IA de Video</h4>
+            <div class="tools-grid">
+                <div class="tool-card-link">
+                    <a href="https://runwayml.com/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">Runway</div>
+                            <div class="tool-description">Líder en generación de video desde texto, imagen o video. Un completo estudio de edición IA.</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="tool-card-link">
+                    <a href="https://pika.art/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">Pika</div>
+                            <div class="tool-description">Potente generador de video con excelentes capacidades de animación y control de movimiento.</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="tool-card-link">
+                    <a href="https://www.heygen.com/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">HeyGen</div>
+                            <div class="tool-description">Crea avatares realistas y videos de clonación de voz para presentaciones y marketing.</div>
+                        </div>
+                    </a>
+                </div>
+                 <div class="tool-card-link">
+                    <a href="https://kaiber.ai/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">Kaiber</div>
+                            <div class="tool-description">Transforma tus videos e imágenes en animaciones artísticas y visuales psicodélicas.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- IA de Audio y Música -->
+            <h4>IA de Audio y Música</h4>
+            <div class="tools-grid">
+                <div class="tool-card-link">
+                    <a href="https://suno.com/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">Suno</div>
+                            <div class="tool-description">Crea canciones completas (música y letra) en cualquier género a partir de un simple prompt de texto.</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="tool-card-link">
+                    <a href="https://www.udio.com/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">Udio</div>
+                            <div class="tool-description">Un potente competidor de Suno, conocido por su alta calidad de audio y versatilidad de géneros.</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="tool-card-link">
+                    <a href="https://elevenlabs.io/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">ElevenLabs</div>
+                            <div class="tool-description">El estándar de oro para la síntesis y clonación de voz, con un realismo y control emocional increíbles.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- IA Especializada y de Productividad -->
+            <h4>IA Especializada y de Productividad</h4>
+            <div class="tools-grid">
+                <div class="tool-card-link">
+                    <a href="https://www.remove.bg/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">Remove.bg</div>
+                            <div class="tool-description">Elimina el fondo de cualquier imagen de forma instantánea y precisa con un solo clic.</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="tool-card-link">
+                    <a href="https://www.deepl.com/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">DeepL</div>
+                            <div class="tool-description">Considerado el traductor automático con mayor matiz y precisión del mercado.</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="tool-card-link">
+                    <a href="https://otter.ai/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">Otter.ai</div>
+                            <div class="tool-description">Transcribe reuniones y entrevistas en tiempo real, identificando hablantes y generando resúmenes.</div>
+                        </div>
+                    </a>
+                </div>
+                 <div class="tool-card-link">
+                    <a href="https://gamma.app/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">Gamma</div>
+                            <div class="tool-description">Crea presentaciones, documentos y páginas web pulidas a partir de una simple instrucción de texto.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Automatización y Desarrollo -->
+            <h4>Automatización y Desarrollo</h4>
+            <div class="tools-grid">
+                <div class="tool-card-link">
+                    <a href="https://zapier.com/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">Zapier</div>
+                            <div class="tool-description">Conecta tus aplicaciones favoritas (Gmail, Slack, etc.) con modelos de IA para automatizar flujos de trabajo.</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="tool-card-link">
+                    <a href="https://www.make.com/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">Make (Integromat)</div>
+                            <div class="tool-description">Una potente plataforma visual para crear automatizaciones complejas que integren múltiples IAs.</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="tool-card-link">
+                    <a href="https://agentgpt.reworkd.ai/" target="_blank">
+                        <div class="tool-card-content">
+                            <div class="tool-name">AgentGPT</div>
+                            <div class="tool-description">Experimenta con agentes de IA autónomos que pueden navegar por la web y ejecutar tareas complejas por sí mismos.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2025 IA Práctica: De Cero a Creador | Creado con 💜 y mucha IA</p>
         </div>
-    </div>
+    </footer>
 
     <script>
-        // Variables globales
-        var currentBook = 0;
-        var autoplayInterval;
-        var isAutoplayActive = true;
-        var totalBooks = 6;
-        var currentGallery = null;
-        var currentImageIndex = 0;
-        var currentLanguage = 'es';
+        // Acordeón mejorado con animaciones suaves
+        const moduleCards = document.querySelectorAll('.module-card');
+        
+        moduleCards.forEach(card => {
+            card.addEventListener('toggle', (event) => {
+                if (card.open) {
+                    // Cerrar otros módulos
+                    moduleCards.forEach(otherCard => {
+                        if (otherCard !== card && otherCard.open) {
+                            otherCard.open = false;
+                        }
+                    });
+                    
+                    // Scroll suave al módulo abierto
+                    setTimeout(() => {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 100);
+                }
+            });
+        });
 
-        // Datos de dashboards
-        var dashboards = {
-            ventas: {
-                images: [
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas1.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas2.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas3.jpg"
-                ]
-            },
-            futbol: {
-                images: [
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol1.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol2.jpg"
-                ]
-            },
-            presencia: {
-                images: [
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas1.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas2.jpg"
-                ]
-            },
-            coches: {
-                images: [
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler1.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler2.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler3.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler4.jpg"
-                ]
-            }
+        // Animación de números en stats
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
         };
 
-        // Traducciones
-        var translations = {
-            es: {
-                dashboardTitles: {
-                    ventas: "📊 Análisis de Ventas - Dashboard Completo",
-                    futbol: "⚽ Liga de Fútbol - Estadísticas Deportivas", 
-                    presencia: "📅 Control de Presencia - Gestión de Personal",
-                    coches: "🚗 Alquiler de Coches - Análisis del Sector Automovilístico"
-                },
-                cardTitles: {
-                    ventas: "📊 Análisis de Ventas",
-                    futbol: "⚽ Liga de Fútbol",
-                    presencia: "📅 Control de Presencia",
-                    coches: "🚗 Alquiler de Coches"
-                },
-                cardDescriptions: {
-                    ventas: "Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.",
-                    futbol: "Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.",
-                    presencia: "Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.",
+        const animateValue = (element, start, end, duration) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                element.textContent = Math.floor(progress * (end - start) + start) + (element.textContent.includes('+') ? '+' : '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.animated) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const value = parseInt(stat.textContent);
+                        animateValue(stat, 0, value, 1000);
+                    });
+                    entry.target.animated = true;
+                }
+            });
+        }, observerOptions);
+
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) {
+            statsObserver.observe(heroStats);
+        }
+
+        // Efecto parallax suave en hero
+        let ticking = false;
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && window.innerWidth > 768) { // Disable on mobile for performance
+                const heroContent = document.querySelector('.hero-content');
+                heroContent.style.transform = `translateY(${scrolled * 0.4}px)`;
+                heroContent.style.opacity = 1 - scrolled / (window.innerHeight * 0.7);
+            }
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestTick, { passive: true });
+        
+        // --- Funcionalidad del botón de copiar ---
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const codeBlock = button.parentElement;
+                const codeToCopy = codeBlock.querySelector('code').innerText;
+
+                // Crear un textarea temporal para copiar el texto
+                const textArea = document.createElement('textarea');
+                textArea.value = codeToCopy;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    button.textContent = '¡Copiado!';
+                    button.classList.add('copied');
+                } catch (err) {
+                    console.error('Error al copiar texto: ', err);
+                    button.textContent = 'Error';
+                }
+                document.body.removeChild(textArea);
+
+                // Revertir el texto del botón después de 1.5 segundos
+                setTimeout(() => {
+                    button.textContent = 'Copiar';
+                    button.classList.remove('copied');
+                }, 1500);
+            });
+        });
+
+    </script>
+</body>
+</html>
