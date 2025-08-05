@@ -1550,7 +1550,7 @@
                 },
                 genre: { es: "Ciencia Ficción / Thriller", en: "Sci-Fi / Thriller" },
                 genreColor: "linear-gradient(45deg, #c0392b, #8e44ad)",
-                link: "https://www.amazon.es/dp/B07B46838Q",
+                link: "https://www.amazon.es/s?k=FIN+Pedro+G.+Guirao",
                 trailer: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/videos/FIN.mp4",
                 trailer2: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/videos/FIN2.mp4"
             },
@@ -1563,7 +1563,7 @@
                 },
                 genre: { es: "Comedia / Sátira", en: "Comedy / Satire" },
                 genreColor: "linear-gradient(45deg, #f39c12, #e67e22)",
-                link: "https://www.amazon.es/dp/B07B45G562",
+                link: "https://www.amazon.es/s?k=OH+MY+GOD+Pedro+G.+Guirao",
                 audio: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/audios/OHMYGOD.mp3"
             },
             {
@@ -1575,7 +1575,7 @@
                 },
                 genre: { es: "Ciencia Ficción / Humor", en: "Sci-Fi / Humor" },
                 genreColor: "linear-gradient(45deg, #27ae60, #2ecc71)",
-                link: "https://www.amazon.es/dp/B07B46T5Y9"
+                link: "https://www.amazon.es/s?k=MANUAL+BASICO+DE+CONQUISTA+Pedro+G.+Guirao"
             },
             {
                 title: { es: "TOCATA Y FUGA DE LA TENIENTE ESCALI", en: "TOCATA AND FUGUE OF LIEUTENANT ESCALI" },
@@ -1586,7 +1586,7 @@
                 },
                 genre: { es: "Space Opera", en: "Space Opera" },
                 genreColor: "linear-gradient(45deg, #2980b9, #3498db)",
-                link: "https://www.amazon.es/dp/B07B46D12D"
+                link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI"
             },
             {
                 title: { es: "ESCALI'S BLUES", en: "ESCALI'S BLUES" },
@@ -1597,7 +1597,7 @@
                 },
                 genre: { es: "Space Opera", en: "Space Opera" },
                 genreColor: "linear-gradient(45deg, #16a085, #1abc9c)",
-                link: "https://www.amazon.es/dp/B07B468L58"
+                link: "https://www.amazon.es/s?k=ESCALIS+BLUES+Pedro+G.+Guirao"
             },
             {
                 title: { es: "ÉXODOS", en: "EXODUS" },
@@ -1608,7 +1608,7 @@
                 },
                 genre: { es: "Ciencia Ficción / Distopía", en: "Sci-Fi / Dystopian" },
                 genreColor: "linear-gradient(45deg, #8e44ad, #9b59b6)",
-                link: "https://www.amazon.es/dp/B07B481T5V"
+                link: "https://www.amazon.es/s?k=EXODOS+Kia+P.+Cabdill"
             }
         ];
 
@@ -1623,7 +1623,21 @@
 
             // Actualizar todos los elementos con data-text-es/en
             document.querySelectorAll('[data-text-es]').forEach(el => {
-                el.innerHTML = el.dataset[`text-${lang}`] || el.dataset['text-es'];
+                // Para elementos anidados, solo actualizamos el nodo de texto si existe
+                if (el.dataset[`text-${lang}`]) {
+                    // Find the text node to update, avoiding clobbering child elements like icons
+                    for (const node of el.childNodes) {
+                        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0) {
+                            node.textContent = ` ${el.dataset[`text-${lang}`]}`;
+                            break;
+                        } else if(node.nodeType === Node.ELEMENT_NODE && node.dataset[`text-${lang}`]) {
+                             node.innerHTML = node.dataset[`text-${lang}`];
+                        }
+                    }
+                    if(el.children.length === 0) {
+                        el.innerHTML = el.dataset[`text-${lang}`];
+                    }
+                }
             });
             
             // Actualizar títulos y descripciones de las tarjetas de dashboards
@@ -1635,7 +1649,10 @@
                 if(cardDescEl) cardDescEl.innerHTML = translations[lang].cardDescriptions[key];
                 
                 const viewBtn = cardDescEl.nextElementSibling;
-                if(viewBtn) viewBtn.innerHTML = translations[lang].viewAllPages[key];
+                if(viewBtn) {
+                    const icon = viewBtn.innerHTML.split(" ")[0];
+                    viewBtn.innerHTML = `${icon} ${translations[lang].viewAllPages[key].split(" ").slice(1).join(" ")}`;
+                }
             });
 
             // Actualizar la información del libro actual
@@ -1643,7 +1660,9 @@
             
             // Actualizar texto del botón de autoplay
             const autoplayBtn = document.getElementById('autoplayBtn');
-            autoplayBtn.innerHTML = isAutoplayActive ? translations[lang].pauseCarousel : translations[lang].resumeCarousel;
+            const icon = autoplayBtn.innerHTML.split(" ")[0];
+            const text = isAutoplayActive ? translations[lang].pauseCarousel : translations[lang].resumeCarousel;
+            autoplayBtn.innerHTML = `${icon} ${text.split(" ").slice(1).join(" ")}`;
         }
 
         // --- Lógica del carrusel de libros ---
@@ -1657,7 +1676,15 @@
             genreEl.textContent = book.genre[currentLanguage];
             genreEl.style.background = book.genreColor;
 
-            document.getElementById('bookLink').href = book.link;
+            const amazonLink = document.getElementById('bookLink');
+            amazonLink.href = book.link;
+            amazonLink.onclick = (e) => {
+                // Prevenir el comportamiento por defecto solo si no es un clic de en medio o con ctrl/cmd
+                if (!e.metaKey && !e.ctrlKey && e.button === 0) {
+                    e.preventDefault();
+                    window.open(amazonLink.href, '_blank');
+                }
+            };
 
             // Gestionar botones de media
             const trailerBtn = document.getElementById('bookTrailerLink');
@@ -1736,12 +1763,13 @@
         function toggleAutoplay() {
             isAutoplayActive = !isAutoplayActive;
             const btn = document.getElementById('autoplayBtn');
+            const icon = btn.innerHTML.split(" ")[0];
             if (isAutoplayActive) {
                 startAutoplay();
-                btn.innerHTML = translations[currentLanguage].pauseCarousel;
+                btn.innerHTML = `${icon} ${translations[currentLanguage].pauseCarousel.split(" ").slice(1).join(" ")}`;
             } else {
                 clearInterval(autoplayInterval);
-                btn.innerHTML = translations[currentLanguage].resumeCarousel;
+                btn.innerHTML = `${icon} ${translations[currentLanguage].resumeCarousel.split(" ").slice(1).join(" ")}`;
             }
         }
 
@@ -1758,7 +1786,7 @@
 
         // --- Lógica de los Modales ---
         function openGallery(dashboardKey) {
-            event.stopPropagation(); // Evita que el click se propague a elementos padres
+            if (event) event.stopPropagation(); // Evita que el click se propague a elementos padres
             currentGallery = dashboardKey;
             const galleryModal = document.getElementById('galleryModal');
             const galleryImages = document.getElementById('galleryImages');
@@ -1806,7 +1834,7 @@
 
             modalImg.src = images[currentImageIndex];
             
-            let dashboardName = translations[currentLanguage].cardTitles[currentGallery] || currentGallery;
+            let dashboardName = (translations[currentLanguage].cardTitles[currentGallery] || currentGallery).replace(/📊 |⚽ |📅 |🚗 /g, '');
             modalTitle.textContent = translations[currentLanguage].imageModalTitle
                 .replace('{index}', currentImageIndex + 1)
                 .replace('{total}', totalImages)
@@ -1845,8 +1873,6 @@
             document.getElementById('videoTitle').textContent = `🎬 ${title}`;
             
             source.src = videoSrc;
-            // Opcional: añadir otras fuentes
-            // document.getElementById('videoSourceWebm').src = videoSrc.replace('.mp4', '.webm');
             
             player.load();
             player.style.display = 'block';
@@ -1860,7 +1886,15 @@
             };
             
             modal.style.display = 'block';
-            player.play();
+            const playPromise = player.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    // Ignoramos el AbortError que ocurre si el usuario cierra el modal rápidamente.
+                    if (error.name !== 'AbortError') {
+                        console.error("Error al reproducir el video:", error);
+                    }
+                });
+            }
         }
 
         function closeVideo() {
@@ -1891,7 +1925,15 @@
             };
 
             modal.style.display = 'block';
-            player.play();
+            const playPromise = player.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    // Ignoramos el AbortError que ocurre si el usuario cierra el modal rápidamente.
+                    if (error.name !== 'AbortError') {
+                        console.error("Error al reproducir el audio:", error);
+                    }
+                });
+            }
         }
 
         function closeAudio() {
