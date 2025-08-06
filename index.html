@@ -593,103 +593,7 @@
             color: white;
         }
 
-        .audio-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 1000;
-            padding: 20px;
-        }
-
-        .audio-content {
-            max-width: 600px;
-            max-height: 400px;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            margin: auto;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .audio-header {
-            background: linear-gradient(45deg, #2E8B57, #3CB371);
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .audio-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .close-audio {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .audio-player {
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 200px;
-        }
-
-        .audio-player audio {
-            width: 100%;
-            max-width: 500px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .audio-info {
-            text-align: center;
-            color: #333;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        .audio-fallback {
-            color: #333;
-            text-align: center;
-            padding: 40px;
-            font-size: 1.2rem;
-            background: #f8f9fa;
-            border-radius: 10px;
-            margin: 20px;
-        }
-
-        .audio-fallback a {
-            color: #2E8B57;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .audio-fallback a:hover {
-            text-decoration: underline;
-        }
-
-        /* MEJORAS PARA EL MODAL DE VIDEO */
-        .video-modal {
+        .audio-modal, .video-modal {
             display: none;
             position: fixed;
             top: 0;
@@ -702,7 +606,7 @@
             overflow-y: auto;
         }
 
-        .video-content {
+        .audio-content, .video-content {
             width: 100%;
             min-height: 100vh;
             background: #000;
@@ -711,8 +615,7 @@
             position: relative;
         }
 
-        .video-header {
-            background: linear-gradient(45deg, #c0392b, #8b0000);
+        .audio-header, .video-header {
             color: white;
             padding: 20px;
             display: flex;
@@ -723,13 +626,16 @@
             z-index: 10;
             flex-shrink: 0;
         }
+        
+        .video-header { background: linear-gradient(45deg, #c0392b, #8b0000); }
+        .audio-header { background: linear-gradient(45deg, #2E8B57, #3CB371); }
 
-        .video-title {
+        .audio-title, .video-title {
             font-size: 1.5rem;
             font-weight: bold;
         }
 
-        .close-video {
+        .close-audio, .close-video {
             background: rgba(255,255,255,0.2);
             border: none;
             color: white;
@@ -744,12 +650,12 @@
             justify-content: center;
         }
 
-        .close-video:hover {
+        .close-audio:hover, .close-video:hover {
             background: rgba(255,255,255,0.3);
             transform: scale(1.1);
         }
 
-        .video-player {
+        .audio-player, .video-player {
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -760,17 +666,17 @@
             min-height: calc(100vh - 80px);
         }
 
-        .video-player video {
+        .video-player video, .audio-player audio {
             max-width: 100%;
-            max-height: 80vh;
-            width: auto;
-            height: auto;
             border-radius: 10px;
             background: #000;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
+        .video-player video { max-height: 80vh; width: auto; height: auto; }
+        .audio-player audio { width: 90%; max-width: 500px; }
 
-        .video-fallback {
+
+        .audio-fallback, .video-fallback {
             color: white;
             text-align: center;
             padding: 40px;
@@ -781,15 +687,9 @@
             max-width: 800px;
         }
 
-        .video-fallback a {
-            color: #4ecdc4;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .video-fallback a:hover {
-            text-decoration: underline;
-        }
+        .video-fallback a { color: #4ecdc4; text-decoration: none; font-weight: bold; }
+        .audio-fallback a { color: #2E8B57; text-decoration: none; font-weight: bold; }
+        .video-fallback a:hover, .audio-fallback a:hover { text-decoration: underline; }
 
         .gallery-modal {
             display: none;
@@ -1140,23 +1040,23 @@
                 <h1>Pedro Guirao Gil</h1>
                 <div class="profile-info">
                     <div class="highlight-text">
-                        <span class="part" data-part="0" data-text-es="Especialista en Power BI y Microsoft Excel" data-text-en="Power BI and Microsoft Excel Specialist">Especialista en Power BI y Microsoft Excel</span>
+                        <span class="part" data-text-es="Especialista en Power BI y Microsoft Excel" data-text-en="Power BI and Microsoft Excel Specialist">Especialista en Power BI y Microsoft Excel</span>
                         <span> • </span>
-                        <span class="part" data-part="1" data-text-es="Formador" data-text-en="Trainer">Formador</span>
+                        <span class="part" data-text-es="Formador" data-text-en="Trainer">Formador</span>
                         <span> • </span>
-                        <span class="part" data-part="2" data-text-es="Consultor" data-text-en="Consultant">Consultor</span>
+                        <span class="part" data-text-es="Consultor" data-text-en="Consultant">Consultor</span>
                         <span> • </span>
-                        <span class="part" data-part="3" data-text-es="Novelista" data-text-en="Novelist">Novelista</span>
+                        <span class="part" data-text-es="Novelista" data-text-en="Novelist">Novelista</span>
                     </div>
                 </div>
             </div>
             
             <div class="section-tabs">
-                <button class="tab-button active" onclick="showSection('dashboards')" data-text-es="📊 DASHBOARDS POWER BI" data-text-en="📊 POWER BI DASHBOARDS">
-                    📊 DASHBOARDS POWER BI
+                <button class="tab-button active" onclick="showSection('dashboards')">
+                    <span data-text-es="📊 DASHBOARDS POWER BI" data-text-en="📊 POWER BI DASHBOARDS">📊 DASHBOARDS POWER BI</span>
                 </button>
-                <button class="tab-button" onclick="showSection('books')" data-text-es="📚 MIS NOVELAS" data-text-en="📚 MY NOVELS">
-                    📚 MIS NOVELAS
+                <button class="tab-button" onclick="showSection('books')">
+                    <span data-text-es="📚 MIS NOVELAS" data-text-en="📚 MY NOVELS">📚 MIS NOVELAS</span>
                 </button>
             </div>
         </div>
@@ -1164,17 +1064,17 @@
         <!-- Sección de Dashboards -->
         <div id="dashboards" class="section-content active">
             <div class="nav-links">
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiYTJjN2E3MjAtZDdhMC00NmE5LThhZmEtMjU1MzA1ZDAzZDI2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-ventas" data-text-es="📊 ANÁLISIS DE VENTAS" data-text-en="📊 SALES ANALYSIS">
-                    📊 ANÁLISIS DE VENTAS
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiYTJjN2E3MjAtZDdhMC00NmE5LThhZmEtMjU1MzA1ZDAzZDI2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-ventas">
+                    <span data-text-es="📊 ANÁLISIS DE VENTAS" data-text-en="📊 SALES ANALYSIS">📊 ANÁLISIS DE VENTAS</span>
                 </a>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiMGRlZjM5MjQtYjE0MC00MWMwLTllNjQtYmYwMTFlN2Y2NWE2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-futbol" data-text-es="⚽ LIGA DE FÚTBOL" data-text-en="⚽ FOOTBALL LEAGUE">
-                    ⚽ LIGA DE FÚTBOL
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiMGRlZjM5MjQtYjE0MC00MWMwLTllNjQtYmYwMTFlN2Y2NWE2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-futbol">
+                    <span data-text-es="⚽ LIGA DE FÚTBOL" data-text-en="⚽ FOOTBALL LEAGUE">⚽ LIGA DE FÚTBOL</span>
                 </a>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiNDVlNWVhZGEtZjNjYi00NmM4LTg2NzEtMDQzZDNkY2YzMmE5IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9&pageName=ReportSection" target="_blank" class="modern-nav-button btn-presencia" data-text-es="📅 CONTROL DE PRESENCIA" data-text-en="📅 ATTENDANCE CONTROL">
-                    📅 CONTROL DE PRESENCIA
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiNDVlNWVhZGEtZjNjYi00NmM4LTg2NzEtMDQzZDNkY2YzMmE5IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9&pageName=ReportSection" target="_blank" class="modern-nav-button btn-presencia">
+                    <span data-text-es="📅 CONTROL DE PRESENCIA" data-text-en="📅 ATTENDANCE CONTROL">📅 CONTROL DE PRESENCIA</span>
                 </a>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiMmIwNDBjZjItNWJmMi00OWFlLWI4OWEtZmJhY2QwN2M4NjMwIiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-coches" data-text-es="🚗 ALQUILER DE COCHES" data-text-en="🚗 CAR RENTAL">
-                    🚗 ALQUILER DE COCHES
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiMmIwNDBjZjItNWJmMi00OWFlLWI4OWEtZmJhY2QwN2M4NjMwIiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-coches">
+                    <span data-text-es="🚗 ALQUILER DE COCHES" data-text-en="🚗 CAR RENTAL">🚗 ALQUILER DE COCHES</span>
                 </a>
             </div>
 
@@ -1185,14 +1085,14 @@
                     </div>
                     <div class="card-content">
                         <div class="card-header">
-                            <h3 class="card-title" data-card-title="ventas">📊 Análisis de Ventas</h3>
+                            <h3 class="card-title" data-text-es="📊 Análisis de Ventas" data-text-en="📊 Sales Analysis">📊 Análisis de Ventas</h3>
                             <span class="status-badge" data-text-es="Legacy Público" data-text-en="Public Legacy">Legacy Público</span>
                         </div>
-                        <p class="card-description" data-card-description="ventas">
+                        <p class="card-description" data-text-es="Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial." data-text-en="Complete sales analysis dashboard with main KPIs, time evolution, and detailed segmentation. <strong>3 interactive pages</strong> with commercial performance metrics.">
                             Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.
                         </p>
-                        <button class="view-button" onclick="openGallery('ventas')" style="background: linear-gradient(45deg, #667eea, #764ba2);" data-text-es="📊 Ver todas las páginas (3)" data-text-en="📊 View all pages (3)">
-                            📊 Ver todas las páginas (3)
+                        <button class="view-button" onclick="openGallery('ventas')" style="background: linear-gradient(45deg, #667eea, #764ba2);">
+                            <span data-text-es="📊 Ver todas las páginas (3)" data-text-en="📊 View all pages (3)">📊 Ver todas las páginas (3)</span>
                         </button>
                     </div>
                 </div>
@@ -1203,14 +1103,14 @@
                     </div>
                     <div class="card-content">
                         <div class="card-header">
-                            <h3 class="card-title" data-card-title="futbol">⚽ Liga de Fútbol</h3>
+                            <h3 class="card-title" data-text-es="⚽ Liga de Fútbol" data-text-en="⚽ Football League">⚽ Liga de Fútbol</h3>
                             <span class="status-badge" data-text-es="Legacy Público" data-text-en="Public Legacy">Legacy Público</span>
                         </div>
-                        <p class="card-description" data-card-description="futbol">
+                        <p class="card-description" data-text-es="Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas." data-text-en="Complete statistical analysis of a football league with standings, player and team statistics. <strong>2 interactive pages</strong> with advanced sports metrics.">
                             Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.
                         </p>
-                        <button class="view-button" onclick="openGallery('futbol')" style="background: linear-gradient(45deg, #1e3a2e, #0f2419);" data-text-es="⚽ Ver todas las páginas (2)" data-text-en="⚽ View all pages (2)">
-                            ⚽ Ver todas las páginas (2)
+                        <button class="view-button" onclick="openGallery('futbol')" style="background: linear-gradient(45deg, #1e3a2e, #0f2419);">
+                            <span data-text-es="⚽ Ver todas las páginas (2)" data-text-en="⚽ View all pages (2)">⚽ Ver todas las páginas (2)</span>
                         </button>
                     </div>
                 </div>
@@ -1221,14 +1121,14 @@
                     </div>
                     <div class="card-content">
                         <div class="card-header">
-                            <h3 class="card-title" data-card-title="presencia">📅 Control de Presencia</h3>
+                            <h3 class="card-title" data-text-es="📅 Control de Presencia" data-text-en="📅 Attendance Control">📅 Control de Presencia</h3>
                             <span class="status-badge" data-text-es="Legacy Público" data-text-en="Public Legacy">Legacy Público</span>
                         </div>
-                        <p class="card-description" data-card-description="presencia">
+                        <p class="card-description" data-text-es="Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios." data-text-en="Complete control of attendance, check-ins, check-outs, vacations, and staff leave. <strong>2 interactive pages</strong> with human resources management and calendars.">
                             Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.
                         </p>
-                        <button class="view-button" onclick="openGallery('presencia')" style="background: linear-gradient(45deg, #f093fb, #f5576c);" data-text-es="🕐 Ver todas las páginas (2)" data-text-en="🕐 View all pages (2)">
-                            🕐 Ver todas las páginas (2)
+                        <button class="view-button" onclick="openGallery('presencia')" style="background: linear-gradient(45deg, #f093fb, #f5576c);">
+                             <span data-text-es="🕐 Ver todas las páginas (2)" data-text-en="🕐 View all pages (2)">🕐 Ver todas las páginas (2)</span>
                         </button>
                     </div>
                 </div>
@@ -1239,14 +1139,14 @@
                     </div>
                     <div class="card-content">
                         <div class="card-header">
-                            <h3 class="card-title" data-card-title="coches">🚗 Alquiler de Coches</h3>
+                            <h3 class="card-title" data-text-es="🚗 Alquiler de Coches" data-text-en="🚗 Car Rental">🚗 Alquiler de Coches</h3>
                             <span class="status-badge" data-text-es="Legacy Público" data-text-en="Public Legacy">Legacy Público</span>
                         </div>
-                        <p class="card-description" data-card-description="coches">
+                        <p class="card-description" data-text-es="Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>4 páginas interactivas</strong> con KPIs del sector automovilístico." data-text-en="Vehicle rental analysis dashboard with profitability, occupancy, and market trend metrics. <strong>4 interactive pages</strong> with automotive sector KPIs.">
                             Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>4 páginas interactivas</strong> con KPIs del sector automovilístico.
                         </p>
-                        <button class="view-button" onclick="openGallery('coches')" style="background: linear-gradient(45deg, #ffecd2, #fcb69f); color: #333;" data-text-es="🚗 Ver todas las páginas (4)" data-text-en="🚗 View all pages (4)">
-                            🚗 Ver todas las páginas (4)
+                        <button class="view-button" onclick="openGallery('coches')" style="background: linear-gradient(45deg, #ffecd2, #fcb69f); color: #333;">
+                            <span data-text-es="🚗 Ver todas las páginas (4)" data-text-en="🚗 View all pages (4)">🚗 Ver todas las páginas (4)</span>
                         </button>
                     </div>
                 </div>
@@ -1301,16 +1201,16 @@
                     <span class="book-genre" id="bookGenre"></span>
                     <div class="book-links-container">
                         <a href="#" target="_blank" class="book-link" id="bookLink">
-                            <span>📖</span> <span data-text-es="Ver en Amazon" data-text-en="View on Amazon">Ver en Amazon</span>
+                            <span data-text-es="📖 Ver en Tienda" data-text-en="📖 View in Store">📖 Ver en Tienda</span>
                         </a>
                         <button class="book-link" id="bookTrailerLink" style="display: none; background: #c0392b;">
-                            <span>🎬</span> <span data-text-es="Ver Booktrailer" data-text-en="Watch Booktrailer">Ver Booktrailer</span>
+                            <span data-text-es="🎬 Ver Booktrailer" data-text-en="🎬 Watch Booktrailer">🎬 Ver Booktrailer</span>
                         </button>
                         <button class="book-link" id="bookTrailerLink2" style="display: none; background: #8b0000;">
-                            <span>🎥</span> <span data-text-es="Ver Booktrailer 2" data-text-en="Watch Booktrailer 2">Ver Booktrailer 2</span>
+                            <span data-text-es="🎥 Ver Booktrailer 2" data-text-en="🎥 Watch Booktrailer 2">🎥 Ver Booktrailer 2</span>
                         </button>
                         <button class="book-link" id="bookAudioLink" style="display: none; background: #2E8B57;">
-                            <span>🎧</span> <span data-text-es="Escuchar Audio" data-text-en="Listen to Audio">Escuchar Audio</span>
+                            <span data-text-es="🎧 Escuchar Audio" data-text-en="🎧 Listen to Audio">🎧 Escuchar Audio</span>
                         </button>
                     </div>
                 </div>
@@ -1322,63 +1222,41 @@
                 </div>
 
                 <div class="autoplay-control">
-                    <button class="autoplay-btn" onclick="toggleAutoplay()" id="autoplayBtn" data-text-es="⏸️ Pausar Carrusel" data-text-en="⏸️ Pause Carousel">⏸️ Pausar Carrusel</button>
+                    <button class="autoplay-btn" onclick="toggleAutoplay()" id="autoplayBtn">
+                        <span data-text-es="⏸️ Pausar Carrusel" data-text-en="⏸️ Pause Carousel">⏸️ Pausar Carrusel</span>
+                    </button>
                 </div>
             </div>
         </div>
 
-        <!-- Modal de Audio -->
+        <!-- Modales -->
         <div id="audioModal" class="audio-modal">
             <div class="audio-content">
                 <div class="audio-header">
-                    <h3 class="audio-title" id="audioTitle">🎧 Audio Libro</h3>
+                    <h3 class="audio-title" id="audioTitle"></h3>
                     <button class="close-audio" onclick="closeAudio()">✕</button>
                 </div>
                 <div class="audio-player">
-                    <audio id="audioPlayer" controls preload="metadata" style="width: 100%;">
+                    <audio id="audioPlayer" controls preload="metadata">
                         <source id="audioSource" src="" type="audio/mpeg">
-                        <source id="audioSourceOgg" src="" type="audio/ogg">
                         Tu navegador no soporta el elemento de audio.
                     </audio>
-                    <div class="audio-info">
-                        <p><strong>🎧 Disfruta de este fragmento de audio</strong></p>
-                        <p>Experiencia inmersiva de la narrativa completa</p>
-                    </div>
-                    <div id="audioFallback" class="audio-fallback" style="display: none;">
-                        <p>🎧 Audio no disponible para reproducción web</p>
-                        <p>Este archivo tiene un formato que no es compatible con la reproducción directa en navegadores.</p>
-                        <p>Puedes <a id="audioDownloadLink" href="#" download>⬇️ descargar el audio aquí</a> para escucharlo en tu reproductor favorito</p>
-                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Modal de Video MEJORADO -->
         <div id="videoModal" class="video-modal">
             <div class="video-content">
                 <div class="video-header">
-                    <h3 class="video-title" id="videoTitle">🎬 Booktrailer</h3>
+                    <h3 class="video-title" id="videoTitle"></h3>
                     <button class="close-video" onclick="closeVideo()">✕</button>
                 </div>
                 <div class="video-player">
                     <video id="videoPlayer" controls preload="metadata">
                         <source id="videoSource" src="" type="video/mp4">
-                        <source id="videoSourceWebm" src="" type="video/webm">
-                        <source id="videoSourceOgv" src="" type="video/ogg">
-                        Tu navegador no soporta el elemento de video.
                     </video>
-                    <div id="videoFallback" class="video-fallback" style="display: none;">
-                        <p>🎬 Video no disponible para reproducción web</p>
-                        <p>Este video tiene un formato que no es compatible con la reproducción directa en navegadores.</p>
-                        <p>Puedes <a id="videoDownloadLink" href="#" download>⬇️ descargar el video aquí</a> para verlo en tu reproductor favorito</p>
-                        <p><small>O intenta abrirlo en una nueva pestaña: <a id="videoDirectLink" href="#" target="_blank">🔗 Enlace directo</a></small></p>
-                        <p><small><em>Nota: Algunos videos están optimizados para descarga y no para streaming web</em></small></p>
-                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Modal de Galería -->
         <div id="galleryModal" class="gallery-modal">
             <div class="gallery-content">
                 <div class="gallery-header">
@@ -1388,16 +1266,12 @@
                 <div id="galleryImages" class="gallery-images"></div>
             </div>
         </div>
-
-        <!-- Modal para imagen ampliada -->
         <div id="imageModal" class="image-modal">
             <div class="image-modal-content">
                 <div class="image-modal-header" id="imageModalTitle"></div>
                 <div style="position: relative;">
                     <img id="imageModalImg" src="" alt="">
                     <button class="image-modal-close" onclick="closeImageModal()">✕</button>
-                    
-                    <!-- Flechas laterales para navegación directa -->
                     <button class="side-nav-arrow left" id="sideNavLeft" onclick="navigateImage(-1)">‹</button>
                     <button class="side-nav-arrow right" id="sideNavRight" onclick="navigateImage(1)">›</button>
                 </div>
@@ -1420,63 +1294,6 @@
         var currentImageIndex = 0;
         var currentLanguage = 'es';
 
-        // Función para cambiar secciones
-        function showSection(sectionName) {
-            var sections = document.querySelectorAll('.section-content');
-            var buttons = document.querySelectorAll('.tab-button');
-            
-            sections.forEach(function(section) {
-                section.classList.remove('active');
-            });
-            
-            buttons.forEach(function(button) {
-                button.classList.remove('active');
-            });
-            
-            var targetSection = document.getElementById(sectionName);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
-            
-            // Activar el botón correspondiente por su función
-            if (sectionName === 'dashboards') {
-                document.querySelector('.tab-button[onclick*="dashboards"]').classList.add('active');
-            } else if (sectionName === 'books') {
-                document.querySelector('.tab-button[onclick*="books"]').classList.add('active');
-            }
-        }
-
-        // Datos de dashboards
-        var dashboards = {
-            ventas: {
-                images: [
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas1.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas2.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas3.jpg"
-                ]
-            },
-            futbol: {
-                images: [
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol1.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol2.jpg"
-                ]
-            },
-            presencia: {
-                images: [
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas1.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas2.jpg"
-                ]
-            },
-            coches: {
-                images: [
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler1.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler2.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler3.jpg",
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler4.jpg"
-                ]
-            }
-        };
-
         // Traducciones
         var translations = {
             es: {
@@ -1485,24 +1302,6 @@
                     futbol: "⚽ Liga de Fútbol - Estadísticas Deportivas", 
                     presencia: "📅 Control de Presencia - Gestión de Personal",
                     coches: "🚗 Alquiler de Coches - Análisis del Sector"
-                },
-                cardTitles: {
-                    ventas: "📊 Análisis de Ventas",
-                    futbol: "⚽ Liga de Fútbol",
-                    presencia: "📅 Control de Presencia",
-                    coches: "🚗 Alquiler de Coches"
-                },
-                cardDescriptions: {
-                    ventas: "Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.",
-                    futbol: "Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.",
-                    presencia: "Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.",
-                    coches: "Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>4 páginas interactivas</strong> con KPIs del sector automovilístico."
-                },
-                viewAllPages: {
-                    ventas: "📊 Ver todas las páginas (3)",
-                    futbol: "⚽ Ver todas las páginas (2)",
-                    presencia: "🕐 Ver todas las páginas (2)",
-                    coches: "🚗 Ver todas las páginas (4)"
                 },
                 imageModalTitle: "Página {index} de {total} del dashboard de {dashboardName}",
                 pauseCarousel: "⏸️ Pausar Carrusel",
@@ -1515,157 +1314,78 @@
                     presencia: "📅 Attendance Control - Staff Management",
                     coches: "🚗 Car Rental - Sector Analysis"
                 },
-                cardTitles: {
-                    ventas: "📊 Sales Analysis",
-                    futbol: "⚽ Football League",
-                    presencia: "📅 Attendance Control",
-                    coches: "🚗 Car Rental"
-                },
-                cardDescriptions: {
-                    ventas: "Complete sales analysis dashboard with main KPIs, time evolution, and detailed segmentation. <strong>3 interactive pages</strong> with commercial performance metrics.",
-                    futbol: "Complete statistical analysis of a football league with standings, player and team statistics. <strong>2 interactive pages</strong> with advanced sports metrics.",
-                    presencia: "Complete control of attendance, check-ins, check-outs, vacations, and staff leave. <strong>2 interactive pages</strong> with human resources management and calendars.",
-                    coches: "Vehicle rental analysis dashboard with profitability, occupancy, and market trend metrics. <strong>4 interactive pages</strong> with automotive sector KPIs."
-                },
-                viewAllPages: {
-                    ventas: "📊 View all pages (3)",
-                    futbol: "⚽ View all pages (2)",
-                    presencia: "🕐 View all pages (2)",
-                    coches: "🚗 View all pages (4)"
-                },
                 imageModalTitle: "Page {index} of {total} of the {dashboardName} dashboard",
                 pauseCarousel: "⏸️ Pause Carousel",
                 resumeCarousel: "▶️ Resume Carousel"
             }
         };
 
-        // Datos de libros
+        // Datos de dashboards
+        var dashboards = {
+            ventas: { images: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas2.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas3.jpg"] },
+            futbol: { images: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol2.jpg"] },
+            presencia: { images: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas2.jpg"] },
+            coches: { images: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler2.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler3.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler4.jpg"] }
+        };
+
+        // =======================================================================
+        // == DATOS DE LOS LIBROS - ENLACES Y MEDIA ACTUALIZADOS ==
+        // =======================================================================
         const books = [
             {
                 title: { es: "FIN", en: "END" },
                 author: "Pedro G. Guirao",
-                description: {
-                    es: "Thriller de ciencia ficción que explora las últimas horas de la humanidad. Una cuenta atrás global hacia un destino inevitable, donde cada personaje enfrenta el final a su manera.",
-                    en: "A science fiction thriller exploring the last hours of humanity. A global countdown to an inevitable fate, where each character faces the end in their own way."
-                },
+                description: { es: "Thriller de ciencia ficción que explora las últimas horas de la humanidad...", en: "A science fiction thriller exploring the last hours of humanity..." },
                 genre: { es: "Ciencia Ficción / Thriller", en: "Sci-Fi / Thriller" },
                 genreColor: "linear-gradient(45deg, #c0392b, #8e44ad)",
-                link: "https://www.amazon.es/s?k=FIN+Pedro+G.+Guirao",
-                trailer: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/videos/FIN.mp4",
-                trailer2: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/videos/FIN2.mp4"
+                link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/ref=sr_1_1?dib=eyJ2IjoiMSJ9.6A_MzvFnAk2N0yalauznZ2xZOGXFl0yUb7ZGi1VHNBHGjHj071QN20LucGBJIEps.bloUs3wVHjhjcTuT5oZzT4yeiVf-FdHh3SeXP7CrViA&dib_tag=se&qid=1754474000&refinements=p_27%3APedro+G.+Guirao&s=books&sr=1-1"
             },
             {
                 title: { es: "OH MY GOD", en: "OH MY GOD" },
                 author: "Pedro G. Guirao",
-                description: {
-                    es: "Una comedia satírica donde Dios decide tomarse unas vacaciones en la Tierra, desencadenando una serie de eventos caóticos y revelaciones inesperadas para la humanidad.",
-                    en: "A satirical comedy where God decides to take a vacation on Earth, unleashing a series of chaotic events and unexpected revelations for humanity."
-                },
+                description: { es: "Una comedia satírica donde Dios decide tomarse unas vacaciones en la Tierra...", en: "A satirical comedy where God decides to take a vacation on Earth..." },
                 genre: { es: "Comedia / Sátira", en: "Comedy / Satire" },
                 genreColor: "linear-gradient(45deg, #f39c12, #e67e22)",
-                link: "https://www.amazon.es/s?k=OH+MY+GOD+Pedro+G.+Guirao",
-                audio: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/audios/OHMYGOD.mp3"
+                link: "https://www.overdrive.com/media/10591700/%C2%A1oh-my-god"
             },
             {
                 title: { es: "MANUAL BÁSICO DE CONQUISTA", en: "BASIC CONQUEST MANUAL" },
                 author: "Pedro G. Guirao",
-                description: {
-                    es: "Una guía humorística y estratégica sobre el arte de la conquista... galáctica. Sigue a un inepto aspirante a tirano en su intento por dominar el universo.",
-                    en: "A humorous and strategic guide to the art of... galactic conquest. Follow an inept aspiring tyrant in his attempt to rule the universe."
-                },
+                description: { es: "Una guía humorística y estratégica sobre el arte de la conquista... galáctica.", en: "A humorous and strategic guide to the art of... galactic conquest." },
                 genre: { es: "Ciencia Ficción / Humor", en: "Sci-Fi / Humor" },
                 genreColor: "linear-gradient(45deg, #27ae60, #2ecc71)",
-                link: "https://www.amazon.es/s?k=MANUAL+BASICO+DE+CONQUISTA+Pedro+G.+Guirao"
+                link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/ref=sr_1_1?dib=eyJ2IjoiMSJ9.tmyylQfKGGx2v7Pa1FQPEHTkmibi0MFYU6RWXjUwEHI.ZFnJhW0F30RxeDkQjDnK3shLzHyzp8zqzBJhqYH6r24&dib_tag=se&qid=1754474035&refinements=p_27%3APedro+G.+Guirao&s=digital-text&sr=1-1&text=Pedro+G.+Guirao"
             },
             {
                 title: { es: "TOCATA Y FUGA DE LA TENIENTE ESCALI", en: "TOCATA AND FUGUE OF LIEUTENANT ESCALI" },
                 author: "Pedro G. Guirao",
-                description: {
-                    es: "La primera entrega de la saga de la Teniente Escali. Una space opera llena de acción, intriga y personajes memorables en una galaxia al borde de la guerra.",
-                    en: "The first installment in the Lieutenant Escali saga. A space opera full of action, intrigue, and memorable characters in a galaxy on the brink of war."
-                },
-                genre: { es: "Space Opera", en: "Space Opera" },
-                genreColor: "linear-gradient(45deg, #2980b9, #3498db)",
-                link: "https://www.amazon.es/s?k=TOCATA+Y+FUGA+DE+LA+TENIENTE+ESCALI"
+                description: { es: "La primera entrega de la saga de la Teniente Escali...", en: "The first installment in the Lieutenant Escali saga..." },
+                genre: { es: "Novela Negra", en: "Crime Noir" },
+                genreColor: "linear-gradient(45deg, #2c3e50, #34495e)",
+                link: "https://www.amazon.es/TOCATA-Y-FUGA-TENIENTE-ESCALI/dp/B0DVMY39JD/ref=sr_1_1?crid=15OOAKM8WIPW3&dib=eyJ2IjoiMSJ9.cRbTOFplKTevaqFsVz5PlZ9bSpSFEm6OwNgOLltm0UF-a5Bvnwj8gRcHiEaxjLqpfzr-XMPUCxGA3a9bT8UHDw.4AlqRcHWnmDHQBSRJcw4vU6NOGbKWvf4mplRhi-Q_08&dib_tag=se&keywords=pedro+g.+guirao&qid=1754473960&sprefix=%2Caps%2C135&sr=8-1",
+                trailer: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/videos/BOOKTRAILER%20VIDEOS%20ESCALI.mp4",
+                trailer2: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/videos/BOOKTRAILER-2-ESCALI.mp4"
             },
             {
                 title: { es: "ESCALI'S BLUES", en: "ESCALI'S BLUES" },
                 author: "Pedro G. Guirao",
-                description: {
-                    es: "La Teniente Escali regresa en una nueva aventura, enfrentándose a su pasado y a una conspiración que amenaza con desestabilizar la paz galáctica.",
-                    en: "Lieutenant Escali returns in a new adventure, confronting her past and a conspiracy that threatens to destabilize galactic peace."
-                },
-                genre: { es: "Space Opera", en: "Space Opera" },
-                genreColor: "linear-gradient(45deg, #16a085, #1abc9c)",
-                link: "https://www.amazon.es/s?k=ESCALIS+BLUES+Pedro+G.+Guirao"
+                description: { es: "La Teniente Escali regresa en una nueva aventura...", en: "Lieutenant Escali returns in a new adventure..." },
+                genre: { es: "Novela Negra", en: "Crime Noir" },
+                genreColor: "linear-gradient(45deg, #2c3e50, #34495e)",
+                link: "https://www.kobo.com/us/es/ebook/escali-s-blues?srsltid=AfmBOoqYFWjt_Eg4PYnMu9vu8WiY2X9rEfq2xFnil1TCw2JVV_5xWDZp"
             },
             {
                 title: { es: "ÉXODOS", en: "EXODUS" },
                 author: "Kia P. Cabdill (Pseudónimo)",
-                description: {
-                    es: "Bajo pseudónimo, una historia de supervivencia y esperanza. Un grupo de refugiados busca un nuevo hogar en un mundo post-apocalíptico, enfrentando peligros tanto humanos como ambientales.",
-                    en: "Under a pseudonym, a story of survival and hope. A group of refugees seeks a new home in a post-apocalyptic world, facing both human and environmental dangers."
-                },
+                description: { es: "Bajo pseudónimo, una historia de supervivencia y esperanza...", en: "Under a pseudonym, a story of survival and hope..." },
                 genre: { es: "Ciencia Ficción / Distopía", en: "Sci-Fi / Dystopian" },
                 genreColor: "linear-gradient(45deg, #8e44ad, #9b59b6)",
-                link: "https://www.amazon.es/s?k=EXODOS+Kia+P.+Cabdill"
+                link: "https://www.amazon.es/s?k=EXODOS+KIA+P.+CABDILL&__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2QQ27I1STXWQL&sprefix=exodos+kia+p.+cabdill%2Caps%2C108&ref=nb_sb_noss",
+                audio: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/audios/EXODOSESPANOL.mp3"
             }
         ];
 
-        // Función para cambiar idioma
-        function changeLanguage(lang) {
-            currentLanguage = lang;
-            
-            // Actualizar botones de idioma
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === lang);
-            });
-
-            // Actualizar todos los elementos con data-text-es/en
-            document.querySelectorAll('[data-text-es]').forEach(el => {
-                // Para elementos anidados, solo actualizamos el nodo de texto si existe
-                if (el.dataset[`text-${lang}`]) {
-                    // Find the text node to update, avoiding clobbering child elements like icons
-                    for (const node of el.childNodes) {
-                        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0) {
-                            node.textContent = ` ${el.dataset[`text-${lang}`]}`;
-                            break;
-                        } else if(node.nodeType === Node.ELEMENT_NODE && node.dataset[`text-${lang}`]) {
-                             node.innerHTML = node.dataset[`text-${lang}`];
-                        }
-                    }
-                    if(el.children.length === 0) {
-                        el.innerHTML = el.dataset[`text-${lang}`];
-                    }
-                }
-            });
-            
-            // Actualizar títulos y descripciones de las tarjetas de dashboards
-            Object.keys(dashboards).forEach(key => {
-                const cardTitleEl = document.querySelector(`[data-card-title="${key}"]`);
-                if(cardTitleEl) cardTitleEl.innerHTML = translations[lang].cardTitles[key];
-
-                const cardDescEl = document.querySelector(`[data-card-description="${key}"]`);
-                if(cardDescEl) cardDescEl.innerHTML = translations[lang].cardDescriptions[key];
-                
-                const viewBtn = cardDescEl.nextElementSibling;
-                if(viewBtn) {
-                    const icon = viewBtn.innerHTML.split(" ")[0];
-                    viewBtn.innerHTML = `${icon} ${translations[lang].viewAllPages[key].split(" ").slice(1).join(" ")}`;
-                }
-            });
-
-            // Actualizar la información del libro actual
-            updateBookDisplay();
-            
-            // Actualizar texto del botón de autoplay
-            const autoplayBtn = document.getElementById('autoplayBtn');
-            const icon = autoplayBtn.innerHTML.split(" ")[0];
-            const text = isAutoplayActive ? translations[lang].pauseCarousel : translations[lang].resumeCarousel;
-            autoplayBtn.innerHTML = `${icon} ${text.split(" ").slice(1).join(" ")}`;
-        }
-
-        // --- Lógica del carrusel de libros ---
+        // --- Lógica de la página ---
         function updateBookDisplay() {
             const book = books[currentBook];
             document.getElementById('bookTitle').textContent = book.title[currentLanguage];
@@ -1676,17 +1396,15 @@
             genreEl.textContent = book.genre[currentLanguage];
             genreEl.style.background = book.genreColor;
 
-            const amazonLink = document.getElementById('bookLink');
-            amazonLink.href = book.link;
-            amazonLink.onclick = (e) => {
-                // Prevenir el comportamiento por defecto solo si no es un clic de en medio o con ctrl/cmd
+            const bookLink = document.getElementById('bookLink');
+            bookLink.href = book.link;
+            bookLink.onclick = (e) => {
                 if (!e.metaKey && !e.ctrlKey && e.button === 0) {
                     e.preventDefault();
-                    window.open(amazonLink.href, '_blank');
+                    window.open(bookLink.href, '_blank');
                 }
             };
 
-            // Gestionar botones de media
             const trailerBtn = document.getElementById('bookTrailerLink');
             const trailerBtn2 = document.getElementById('bookTrailerLink2');
             const audioBtn = document.getElementById('bookAudioLink');
@@ -1699,35 +1417,50 @@
             if (book.trailer2) trailerBtn2.onclick = () => openVideo(book.trailer2, `${book.title[currentLanguage]} (2)`);
             if (book.audio) audioBtn.onclick = () => openAudio(book.audio, book.title[currentLanguage]);
         }
+        
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+            
+            document.querySelectorAll('[data-text-es]').forEach(el => {
+                const key = `text-${lang}`;
+                if (el.dataset[key] !== undefined) {
+                    el.innerHTML = el.dataset[key];
+                }
+            });
+            updateBookDisplay();
+        }
+
+        function showSection(sectionName) {
+            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionName).classList.add('active');
+            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.tab-button[onclick*="'${sectionName}'"]`).classList.add('active');
+        }
+
+        function createIndicators() {
+            const indicatorsContainer = document.getElementById('indicators');
+            indicatorsContainer.innerHTML = '';
+            for (let i = 0; i < totalBooks; i++) {
+                const indicator = document.createElement('div');
+                indicator.className = 'indicator';
+                indicator.onclick = () => goToBook(i);
+                indicatorsContainer.appendChild(indicator);
+            }
+        }
 
         function updateCarousel() {
             const covers = document.querySelectorAll('.book-cover');
             const total = covers.length;
-
             covers.forEach((cover, index) => {
-                cover.classList.remove('active', 'prev', 'next', 'hidden', 'hidden-next');
-                
+                cover.className = 'book-cover';
                 let newIndex = (index - currentBook + total) % total;
-                
-                if (newIndex === 0) {
-                    cover.classList.add('active');
-                } else if (newIndex === 1) {
-                    cover.classList.add('next');
-                } else if (newIndex === total - 1) {
-                    cover.classList.add('prev');
-                } else if (newIndex > 1 && newIndex < total -1) {
-                     cover.classList.add('hidden-next');
-                }
-                else {
-                    cover.classList.add('hidden');
-                }
+                if (newIndex === 0) cover.classList.add('active');
+                else if (newIndex === 1) cover.classList.add('next');
+                else if (newIndex === total - 1) cover.classList.add('prev');
+                else cover.classList.add('hidden');
             });
-
-            // Actualizar indicadores
-            document.querySelectorAll('.indicator').forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentBook);
-            });
-            
+            document.querySelectorAll('.indicator').forEach((ind, i) => ind.classList.toggle('active', i === currentBook));
             updateBookDisplay();
         }
 
@@ -1749,28 +1482,20 @@
             resetAutoplay();
         }
 
-        function createIndicators() {
-            const indicatorsContainer = document.getElementById('indicators');
-            indicatorsContainer.innerHTML = '';
-            for (let i = 0; i < totalBooks; i++) {
-                const indicator = document.createElement('div');
-                indicator.classList.add('indicator');
-                indicator.onclick = () => goToBook(i);
-                indicatorsContainer.appendChild(indicator);
-            }
-        }
-
         function toggleAutoplay() {
             isAutoplayActive = !isAutoplayActive;
-            const btn = document.getElementById('autoplayBtn');
-            const icon = btn.innerHTML.split(" ")[0];
+            const btnSpan = document.getElementById('autoplayBtn').querySelector('span');
             if (isAutoplayActive) {
                 startAutoplay();
-                btn.innerHTML = `${icon} ${translations[currentLanguage].pauseCarousel.split(" ").slice(1).join(" ")}`;
+                btnSpan.dataset.textEs = translations.es.pauseCarousel;
+                btnSpan.dataset.textEn = translations.en.pauseCarousel;
             } else {
                 clearInterval(autoplayInterval);
-                btn.innerHTML = `${icon} ${translations[currentLanguage].resumeCarousel.split(" ").slice(1).join(" ")}`;
+                btnSpan.dataset.textEs = translations.es.resumeCarousel;
+                btnSpan.dataset.textEn = translations.en.resumeCarousel;
             }
+            btnSpan.innerHTML = translations[currentLanguage].isAutoplayActive ? translations[currentLanguage].pauseCarousel : translations[currentLanguage].resumeCarousel;
+            changeLanguage(currentLanguage);
         }
 
         function startAutoplay() {
@@ -1779,122 +1504,18 @@
         }
         
         function resetAutoplay() {
-            if (isAutoplayActive) {
-                startAutoplay();
-            }
-        }
-
-        // --- Lógica de los Modales ---
-        function openGallery(dashboardKey) {
-            if (event) event.stopPropagation(); // Evita que el click se propague a elementos padres
-            currentGallery = dashboardKey;
-            const galleryModal = document.getElementById('galleryModal');
-            const galleryImages = document.getElementById('galleryImages');
-            const galleryTitle = document.getElementById('galleryTitle');
-
-            galleryTitle.textContent = translations[currentLanguage].dashboardTitles[dashboardKey];
-            galleryImages.innerHTML = '';
-
-            dashboards[dashboardKey].images.forEach((imgSrc, index) => {
-                const imgContainer = document.createElement('div');
-                imgContainer.className = 'gallery-image';
-                imgContainer.onclick = () => openImageModal(index);
-
-                const img = document.createElement('img');
-                img.src = imgSrc;
-                img.alt = `Página ${index + 1} del dashboard de ${dashboardKey}`;
-                img.onerror = function() { this.src='https://placehold.co/800x600/cccccc/ffffff?text=Imagen+no+disponible'; };
-
-                const overlay = document.createElement('div');
-                overlay.className = 'image-overlay';
-                overlay.textContent = `Ver Página ${index + 1}`;
-
-                imgContainer.appendChild(img);
-                imgContainer.appendChild(overlay);
-                galleryImages.appendChild(imgContainer);
-            });
-
-            galleryModal.style.display = 'block';
-        }
-
-        function closeGallery() {
-            document.getElementById('galleryModal').style.display = 'none';
-            currentGallery = null;
-        }
-
-        function openImageModal(index) {
-            currentImageIndex = index;
-            const images = dashboards[currentGallery].images;
-            const totalImages = images.length;
-            
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('imageModalImg');
-            const modalTitle = document.getElementById('imageModalTitle');
-            const counter = document.getElementById('imageCounter');
-
-            modalImg.src = images[currentImageIndex];
-            
-            let dashboardName = (translations[currentLanguage].cardTitles[currentGallery] || currentGallery).replace(/📊 |⚽ |📅 |🚗 /g, '');
-            modalTitle.textContent = translations[currentLanguage].imageModalTitle
-                .replace('{index}', currentImageIndex + 1)
-                .replace('{total}', totalImages)
-                .replace('{dashboardName}', dashboardName);
-
-            counter.textContent = `${currentImageIndex + 1} / ${totalImages}`;
-
-            // Actualizar botones de navegación
-            document.getElementById('prevImageBtn').disabled = currentImageIndex === 0;
-            document.getElementById('nextImageBtn').disabled = currentImageIndex === totalImages - 1;
-            document.getElementById('sideNavLeft').disabled = currentImageIndex === 0;
-            document.getElementById('sideNavRight').disabled = currentImageIndex === totalImages - 1;
-            
-            modal.style.display = 'flex';
-        }
-
-        function closeImageModal() {
-            document.getElementById('imageModal').style.display = 'none';
-        }
-
-        function navigateImage(direction) {
-            const images = dashboards[currentGallery].images;
-            const newIndex = currentImageIndex + direction;
-
-            if (newIndex >= 0 && newIndex < images.length) {
-                openImageModal(newIndex);
-            }
+            if (isAutoplayActive) startAutoplay();
         }
         
         function openVideo(videoSrc, title) {
             const modal = document.getElementById('videoModal');
             const player = document.getElementById('videoPlayer');
             const source = document.getElementById('videoSource');
-            const fallback = document.getElementById('videoFallback');
-            
             document.getElementById('videoTitle').textContent = `🎬 ${title}`;
-            
             source.src = videoSrc;
-            
             player.load();
-            player.style.display = 'block';
-            fallback.style.display = 'none';
-            
-            player.onerror = () => {
-                player.style.display = 'none';
-                fallback.style.display = 'block';
-                document.getElementById('videoDownloadLink').href = videoSrc;
-                document.getElementById('videoDirectLink').href = videoSrc;
-            };
-            
             modal.style.display = 'block';
-            const playPromise = player.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    // Ignoramos el AbortError que ocurre si el usuario cierra el modal rápidamente.
-                    if (error.name !== 'AbortError') {
-                        console.error("Error al reproducir el video:", error);
-                    }
-                });
-            }
+            player.play().catch(e => console.log("Error playing video:", e));
         }
 
         function closeVideo() {
@@ -1908,32 +1529,11 @@
             const modal = document.getElementById('audioModal');
             const player = document.getElementById('audioPlayer');
             const source = document.getElementById('audioSource');
-            const fallback = document.getElementById('audioFallback');
-            
             document.getElementById('audioTitle').textContent = `🎧 ${title}`;
-            
             source.src = audioSrc;
-            
             player.load();
-            player.style.display = 'block';
-            fallback.style.display = 'none';
-
-            player.onerror = () => {
-                player.style.display = 'none';
-                fallback.style.display = 'block';
-                document.getElementById('audioDownloadLink').href = audioSrc;
-            };
-
             modal.style.display = 'block';
-            const playPromise = player.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    // Ignoramos el AbortError que ocurre si el usuario cierra el modal rápidamente.
-                    if (error.name !== 'AbortError') {
-                        console.error("Error al reproducir el audio:", error);
-                    }
-                });
-            }
+            player.play().catch(e => console.log("Error playing audio:", e));
         }
 
         function closeAudio() {
@@ -1943,9 +1543,68 @@
             document.getElementById('audioModal').style.display = 'none';
         }
 
-        // --- Inicialización ---
+        function openGallery(dashboardKey) {
+            if (event) event.stopPropagation();
+            currentGallery = dashboardKey;
+            const galleryModal = document.getElementById('galleryModal');
+            const galleryImages = document.getElementById('galleryImages');
+            const galleryTitle = document.getElementById('galleryTitle');
+            galleryTitle.textContent = translations[currentLanguage].dashboardTitles[dashboardKey];
+            galleryImages.innerHTML = '';
+            dashboards[dashboardKey].images.forEach((imgSrc, index) => {
+                const imgContainer = document.createElement('div');
+                imgContainer.className = 'gallery-image';
+                imgContainer.onclick = () => openImageModal(index);
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.alt = `Page ${index + 1} of ${dashboardKey} dashboard`;
+                img.onerror = function() { this.src='https://placehold.co/800x600/cccccc/ffffff?text=Image+not+available'; };
+                const overlay = document.createElement('div');
+                overlay.className = 'image-overlay';
+                overlay.textContent = `View Page ${index + 1}`;
+                imgContainer.appendChild(img);
+                imgContainer.appendChild(overlay);
+                galleryImages.appendChild(imgContainer);
+            });
+            galleryModal.style.display = 'block';
+        }
+
+        function closeGallery() {
+            document.getElementById('galleryModal').style.display = 'none';
+        }
+
+        function openImageModal(index) {
+            currentImageIndex = index;
+            const images = dashboards[currentGallery].images;
+            const totalImages = images.length;
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('imageModalImg');
+            const modalTitle = document.getElementById('imageModalTitle');
+            const counter = document.getElementById('imageCounter');
+            modalImg.src = images[currentImageIndex];
+            let dashboardName = (translations[currentLanguage].cardTitles[currentGallery] || currentGallery).replace(/📊 |⚽ |📅 |🚗 /g, '');
+            modalTitle.textContent = translations[currentLanguage].imageModalTitle.replace('{index}', currentImageIndex + 1).replace('{total}', totalImages).replace('{dashboardName}', dashboardName);
+            counter.textContent = `${currentImageIndex + 1} / ${totalImages}`;
+            document.getElementById('prevImageBtn').disabled = currentImageIndex === 0;
+            document.getElementById('nextImageBtn').disabled = currentImageIndex === totalImages - 1;
+            document.getElementById('sideNavLeft').disabled = currentImageIndex === 0;
+            document.getElementById('sideNavRight').disabled = currentImageIndex === totalImages - 1;
+            modal.style.display = 'flex';
+        }
+
+        function closeImageModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        function navigateImage(direction) {
+            const images = dashboards[currentGallery].images;
+            const newIndex = currentImageIndex + direction;
+            if (newIndex >= 0 && newIndex < images.length) {
+                openImageModal(newIndex);
+            }
+        }
+        
         document.addEventListener('DOMContentLoaded', () => {
-            // Animación de highlight en el header
             const parts = document.querySelectorAll('.highlight-text .part');
             let currentPart = 0;
             setInterval(() => {
@@ -1954,12 +1613,11 @@
                 currentPart = (currentPart + 1) % parts.length;
             }, 2500);
 
-            // Inicializar carrusel
             createIndicators();
             updateCarousel();
             startAutoplay();
+            changeLanguage(currentLanguage); // Initial translation
 
-            // Cerrar modales con la tecla Escape
             window.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     closeGallery();
