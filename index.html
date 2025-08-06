@@ -676,7 +676,8 @@
         .audio-player audio { width: 90%; max-width: 500px; }
 
 
-        .audio-fallback, .video-fallback {
+        .media-fallback {
+            display: none; /* Hidden by default */
             color: white;
             text-align: center;
             padding: 40px;
@@ -687,9 +688,8 @@
             max-width: 800px;
         }
 
-        .video-fallback a { color: #4ecdc4; text-decoration: none; font-weight: bold; }
-        .audio-fallback a { color: #2E8B57; text-decoration: none; font-weight: bold; }
-        .video-fallback a:hover, .audio-fallback a:hover { text-decoration: underline; }
+        .media-fallback a { color: #4ecdc4; text-decoration: none; font-weight: bold; }
+        .media-fallback a:hover { text-decoration: underline; }
 
         .gallery-modal {
             display: none;
@@ -1030,7 +1030,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <!-- Selector de idioma -->
+            <!-- Language Selector -->
             <div class="language-selector">
                 <button class="lang-btn active" onclick="changeLanguage('es')" data-lang="es">🇪🇸 ES</button>
                 <button class="lang-btn" onclick="changeLanguage('en')" data-lang="en">🇬🇧 EN</button>
@@ -1040,136 +1040,122 @@
                 <h1>Pedro Guirao Gil</h1>
                 <div class="profile-info">
                     <div class="highlight-text">
-                        <span class="part" data-text-es="Especialista en Power BI y Microsoft Excel" data-text-en="Power BI and Microsoft Excel Specialist">Especialista en Power BI y Microsoft Excel</span>
+                        <span class="part" data-translation-key="roleSpecialist"></span>
                         <span> • </span>
-                        <span class="part" data-text-es="Formador" data-text-en="Trainer">Formador</span>
+                        <span class="part" data-translation-key="roleTrainer"></span>
                         <span> • </span>
-                        <span class="part" data-text-es="Consultor" data-text-en="Consultant">Consultor</span>
+                        <span class="part" data-translation-key="roleConsultant"></span>
                         <span> • </span>
-                        <span class="part" data-text-es="Novelista" data-text-en="Novelist">Novelista</span>
+                        <span class="part" data-translation-key="roleNovelist"></span>
                     </div>
                 </div>
             </div>
             
             <div class="section-tabs">
                 <button class="tab-button active" onclick="showSection('dashboards')">
-                    <span data-text-es="📊 DASHBOARDS POWER BI" data-text-en="📊 POWER BI DASHBOARDS">📊 DASHBOARDS POWER BI</span>
+                    <span data-translation-key="tabDashboards"></span>
                 </button>
                 <button class="tab-button" onclick="showSection('books')">
-                    <span data-text-es="📚 MIS NOVELAS" data-text-en="📚 MY NOVELS">📚 MIS NOVELAS</span>
+                    <span data-translation-key="tabNovels"></span>
                 </button>
             </div>
         </div>
 
-        <!-- Sección de Dashboards -->
+        <!-- Dashboards Section -->
         <div id="dashboards" class="section-content active">
             <div class="nav-links">
                 <a href="https://app.powerbi.com/view?r=eyJrIjoiYTJjN2E3MjAtZDdhMC00NmE5LThhZmEtMjU1MzA1ZDAzZDI2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-ventas">
-                    <span data-text-es="📊 ANÁLISIS DE VENTAS" data-text-en="📊 SALES ANALYSIS">📊 ANÁLISIS DE VENTAS</span>
+                    <span data-translation-key="dashLinkSales"></span>
                 </a>
                 <a href="https://app.powerbi.com/view?r=eyJrIjoiMGRlZjM5MjQtYjE0MC00MWMwLTllNjQtYmYwMTFlN2Y2NWE2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-futbol">
-                    <span data-text-es="⚽ LIGA DE FÚTBOL" data-text-en="⚽ FOOTBALL LEAGUE">⚽ LIGA DE FÚTBOL</span>
+                    <span data-translation-key="dashLinkFootball"></span>
                 </a>
                 <a href="https://app.powerbi.com/view?r=eyJrIjoiNDVlNWVhZGEtZjNjYi00NmM4LTg2NzEtMDQzZDNkY2YzMmE5IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9&pageName=ReportSection" target="_blank" class="modern-nav-button btn-presencia">
-                    <span data-text-es="📅 CONTROL DE PRESENCIA" data-text-en="📅 ATTENDANCE CONTROL">📅 CONTROL DE PRESENCIA</span>
+                    <span data-translation-key="dashLinkAttendance"></span>
                 </a>
                 <a href="https://app.powerbi.com/view?r=eyJrIjoiMmIwNDBjZjItNWJmMi00OWFlLWI4OWEtZmJhY2QwN2M4NjMwIiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-coches">
-                    <span data-text-es="🚗 ALQUILER DE COCHES" data-text-en="🚗 CAR RENTAL">🚗 ALQUILER DE COCHES</span>
+                    <span data-translation-key="dashLinkCars"></span>
                 </a>
             </div>
 
             <div class="dashboard-grid">
+                <!-- Sales Card -->
                 <div class="dashboard-card" onclick="openGallery('ventas')">
                     <div class="card-image">
                         <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas1.jpg" alt="Dashboard de Ventas" onerror="this.src='https://placehold.co/600x400/ff6b6b/ffffff?text=Ventas'">
                     </div>
                     <div class="card-content">
                         <div class="card-header">
-                            <h3 class="card-title" data-text-es="📊 Análisis de Ventas" data-text-en="📊 Sales Analysis">📊 Análisis de Ventas</h3>
-                            <span class="status-badge" data-text-es="Legacy Público" data-text-en="Public Legacy">Legacy Público</span>
+                            <h3 class="card-title" data-translation-key="salesCardTitle"></h3>
+                            <span class="status-badge" data-translation-key="publicLegacy"></span>
                         </div>
-                        <p class="card-description" data-text-es="Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial." data-text-en="Complete sales analysis dashboard with main KPIs, time evolution, and detailed segmentation. <strong>3 interactive pages</strong> with commercial performance metrics.">
-                            Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.
-                        </p>
+                        <p class="card-description" data-translation-key="salesCardDesc"></p>
                         <button class="view-button" onclick="openGallery('ventas')" style="background: linear-gradient(45deg, #667eea, #764ba2);">
-                            <span data-text-es="📊 Ver todas las páginas (3)" data-text-en="📊 View all pages (3)">📊 Ver todas las páginas (3)</span>
+                            <span data-translation-key="salesCardButton"></span>
                         </button>
                     </div>
                 </div>
-
+                <!-- Football Card -->
                 <div class="dashboard-card" onclick="openGallery('futbol')">
                     <div class="card-image">
                         <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol1.jpg" alt="Dashboard de Fútbol" onerror="this.src='https://placehold.co/600x400/4ecdc4/ffffff?text=Futbol'">
                     </div>
                     <div class="card-content">
                         <div class="card-header">
-                            <h3 class="card-title" data-text-es="⚽ Liga de Fútbol" data-text-en="⚽ Football League">⚽ Liga de Fútbol</h3>
-                            <span class="status-badge" data-text-es="Legacy Público" data-text-en="Public Legacy">Legacy Público</span>
+                            <h3 class="card-title" data-translation-key="footballCardTitle"></h3>
+                            <span class="status-badge" data-translation-key="publicLegacy"></span>
                         </div>
-                        <p class="card-description" data-text-es="Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas." data-text-en="Complete statistical analysis of a football league with standings, player and team statistics. <strong>2 interactive pages</strong> with advanced sports metrics.">
-                            Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.
-                        </p>
+                        <p class="card-description" data-translation-key="footballCardDesc"></p>
                         <button class="view-button" onclick="openGallery('futbol')" style="background: linear-gradient(45deg, #1e3a2e, #0f2419);">
-                            <span data-text-es="⚽ Ver todas las páginas (2)" data-text-en="⚽ View all pages (2)">⚽ Ver todas las páginas (2)</span>
+                            <span data-translation-key="footballCardButton"></span>
                         </button>
                     </div>
                 </div>
-
+                <!-- Attendance Card -->
                 <div class="dashboard-card" onclick="openGallery('presencia')">
                     <div class="card-image">
                         <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas1.jpg" alt="Dashboard de Presencia" onerror="this.src='https://placehold.co/600x400/96ceb4/ffffff?text=Presencia'">
                     </div>
                     <div class="card-content">
                         <div class="card-header">
-                            <h3 class="card-title" data-text-es="📅 Control de Presencia" data-text-en="📅 Attendance Control">📅 Control de Presencia</h3>
-                            <span class="status-badge" data-text-es="Legacy Público" data-text-en="Public Legacy">Legacy Público</span>
+                            <h3 class="card-title" data-translation-key="attendanceCardTitle"></h3>
+                            <span class="status-badge" data-translation-key="publicLegacy"></span>
                         </div>
-                        <p class="card-description" data-text-es="Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios." data-text-en="Complete control of attendance, check-ins, check-outs, vacations, and staff leave. <strong>2 interactive pages</strong> with human resources management and calendars.">
-                            Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.
-                        </p>
+                        <p class="card-description" data-translation-key="attendanceCardDesc"></p>
                         <button class="view-button" onclick="openGallery('presencia')" style="background: linear-gradient(45deg, #f093fb, #f5576c);">
-                             <span data-text-es="🕐 Ver todas las páginas (2)" data-text-en="🕐 View all pages (2)">🕐 Ver todas las páginas (2)</span>
+                             <span data-translation-key="attendanceCardButton"></span>
                         </button>
                     </div>
                 </div>
-
+                <!-- Car Rental Card -->
                 <div class="dashboard-card" onclick="openGallery('coches')">
                     <div class="card-image">
                         <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler1.jpg" alt="Dashboard de Alquiler" onerror="this.src='https://placehold.co/600x400/fd7e14/ffffff?text=Coches'">
                     </div>
                     <div class="card-content">
                         <div class="card-header">
-                            <h3 class="card-title" data-text-es="🚗 Alquiler de Coches" data-text-en="🚗 Car Rental">🚗 Alquiler de Coches</h3>
-                            <span class="status-badge" data-text-es="Legacy Público" data-text-en="Public Legacy">Legacy Público</span>
+                            <h3 class="card-title" data-translation-key="carsCardTitle"></h3>
+                            <span class="status-badge" data-translation-key="publicLegacy"></span>
                         </div>
-                        <p class="card-description" data-text-es="Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>4 páginas interactivas</strong> con KPIs del sector automovilístico." data-text-en="Vehicle rental analysis dashboard with profitability, occupancy, and market trend metrics. <strong>4 interactive pages</strong> with automotive sector KPIs.">
-                            Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>4 páginas interactivas</strong> con KPIs del sector automovilístico.
-                        </p>
+                        <p class="card-description" data-translation-key="carsCardDesc"></p>
                         <button class="view-button" onclick="openGallery('coches')" style="background: linear-gradient(45deg, #ffecd2, #fcb69f); color: #333;">
-                            <span data-text-es="🚗 Ver todas las páginas (4)" data-text-en="🚗 View all pages (4)">🚗 Ver todas las páginas (4)</span>
+                            <span data-translation-key="carsCardButton"></span>
                         </button>
                     </div>
                 </div>
             </div>
 
             <div class="info-section">
-                <h2 data-text-es="🎯 Sobre estos Dashboards" data-text-en="🎯 About these Dashboards">🎯 Sobre estos Dashboards</h2>
-                <p class="info-text" data-text-es="Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos." data-text-en="These dashboards represent real implementation cases of Power BI in different sectors: commercial, sports, human resources and automotive. All maintain public access as legacy examples, ideal for commercial demos and specialized training in data analysis.">
-                    Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: 
-                    comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público 
-                    como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos.
-                </p>
+                <h2 data-translation-key="aboutDashboardsTitle"></h2>
+                <p class="info-text" data-translation-key="aboutDashboardsDesc"></p>
             </div>
         </div>
 
-        <!-- Sección de Libros -->
+        <!-- Books Section -->
         <div id="books" class="section-content">
             <div class="books-section">
-                <h2 class="books-title" data-text-es="📚 Mi Faceta Literaria" data-text-en="📚 My Literary Side">📚 Mi Faceta Literaria</h2>
-                <p class="books-subtitle" data-text-es="Exploro mundos imaginarios a través de la escritura, desde la ciencia ficción hasta el thriller, siempre buscando conectar con los lectores a través de historias que combinan entretenimiento y reflexión." data-text-en="I explore imaginary worlds through writing, from science fiction to thriller, always seeking to connect with readers through stories that combine entertainment and reflection.">
-                    Exploro mundos imaginarios a través de la escritura, desde la ciencia ficción hasta el thriller, 
-                    siempre buscando conectar con los lectores a través de historias que combinan entretenimiento y reflexión.
-                </p>
+                <h2 class="books-title" data-translation-key="literarySideTitle"></h2>
+                <p class="books-subtitle" data-translation-key="literarySideDesc"></p>
 
                 <div class="books-carousel">
                     <div class="books-container">
@@ -1201,16 +1187,16 @@
                     <span class="book-genre" id="bookGenre"></span>
                     <div class="book-links-container">
                         <a href="#" target="_blank" class="book-link" id="bookLink">
-                            <span data-text-es="📖 Ver en Tienda" data-text-en="📖 View in Store">📖 Ver en Tienda</span>
+                            <span data-translation-key="viewInStore"></span>
                         </a>
                         <button class="book-link" id="bookTrailerLink" style="display: none; background: #c0392b;">
-                            <span data-text-es="🎬 Ver Booktrailer" data-text-en="🎬 Watch Booktrailer">🎬 Ver Booktrailer</span>
+                            <span data-translation-key="watchTrailer"></span>
                         </button>
                         <button class="book-link" id="bookTrailerLink2" style="display: none; background: #8b0000;">
-                            <span data-text-es="🎥 Ver Booktrailer 2" data-text-en="🎥 Watch Booktrailer 2">🎥 Ver Booktrailer 2</span>
+                            <span data-translation-key="watchTrailer2"></span>
                         </button>
                         <button class="book-link" id="bookAudioLink" style="display: none; background: #2E8B57;">
-                            <span data-text-es="🎧 Escuchar Audio" data-text-en="🎧 Listen to Audio">🎧 Escuchar Audio</span>
+                            <span data-translation-key="listenAudio"></span>
                         </button>
                     </div>
                 </div>
@@ -1223,13 +1209,13 @@
 
                 <div class="autoplay-control">
                     <button class="autoplay-btn" onclick="toggleAutoplay()" id="autoplayBtn">
-                        <span data-text-es="⏸️ Pausar Carrusel" data-text-en="⏸️ Pause Carousel">⏸️ Pausar Carrusel</span>
+                        <span data-translation-key="pauseCarousel"></span>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Modales -->
+        <!-- Modals -->
         <div id="audioModal" class="audio-modal">
             <div class="audio-content">
                 <div class="audio-header">
@@ -1237,10 +1223,8 @@
                     <button class="close-audio" onclick="closeAudio()">✕</button>
                 </div>
                 <div class="audio-player">
-                    <audio id="audioPlayer" controls preload="metadata">
-                        <source id="audioSource" src="" type="audio/mpeg">
-                        Tu navegador no soporta el elemento de audio.
-                    </audio>
+                    <audio id="audioPlayer" controls preload="metadata"></audio>
+                    <div class="media-fallback" id="audioFallback"></div>
                 </div>
             </div>
         </div>
@@ -1251,9 +1235,8 @@
                     <button class="close-video" onclick="closeVideo()">✕</button>
                 </div>
                 <div class="video-player">
-                    <video id="videoPlayer" controls preload="metadata">
-                        <source id="videoSource" src="" type="video/mp4">
-                    </video>
+                    <video id="videoPlayer" controls preload="metadata"></video>
+                    <div class="media-fallback" id="videoFallback"></div>
                 </div>
             </div>
         </div>
@@ -1285,124 +1268,179 @@
     </div>
 
     <script>
-        // Variables globales
-        var currentBook = 0;
-        var autoplayInterval;
-        var isAutoplayActive = true;
-        var totalBooks = 6;
-        var currentGallery = null;
-        var currentImageIndex = 0;
-        var currentLanguage = 'es';
+        // Global variables
+        let currentBook = 0;
+        let autoplayInterval;
+        let isAutoplayActive = true;
+        const totalBooks = 6;
+        let currentGallery = null;
+        let currentImageIndex = 0;
+        let currentLanguage = 'es';
 
-        // Traducciones
-        var translations = {
+        // --- COMPLETE TRANSLATION OBJECT ---
+        const translations = {
             es: {
-                dashboardTitles: {
-                    ventas: "📊 Análisis de Ventas - Dashboard Completo",
-                    futbol: "⚽ Liga de Fútbol - Estadísticas Deportivas", 
-                    presencia: "📅 Control de Presencia - Gestión de Personal",
-                    coches: "🚗 Alquiler de Coches - Análisis del Sector"
-                },
-                imageModalTitle: "Página {index} de {total} del dashboard de {dashboardName}",
+                roleSpecialist: "Especialista en Power BI y Microsoft Excel",
+                roleTrainer: "Formador",
+                roleConsultant: "Consultor",
+                roleNovelist: "Novelista",
+                tabDashboards: "📊 DASHBOARDS POWER BI",
+                tabNovels: "📚 MIS NOVELAS",
+                dashLinkSales: "📊 ANÁLISIS DE VENTAS",
+                dashLinkFootball: "⚽ LIGA DE FÚTBOL",
+                dashLinkAttendance: "📅 CONTROL DE PRESENCIA",
+                dashLinkCars: "🚗 ALQUILER DE COCHES",
+                publicLegacy: "Legacy Público",
+                salesCardTitle: "📊 Análisis de Ventas",
+                salesCardDesc: "Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.",
+                salesCardButton: "📊 Ver todas las páginas (3)",
+                footballCardTitle: "⚽ Liga de Fútbol",
+                footballCardDesc: "Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.",
+                footballCardButton: "⚽ Ver todas las páginas (2)",
+                attendanceCardTitle: "📅 Control de Presencia",
+                attendanceCardDesc: "Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.",
+                attendanceCardButton: "🕐 Ver todas las páginas (2)",
+                carsCardTitle: "🚗 Alquiler de Coches",
+                carsCardDesc: "Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>4 páginas interactivas</strong> con KPIs del sector automovilístico.",
+                carsCardButton: "🚗 Ver todas las páginas (4)",
+                aboutDashboardsTitle: "🎯 Sobre estos Dashboards",
+                aboutDashboardsDesc: "Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos.",
+                literarySideTitle: "📚 Mi Faceta Literaria",
+                literarySideDesc: "Exploro mundos imaginarios a través de la escritura, desde la ciencia ficción hasta el thriller, siempre buscando conectar con los lectores a través de historias que combinan entretenimiento y reflexión.",
+                viewInStore: "📖 Ver en Tienda",
+                watchTrailer: "🎬 Ver Booktrailer",
+                watchTrailer2: "🎥 Ver Booktrailer 2",
+                listenAudio: "🎧 Escuchar Audio",
                 pauseCarousel: "⏸️ Pausar Carrusel",
-                resumeCarousel: "▶️ Reanudar Carrusel"
+                resumeCarousel: "▶️ Reanudar Carrusel",
+                galleryTitleVentas: "📊 Análisis de Ventas - Dashboard Completo",
+                galleryTitleFutbol: "⚽ Liga de Fútbol - Estadísticas Deportivas",
+                galleryTitlePresencia: "📅 Control de Presencia - Gestión de Personal",
+                galleryTitleCoches: "🚗 Alquiler de Coches - Análisis del Sector",
+                galleryOverlay: "Ver Página {index}",
+                imageModalTitle: "Página {index} de {total} del dashboard de {dashboardName}",
+                mediaError: "No se pudo cargar el contenido. Esto puede deberse a restricciones del servidor. Intenta abrirlo directamente.",
+                openDirectly: "Abrir en una nueva pestaña"
             },
             en: {
-                dashboardTitles: {
-                    ventas: "📊 Sales Analysis - Complete Dashboard",
-                    futbol: "⚽ Football League - Sports Statistics",
-                    presencia: "📅 Attendance Control - Staff Management",
-                    coches: "🚗 Car Rental - Sector Analysis"
-                },
-                imageModalTitle: "Page {index} of {total} of the {dashboardName} dashboard",
+                roleSpecialist: "Power BI and Microsoft Excel Specialist",
+                roleTrainer: "Trainer",
+                roleConsultant: "Consultant",
+                roleNovelist: "Novelist",
+                tabDashboards: "📊 POWER BI DASHBOARDS",
+                tabNovels: "📚 MY NOVELS",
+                dashLinkSales: "📊 SALES ANALYSIS",
+                dashLinkFootball: "⚽ FOOTBALL LEAGUE",
+                dashLinkAttendance: "📅 ATTENDANCE CONTROL",
+                dashLinkCars: "🚗 CAR RENTAL",
+                publicLegacy: "Public Legacy",
+                salesCardTitle: "📊 Sales Analysis",
+                salesCardDesc: "Complete sales analysis dashboard with main KPIs, time evolution, and detailed segmentation. <strong>3 interactive pages</strong> with commercial performance metrics.",
+                salesCardButton: "📊 View all pages (3)",
+                footballCardTitle: "⚽ Football League",
+                footballCardDesc: "Complete statistical analysis of a football league with standings, player and team statistics. <strong>2 interactive pages</strong> with advanced sports metrics.",
+                footballCardButton: "⚽ View all pages (2)",
+                attendanceCardTitle: "📅 Attendance Control",
+                attendanceCardDesc: "Complete control of attendance, check-ins, check-outs, vacations, and staff leave. <strong>2 interactive pages</strong> with human resources management and calendars.",
+                attendanceCardButton: "🕐 View all pages (2)",
+                carsCardTitle: "🚗 Car Rental",
+                carsCardDesc: "Vehicle rental analysis dashboard with profitability, occupancy, and market trend metrics. <strong>4 interactive pages</strong> with automotive sector KPIs.",
+                carsCardButton: "🚗 View all pages (4)",
+                aboutDashboardsTitle: "🎯 About these Dashboards",
+                aboutDashboardsDesc: "These dashboards represent real implementation cases of Power BI in different sectors: commercial, sports, human resources and automotive. All maintain public access as legacy examples, ideal for commercial demos and specialized training in data analysis.",
+                literarySideTitle: "📚 My Literary Side",
+                literarySideDesc: "I explore imaginary worlds through writing, from science fiction to thriller, always seeking to connect with readers through stories that combine entertainment and reflection.",
+                viewInStore: "📖 View in Store",
+                watchTrailer: "🎬 Watch Booktrailer",
+                watchTrailer2: "🎥 Watch Booktrailer 2",
+                listenAudio: "🎧 Listen to Audio",
                 pauseCarousel: "⏸️ Pause Carousel",
-                resumeCarousel: "▶️ Resume Carousel"
+                resumeCarousel: "▶️ Resume Carousel",
+                galleryTitleVentas: "📊 Sales Analysis - Complete Dashboard",
+                galleryTitleFutbol: "⚽ Football League - Sports Statistics",
+                galleryTitlePresencia: "📅 Attendance Control - Staff Management",
+                galleryTitleCoches: "🚗 Car Rental - Sector Analysis",
+                galleryOverlay: "View Page {index}",
+                imageModalTitle: "Page {index} of {total} of the {dashboardName} dashboard",
+                mediaError: "Could not load the content. This might be due to server restrictions. Try opening it directly.",
+                openDirectly: "Open in new tab"
             }
         };
 
-        // Datos de dashboards
-        var dashboards = {
+        // Dashboard data
+        const dashboards = {
             ventas: { images: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas2.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas3.jpg"] },
             futbol: { images: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol2.jpg"] },
             presencia: { images: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas2.jpg"] },
             coches: { images: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler2.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler3.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler4.jpg"] }
         };
 
-        // =======================================================================
-        // == DATOS DE LOS LIBROS - ENLACES Y MEDIA ACTUALIZADOS ==
-        // =======================================================================
+        // Book data
         const books = [
-            {
-                title: { es: "FIN", en: "END" },
-                author: "Pedro G. Guirao",
-                description: { es: "Thriller de ciencia ficción que explora las últimas horas de la humanidad...", en: "A science fiction thriller exploring the last hours of humanity..." },
-                genre: { es: "Ciencia Ficción / Thriller", en: "Sci-Fi / Thriller" },
-                genreColor: "linear-gradient(45deg, #c0392b, #8e44ad)",
-                link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/ref=sr_1_1?dib=eyJ2IjoiMSJ9.6A_MzvFnAk2N0yalauznZ2xZOGXFl0yUb7ZGi1VHNBHGjHj071QN20LucGBJIEps.bloUs3wVHjhjcTuT5oZzT4yeiVf-FdHh3SeXP7CrViA&dib_tag=se&qid=1754474000&refinements=p_27%3APedro+G.+Guirao&s=books&sr=1-1"
-            },
-            {
-                title: { es: "OH MY GOD", en: "OH MY GOD" },
-                author: "Pedro G. Guirao",
-                description: { es: "Una comedia satírica donde Dios decide tomarse unas vacaciones en la Tierra...", en: "A satirical comedy where God decides to take a vacation on Earth..." },
-                genre: { es: "Comedia / Sátira", en: "Comedy / Satire" },
-                genreColor: "linear-gradient(45deg, #f39c12, #e67e22)",
-                link: "https://www.overdrive.com/media/10591700/%C2%A1oh-my-god"
-            },
-            {
-                title: { es: "MANUAL BÁSICO DE CONQUISTA", en: "BASIC CONQUEST MANUAL" },
-                author: "Pedro G. Guirao",
-                description: { es: "Una guía humorística y estratégica sobre el arte de la conquista... galáctica.", en: "A humorous and strategic guide to the art of... galactic conquest." },
-                genre: { es: "Ciencia Ficción / Humor", en: "Sci-Fi / Humor" },
-                genreColor: "linear-gradient(45deg, #27ae60, #2ecc71)",
-                link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/ref=sr_1_1?dib=eyJ2IjoiMSJ9.tmyylQfKGGx2v7Pa1FQPEHTkmibi0MFYU6RWXjUwEHI.ZFnJhW0F30RxeDkQjDnK3shLzHyzp8zqzBJhqYH6r24&dib_tag=se&qid=1754474035&refinements=p_27%3APedro+G.+Guirao&s=digital-text&sr=1-1&text=Pedro+G.+Guirao"
-            },
-            {
-                title: { es: "TOCATA Y FUGA DE LA TENIENTE ESCALI", en: "TOCATA AND FUGUE OF LIEUTENANT ESCALI" },
-                author: "Pedro G. Guirao",
-                description: { es: "La primera entrega de la saga de la Teniente Escali...", en: "The first installment in the Lieutenant Escali saga..." },
-                genre: { es: "Novela Negra", en: "Crime Noir" },
-                genreColor: "linear-gradient(45deg, #2c3e50, #34495e)",
-                link: "https://www.amazon.es/TOCATA-Y-FUGA-TENIENTE-ESCALI/dp/B0DVMY39JD/ref=sr_1_1?crid=15OOAKM8WIPW3&dib=eyJ2IjoiMSJ9.cRbTOFplKTevaqFsVz5PlZ9bSpSFEm6OwNgOLltm0UF-a5Bvnwj8gRcHiEaxjLqpfzr-XMPUCxGA3a9bT8UHDw.4AlqRcHWnmDHQBSRJcw4vU6NOGbKWvf4mplRhi-Q_08&dib_tag=se&keywords=pedro+g.+guirao&qid=1754473960&sprefix=%2Caps%2C135&sr=8-1",
-                trailer: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/videos/BOOKTRAILER%20VIDEOS%20ESCALI.mp4",
-                trailer2: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/videos/BOOKTRAILER-2-ESCALI.mp4"
-            },
-            {
-                title: { es: "ESCALI'S BLUES", en: "ESCALI'S BLUES" },
-                author: "Pedro G. Guirao",
-                description: { es: "La Teniente Escali regresa en una nueva aventura...", en: "Lieutenant Escali returns in a new adventure..." },
-                genre: { es: "Novela Negra", en: "Crime Noir" },
-                genreColor: "linear-gradient(45deg, #2c3e50, #34495e)",
-                link: "https://www.kobo.com/us/es/ebook/escali-s-blues?srsltid=AfmBOoqYFWjt_Eg4PYnMu9vu8WiY2X9rEfq2xFnil1TCw2JVV_5xWDZp"
-            },
-            {
-                title: { es: "ÉXODOS", en: "EXODUS" },
-                author: "Kia P. Cabdill (Pseudónimo)",
-                description: { es: "Bajo pseudónimo, una historia de supervivencia y esperanza...", en: "Under a pseudonym, a story of survival and hope..." },
-                genre: { es: "Ciencia Ficción / Distopía", en: "Sci-Fi / Dystopian" },
-                genreColor: "linear-gradient(45deg, #8e44ad, #9b59b6)",
-                link: "https://www.amazon.es/s?k=EXODOS+KIA+P.+CABDILL&__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2QQ27I1STXWQL&sprefix=exodos+kia+p.+cabdill%2Caps%2C108&ref=nb_sb_noss",
-                audio: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/audios/EXODOSESPANOL.mp3"
-            }
+            { id: "fin", author: "Pedro G. Guirao", genreColor: "linear-gradient(45deg, #c0392b, #8e44ad)", link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/ref=sr_1_1?dib=eyJ2IjoiMSJ9.6A_MzvFnAk2N0yalauznZ2xZOGXFl0yUb7ZGi1VHNBHGjHj071QN20LucGBJIEps.bloUs3wVHjhjcTuT5oZzT4yeiVf-FdHh3SeXP7CrViA&dib_tag=se&qid=1754474000&refinements=p_27%3APedro+G.+Guirao&s=books&sr=1-1" },
+            { id: "omg", author: "Pedro G. Guirao", genreColor: "linear-gradient(45deg, #f39c12, #e67e22)", link: "https://www.overdrive.com/media/10591700/%C2%A1oh-my-god" },
+            { id: "manual", author: "Pedro G. Guirao", genreColor: "linear-gradient(45deg, #27ae60, #2ecc71)", link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/ref=sr_1_1?dib=eyJ2IjoiMSJ9.tmyylQfKGGx2v7Pa1FQPEHTkmibi0MFYU6RWXjUwEHI.ZFnJhW0F30RxeDkQjDnK3shLzHyzp8zqzBJhqYH6r24&dib_tag=se&qid=1754474035&refinements=p_27%3APedro+G.+Guirao&s=digital-text&sr=1-1&text=Pedro+G.+Guirao" },
+            { id: "tocata", author: "Pedro G. Guirao", genreColor: "linear-gradient(45deg, #2c3e50, #34495e)", link: "https://www.amazon.es/TOCATA-Y-FUGA-TENIENTE-ESCALI/dp/B0DVMY39JD/ref=sr_1_1?crid=15OOAKM8WIPW3&dib=eyJ2IjoiMSJ9.cRbTOFplKTevaqFsVz5PlZ9bSpSFEm6OwNgOLltm0UF-a5Bvnwj8gRcHiEaxjLqpfzr-XMPUCxGA3a9bT8UHDw.4AlqRcHWnmDHQBSRJcw4vU6NOGbKWvf4mplRhi-Q_08&dib_tag=se&keywords=pedro+g.+guirao&qid=1754473960&sprefix=%2Caps%2C135&sr=8-1", trailer: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/videos/BOOKTRAILER%20VIDEOS%20ESCALI.mp4", trailer2: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/videos/BOOKTRAILER-2-ESCALI.mp4" },
+            { id: "blues", author: "Pedro G. Guirao", genreColor: "linear-gradient(45deg, #2c3e50, #34495e)", link: "https://www.kobo.com/us/es/ebook/escali-s-blues?srsltid=AfmBOoqYFWjt_Eg4PYnMu9vu8WiY2X9rEfq2xFnil1TCw2JVV_5xWDZp" },
+            { id: "exodos", author: "Kia P. Cabdill (Pseudónimo)", genreColor: "linear-gradient(45deg, #8e44ad, #9b59b6)", link: "https://www.amazon.es/s?k=EXODOS+KIA+P.+CABDILL&__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2QQ27I1STXWQL&sprefix=exodos+kia+p.+cabdill%2Caps%2C108&ref=nb_sb_noss", audio: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/audios/EXODOSESPANOL.mp3" }
         ];
+        
+        // Add book text to translations object
+        books.forEach(book => {
+            translations.es[`bookTitle_${book.id}`] = { fin: "FIN", omg: "OH MY GOD", manual: "MANUAL BÁSICO DE CONQUISTA", tocata: "TOCATA Y FUGA DE LA TENIENTE ESCALI", blues: "ESCALI'S BLUES", exodos: "ÉXODOS" }[book.id];
+            translations.en[`bookTitle_${book.id}`] = { fin: "END", omg: "OH MY GOD", manual: "BASIC CONQUEST MANUAL", tocata: "TOCATA AND FUGUE OF LIEUTENANT ESCALI", blues: "ESCALI'S BLUES", exodos: "EXODUS" }[book.id];
+            translations.es[`bookDesc_${book.id}`] = { fin: "Thriller de ciencia ficción que explora las últimas horas de la humanidad...", omg: "Una comedia satírica donde Dios decide tomarse unas vacaciones en la Tierra...", manual: "Una guía humorística y estratégica sobre el arte de la conquista... galáctica.", tocata: "La primera entrega de la saga de la Teniente Escali...", blues: "La Teniente Escali regresa en una nueva aventura...", exodos: "Bajo pseudónimo, una historia de supervivencia y esperanza..." }[book.id];
+            translations.en[`bookDesc_${book.id}`] = { fin: "A science fiction thriller exploring the last hours of humanity...", omg: "A satirical comedy where God decides to take a vacation on Earth...", manual: "A humorous and strategic guide to the art of... galactic conquest.", tocata: "The first installment in the Lieutenant Escali saga...", blues: "Lieutenant Escali returns in a new adventure...", exodos: "Under a pseudonym, a story of survival and hope..." }[book.id];
+            translations.es[`bookGenre_${book.id}`] = { fin: "Ciencia Ficción / Thriller", omg: "Comedia / Sátira", manual: "Ciencia Ficción / Humor", tocata: "Novela Negra", blues: "Novela Negra", exodos: "Ciencia Ficción / Distopía" }[book.id];
+            translations.en[`bookGenre_${book.id}`] = { fin: "Sci-Fi / Thriller", omg: "Comedy / Satire", manual: "Sci-Fi / Humor", tocata: "Crime Noir", blues: "Crime Noir", exodos: "Sci-Fi / Dystopian" }[book.id];
+        });
 
-        // --- Lógica de la página ---
+
+        // --- CORE FUNCTIONS ---
+
+        function applyTranslations() {
+            const lang = translations[currentLanguage];
+            document.querySelectorAll('[data-translation-key]').forEach(el => {
+                const key = el.dataset.translationKey;
+                if (lang[key]) {
+                    el.innerHTML = lang[key];
+                }
+            });
+            updateBookDisplay();
+        }
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+            applyTranslations();
+        }
+
+        function showSection(sectionName) {
+            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionName).classList.add('active');
+            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.tab-button[onclick*="'${sectionName}'"]`).classList.add('active');
+        }
+
+        // --- BOOK CAROUSEL LOGIC ---
+        
         function updateBookDisplay() {
             const book = books[currentBook];
-            document.getElementById('bookTitle').textContent = book.title[currentLanguage];
+            const lang = translations[currentLanguage];
+            
+            document.getElementById('bookTitle').textContent = lang[`bookTitle_${book.id}`];
             document.getElementById('bookAuthor').textContent = book.author;
-            document.getElementById('bookDescription').innerHTML = book.description[currentLanguage];
+            document.getElementById('bookDescription').innerHTML = lang[`bookDesc_${book.id}`];
             
             const genreEl = document.getElementById('bookGenre');
-            genreEl.textContent = book.genre[currentLanguage];
+            genreEl.textContent = lang[`bookGenre_${book.id}`];
             genreEl.style.background = book.genreColor;
 
             const bookLink = document.getElementById('bookLink');
             bookLink.href = book.link;
             bookLink.onclick = (e) => {
-                if (!e.metaKey && !e.ctrlKey && e.button === 0) {
-                    e.preventDefault();
-                    window.open(bookLink.href, '_blank');
-                }
+                e.preventDefault();
+                window.open(bookLink.href, '_blank');
             };
 
             const trailerBtn = document.getElementById('bookTrailerLink');
@@ -1413,31 +1451,11 @@
             trailerBtn2.style.display = book.trailer2 ? 'inline-flex' : 'none';
             audioBtn.style.display = book.audio ? 'inline-flex' : 'none';
 
-            if (book.trailer) trailerBtn.onclick = () => openVideo(book.trailer, book.title[currentLanguage]);
-            if (book.trailer2) trailerBtn2.onclick = () => openVideo(book.trailer2, `${book.title[currentLanguage]} (2)`);
-            if (book.audio) audioBtn.onclick = () => openAudio(book.audio, book.title[currentLanguage]);
+            if (book.trailer) trailerBtn.onclick = () => openVideo(book.trailer, lang[`bookTitle_${book.id}`]);
+            if (book.trailer2) trailerBtn2.onclick = () => openVideo(book.trailer2, `${lang[`bookTitle_${book.id}`]} (2)`);
+            if (book.audio) audioBtn.onclick = () => openAudio(book.audio, lang[`bookTitle_${book.id}`]);
         }
         
-        function changeLanguage(lang) {
-            currentLanguage = lang;
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
-            
-            document.querySelectorAll('[data-text-es]').forEach(el => {
-                const key = `text-${lang}`;
-                if (el.dataset[key] !== undefined) {
-                    el.innerHTML = el.dataset[key];
-                }
-            });
-            updateBookDisplay();
-        }
-
-        function showSection(sectionName) {
-            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionName).classList.add('active');
-            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
-            document.querySelector(`.tab-button[onclick*="'${sectionName}'"]`).classList.add('active');
-        }
-
         function createIndicators() {
             const indicatorsContainer = document.getElementById('indicators');
             indicatorsContainer.innerHTML = '';
@@ -1451,13 +1469,12 @@
 
         function updateCarousel() {
             const covers = document.querySelectorAll('.book-cover');
-            const total = covers.length;
             covers.forEach((cover, index) => {
                 cover.className = 'book-cover';
-                let newIndex = (index - currentBook + total) % total;
+                let newIndex = (index - currentBook + totalBooks) % totalBooks;
                 if (newIndex === 0) cover.classList.add('active');
                 else if (newIndex === 1) cover.classList.add('next');
-                else if (newIndex === total - 1) cover.classList.add('prev');
+                else if (newIndex === totalBooks - 1) cover.classList.add('prev');
                 else cover.classList.add('hidden');
             });
             document.querySelectorAll('.indicator').forEach((ind, i) => ind.classList.toggle('active', i === currentBook));
@@ -1487,15 +1504,12 @@
             const btnSpan = document.getElementById('autoplayBtn').querySelector('span');
             if (isAutoplayActive) {
                 startAutoplay();
-                btnSpan.dataset.textEs = translations.es.pauseCarousel;
-                btnSpan.dataset.textEn = translations.en.pauseCarousel;
+                btnSpan.dataset.translationKey = "pauseCarousel";
             } else {
                 clearInterval(autoplayInterval);
-                btnSpan.dataset.textEs = translations.es.resumeCarousel;
-                btnSpan.dataset.textEn = translations.en.resumeCarousel;
+                btnSpan.dataset.translationKey = "resumeCarousel";
             }
-            btnSpan.innerHTML = translations[currentLanguage].isAutoplayActive ? translations[currentLanguage].pauseCarousel : translations[currentLanguage].resumeCarousel;
-            changeLanguage(currentLanguage);
+            applyTranslations();
         }
 
         function startAutoplay() {
@@ -1507,39 +1521,65 @@
             if (isAutoplayActive) startAutoplay();
         }
         
+        // --- MODAL AND MEDIA LOGIC ---
+
         function openVideo(videoSrc, title) {
             const modal = document.getElementById('videoModal');
             const player = document.getElementById('videoPlayer');
-            const source = document.getElementById('videoSource');
+            const fallback = document.getElementById('videoFallback');
+            
             document.getElementById('videoTitle').textContent = `🎬 ${title}`;
-            source.src = videoSrc;
+            player.innerHTML = `<source src="${videoSrc}" type="video/mp4">`;
             player.load();
             modal.style.display = 'block';
-            player.play().catch(e => console.log("Error playing video:", e));
+            
+            player.oncanplay = () => {
+                fallback.style.display = 'none';
+                player.style.display = 'block';
+                player.play().catch(e => console.log("Autoplay prevented:", e));
+            };
+            
+            player.onerror = () => {
+                player.style.display = 'none';
+                fallback.innerHTML = `${translations[currentLanguage].mediaError} <br><br> <a href="${videoSrc}" target="_blank">${translations[currentLanguage].openDirectly}</a>`;
+                fallback.style.display = 'block';
+            };
         }
 
         function closeVideo() {
             const player = document.getElementById('videoPlayer');
             player.pause();
-            player.currentTime = 0;
+            player.innerHTML = ''; // Clear source
             document.getElementById('videoModal').style.display = 'none';
         }
 
         function openAudio(audioSrc, title) {
             const modal = document.getElementById('audioModal');
             const player = document.getElementById('audioPlayer');
-            const source = document.getElementById('audioSource');
+            const fallback = document.getElementById('audioFallback');
+
             document.getElementById('audioTitle').textContent = `🎧 ${title}`;
-            source.src = audioSrc;
+            player.innerHTML = `<source src="${audioSrc}" type="audio/mpeg">`;
             player.load();
             modal.style.display = 'block';
-            player.play().catch(e => console.log("Error playing audio:", e));
+
+            player.oncanplay = () => {
+                fallback.style.display = 'none';
+                player.style.display = 'block';
+                player.play().catch(e => console.log("Autoplay prevented:", e));
+            };
+
+            player.onerror = () => {
+                player.style.display = 'none';
+                fallback.innerHTML = `${translations[currentLanguage].mediaError} <br><br> <a href="${audioSrc}" target="_blank">${translations[currentLanguage].openDirectly}</a>`;
+                fallback.style.display = 'block';
+            };
         }
 
         function closeAudio() {
             const player = document.getElementById('audioPlayer');
             player.pause();
-            player.currentTime = 0;
+            player.innerHTML = ''; // Clear source
             document.getElementById('audioModal').style.display = 'none';
         }
 
@@ -1549,7 +1589,10 @@
             const galleryModal = document.getElementById('galleryModal');
             const galleryImages = document.getElementById('galleryImages');
             const galleryTitle = document.getElementById('galleryTitle');
-            galleryTitle.textContent = translations[currentLanguage].dashboardTitles[dashboardKey];
+            
+            const titleKey = `galleryTitle${dashboardKey.charAt(0).toUpperCase() + dashboardKey.slice(1)}`;
+            galleryTitle.textContent = translations[currentLanguage][titleKey] || dashboardKey;
+            
             galleryImages.innerHTML = '';
             dashboards[dashboardKey].images.forEach((imgSrc, index) => {
                 const imgContainer = document.createElement('div');
@@ -1561,7 +1604,7 @@
                 img.onerror = function() { this.src='https://placehold.co/800x600/cccccc/ffffff?text=Image+not+available'; };
                 const overlay = document.createElement('div');
                 overlay.className = 'image-overlay';
-                overlay.textContent = `View Page ${index + 1}`;
+                overlay.textContent = translations[currentLanguage].galleryOverlay.replace('{index}', index + 1);
                 imgContainer.appendChild(img);
                 imgContainer.appendChild(overlay);
                 galleryImages.appendChild(imgContainer);
@@ -1581,10 +1624,19 @@
             const modalImg = document.getElementById('imageModalImg');
             const modalTitle = document.getElementById('imageModalTitle');
             const counter = document.getElementById('imageCounter');
+            
             modalImg.src = images[currentImageIndex];
-            let dashboardName = (translations[currentLanguage].cardTitles[currentGallery] || currentGallery).replace(/📊 |⚽ |📅 |🚗 /g, '');
-            modalTitle.textContent = translations[currentLanguage].imageModalTitle.replace('{index}', currentImageIndex + 1).replace('{total}', totalImages).replace('{dashboardName}', dashboardName);
+            
+            const titleKey = `galleryTitle${currentGallery.charAt(0).toUpperCase() + currentGallery.slice(1)}`;
+            const dashboardName = (translations[currentLanguage][titleKey] || currentGallery).replace(/📊 |⚽ |📅 |🚗 /g, '');
+            
+            modalTitle.textContent = translations[currentLanguage].imageModalTitle
+                .replace('{index}', currentImageIndex + 1)
+                .replace('{total}', totalImages)
+                .replace('{dashboardName}', dashboardName);
+                
             counter.textContent = `${currentImageIndex + 1} / ${totalImages}`;
+            
             document.getElementById('prevImageBtn').disabled = currentImageIndex === 0;
             document.getElementById('nextImageBtn').disabled = currentImageIndex === totalImages - 1;
             document.getElementById('sideNavLeft').disabled = currentImageIndex === 0;
@@ -1604,7 +1656,10 @@
             }
         }
         
+        // --- INITIALIZATION ---
+        
         document.addEventListener('DOMContentLoaded', () => {
+            // Animate roles
             const parts = document.querySelectorAll('.highlight-text .part');
             let currentPart = 0;
             setInterval(() => {
@@ -1613,11 +1668,15 @@
                 currentPart = (currentPart + 1) % parts.length;
             }, 2500);
 
+            // Setup carousel
             createIndicators();
             updateCarousel();
             startAutoplay();
-            changeLanguage(currentLanguage); // Initial translation
+            
+            // Initial translation
+            applyTranslations();
 
+            // Global key listener
             window.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     closeGallery();
