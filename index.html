@@ -672,12 +672,20 @@
             background: #000;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
-        .video-player video { max-height: 80vh; width: auto; height: auto; }
-        .audio-player audio { width: 90%; max-width: 500px; }
-
+        
+        .video-player video { 
+            max-height: 80vh; 
+            width: auto; 
+            height: auto; 
+        }
+        
+        .audio-player audio { 
+            width: 90%; 
+            max-width: 500px; 
+        }
 
         .media-fallback {
-            display: none; /* Hidden by default */
+            display: none;
             color: white;
             text-align: center;
             padding: 40px;
@@ -688,8 +696,23 @@
             max-width: 800px;
         }
 
-        .media-fallback a { color: #4ecdc4; text-decoration: none; font-weight: bold; }
-        .media-fallback a:hover { text-decoration: underline; }
+        .media-fallback a { 
+            color: #4ecdc4; 
+            text-decoration: none; 
+            font-weight: bold; 
+        }
+        
+        .media-fallback a:hover { 
+            text-decoration: underline; 
+        }
+
+        .loading-indicator {
+            display: none;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.1rem;
+        }
 
         .gallery-modal {
             display: none;
@@ -1223,11 +1246,15 @@
                     <button class="close-audio" onclick="closeAudio()">✕</button>
                 </div>
                 <div class="audio-player">
-                    <audio id="audioPlayer" controls preload="metadata"></audio>
+                    <div class="loading-indicator" id="audioLoading">🔄 Cargando audio...</div>
+                    <audio id="audioPlayer" controls preload="metadata" crossorigin="anonymous" playsinline>
+                        Tu navegador no soporta el elemento audio.
+                    </audio>
                     <div class="media-fallback" id="audioFallback"></div>
                 </div>
             </div>
         </div>
+        
         <div id="videoModal" class="video-modal">
             <div class="video-content">
                 <div class="video-header">
@@ -1235,11 +1262,15 @@
                     <button class="close-video" onclick="closeVideo()">✕</button>
                 </div>
                 <div class="video-player">
-                    <video id="videoPlayer" controls preload="metadata"></video>
+                    <div class="loading-indicator" id="videoLoading">🔄 Cargando video...</div>
+                    <video id="videoPlayer" controls preload="metadata" crossorigin="anonymous" playsinline>
+                        Tu navegador no soporta el elemento video.
+                    </video>
                     <div class="media-fallback" id="videoFallback"></div>
                 </div>
             </div>
         </div>
+        
         <div id="galleryModal" class="gallery-modal">
             <div class="gallery-content">
                 <div class="gallery-header">
@@ -1249,6 +1280,7 @@
                 <div id="galleryImages" class="gallery-images"></div>
             </div>
         </div>
+        
         <div id="imageModal" class="image-modal">
             <div class="image-modal-content">
                 <div class="image-modal-header" id="imageModalTitle"></div>
@@ -1319,8 +1351,11 @@
                 galleryTitleCoches: "🚗 Alquiler de Coches - Análisis del Sector",
                 galleryOverlay: "Ver Página {index}",
                 imageModalTitle: "Página {index} de {total} del dashboard de {dashboardName}",
-                mediaError: "No se pudo cargar el contenido. Esto puede deberse a restricciones del servidor. Intenta abrirlo directamente.",
-                openDirectly: "Abrir en una nueva pestaña"
+                mediaError: "No se pudo cargar el contenido multimedia.",
+                mediaErrorDetail: "Esto puede deberse a restricciones de CORS, problemas de conectividad o formato incompatible.",
+                openDirectly: "Abrir en nueva pestaña",
+                tryAlternative: "Probar fuente alternativa",
+                loadingMedia: "Cargando contenido multimedia..."
             },
             en: {
                 roleSpecialist: "Power BI and Microsoft Excel Specialist",
@@ -1362,8 +1397,11 @@
                 galleryTitleCoches: "🚗 Car Rental - Sector Analysis",
                 galleryOverlay: "View Page {index}",
                 imageModalTitle: "Page {index} of {total} of the {dashboardName} dashboard",
-                mediaError: "Could not load the content. This might be due to server restrictions. Try opening it directly.",
-                openDirectly: "Open in new tab"
+                mediaError: "Could not load multimedia content.",
+                mediaErrorDetail: "This might be due to CORS restrictions, connectivity issues, or incompatible format.",
+                openDirectly: "Open in new tab",
+                tryAlternative: "Try alternative source",
+                loadingMedia: "Loading multimedia content..."
             }
         };
 
@@ -1375,26 +1413,114 @@
             coches: { images: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler2.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler3.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler4.jpg"] }
         };
 
-        // Book data with corrected CDN URLs
+        // Book data with FIXED URLs (using multiple sources for video fallback)
         const books = [
-            { id: "fin", author: "Pedro G. Guirao", genreColor: "linear-gradient(45deg, #c0392b, #8e44ad)", link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/ref=sr_1_1?dib=eyJ2IjoiMSJ9.6A_MzvFnAk2N0yalauznZ2xZOGXFl0yUb7ZGi1VHNBHGjHj071QN20LucGBJIEps.bloUs3wVHjhjcTuT5oZzT4yeiVf-FdHh3SeXP7CrViA&dib_tag=se&qid=1754474000&refinements=p_27%3APedro+G.+Guirao&s=books&sr=1-1" },
-            { id: "omg", author: "Pedro G. Guirao", genreColor: "linear-gradient(45deg, #f39c12, #e67e22)", link: "https://www.overdrive.com/media/10591700/%C2%A1oh-my-god" },
-            { id: "manual", author: "Pedro G. Guirao", genreColor: "linear-gradient(45deg, #27ae60, #2ecc71)", link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/ref=sr_1_1?dib=eyJ2IjoiMSJ9.tmyylQfKGGx2v7Pa1FQPEHTkmibi0MFYU6RWXjUwEHI.ZFnJhW0F30RxeDkQjDnK3shLzHyzp8zqzBJhqYH6r24&dib_tag=se&qid=1754474035&refinements=p_27%3APedro+G.+Guirao&s=digital-text&sr=1-1&text=Pedro+G.+Guirao" },
-            { id: "tocata", author: "Pedro G. Guirao", genreColor: "linear-gradient(45deg, #2c3e50, #34495e)", link: "https://www.amazon.es/TOCATA-Y-FUGA-TENIENTE-ESCALI/dp/B0DVMY39JD/ref=sr_1_1?crid=15OOAKM8WIPW3&dib=eyJ2IjoiMSJ9.cRbTOFplKTevaqFsVz5PlZ9bSpSFEm6OwNgOLltm0UF-a5Bvnwj8gRcHiEaxjLqpfzr-XMPUCxGA3a9bT8UHDw.4AlqRcHWnmDHQBSRJcw4vU6NOGbKWvf4mplRhi-Q_08&dib_tag=se&keywords=pedro+g.+guirao&qid=1754473960&sprefix=%2Caps%2C135&sr=8-1", trailer: "https://cdn.jsdelivr.net/gh/PedroGuiraoGil/powerbi-dashboards@main/images/BOOKTRAILER1.mp4", trailer2: "https://cdn.jsdelivr.net/gh/PedroGuiraoGil/powerbi-dashboards@main/images/BOOKTRAILER2.mp4" },
-            { id: "blues", author: "Pedro G. Guirao", genreColor: "linear-gradient(45deg, #2c3e50, #34495e)", link: "https://www.kobo.com/us/es/ebook/escali-s-blues?srsltid=AfmBOoqYFWjt_Eg4PYnMu9vu8WiY2X9rEfq2xFnil1TCw2JVV_5xWDZp" },
-            { id: "exodos", author: "Kia P. Cabdill (Pseudónimo)", genreColor: "linear-gradient(45deg, #8e44ad, #9b59b6)", link: "https://www.amazon.es/s?k=EXODOS+KIA+P.+CABDILL&__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2QQ27I1STXWQL&sprefix=exodos+kia+p.+cabdill%2Caps%2C108&ref=nb_sb_noss", audio: "https://cdn.jsdelivr.net/gh/PedroGuiraoGil/powerbi-dashboards@main/images/EXODOSESPANOL.mp3" }
+            { 
+                id: "fin", 
+                author: "Pedro G. Guirao", 
+                genreColor: "linear-gradient(45deg, #c0392b, #8e44ad)", 
+                link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/ref=sr_1_1?dib=eyJ2IjoiMSJ9.6A_MzvFnAk2N0yalauznZ2xZOGXFl0yUb7ZGi1VHNBHGjHj071QN20LucGBJIEps.bloUs3wVHjhjcTuT5oZzT4yeiVf-FdHh3SeXP7CrViA&dib_tag=se&qid=1754474000&refinements=p_27%3APedro+G.+Guirao&s=books&sr=1-1" 
+            },
+            { 
+                id: "omg", 
+                author: "Pedro G. Guirao", 
+                genreColor: "linear-gradient(45deg, #f39c12, #e67e22)", 
+                link: "https://www.overdrive.com/media/10591700/%C2%A1oh-my-god" 
+            },
+            { 
+                id: "manual", 
+                author: "Pedro G. Guirao", 
+                genreColor: "linear-gradient(45deg, #27ae60, #2ecc71)", 
+                link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/ref=sr_1_1?dib=eyJ2IjoiMSJ9.tmyylQfKGGx2v7Pa1FQPEHTkmibi0MFYU6RWXjUwEHI.ZFnJhW0F30RxeDkQjDnK3shLzHyzp8zqzBJhqYH6r24&dib_tag=se&qid=1754474035&refinements=p_27%3APedro+G.+Guirao&s=digital-text&sr=1-1&text=Pedro+G.+Guirao" 
+            },
+            { 
+                id: "tocata", 
+                author: "Pedro G. Guirao", 
+                genreColor: "linear-gradient(45deg, #2c3e50, #34495e)", 
+                link: "https://www.amazon.es/TOCATA-Y-FUGA-TENIENTE-ESCALI/dp/B0DVMY39JD/ref=sr_1_1?crid=15OOAKM8WIPW3&dib=eyJ2IjoiMSJ9.cRbTOFplKTevaqFsVz5PlZ9bSpSFEm6OwNgOLltm0UF-a5Bvnwj8gRcHiEaxjLqpfzr-XMPUCxGA3a9bT8UHDw.4AlqRcHWnmDHQBSRJcw4vU6NOGbKWvf4mplRhi-Q_08&dib_tag=se&keywords=pedro+g.+guirao&qid=1754473960&sprefix=%2Caps%2C135&sr=8-1", 
+                trailer: [
+                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER1.mp4",
+                    "https://github.com/PedroGuiraoGil/powerbi-dashboards/raw/main/images/BOOKTRAILER1.mp4"
+                ], 
+                trailer2: [
+                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER2.mp4",
+                    "https://github.com/PedroGuiraoGil/powerbi-dashboards/raw/main/images/BOOKTRAILER2.mp4"
+                ]
+            },
+            { 
+                id: "blues", 
+                author: "Pedro G. Guirao", 
+                genreColor: "linear-gradient(45deg, #2c3e50, #34495e)", 
+                link: "https://www.kobo.com/us/es/ebook/escali-s-blues?srsltid=AfmBOoqYFWjt_Eg4PYnMu9vu8WiY2X9rEfq2xFnil1TCw2JVV_5xWDZp" 
+            },
+            { 
+                id: "exodos", 
+                author: "Kia P. Cabdill (Pseudónimo)", 
+                genreColor: "linear-gradient(45deg, #8e44ad, #9b59b6)", 
+                link: "https://www.amazon.es/s?k=EXODOS+KIA+P.+CABDILL&__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2QQ27I1STXWQL&sprefix=exodos+kia+p.+cabdill%2Caps%2C108&ref=nb_sb_noss", 
+                audio: [
+                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/EXODOSESPANOL.mp3",
+                    "https://github.com/PedroGuiraoGil/powerbi-dashboards/raw/main/images/EXODOSESPANOL.mp3"
+                ]
+            }
         ];
         
         // Add book text to translations object
         books.forEach(book => {
-            translations.es[`bookTitle_${book.id}`] = { fin: "FIN", omg: "OH MY GOD", manual: "MANUAL BÁSICO DE CONQUISTA", tocata: "TOCATA Y FUGA DE LA TENIENTE ESCALI", blues: "ESCALI'S BLUES", exodos: "ÉXODOS" }[book.id];
-            translations.en[`bookTitle_${book.id}`] = { fin: "END", omg: "OH MY GOD", manual: "BASIC CONQUEST MANUAL", tocata: "TOCATA AND FUGUE OF LIEUTENANT ESCALI", blues: "ESCALI'S BLUES", exodos: "EXODUS" }[book.id];
-            translations.es[`bookDesc_${book.id}`] = { fin: "Thriller de ciencia ficción que explora las últimas horas de la humanidad...", omg: "Una comedia satírica donde Dios decide tomarse unas vacaciones en la Tierra...", manual: "Una guía humorística y estratégica sobre el arte de la conquista... galáctica.", tocata: "La primera entrega de la saga de la Teniente Escali...", blues: "La Teniente Escali regresa en una nueva aventura...", exodos: "Bajo pseudónimo, una historia de supervivencia y esperanza..." }[book.id];
-            translations.en[`bookDesc_${book.id}`] = { fin: "A science fiction thriller exploring the last hours of humanity...", omg: "A satirical comedy where God decides to take a vacation on Earth...", manual: "A humorous and strategic guide to the art of... galactic conquest.", tocata: "The first installment in the Lieutenant Escali saga...", blues: "Lieutenant Escali returns in a new adventure...", exodos: "Under a pseudonym, a story of survival and hope..." }[book.id];
-            translations.es[`bookGenre_${book.id}`] = { fin: "Ciencia Ficción / Thriller", omg: "Comedia / Sátira", manual: "Ciencia Ficción / Humor", tocata: "Novela Negra", blues: "Novela Negra", exodos: "Ciencia Ficción / Distopía" }[book.id];
-            translations.en[`bookGenre_${book.id}`] = { fin: "Sci-Fi / Thriller", omg: "Comedy / Satire", manual: "Sci-Fi / Humor", tocata: "Crime Noir", blues: "Crime Noir", exodos: "Sci-Fi / Dystopian" }[book.id];
+            translations.es[`bookTitle_${book.id}`] = { 
+                fin: "FIN", 
+                omg: "OH MY GOD", 
+                manual: "MANUAL BÁSICO DE CONQUISTA", 
+                tocata: "TOCATA Y FUGA DE LA TENIENTE ESCALI", 
+                blues: "ESCALI'S BLUES", 
+                exodos: "ÉXODOS" 
+            }[book.id];
+            
+            translations.en[`bookTitle_${book.id}`] = { 
+                fin: "END", 
+                omg: "OH MY GOD", 
+                manual: "BASIC CONQUEST MANUAL", 
+                tocata: "TOCATA AND FUGUE OF LIEUTENANT ESCALI", 
+                blues: "ESCALI'S BLUES", 
+                exodos: "EXODUS" 
+            }[book.id];
+            
+            translations.es[`bookDesc_${book.id}`] = { 
+                fin: "Thriller de ciencia ficción que explora las últimas horas de la humanidad en un mundo al borde del colapso total. Una historia intensa sobre supervivencia, decisiones imposibles y el verdadero significado del fin.", 
+                omg: "Una comedia satírica donde Dios decide tomarse unas vacaciones en la Tierra, desatando el caos más divertido que jamás hayas imaginado. Humor irreverente y reflexiones profundas sobre la condición humana.", 
+                manual: "Una guía humorística y estratégica sobre el arte de la conquista... galáctica. Combina comedia espacial con aventuras épicas en un universo lleno de sorpresas y personajes inolvidables.", 
+                tocata: "La primera entrega de la saga de la Teniente Escali, una novela negra que combina misterio, acción y personajes complejos en una trama que te mantendrá en vilo hasta la última página.", 
+                blues: "La Teniente Escali regresa en una nueva aventura llena de suspense y giros inesperados. Una secuela que profundiza en el universo noir creado en la primera entrega.", 
+                exodos: "Bajo pseudónimo, una historia de supervivencia y esperanza en un mundo postapocalíptico. Ciencia ficción distópica que explora la resistencia humana ante la adversidad extrema." 
+            }[book.id];
+            
+            translations.en[`bookDesc_${book.id}`] = { 
+                fin: "A science fiction thriller exploring the last hours of humanity in a world on the brink of total collapse. An intense story about survival, impossible decisions, and the true meaning of the end.", 
+                omg: "A satirical comedy where God decides to take a vacation on Earth, unleashing the funniest chaos you could ever imagine. Irreverent humor and deep reflections on the human condition.", 
+                manual: "A humorous and strategic guide to the art of... galactic conquest. Combines space comedy with epic adventures in a universe full of surprises and unforgettable characters.", 
+                tocata: "The first installment in the Lieutenant Escali saga, a noir novel that combines mystery, action, and complex characters in a plot that will keep you on edge until the last page.", 
+                blues: "Lieutenant Escali returns in a new adventure full of suspense and unexpected twists. A sequel that delves deeper into the noir universe created in the first installment.", 
+                exodos: "Under a pseudonym, a story of survival and hope in a post-apocalyptic world. Dystopian science fiction that explores human resistance in the face of extreme adversity." 
+            }[book.id];
+            
+            translations.es[`bookGenre_${book.id}`] = { 
+                fin: "Ciencia Ficción / Thriller", 
+                omg: "Comedia / Sátira", 
+                manual: "Ciencia Ficción / Humor", 
+                tocata: "Novela Negra", 
+                blues: "Novela Negra", 
+                exodos: "Ciencia Ficción / Distopía" 
+            }[book.id];
+            
+            translations.en[`bookGenre_${book.id}`] = { 
+                fin: "Sci-Fi / Thriller", 
+                omg: "Comedy / Satire", 
+                manual: "Sci-Fi / Humor", 
+                tocata: "Crime Noir", 
+                blues: "Crime Noir", 
+                exodos: "Sci-Fi / Dystopian" 
+            }[book.id];
         });
-
 
         // --- CORE FUNCTIONS ---
 
@@ -1521,88 +1647,221 @@
             if (isAutoplayActive) startAutoplay();
         }
         
-        // --- MODAL AND MEDIA LOGIC (REVISED) ---
+        // --- IMPROVED MEDIA LOADING FUNCTIONS ---
 
-        function openVideo(videoSrc, title) {
+        function openVideo(videoSources, title) {
             const modal = document.getElementById('videoModal');
             const player = document.getElementById('videoPlayer');
             const fallback = document.getElementById('videoFallback');
+            const loading = document.getElementById('videoLoading');
             
-            player.style.display = 'block';
-            fallback.style.display = 'none';
-            player.src = ''; // Clear previous source
+            // Ensure videoSources is always an array
+            const sources = Array.isArray(videoSources) ? videoSources : [videoSources];
             
+            // Show modal and reset states
             document.getElementById('videoTitle').textContent = `🎬 ${title}`;
             modal.style.display = 'block';
-
-            player.src = videoSrc;
+            
+            player.style.display = 'none';
+            fallback.style.display = 'none';
+            loading.style.display = 'block';
+            loading.textContent = translations[currentLanguage].loadingMedia;
+            
+            // Clear previous video
+            player.pause();
+            player.src = '';
             player.load();
             
-            const playPromise = player.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.error("Video play error:", error);
-                    player.style.display = 'none';
-                    fallback.innerHTML = `${translations[currentLanguage].mediaError} <br><br> <a href="${videoSrc}" target="_blank">${translations[currentLanguage].openDirectly}</a>`;
+            let currentSourceIndex = 0;
+            
+            function tryNextSource() {
+                if (currentSourceIndex >= sources.length) {
+                    // All sources failed
+                    loading.style.display = 'none';
+                    fallback.innerHTML = `
+                        <div style="text-align: center;">
+                            <h3>❌ ${translations[currentLanguage].mediaError}</h3>
+                            <p>${translations[currentLanguage].mediaErrorDetail}</p>
+                            <br>
+                            <a href="${sources[0]}" target="_blank" style="color: #4ecdc4; font-weight: bold; text-decoration: none; padding: 10px 20px; border: 2px solid #4ecdc4; border-radius: 25px; display: inline-block; margin: 5px;">
+                                🔗 ${translations[currentLanguage].openDirectly}
+                            </a>
+                            <br><br>
+                            <details style="text-align: left; max-width: 500px; margin: 0 auto;">
+                                <summary style="cursor: pointer; color: #ccc;">URLs probadas:</summary>
+                                <ul style="margin-top: 10px; color: #999;">
+                                    ${sources.map(url => `<li>${url}</li>`).join('')}
+                                </ul>
+                            </details>
+                        </div>
+                    `;
                     fallback.style.display = 'block';
-                });
+                    return;
+                }
+                
+                const currentSource = sources[currentSourceIndex];
+                console.log(`Intentando cargar video desde: ${currentSource}`);
+                
+                // Remove previous event listeners
+                player.onloadstart = null;
+                player.onloadedmetadata = null;
+                player.oncanplay = null;
+                player.onerror = null;
+                player.onstalled = null;
+                player.onabort = null;
+                
+                // Set up new event listeners
+                player.onloadstart = () => {
+                    console.log('Video: Iniciando carga...');
+                };
+                
+                player.onloadedmetadata = () => {
+                    console.log('Video: Metadatos cargados');
+                    loading.style.display = 'none';
+                    player.style.display = 'block';
+                    
+                    // Try to play (handle autoplay policies)
+                    const playPromise = player.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(e => {
+                            console.log('Autoplay bloqueado (normal):', e.message);
+                        });
+                    }
+                };
+                
+                player.oncanplay = () => {
+                    console.log('Video: Listo para reproducir');
+                };
+                
+                player.onerror = (e) => {
+                    console.log(`Error con fuente ${currentSourceIndex + 1}/${sources.length}:`, player.error);
+                    currentSourceIndex++;
+                    setTimeout(tryNextSource, 500);
+                };
+                
+                player.onstalled = () => {
+                    console.log('Video: Descarga estancada, probando siguiente fuente...');
+                    currentSourceIndex++;
+                    setTimeout(tryNextSource, 3000);
+                };
+                
+                player.onabort = () => {
+                    console.log('Video: Carga abortada, probando siguiente fuente...');
+                    currentSourceIndex++;
+                    setTimeout(tryNextSource, 500);
+                };
+                
+                // Set video source
+                player.src = currentSource;
+                player.load();
             }
-
-            player.onerror = (e) => {
-                // This will catch more fundamental loading errors
-                console.error("Video element error:", e);
-                player.style.display = 'none';
-                fallback.innerHTML = `${translations[currentLanguage].mediaError} <br><br> <a href="${videoSrc}" target="_blank">${translations[currentLanguage].openDirectly}</a>`;
-                fallback.style.display = 'block';
-            };
+            
+            // Start trying sources
+            tryNextSource();
         }
 
         function closeVideo() {
             const player = document.getElementById('videoPlayer');
+            const loading = document.getElementById('videoLoading');
+            
             player.pause();
-            player.removeAttribute('src'); // More robust cleanup
+            player.src = '';
             player.load();
+            loading.style.display = 'none';
+            
             document.getElementById('videoModal').style.display = 'none';
         }
 
-        function openAudio(audioSrc, title) {
+        function openAudio(audioSources, title) {
             const modal = document.getElementById('audioModal');
             const player = document.getElementById('audioPlayer');
             const fallback = document.getElementById('audioFallback');
-
-            player.style.display = 'block';
-            fallback.style.display = 'none';
-            player.src = ''; // Clear previous source
-
+            const loading = document.getElementById('audioLoading');
+            
+            // Ensure audioSources is always an array
+            const sources = Array.isArray(audioSources) ? audioSources : [audioSources];
+            
+            // Show modal and reset states
             document.getElementById('audioTitle').textContent = `🎧 ${title}`;
             modal.style.display = 'block';
-
-            player.src = audioSrc;
+            
+            player.style.display = 'none';
+            fallback.style.display = 'none';
+            loading.style.display = 'block';
+            loading.textContent = translations[currentLanguage].loadingMedia;
+            
+            // Clear previous audio
+            player.pause();
+            player.src = '';
             player.load();
-
-            const playPromise = player.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.error("Audio play error:", error);
-                    player.style.display = 'none';
-                    fallback.innerHTML = `${translations[currentLanguage].mediaError} <br><br> <a href="${audioSrc}" target="_blank">${translations[currentLanguage].openDirectly}</a>`;
+            
+            let currentSourceIndex = 0;
+            
+            function tryNextSource() {
+                if (currentSourceIndex >= sources.length) {
+                    // All sources failed
+                    loading.style.display = 'none';
+                    fallback.innerHTML = `
+                        <div style="text-align: center;">
+                            <h3>❌ ${translations[currentLanguage].mediaError}</h3>
+                            <p>${translations[currentLanguage].mediaErrorDetail}</p>
+                            <br>
+                            <a href="${sources[0]}" target="_blank" style="color: #4ecdc4; font-weight: bold; text-decoration: none; padding: 10px 20px; border: 2px solid #4ecdc4; border-radius: 25px; display: inline-block;">
+                                🔗 ${translations[currentLanguage].openDirectly}
+                            </a>
+                        </div>
+                    `;
                     fallback.style.display = 'block';
-                });
+                    return;
+                }
+                
+                const currentSource = sources[currentSourceIndex];
+                console.log(`Intentando cargar audio desde: ${currentSource}`);
+                
+                // Remove previous event listeners
+                player.onloadstart = null;
+                player.onloadedmetadata = null;
+                player.oncanplay = null;
+                player.onerror = null;
+                player.onstalled = null;
+                
+                // Set up new event listeners
+                player.onloadedmetadata = () => {
+                    console.log('Audio: Metadatos cargados');
+                    loading.style.display = 'none';
+                    player.style.display = 'block';
+                };
+                
+                player.onerror = (e) => {
+                    console.log(`Error con fuente de audio ${currentSourceIndex + 1}/${sources.length}:`, player.error);
+                    currentSourceIndex++;
+                    setTimeout(tryNextSource, 500);
+                };
+                
+                player.onstalled = () => {
+                    console.log('Audio: Descarga estancada, probando siguiente fuente...');
+                    currentSourceIndex++;
+                    setTimeout(tryNextSource, 3000);
+                };
+                
+                // Set audio source
+                player.src = currentSource;
+                player.load();
             }
-
-            player.onerror = (e) => {
-                console.error("Audio element error:", e);
-                player.style.display = 'none';
-                fallback.innerHTML = `${translations[currentLanguage].mediaError} <br><br> <a href="${audioSrc}" target="_blank">${translations[currentLanguage].openDirectly}</a>`;
-                fallback.style.display = 'block';
-            };
+            
+            // Start trying sources
+            tryNextSource();
         }
 
         function closeAudio() {
             const player = document.getElementById('audioPlayer');
+            const loading = document.getElementById('audioLoading');
+            
             player.pause();
-            player.removeAttribute('src'); // More robust cleanup
+            player.src = '';
             player.load();
+            loading.style.display = 'none';
+            
             document.getElementById('audioModal').style.display = 'none';
         }
 
