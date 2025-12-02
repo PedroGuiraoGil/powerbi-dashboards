@@ -128,6 +128,21 @@
         }
         .view-button:hover { filter: brightness(1.1); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 
+        /* --- SECCIÓN INFO LEGACY (RESTAURADA) --- */
+        .info-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(20px); border-radius: 30px; padding: 50px; margin-top: 40px; margin-bottom: 60px;
+            color: white; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+        }
+        .info-section h2 {
+            margin-bottom: 30px; font-size: 2.2rem; text-align: center; font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #ff6b6b);
+            background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+        .info-text { font-size: 1.2rem; line-height: 1.8; text-align: center; opacity: 0.9; max-width: 900px; margin: 0 auto; }
+
+
         /* --- LIBROS (CAROUSEL) --- */
         .books-section {
             background: rgba(255,255,255,0.95); border-radius: 30px; padding: 40px; margin: 40px 0;
@@ -212,6 +227,9 @@
         .image-nav { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); pointer-events: none; }
         .image-nav button { pointer-events: auto; background: rgba(0,0,0,0.5); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; margin: 0 10px; font-size: 1.5rem; transition: 0.3s; }
         .image-nav button:hover { background: rgba(255,255,255,0.3); }
+
+        /* Subtítulos para secciones */
+        .section-subtitle { text-align: center; color: white; margin: 30px 0 20px; font-size: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.3); display: inline-block; padding-bottom: 10px; }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -311,26 +329,65 @@
                     </div>
                 </div>
             </div>
+
+            <div class="info-section">
+                <h2 data-translation-key="aboutDashboardsTitle"></h2>
+                <p class="info-text" data-translation-key="aboutDashboardsDesc"></p>
+            </div>
         </div>
 
         <div id="training" class="section-content">
             <h2 style="text-align:center; color:white; margin-bottom:30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);" data-translation-key="trainingHeader"></h2>
             
+            <div style="text-align:center;"><h3 class="section-subtitle">Formación Excel Empresas</h3></div>
+            
             <div class="dashboard-grid">
                 <div class="dashboard-card">
                     <div class="card-image">
-                        <img src="https://placehold.co/600x400/217346/ffffff?text=EXCEL+MEGA+AVANZADO" alt="Excel Avanzado">
+                        <img src="https://placehold.co/600x400/27ae60/ffffff?text=EXCEL+BASICO" alt="Excel Básico">
                     </div>
                     <div class="card-content">
                         <div class="card-header">
-                            <h3 class="card-title">Excel Mega Avanzado</h3>
-                            <span class="status-badge" style="background:#217346">Empresas</span>
+                            <h3 class="card-title" data-translation-key="excelBasicTitle"></h3>
+                            <span class="status-badge" style="background:#27ae60">Nivel 1</span>
                         </div>
-                        <p class="card-description" data-translation-key="excelDesc"></p>
-                        <a href="#" onclick="alert('Contacta a través de LinkedIn para más información.'); return false;" class="view-button" style="background:#217346" data-translation-key="moreInfo"></a>
+                        <p class="card-description" data-translation-key="excelBasicDesc"></p>
+                        <button class="view-button" style="background:#27ae60" onclick="alert('Contacta para temario detallado.')" data-translation-key="moreInfo"></button>
                     </div>
                 </div>
 
+                <div class="dashboard-card">
+                    <div class="card-image">
+                        <img src="https://placehold.co/600x400/2980b9/ffffff?text=EXCEL+MEDIO" alt="Excel Medio">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title" data-translation-key="excelInterTitle"></h3>
+                            <span class="status-badge" style="background:#2980b9">Nivel 2</span>
+                        </div>
+                        <p class="card-description" data-translation-key="excelInterDesc"></p>
+                        <button class="view-button" style="background:#2980b9" onclick="alert('Contacta para temario detallado.')" data-translation-key="moreInfo"></button>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-image">
+                        <img src="https://placehold.co/600x400/2c3e50/ffffff?text=EXCEL+PRO+DATA" alt="Excel Avanzado">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title" data-translation-key="excelAdvTitle"></h3>
+                            <span class="status-badge" style="background:#2c3e50">Nivel 3</span>
+                        </div>
+                        <p class="card-description" data-translation-key="excelAdvDesc"></p>
+                        <button class="view-button" style="background:#2c3e50" onclick="alert('Contacta para temario detallado.')" data-translation-key="moreInfo"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align:center;"><h3 class="section-subtitle">Inteligencia Artificial</h3></div>
+
+            <div class="dashboard-grid">
                 <div class="dashboard-card">
                     <div class="card-image">
                         <img src="https://placehold.co/600x400/834d9b/ffffff?text=CURSO+IA+TECCO" alt="Curso TECCO">
@@ -559,14 +616,15 @@
               trailer: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER1.mp4",
               trailer2: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER2.mp4" },
             { id: "blues", link: "https://www.kobo.com/us/es/ebook/escali-s-blues" },
-            { id: "exodos", link: "https://www.amazon.es/s?k=EXODOS", 
+            // ENLACE CORREGIDO AQUI:
+            { id: "exodos", link: "https://www.amazon.es/%C3%89xodos-Kia-P-Cabdill-ebook/dp/B0FF3ZQG4L/ref=sr_1_5?dib=eyJ2IjoiMSJ9.ntd9raXTh6Dr1o0eFiP6Xo-1Ikqe6y6zLet0Bmd5YiB3KHKLVAQZI8iXShXE31fmiPEYN1meEQdvxU8qtVTv91fXyoyT5O-92Gmd_mghNXaysAQPKtjBQbTdsTcxieKrPt2KsZcbYntay3KBm0Rmc7eMRl27PSPCIebIzhWS2gS5bRYDYEqmqGfX6GF1paLaBLUmOxLA7MkOC_zHUYOXPInJ9Xl2FxZBRZgc1SYd8LovVvGzntEHhCWm41ykdac2sKyNDcwtEC0zOa27h6LRGfJbv-9OmE5eAbVV480BX3o.pdY6qLOjkdl4KPwVCvOQTbFaEpWSbrpJmnBdw5Nhtdw&dib_tag=se&keywords=EXODOS&qid=1764697715&sr=8-5", 
               audio: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/EXODOSESPANOL.mp3" }
         ];
 
         const translations = {
             es: {
                 roleSpecialist: "Especialista en Power BI y Microsoft Excel",
-                roleTrainer: "Formador", roleConsultant: "Consultor", roleNovelist: "Novelista",
+                roleTrainer: "Formador", roleConsultant: "Consultant", roleNovelist: "Novelista",
                 tabDashboards: "📊 DASHBOARDS", tabTraining: "🤖 FORMACIÓN & IA", tabGames: "🎮 JUEGOS IA", tabNovels: "📚 MIS NOVELAS",
                 
                 dashLinkSales: "📊 ANÁLISIS DE VENTAS", dashLinkFootball: "⚽ LIGA DE FÚTBOL", dashLinkAttendance: "📅 CONTROL PRESENCIA", dashLinkCars: "🚗 ALQUILER COCHES",
@@ -576,9 +634,17 @@
                 carsCardTitle: "Alquiler de Coches", carsCardDesc: "Análisis de flota, rentabilidad y ocupación.",
                 viewDetails: "VER DETALLES",
 
+                aboutDashboardsTitle: "🎯 Sobre estos Dashboards",
+                aboutDashboardsDesc: "Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos.",
+
                 trainingHeader: "Formación Especializada: Excel, IA y Tecnología",
                 gamesHeader: "AI Playground: Juegos Generados por IA",
-                excelDesc: "Cursos de Excel Mega Avanzado para empresas. Macros, VBA, Power Query y modelado.",
+                
+                // EXCEL LEVELS
+                excelBasicTitle: "Excel: De Cero a Héroe", excelBasicDesc: "Domina la interfaz, formatos, fórmulas esenciales y empieza a organizar tus datos desde cero.",
+                excelInterTitle: "Excel Intermedio", excelInterDesc: "Tablas dinámicas, funciones lógicas y de búsqueda (VLOOKUP, XLOOKUP) y visualización de datos.",
+                excelAdvTitle: "Excel Avanzado & Conectividad", excelAdvDesc: "Power Query, modelado de datos, macros VBA y conexión con fuentes externas para automatización total.",
+
                 teccoDesc: "Materiales y prácticas del curso de Inteligencia Artificial aplicada impartido en TECCO.",
                 onceDesc: "Formación especializada en herramientas de IA y accesibilidad para la fundación ONCE.",
                 promptsDesc: "Repositorio de ejemplos reales (Prompts) en Gemini y Claude utilizados en mis clases.",
@@ -606,9 +672,17 @@
                 carsCardTitle: "Car Rental", carsCardDesc: "Fleet analysis, profitability and occupancy.",
                 viewDetails: "VIEW DETAILS",
 
+                aboutDashboardsTitle: "🎯 About these Dashboards",
+                aboutDashboardsDesc: "These dashboards represent real Power BI implementation cases in different sectors: commercial, sports, HR, and automotive. All remain publicly accessible as legacy examples, ideal for commercial demos and specialized data analysis training.",
+
                 trainingHeader: "Specialized Training: Excel, AI & Tech",
                 gamesHeader: "AI Playground: AI Generated Games",
-                excelDesc: "Advanced Excel courses for companies. Macros, VBA, Power Query and complex modeling.",
+                
+                // EXCEL LEVELS
+                excelBasicTitle: "Excel: Zero to Hero", excelBasicDesc: "Master the interface, formatting, essential formulas, and start organizing your data from scratch.",
+                excelInterTitle: "Intermediate Excel", excelInterDesc: "Pivot tables, logical and lookup functions (VLOOKUP, XLOOKUP), and data visualization.",
+                excelAdvTitle: "Advanced Excel & Connectivity", excelAdvDesc: "Power Query, data modeling, VBA macros, and connection to external sources for total automation.",
+
                 teccoDesc: "Materials and practices from the Applied AI course at TECCO.",
                 onceDesc: "Specialized training in AI tools and accessibility for the ONCE foundation.",
                 promptsDesc: "Repository of real examples (Prompts) in Gemini and Claude used in my classes.",
