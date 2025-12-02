@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedro Guirao Gil - Analista de Datos y Novelista</title>
+    <title>Pedro Guirao Gil - Data, AI & Creativity</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* --- ESTILOS BASE Y ANIMACIONES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -30,1030 +27,207 @@
             100% { background-position: 0% 50%; }
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-        }
-
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 60px;
-            padding-top: 40px;
-            position: relative;
-        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; position: relative; }
+        
+        /* --- HEADER & PERFIL --- */
+        .header { text-align: center; color: white; margin-bottom: 40px; padding-top: 40px; position: relative; }
 
         .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-            z-index: 100;
+            position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 100;
         }
 
         .lang-btn {
-            background: rgba(255,255,255,0.2);
-            border: 2px solid rgba(255,255,255,0.3);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-            font-size: 0.9rem;
-            backdrop-filter: blur(10px);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); color: white;
+            padding: 8px 16px; border-radius: 20px; cursor: pointer; transition: all 0.3s ease;
+            font-weight: bold; font-size: 0.9rem; backdrop-filter: blur(10px); text-transform: uppercase;
         }
 
-        .lang-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-
+        .lang-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
         .lang-btn.active {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            border-color: rgba(255,255,255,0.5);
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border-color: rgba(255,255,255,0.5);
+            transform: scale(1.05); box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
         .profile-section h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            font-size: 3.5rem; margin-bottom: 20px; text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
             background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #ff6b6b);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: gradientShift 4s ease-in-out infinite;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        .profile-info .highlight-text {
-            font-size: 1.3rem;
-            opacity: 0.95;
-        }
-
-        .highlight-text .part {
-            padding: 2px 8px;
-            border-radius: 15px;
-            transition: all 0.5s ease;
-            display: inline-block;
-            margin: 0 2px;
-        }
-
+        .profile-info .highlight-text { font-size: 1.3rem; opacity: 0.95; }
+        .highlight-text .part { padding: 2px 8px; border-radius: 15px; transition: all 0.5s ease; display: inline-block; margin: 0 2px; }
         .highlight-text .part.highlight {
             background: linear-gradient(45deg, rgba(255,107,107,0.8), rgba(78,205,196,0.8));
-            color: white;
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            font-weight: bold;
+            color: white; transform: scale(1.05); font-weight: bold;
         }
 
-        .section-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 40px 0;
-            flex-wrap: wrap;
-        }
+        /* --- NAVEGACIÓN (TABS) --- */
+        .section-tabs { display: flex; justify-content: center; gap: 15px; margin: 40px 0; flex-wrap: wrap; }
 
         .tab-button {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            backdrop-filter: blur(10px);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; font-size: 1rem;
+            cursor: pointer; transition: all 0.3s ease; background: rgba(255,255,255,0.2); color: white;
+            backdrop-filter: blur(10px); text-transform: uppercase; letter-spacing: 1px;
         }
 
         .tab-button.active {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            transform: scale(1.05);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4); transform: scale(1.05);
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .tab-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-        }
+        .tab-button:hover { transform: translateY(-3px); background: rgba(255,255,255,0.3); }
 
-        .section-content {
-            display: none;
-            animation: fadeInUp 0.6s ease-out;
-        }
+        .section-content { display: none; animation: fadeInUp 0.6s ease-out; }
+        .section-content.active { display: block; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        .section-content.active {
-            display: block;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .nav-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
-            padding: 20px;
-        }
-
+        /* --- BOTONES GRANDES (NAV LINKS) --- */
+        .nav-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0; }
+        
         .modern-nav-button {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            padding: 25px;
-            border-radius: 20px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 1rem;
-            min-height: 80px;
-            transition: all 0.4s ease;
-            color: white;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            display: flex; align-items: center; justify-content: center; text-decoration: none;
+            padding: 20px; border-radius: 20px; font-weight: 700; text-transform: uppercase;
+            font-size: 0.9rem; min-height: 70px; transition: all 0.4s ease; color: white; text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
+        .modern-nav-button:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
 
-        .modern-nav-button:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .btn-ventas {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .btn-futbol {
-            background: linear-gradient(135deg, #1e3a2e 0%, #0f2419 100%);
-        }
-
-        .btn-presencia {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        .btn-coches {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            color: #333 !important;
-            text-shadow: 1px 1px 4px rgba(255,255,255,0.8) !important;
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
+        .btn-ventas { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .btn-futbol { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+        .btn-presencia { background: linear-gradient(135deg, #fc5c7d 0%, #6a82fb 100%); }
+        .btn-coches { background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%); }
+        
+        /* --- TARJETAS (DASHBOARDS, CURSOS, JUEGOS) --- */
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        
         .dashboard-card {
-            background: rgba(255,255,255,0.95);
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            transition: all 0.4s ease;
-            cursor: pointer;
-            border: 3px solid transparent;
+            background: rgba(255,255,255,0.95); border-radius: 20px; overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15); transition: all 0.4s ease;
+            display: flex; flex-direction: column; height: 100%; border: 2px solid transparent;
         }
-
-        .dashboard-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 35px 70px rgba(0,0,0,0.25);
-            border-color: rgba(255,107,107,0.5);
-        }
-
-        .card-image {
-            width: 100%;
-            height: 300px;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .dashboard-card:hover .card-image img {
-            transform: scale(1.05);
-        }
-
-        .card-content {
-            padding: 30px;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .card-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #333;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .status-badge {
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            color: white;
-            background: linear-gradient(45deg, #28a745, #20c997);
-        }
-
-        .card-description {
-            color: #666;
-            margin-bottom: 25px;
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-
+        .dashboard-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.25); border-color: rgba(255,255,255,0.5); }
+        
+        .card-image { height: 220px; overflow: hidden; position: relative; background: #eee; }
+        .card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .dashboard-card:hover .card-image img { transform: scale(1.1); }
+        
+        .card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .card-title { font-size: 1.4rem; font-weight: bold; background: linear-gradient(45deg, #333, #555); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .status-badge { padding: 5px 12px; border-radius: 15px; font-size: 0.75rem; font-weight: bold; color: white; background: #667eea; text-transform: uppercase; }
+        
+        .card-description { color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
+        
         .view-button {
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            display: block; width: 100%; padding: 12px; border: none; border-radius: 12px;
+            color: white; font-weight: bold; text-align: center; text-decoration: none; text-transform: uppercase;
+            font-size: 0.9rem; transition: 0.3s; cursor: pointer; margin-top: auto;
         }
+        .view-button:hover { filter: brightness(1.1); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 
-        .view-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-
-        .info-section {
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 50px;
-            margin-top: 80px;
-            color: white;
-            border: 2px solid rgba(255,255,255,0.2);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-        }
-
-        .info-section h2 {
-            margin-bottom: 30px;
-            font-size: 2.2rem;
-            text-align: center;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #ff6b6b);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientShift 4s ease-in-out infinite;
-            font-weight: bold;
-        }
-
-        .info-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            text-align: center;
-            opacity: 0.9;
-        }
-
+        /* --- LIBROS (CAROUSEL) --- */
         .books-section {
-            background: rgba(255,255,255,0.95);
-            border-radius: 30px;
-            padding: 50px;
-            margin: 40px 0;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            position: relative;
-            overflow: hidden;
+            background: rgba(255,255,255,0.95); border-radius: 30px; padding: 40px; margin: 40px 0;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15); position: relative; overflow: hidden;
         }
-
         .books-title {
-            font-size: 2.5rem;
-            background: linear-gradient(45deg, #9B59B6, #8E44AD, #6C3483);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-            font-weight: bold;
-            text-align: center;
+            font-size: 2.5rem; background: linear-gradient(45deg, #9B59B6, #8E44AD);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 20px; font-weight: bold; text-align: center;
         }
-
-        .books-subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .books-carousel {
-            position: relative;
-            height: 450px;
-            margin: 40px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .books-container {
-            position: relative;
-            width: 900px;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
+        .books-carousel { height: 420px; display: flex; justify-content: center; align-items: center; perspective: 1000px; margin: 30px 0; }
+        .books-container { position: relative; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; }
+        
         .book-cover {
-            position: absolute;
-            width: 220px;
-            height: 330px;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            transition: all 0.8s ease;
-            cursor: pointer;
-            overflow: hidden;
+            position: absolute; width: 220px; height: 330px; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); cursor: pointer;
         }
-
-        .book-cover img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
-        }
-
-        .book-cover.active {
-            z-index: 6;
-            transform: scale(1.15);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-        }
-
-        .book-cover.prev {
-            z-index: 3;
-            transform: scale(0.85) translateX(-180px);
-            opacity: 0.7;
-        }
-
-        .book-cover.next {
-            z-index: 3;
-            transform: scale(0.85) translateX(180px);
-            opacity: 0.7;
-        }
-
-        .book-cover.hidden {
-            z-index: 0;
-            transform: scale(0.5) translateX(-400px);
-            opacity: 0;
-        }
-
-        .book-cover.hidden-next {
-            z-index: 0;
-            transform: scale(0.5) translateX(400px);
-            opacity: 0;
-        }
-
-        .book-info {
-            background: rgba(255,255,255,0.95);
-            border-radius: 20px;
-            padding: 30px;
-            margin: 30px 0;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border: 2px solid rgba(142,68,173,0.2);
-            min-height: 220px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .book-title {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, #8E44AD, #9B59B6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .book-author {
-            font-size: 1.1rem;
-            color: #6C3483;
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-
-        .book-description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #666;
-            margin-bottom: 25px;
-            text-align: justify;
-        }
-
-        .book-genre {
-            display: inline-block;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 20px;
-            color: white;
-        }
-
-        .book-links-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .book-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: white;
-            text-decoration: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border: none;
-        }
-
-        .book-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-
-        .carousel-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .nav-button {
-            background: linear-gradient(45deg, #8E44AD, #9B59B6);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(142,68,173,0.3);
-        }
-
-        .nav-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 35px rgba(142,68,173,0.5);
-        }
-
-        .indicators {
-            display: flex;
-            gap: 12px;
-        }
-
-        .indicator {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: rgba(142,68,173,0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .indicator.active {
-            background: #8E44AD;
-            transform: scale(1.2);
-        }
-
-        .autoplay-control {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .autoplay-btn {
-            background: rgba(255,255,255,0.2);
-            color: #8E44AD;
-            border: 2px solid #8E44AD;
-            border-radius: 25px;
-            padding: 10px 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .autoplay-btn:hover {
-            background: #8E44AD;
-            color: white;
-        }
-
-        .audio-modal, .video-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
-            padding: 0;
-            overflow-y: auto;
-        }
-
-        .audio-content, .video-content {
-            width: 100%;
-            min-height: 100vh;
-            background: #000;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .audio-header, .video-header {
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            flex-shrink: 0;
-        }
+        .book-cover img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .book-cover.active { z-index: 5; transform: scale(1.1); box-shadow: 0 25px 50px rgba(0,0,0,0.4); }
+        .book-cover.prev { z-index: 3; transform: translateX(-180px) scale(0.85); opacity: 0.7; }
+        .book-cover.next { z-index: 3; transform: translateX(180px) scale(0.85); opacity: 0.7; }
+        .book-cover.hidden { opacity: 0; transform: scale(0); }
         
-        .video-header { background: linear-gradient(45deg, #c0392b, #8b0000); }
-        .audio-header { background: linear-gradient(45deg, #2E8B57, #3CB371); }
-
-        .audio-title, .video-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .close-audio, .close-video {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            font-size: 1.8rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .close-audio:hover, .close-video:hover {
-            background: rgba(255,255,255,0.3);
-            transform: scale(1.1);
-        }
-
-        .audio-player, .video-player {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: #000;
-            padding: 20px;
-            min-height: calc(100vh - 80px);
-        }
-
-        .video-player video, .audio-player audio {
-            max-width: 100%;
-            border-radius: 10px;
-            background: #000;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
+        .book-info { text-align: center; margin-top: 20px; min-height: 180px; }
+        .book-title-text { font-size: 1.8rem; font-weight: bold; margin-bottom: 10px; color: #8E44AD; }
+        .book-description { max-width: 700px; margin: 0 auto 20px; color: #555; line-height: 1.6; }
         
-        .video-player video { 
-            max-height: 80vh; 
-            width: auto; 
-            height: auto; 
+        .book-links-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 15px; }
+        .book-action-btn { 
+            padding: 10px 20px; border-radius: 20px; text-decoration: none; color: white; font-weight: bold; 
+            font-size: 0.9rem; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer;
         }
+        .book-action-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+        .carousel-controls { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
+        .nav-button { background: #8E44AD; color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
+        .nav-button:hover { background: #732d91; transform: scale(1.1); }
+
+        /* --- MODALES (VIDEO, AUDIO, IMAGENES, PROMPTS) --- */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 2000; justify-content: center; align-items: center;
+        }
+        .modal-content {
+            background: white; border-radius: 20px; max-width: 900px; width: 90%; max-height: 90vh;
+            overflow-y: auto; padding: 0; position: relative; animation: zoomIn 0.3s ease;
+        }
+        @keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         
-        .audio-player audio { 
-            width: 90%; 
-            max-width: 500px; 
-        }
-
-        .media-fallback {
-            display: none;
-            color: white;
-            text-align: center;
-            padding: 40px;
-            font-size: 1.2rem;
-            background: #333;
-            border-radius: 10px;
-            margin: 20px;
-            max-width: 800px;
-        }
-
-        .media-fallback a { 
-            color: #4ecdc4; 
-            text-decoration: none; 
-            font-weight: bold; 
-        }
+        .modal-header { padding: 20px; background: #f8f9fa; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .modal-title { font-size: 1.2rem; font-weight: bold; color: #333; }
+        .close-modal { background: none; border: none; font-size: 2rem; cursor: pointer; color: #666; transition: 0.3s; line-height: 1; }
+        .close-modal:hover { color: #ff6b6b; }
         
-        .media-fallback a:hover { 
-            text-decoration: underline; 
-        }
+        .modal-body { padding: 30px; }
 
-        .loading-indicator {
-            display: none;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 1.1rem;
+        /* Estilos específicos para lista de Prompts */
+        .prompt-list { list-style: none; }
+        .prompt-list li { margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .prompt-link { 
+            text-decoration: none; color: #333; display: flex; align-items: center; gap: 15px; 
+            padding: 10px; border-radius: 10px; transition: 0.3s;
         }
+        .prompt-link:hover { background: #f0f2f5; color: #667eea; transform: translateX(5px); }
+        .prompt-icon { font-size: 1.5rem; width: 40px; text-align: center; }
+        .prompt-info h4 { margin-bottom: 5px; }
+        .prompt-info p { font-size: 0.85rem; color: #777; margin: 0; }
 
-        .gallery-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 1000;
-            padding: 20px;
-        }
+        /* Reproductores en modal */
+        .media-player-container { background: black; width: 100%; display: flex; justify-content: center; align-items: center; min-height: 300px; }
+        video, audio { max-width: 100%; max-height: 70vh; outline: none; }
+        
+        /* Galería imágenes */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .gallery-item { cursor: pointer; border-radius: 10px; overflow: hidden; height: 200px; position: relative; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        
+        /* Modal Imagen Individual */
+        .image-viewer { position: relative; text-align: center; }
+        .image-viewer img { max-width: 100%; max-height: 80vh; border-radius: 5px; }
+        .image-nav { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); pointer-events: none; }
+        .image-nav button { pointer-events: auto; background: rgba(0,0,0,0.5); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; margin: 0 10px; font-size: 1.5rem; transition: 0.3s; }
+        .image-nav button:hover { background: rgba(255,255,255,0.3); }
 
-        .gallery-content {
-            max-width: 90vw;
-            max-height: 90vh;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            margin: auto;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .gallery-header {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .gallery-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .close-gallery {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .gallery-images {
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 20px;
-            max-height: 70vh;
-            overflow-y: auto;
-        }
-
-        .gallery-image {
-            position: relative;
-            cursor: pointer;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .gallery-image:hover {
-            transform: scale(1.03);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-
-        .gallery-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(255,107,107,0.9), rgba(78,205,196,0.9));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: all 0.3s ease;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-align: center;
-        }
-
-        .gallery-image:hover .image-overlay {
-            opacity: 1;
-        }
-
-        .image-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 1100;
-            padding: 20px;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .image-modal-content {
-            position: relative;
-            max-width: 95vw;
-            max-height: 95vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .image-modal img {
-            max-width: 100%;
-            max-height: 85vh;
-            border-radius: 15px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            object-fit: contain;
-        }
-
-        .image-modal-header {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-            letter-spacing: 0.5px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .image-modal-close {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            background: rgba(255,255,255,0.9);
-            border: none;
-            color: #333;
-            font-size: 1.8rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .image-modal-close:hover {
-            background: #ff6b6b;
-            color: white;
-            transform: scale(1.1);
-        }
-
-        .image-navigation {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-            align-items: center;
-        }
-
-        .image-nav-btn {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .image-nav-btn:hover:not(:disabled) {
-            transform: scale(1.1);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-        }
-
-        .image-nav-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .side-nav-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(45deg, rgba(255,107,107,0.9), rgba(78,205,196,0.9));
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 70px;
-            height: 70px;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255,255,255,0.3);
-        }
-
-        .side-nav-arrow:hover:not(:disabled) {
-            transform: translateY(-50%) scale(1.15);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-        }
-
-        .side-nav-arrow:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-            transform: translateY(-50%) scale(0.8);
-        }
-
-        .side-nav-arrow.left {
-            left: 30px;
-        }
-
-        .side-nav-arrow.right {
-            right: 30px;
-        }
-
-        .image-modal-content:hover .side-nav-arrow:not(:disabled) {
-            opacity: 1;
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .image-modal-content .side-nav-arrow {
-            opacity: 0.7;
-        }
-
-        .image-counter {
-            color: white;
-            font-size: 1.1rem;
-            font-weight: bold;
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            .profile-section h1 {
-                font-size: 2.5rem;
-            }
-            
-            .nav-links {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .section-tabs {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .tab-button {
-                width: 250px;
-            }
-
-            .books-container {
-                width: 100%;
-            }
-            
-            .book-cover {
-                width: 150px;
-                height: 225px;
-            }
-            
-            .book-cover.prev, .book-cover.next {
-                transform: scale(0.8) translateX(-100px);
-            }
-            
-            .book-cover.next {
-                transform: scale(0.8) translateX(100px);
-            }
-
-            .book-info {
-                padding: 20px;
-            }
-
-            .book-title {
-                font-size: 1.5rem;
-            }
-
-            .side-nav-arrow {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-            }
-
-            .side-nav-arrow.left {
-                left: 15px;
-            }
-
-            .side-nav-arrow.right {
-                right: 15px;
-            }
-
-            .video-player video {
-                max-height: 60vh;
-            }
+            .profile-section h1 { font-size: 2.2rem; }
+            .section-tabs { flex-direction: column; align-items: center; }
+            .tab-button { width: 280px; }
+            .book-cover { width: 160px; height: 240px; }
+            .book-cover.prev { transform: translateX(-100px) scale(0.85); }
+            .book-cover.next { transform: translateX(100px) scale(0.85); }
+            .nav-links { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <!-- Language Selector -->
             <div class="language-selector">
                 <button class="lang-btn active" onclick="changeLanguage('es')" data-lang="es">🇪🇸 ES</button>
                 <button class="lang-btn" onclick="changeLanguage('en')" data-lang="en">🇬🇧 EN</button>
@@ -1063,12 +237,9 @@
                 <h1>Pedro Guirao Gil</h1>
                 <div class="profile-info">
                     <div class="highlight-text">
-                        <span class="part" data-translation-key="roleSpecialist"></span>
-                        <span> • </span>
-                        <span class="part" data-translation-key="roleTrainer"></span>
-                        <span> • </span>
-                        <span class="part" data-translation-key="roleConsultant"></span>
-                        <span> • </span>
+                        <span class="part" data-translation-key="roleSpecialist"></span> <span>•</span>
+                        <span class="part" data-translation-key="roleTrainer"></span> <span>•</span>
+                        <span class="part" data-translation-key="roleConsultant"></span> <span>•</span>
                         <span class="part" data-translation-key="roleNovelist"></span>
                     </div>
                 </div>
@@ -1078,13 +249,18 @@
                 <button class="tab-button active" onclick="showSection('dashboards')">
                     <span data-translation-key="tabDashboards"></span>
                 </button>
+                <button class="tab-button" onclick="showSection('training')">
+                    <span data-translation-key="tabTraining"></span>
+                </button>
+                <button class="tab-button" onclick="showSection('games')">
+                    <span data-translation-key="tabGames"></span>
+                </button>
                 <button class="tab-button" onclick="showSection('books')">
                     <span data-translation-key="tabNovels"></span>
                 </button>
             </div>
         </div>
 
-        <!-- Dashboards Section -->
         <div id="dashboards" class="section-content active">
             <div class="nav-links">
                 <a href="https://app.powerbi.com/view?r=eyJrIjoiYTJjN2E3MjAtZDdhMC00NmE5LThhZmEtMjU1MzA1ZDAzZDI2IiwidCI6IjgxNTAwZjZkLWJjZTktNDgzNC1iNDQ2LTc0YjVmYjljZjEwZSIsImMiOjh9" target="_blank" class="modern-nav-button btn-ventas">
@@ -1102,846 +278,364 @@
             </div>
 
             <div class="dashboard-grid">
-                <!-- Sales Card -->
                 <div class="dashboard-card" onclick="openGallery('ventas')">
-                    <div class="card-image">
-                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas1.jpg" alt="Dashboard de Ventas" onerror="this.src='https://placehold.co/600x400/ff6b6b/ffffff?text=Ventas'">
-                    </div>
+                    <div class="card-image"><img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas1.jpg" onerror="this.src='https://placehold.co/600x400/667eea/ffffff?text=Ventas'"></div>
                     <div class="card-content">
-                        <div class="card-header">
-                            <h3 class="card-title" data-translation-key="salesCardTitle"></h3>
-                            <span class="status-badge" data-translation-key="publicLegacy"></span>
-                        </div>
+                        <div class="card-header"><h3 class="card-title" data-translation-key="salesCardTitle"></h3><span class="status-badge">Power BI</span></div>
                         <p class="card-description" data-translation-key="salesCardDesc"></p>
-                        <button class="view-button" onclick="openGallery('ventas')" style="background: linear-gradient(45deg, #667eea, #764ba2);">
-                            <span data-translation-key="salesCardButton"></span>
-                        </button>
+                        <button class="view-button" style="background:#667eea" data-translation-key="viewDetails"></button>
                     </div>
                 </div>
-                <!-- Football Card -->
                 <div class="dashboard-card" onclick="openGallery('futbol')">
-                    <div class="card-image">
-                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol1.jpg" alt="Dashboard de Fútbol" onerror="this.src='https://placehold.co/600x400/4ecdc4/ffffff?text=Futbol'">
-                    </div>
+                    <div class="card-image"><img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol1.jpg" onerror="this.src='https://placehold.co/600x400/11998e/ffffff?text=Futbol'"></div>
                     <div class="card-content">
-                        <div class="card-header">
-                            <h3 class="card-title" data-translation-key="footballCardTitle"></h3>
-                            <span class="status-badge" data-translation-key="publicLegacy"></span>
-                        </div>
+                        <div class="card-header"><h3 class="card-title" data-translation-key="footballCardTitle"></h3><span class="status-badge">Power BI</span></div>
                         <p class="card-description" data-translation-key="footballCardDesc"></p>
-                        <button class="view-button" onclick="openGallery('futbol')" style="background: linear-gradient(45deg, #1e3a2e, #0f2419);">
-                            <span data-translation-key="footballCardButton"></span>
-                        </button>
+                        <button class="view-button" style="background:#11998e" data-translation-key="viewDetails"></button>
                     </div>
                 </div>
-                <!-- Attendance Card -->
                 <div class="dashboard-card" onclick="openGallery('presencia')">
-                    <div class="card-image">
-                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas1.jpg" alt="Dashboard de Presencia" onerror="this.src='https://placehold.co/600x400/96ceb4/ffffff?text=Presencia'">
-                    </div>
+                    <div class="card-image"><img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas1.jpg" onerror="this.src='https://placehold.co/600x400/fc5c7d/ffffff?text=RRHH'"></div>
                     <div class="card-content">
-                        <div class="card-header">
-                            <h3 class="card-title" data-translation-key="attendanceCardTitle"></h3>
-                            <span class="status-badge" data-translation-key="publicLegacy"></span>
-                        </div>
+                        <div class="card-header"><h3 class="card-title" data-translation-key="attendanceCardTitle"></h3><span class="status-badge">Power BI</span></div>
                         <p class="card-description" data-translation-key="attendanceCardDesc"></p>
-                        <button class="view-button" onclick="openGallery('presencia')" style="background: linear-gradient(45deg, #f093fb, #f5576c);">
-                             <span data-translation-key="attendanceCardButton"></span>
-                        </button>
+                        <button class="view-button" style="background:#fc5c7d" data-translation-key="viewDetails"></button>
                     </div>
                 </div>
-                <!-- Car Rental Card -->
                 <div class="dashboard-card" onclick="openGallery('coches')">
-                    <div class="card-image">
-                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler1.jpg" alt="Dashboard de Alquiler" onerror="this.src='https://placehold.co/600x400/fd7e14/ffffff?text=Coches'">
-                    </div>
+                    <div class="card-image"><img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler1.jpg" onerror="this.src='https://placehold.co/600x400/ff9966/ffffff?text=Coches'"></div>
                     <div class="card-content">
-                        <div class="card-header">
-                            <h3 class="card-title" data-translation-key="carsCardTitle"></h3>
-                            <span class="status-badge" data-translation-key="publicLegacy"></span>
-                        </div>
+                        <div class="card-header"><h3 class="card-title" data-translation-key="carsCardTitle"></h3><span class="status-badge">Power BI</span></div>
                         <p class="card-description" data-translation-key="carsCardDesc"></p>
-                        <button class="view-button" onclick="openGallery('coches')" style="background: linear-gradient(45deg, #ffecd2, #fcb69f); color: #333;">
-                            <span data-translation-key="carsCardButton"></span>
-                        </button>
+                        <button class="view-button" style="background:#ff9966" data-translation-key="viewDetails"></button>
                     </div>
                 </div>
-            </div>
-
-            <div class="info-section">
-                <h2 data-translation-key="aboutDashboardsTitle"></h2>
-                <p class="info-text" data-translation-key="aboutDashboardsDesc"></p>
             </div>
         </div>
 
-        <!-- Books Section -->
-        <div id="books" class="section-content">
-            <div class="books-section">
-                <h2 class="books-title" data-translation-key="literarySideTitle"></h2>
-                <p class="books-subtitle" data-translation-key="literarySideDesc"></p>
-
-                <div class="books-carousel">
-                    <div class="books-container">
-                        <div class="book-cover active" data-index="0" onclick="goToBook(0)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/FIN.png" alt="FIN - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FF6B6B/ffffff?text=FIN'">
+        <div id="training" class="section-content">
+            <h2 style="text-align:center; color:white; margin-bottom:30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);" data-translation-key="trainingHeader"></h2>
+            
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="card-image">
+                        <img src="https://placehold.co/600x400/217346/ffffff?text=EXCEL+MEGA+AVANZADO" alt="Excel Avanzado">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title">Excel Mega Avanzado</h3>
+                            <span class="status-badge" style="background:#217346">Empresas</span>
                         </div>
-                        <div class="book-cover next" data-index="1" onclick="goToBook(1)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/OH%20MY%20GOD.jpg" alt="OH MY GOD - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FF8E53/ffffff?text=OMG'">
-                        </div>
-                        <div class="book-cover hidden" data-index="2" onclick="goToBook(2)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/MANUAL%20BASICO%20DE%20CONQUISTA.jpg" alt="MANUAL BÁSICO DE CONQUISTA - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/FFA726/ffffff?text=Manual'">
-                        </div>
-                        <div class="book-cover hidden" data-index="3" onclick="goToBook(3)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/TOCATA%20Y%20FUGA%20DE%20LA%20TENIENTE%20ESCALI.jpg" alt="TOCATA Y FUGA DE LA TENIENTE ESCALI - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/4ECDC4/ffffff?text=TOCATA'">
-                        </div>
-                        <div class="book-cover hidden" data-index="4" onclick="goToBook(4)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ESCALIS%20BLUES.jpg" alt="ESCALI'S BLUES - Pedro G. Guirao" onerror="this.src='https://placehold.co/220x330/26A69A/ffffff?text=BLUES'">
-                        </div>
-                        <div class="book-cover hidden" data-index="5" onclick="goToBook(5)">
-                            <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/EXODOS.jpg" alt="ÉXODOS - Kia P. Cabdill" onerror="this.src='https://placehold.co/220x330/8E44AD/ffffff?text=ÉXODOS'">
-                        </div>
+                        <p class="card-description" data-translation-key="excelDesc"></p>
+                        <a href="#" onclick="alert('Contacta a través de LinkedIn para más información.'); return false;" class="view-button" style="background:#217346" data-translation-key="moreInfo"></a>
                     </div>
                 </div>
 
-                <div class="book-info" id="bookInfo">
-                    <h3 class="book-title" id="bookTitle"></h3>
-                    <p class="book-author" id="bookAuthor"></p>
-                    <p class="book-description" id="bookDescription"></p>
-                    <span class="book-genre" id="bookGenre"></span>
-                    <div class="book-links-container">
-                        <a href="#" target="_blank" class="book-link" id="bookLink">
-                            <span data-translation-key="viewInStore"></span>
-                        </a>
-                        <button class="book-link" id="bookTrailerLink" style="display: none; background: #c0392b;">
-                            <span data-translation-key="watchTrailer"></span>
-                        </button>
-                        <button class="book-link" id="bookTrailerLink2" style="display: none; background: #8b0000;">
-                            <span data-translation-key="watchTrailer2"></span>
-                        </button>
-                        <button class="book-link" id="bookAudioLink" style="display: none; background: #2E8B57;">
-                            <span data-translation-key="listenAudio"></span>
-                        </button>
+                <div class="dashboard-card">
+                    <div class="card-image">
+                        <img src="https://placehold.co/600x400/834d9b/ffffff?text=CURSO+IA+TECCO" alt="Curso TECCO">
                     </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title">Curso IA - TECCO</h3>
+                            <span class="status-badge" style="background:#834d9b">Formación</span>
+                        </div>
+                        <p class="card-description" data-translation-key="teccoDesc"></p>
+                        <a href="https://pedroguiraogil.github.io/CURSO-IA-TECCO/" target="_blank" class="view-button" style="background: linear-gradient(135deg, #834d9b, #d04ed6);" data-translation-key="accessCourse"></a>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-image">
+                        <img src="https://placehold.co/600x400/00b09b/ffffff?text=CURSO+IA+ONCE" alt="Curso ONCE">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title">Curso IA - ONCE</h3>
+                            <span class="status-badge" style="background:#00b09b">Accesibilidad</span>
+                        </div>
+                        <p class="card-description" data-translation-key="onceDesc"></p>
+                        <a href="https://pedroguiraogil.github.io/CURSO-ONCE-/" target="_blank" class="view-button" style="background: linear-gradient(135deg, #00b09b, #96c93d);" data-translation-key="accessCourse"></a>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-image">
+                        <img src="https://placehold.co/600x400/F7971E/333333?text=LABORATORIO+PROMPTS" alt="Prompts">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title">Prompt Engineering</h3>
+                            <span class="status-badge" style="background:#F7971E">Recursos</span>
+                        </div>
+                        <p class="card-description" data-translation-key="promptsDesc"></p>
+                        <button onclick="openModal('promptsModal')" class="view-button" style="background: linear-gradient(135deg, #F7971E, #FFD200); color:#333;" data-translation-key="viewResources"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="games" class="section-content">
+            <h2 style="text-align:center; color:white; margin-bottom:30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);" data-translation-key="gamesHeader"></h2>
+            
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="card-image"><img src="https://placehold.co/600x400/2c3e50/ffffff?text=COGNOS" alt="COGNOS"></div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:10px">COGNOS</h3>
+                        <p class="card-description">Juego de lógica y memoria generado con IA.</p>
+                        <a href="https://pedroguiraogil.github.io/COGNOS/" target="_blank" class="view-button" style="background:#2c3e50">Jugar Ahora</a>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="card-image"><img src="https://placehold.co/600x400/e74c3c/ffffff?text=MAZE" alt="Laberinto"></div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:10px">Laberinto (Maze)</h3>
+                        <p class="card-description">Exploración de pathfinding generado proceduralmente.</p>
+                        <a href="https://pedroguiraogil.github.io/MAZE/" target="_blank" class="view-button" style="background:#e74c3c">Jugar Ahora</a>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="card-image"><img src="https://placehold.co/600x400/8e44ad/ffffff?text=PAISAJE" alt="Paisaje"></div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:10px">Paisaje Sensorial</h3>
+                        <p class="card-description">Experiencia visual interactiva.</p>
+                        <a href="https://pedroguiraogil.github.io/paisaje-sensorial/" target="_blank" class="view-button" style="background:#8e44ad">Experimentar</a>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="card-image"><img src="https://placehold.co/600x400/3498db/ffffff?text=MINAS" alt="Buscaminas"></div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:10px">Buscaminas IA</h3>
+                        <p class="card-description">El clásico juego recreado mediante prompts de IA.</p>
+                        <a href="https://pedroguiraogil.github.io/BUSCAMINAS/" target="_blank" class="view-button" style="background:#3498db">Jugar Ahora</a>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="card-image"><img src="https://placehold.co/600x400/f1c40f/333333?text=CARAS" alt="Caras"></div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:10px">Caras</h3>
+                        <p class="card-description">Reconocimiento de patrones visuales.</p>
+                        <a href="https://pedroguiraogil.github.io/CARAS/" target="_blank" class="view-button" style="background:#f1c40f; color:#333">Jugar Ahora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="books" class="section-content">
+            <div class="books-section">
+                <h2 class="books-title" data-translation-key="literarySideTitle"></h2>
+                
+                <div class="books-carousel">
+                    <div class="books-container">
+                        <div class="book-cover active" data-index="0" onclick="goToBook(0)"><img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/FIN.png" onerror="this.src='https://placehold.co/220x330/FF6B6B/ffffff?text=FIN'"></div>
+                        <div class="book-cover next" data-index="1" onclick="goToBook(1)"><img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/OH%20MY%20GOD.jpg" onerror="this.src='https://placehold.co/220x330/FF8E53/ffffff?text=OMG'"></div>
+                        <div class="book-cover hidden" data-index="2" onclick="goToBook(2)"><img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/MANUAL%20BASICO%20DE%20CONQUISTA.jpg" onerror="this.src='https://placehold.co/220x330/FFA726/ffffff?text=Manual'"></div>
+                        <div class="book-cover hidden" data-index="3" onclick="goToBook(3)"><img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/TOCATA%20Y%20FUGA%20DE%20LA%20TENIENTE%20ESCALI.jpg" onerror="this.src='https://placehold.co/220x330/4ECDC4/ffffff?text=TOCATA'"></div>
+                        <div class="book-cover hidden" data-index="4" onclick="goToBook(4)"><img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ESCALIS%20BLUES.jpg" onerror="this.src='https://placehold.co/220x330/26A69A/ffffff?text=BLUES'"></div>
+                        <div class="book-cover hidden" data-index="5" onclick="goToBook(5)"><img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/EXODOS.jpg" onerror="this.src='https://placehold.co/220x330/8E44AD/ffffff?text=ÉXODOS'"></div>
+                    </div>
+                </div>
+
+                <div class="book-info">
+                    <h3 class="book-title-text" id="bookTitle"></h3>
+                    <p class="book-description" id="bookDescription"></p>
+                    
+                    <div class="book-links-container" id="bookActions">
+                        </div>
                 </div>
 
                 <div class="carousel-controls">
                     <button class="nav-button" onclick="prevBook()">←</button>
-                    <div class="indicators" id="indicators"></div>
                     <button class="nav-button" onclick="nextBook()">→</button>
                 </div>
-
-                <div class="autoplay-control">
-                    <button class="autoplay-btn" onclick="toggleAutoplay()" id="autoplayBtn">
-                        <span data-translation-key="pauseCarousel"></span>
-                    </button>
-                </div>
             </div>
         </div>
 
-        <!-- Modals -->
-        <div id="audioModal" class="audio-modal">
-            <div class="audio-content">
-                <div class="audio-header">
-                    <h3 class="audio-title" id="audioTitle"></h3>
-                    <button class="close-audio" onclick="closeAudio()">✕</button>
+        <div id="mediaModal" class="modal-overlay" onclick="closeMediaModal(event)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title" id="mediaTitle">Reproduciendo...</span>
+                    <button class="close-modal" onclick="closeMediaModal()">×</button>
                 </div>
-                <div class="audio-player">
-                    <div class="loading-indicator" id="audioLoading">🔄 Cargando audio...</div>
-                    <audio id="audioPlayer" controls preload="metadata" crossorigin="anonymous" playsinline>
-                        Tu navegador no soporta el elemento audio.
-                    </audio>
-                    <div class="media-fallback" id="audioFallback"></div>
+                <div class="media-player-container">
+                    <video id="videoPlayer" controls style="display:none;"></video>
+                    <audio id="audioPlayer" controls style="display:none;"></audio>
                 </div>
             </div>
         </div>
-        
-        <div id="videoModal" class="video-modal">
-            <div class="video-content">
-                <div class="video-header">
-                    <h3 class="video-title" id="videoTitle"></h3>
-                    <button class="close-video" onclick="closeVideo()">✕</button>
+
+        <div id="galleryModal" class="modal-overlay" onclick="closeGalleryModal(event)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title" id="galleryTitle">Galería</span>
+                    <button class="close-modal" onclick="closeGalleryModal()">×</button>
                 </div>
-                <div class="video-player">
-                    <div class="loading-indicator" id="videoLoading">🔄 Cargando video...</div>
-                    <video id="videoPlayer" controls preload="metadata" crossorigin="anonymous" playsinline>
-                        Tu navegador no soporta el elemento video.
-                    </video>
-                    <div class="media-fallback" id="videoFallback"></div>
+                <div class="modal-body">
+                    <div class="gallery-grid" id="galleryGrid"></div>
                 </div>
             </div>
         </div>
-        
-        <div id="galleryModal" class="gallery-modal">
-            <div class="gallery-content">
-                <div class="gallery-header">
-                    <h3 id="galleryTitle" class="gallery-title"></h3>
-                    <button class="close-gallery" onclick="closeGallery()">✕</button>
-                </div>
-                <div id="galleryImages" class="gallery-images"></div>
-            </div>
-        </div>
-        
-        <div id="imageModal" class="image-modal">
-            <div class="image-modal-content">
-                <div class="image-modal-header" id="imageModalTitle"></div>
-                <div style="position: relative;">
-                    <img id="imageModalImg" src="" alt="">
-                    <button class="image-modal-close" onclick="closeImageModal()">✕</button>
-                    <button class="side-nav-arrow left" id="sideNavLeft" onclick="navigateImage(-1)">‹</button>
-                    <button class="side-nav-arrow right" id="sideNavRight" onclick="navigateImage(1)">›</button>
-                </div>
-                <div class="image-navigation">
-                    <button class="image-nav-btn" id="prevImageBtn" onclick="navigateImage(-1)">←</button>
-                    <div class="image-counter" id="imageCounter"></div>
-                    <button class="image-nav-btn" id="nextImageBtn" onclick="navigateImage(1)">→</button>
+
+        <div id="imageModal" class="modal-overlay" onclick="closeImageModal(event)">
+            <div class="modal-content" style="background:transparent; box-shadow:none;">
+                <div class="image-viewer">
+                    <button class="close-modal" onclick="closeImageModal()" style="position:absolute; top:-40px; right:0; color:white;">×</button>
+                    <img id="fullImage" src="" alt="">
+                    <div class="image-nav">
+                        <button onclick="navImage(-1)">❮</button>
+                        <button onclick="navImage(1)">❯</button>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div id="promptsModal" class="modal-overlay" onclick="closeModal('promptsModal', event)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title">📚 Biblioteca de Prompts & Ejemplos</span>
+                    <button class="close-modal" onclick="closeModal('promptsModal')">×</button>
+                </div>
+                <div class="modal-body">
+                    <p style="margin-bottom:20px; color:#666;">Colección de chats y artefactos generados en mis cursos de IA:</p>
+                    <ul class="prompt-list">
+                        <li>
+                            <a href="https://gemini.google.com/share/535daade8ac4" target="_blank" class="prompt-link">
+                                <span class="prompt-icon">🤖</span>
+                                <div class="prompt-info"><h4>Gemini: Ejemplo de Análisis</h4><p>Enlace compartido de chat</p></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://claude.ai/public/artifacts/f1bf9ee4-b241-4d7d-901b-6569e2665902" target="_blank" class="prompt-link">
+                                <span class="prompt-icon">🧠</span>
+                                <div class="prompt-info"><h4>Claude Artifact: Ejemplo 1</h4><p>Interfaz generada con IA</p></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://claude.ai/public/artifacts/e0a0db62-2910-43dd-a85b-efb433656609" target="_blank" class="prompt-link">
+                                <span class="prompt-icon">🧠</span>
+                                <div class="prompt-info"><h4>Claude Artifact: Ejemplo 2</h4><p>Interfaz generada con IA</p></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://gemini.google.com/share/c403a7684a80" target="_blank" class="prompt-link">
+                                <span class="prompt-icon">🤖</span>
+                                <div class="prompt-info"><h4>Gemini: Práctica TECCO 1</h4><p>Enlace compartido de chat</p></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://aistudio.google.com/apps/drive/1jTTc8G0AeBYQv0moBeFtjCtDhBtZWhKH?showPreview=true&showAssistant=true" target="_blank" class="prompt-link">
+                                <span class="prompt-icon">📁</span>
+                                <div class="prompt-info"><h4>Google AI Studio Drive</h4><p>Recursos avanzados</p></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://gemini.google.com/share/884071918ac5" target="_blank" class="prompt-link">
+                                <span class="prompt-icon">🤖</span>
+                                <div class="prompt-info"><h4>Gemini: Práctica TECCO 2</h4><p>Enlace compartido de chat</p></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
-        // Global variables
-        let currentBook = 0;
-        let autoplayInterval;
-        let isAutoplayActive = true;
-        const totalBooks = 6;
-        let currentGallery = null;
-        let currentImageIndex = 0;
-        let currentLanguage = 'es';
+        // --- DATA ---
+        const dashboards = {
+            ventas: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas2.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas3.jpg"],
+            futbol: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol2.jpg"],
+            presencia: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas2.jpg"],
+            coches: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler2.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler3.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler4.jpg"]
+        };
 
-        // --- COMPLETE TRANSLATION OBJECT ---
+        const booksData = [
+            { id: "fin", link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS" },
+            { id: "omg", link: "https://www.overdrive.com/media/10591700/%C2%A1oh-my-god" },
+            { id: "manual", link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV" },
+            { id: "tocata", link: "https://www.amazon.es/dp/B0DVMY39JD", 
+              trailer: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER1.mp4",
+              trailer2: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER2.mp4" },
+            { id: "blues", link: "https://www.kobo.com/us/es/ebook/escali-s-blues" },
+            { id: "exodos", link: "https://www.amazon.es/s?k=EXODOS", 
+              audio: "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/EXODOSESPANOL.mp3" }
+        ];
+
         const translations = {
             es: {
                 roleSpecialist: "Especialista en Power BI y Microsoft Excel",
-                roleTrainer: "Formador",
-                roleConsultant: "Consultor",
-                roleNovelist: "Novelista",
-                tabDashboards: "📊 DASHBOARDS POWER BI",
-                tabNovels: "📚 MIS NOVELAS",
-                dashLinkSales: "📊 ANÁLISIS DE VENTAS",
-                dashLinkFootball: "⚽ LIGA DE FÚTBOL",
-                dashLinkAttendance: "📅 CONTROL DE PRESENCIA",
-                dashLinkCars: "🚗 ALQUILER DE COCHES",
-                publicLegacy: "Legacy Público",
-                salesCardTitle: "📊 Análisis de Ventas",
-                salesCardDesc: "Dashboard completo de análisis de ventas con KPIs principales, evolución temporal y segmentación detallada. <strong>3 páginas interactivas</strong> con métricas de performance comercial.",
-                salesCardButton: "📊 Ver todas las páginas (3)",
-                footballCardTitle: "⚽ Liga de Fútbol",
-                footballCardDesc: "Análisis estadístico completo de liga de fútbol con clasificaciones, estadísticas de jugadores y equipos. <strong>2 páginas interactivas</strong> con métricas deportivas avanzadas.",
-                footballCardButton: "⚽ Ver todas las páginas (2)",
-                attendanceCardTitle: "📅 Control de Presencia",
-                attendanceCardDesc: "Control completo de presencia, entradas, salidas, vacaciones y bajas del personal. <strong>2 páginas interactivas</strong> con gestión de recursos humanos y calendarios.",
-                attendanceCardButton: "🕐 Ver todas las páginas (2)",
-                carsCardTitle: "🚗 Alquiler de Coches",
-                carsCardDesc: "Dashboard de análisis de alquiler de vehículos con métricas de rentabilidad, ocupación y tendencias del mercado. <strong>4 páginas interactivas</strong> con KPIs del sector automovilístico.",
-                carsCardButton: "🚗 Ver todas las páginas (4)",
-                aboutDashboardsTitle: "🎯 Sobre estos Dashboards",
-                aboutDashboardsDesc: "Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos.",
+                roleTrainer: "Formador", roleConsultant: "Consultor", roleNovelist: "Novelista",
+                tabDashboards: "📊 DASHBOARDS", tabTraining: "🤖 FORMACIÓN & IA", tabGames: "🎮 JUEGOS IA", tabNovels: "📚 MIS NOVELAS",
+                
+                dashLinkSales: "📊 ANÁLISIS DE VENTAS", dashLinkFootball: "⚽ LIGA DE FÚTBOL", dashLinkAttendance: "📅 CONTROL PRESENCIA", dashLinkCars: "🚗 ALQUILER COCHES",
+                salesCardTitle: "Análisis de Ventas", salesCardDesc: "KPIs de rendimiento comercial y evolución temporal.",
+                footballCardTitle: "Liga de Fútbol", footballCardDesc: "Estadísticas completas de jugadores y equipos.",
+                attendanceCardTitle: "Control de Presencia", attendanceCardDesc: "Gestión de RRHH, bajas y vacaciones.",
+                carsCardTitle: "Alquiler de Coches", carsCardDesc: "Análisis de flota, rentabilidad y ocupación.",
+                viewDetails: "VER DETALLES",
+
+                trainingHeader: "Formación Especializada: Excel, IA y Tecnología",
+                gamesHeader: "AI Playground: Juegos Generados por IA",
+                excelDesc: "Cursos de Excel Mega Avanzado para empresas. Macros, VBA, Power Query y modelado.",
+                teccoDesc: "Materiales y prácticas del curso de Inteligencia Artificial aplicada impartido en TECCO.",
+                onceDesc: "Formación especializada en herramientas de IA y accesibilidad para la fundación ONCE.",
+                promptsDesc: "Repositorio de ejemplos reales (Prompts) en Gemini y Claude utilizados en mis clases.",
+                moreInfo: "MÁS INFORMACIÓN", accessCourse: "ACCEDER AL CURSO", viewResources: "VER RECURSOS",
+
                 literarySideTitle: "📚 Mi Faceta Literaria",
-                literarySideDesc: "Exploro mundos imaginarios a través de la escritura, desde la ciencia ficción hasta el thriller, siempre buscando conectar con los lectores a través de historias que combinan entretenimiento y reflexión.",
-                viewInStore: "📖 Ver en Tienda",
-                watchTrailer: "🎬 Ver Booktrailer",
-                watchTrailer2: "🎥 Ver Booktrailer 2",
-                listenAudio: "🎧 Escuchar Audio",
-                pauseCarousel: "⏸️ Pausar Carrusel",
-                resumeCarousel: "▶️ Reanudar Carrusel",
-                galleryTitleVentas: "📊 Análisis de Ventas - Dashboard Completo",
-                galleryTitleFutbol: "⚽ Liga de Fútbol - Estadísticas Deportivas",
-                galleryTitlePresencia: "📅 Control de Presencia - Gestión de Personal",
-                galleryTitleCoches: "🚗 Alquiler de Coches - Análisis del Sector",
-                galleryOverlay: "Ver Página {index}",
-                imageModalTitle: "Página {index} de {total} del dashboard de {dashboardName}",
-                mediaError: "No se pudo cargar el contenido multimedia.",
-                mediaErrorDetail: "Esto puede deberse a restricciones de CORS, problemas de conectividad o formato incompatible.",
-                openDirectly: "Abrir en nueva pestaña",
-                tryAlternative: "Probar fuente alternativa",
-                loadingMedia: "Cargando contenido multimedia..."
+                bookBtnShop: "📖 Comprar / Leer", bookBtnTrailer: "🎬 Ver Trailer", bookBtnAudio: "🎧 Escuchar Audio",
+                
+                bookTitle_fin: "FIN", bookDesc_fin: "Thriller de ciencia ficción sobre las últimas horas de la humanidad.",
+                bookTitle_omg: "OH MY GOD", bookDesc_omg: "Sátira divina donde Dios baja a la tierra de vacaciones.",
+                bookTitle_manual: "MANUAL BÁSICO DE CONQUISTA", bookDesc_manual: "Guía humorística para la dominación galáctica.",
+                bookTitle_tocata: "TOCATA Y FUGA...", bookDesc_tocata: "Primera parte de la saga de la Teniente Escali.",
+                bookTitle_blues: "ESCALI'S BLUES", bookDesc_blues: "La secuela noir de la Teniente Escali.",
+                bookTitle_exodos: "ÉXODOS", bookDesc_exodos: "Ciencia ficción distópica bajo el pseudónimo Kia P. Cabdill."
             },
             en: {
                 roleSpecialist: "Power BI and Microsoft Excel Specialist",
-                roleTrainer: "Trainer",
-                roleConsultant: "Consultant",
-                roleNovelist: "Novelist",
-                tabDashboards: "📊 POWER BI DASHBOARDS",
-                tabNovels: "📚 MY NOVELS",
-                dashLinkSales: "📊 SALES ANALYSIS",
-                dashLinkFootball: "⚽ FOOTBALL LEAGUE",
-                dashLinkAttendance: "📅 ATTENDANCE CONTROL",
-                dashLinkCars: "🚗 CAR RENTAL",
-                publicLegacy: "Public Legacy",
-                salesCardTitle: "📊 Sales Analysis",
-                salesCardDesc: "Complete sales analysis dashboard with main KPIs, time evolution, and detailed segmentation. <strong>3 interactive pages</strong> with commercial performance metrics.",
-                salesCardButton: "📊 View all pages (3)",
-                footballCardTitle: "⚽ Football League",
-                footballCardDesc: "Complete statistical analysis of a football league with standings, player and team statistics. <strong>2 interactive pages</strong> with advanced sports metrics.",
-                footballCardButton: "⚽ View all pages (2)",
-                attendanceCardTitle: "📅 Attendance Control",
-                attendanceCardDesc: "Complete control of attendance, check-ins, check-outs, vacations, and staff leave. <strong>2 interactive pages</strong> with human resources management and calendars.",
-                attendanceCardButton: "🕐 View all pages (2)",
-                carsCardTitle: "🚗 Car Rental",
-                carsCardDesc: "Vehicle rental analysis dashboard with profitability, occupancy, and market trend metrics. <strong>4 interactive pages</strong> with automotive sector KPIs.",
-                carsCardButton: "🚗 View all pages (4)",
-                aboutDashboardsTitle: "🎯 About these Dashboards",
-                aboutDashboardsDesc: "These dashboards represent real implementation cases of Power BI in different sectors: commercial, sports, human resources and automotive. All maintain public access as legacy examples, ideal for commercial demos and specialized training in data analysis.",
+                roleTrainer: "Trainer", roleConsultant: "Consultant", roleNovelist: "Novelist",
+                tabDashboards: "📊 DASHBOARDS", tabTraining: "🤖 TRAINING & AI", tabGames: "🎮 AI GAMES", tabNovels: "📚 MY NOVELS",
+                
+                dashLinkSales: "📊 SALES ANALYSIS", dashLinkFootball: "⚽ FOOTBALL LEAGUE", dashLinkAttendance: "📅 ATTENDANCE", dashLinkCars: "🚗 CAR RENTAL",
+                salesCardTitle: "Sales Analysis", salesCardDesc: "Commercial performance KPIs and time evolution.",
+                footballCardTitle: "Football League", footballCardDesc: "Complete player and team statistics.",
+                attendanceCardTitle: "Attendance Control", attendanceCardDesc: "HR management, leaves and holidays.",
+                carsCardTitle: "Car Rental", carsCardDesc: "Fleet analysis, profitability and occupancy.",
+                viewDetails: "VIEW DETAILS",
+
+                trainingHeader: "Specialized Training: Excel, AI & Tech",
+                gamesHeader: "AI Playground: AI Generated Games",
+                excelDesc: "Advanced Excel courses for companies. Macros, VBA, Power Query and complex modeling.",
+                teccoDesc: "Materials and practices from the Applied AI course at TECCO.",
+                onceDesc: "Specialized training in AI tools and accessibility for the ONCE foundation.",
+                promptsDesc: "Repository of real examples (Prompts) in Gemini and Claude used in my classes.",
+                moreInfo: "MORE INFO", accessCourse: "ACCESS COURSE", viewResources: "VIEW RESOURCES",
+
                 literarySideTitle: "📚 My Literary Side",
-                literarySideDesc: "I explore imaginary worlds through writing, from science fiction to thriller, always seeking to connect with readers through stories that combine entertainment and reflection.",
-                viewInStore: "📖 View in Store",
-                watchTrailer: "🎬 Watch Booktrailer",
-                watchTrailer2: "🎥 Watch Booktrailer 2",
-                listenAudio: "🎧 Listen to Audio",
-                pauseCarousel: "⏸️ Pause Carousel",
-                resumeCarousel: "▶️ Resume Carousel",
-                galleryTitleVentas: "📊 Sales Analysis - Complete Dashboard",
-                galleryTitleFutbol: "⚽ Football League - Sports Statistics",
-                galleryTitlePresencia: "📅 Attendance Control - Staff Management",
-                galleryTitleCoches: "🚗 Car Rental - Sector Analysis",
-                galleryOverlay: "View Page {index}",
-                imageModalTitle: "Page {index} of {total} of the {dashboardName} dashboard",
-                mediaError: "Could not load multimedia content.",
-                mediaErrorDetail: "This might be due to CORS restrictions, connectivity issues, or incompatible format.",
-                openDirectly: "Open in new tab",
-                tryAlternative: "Try alternative source",
-                loadingMedia: "Loading multimedia content..."
+                bookBtnShop: "📖 Shop / Read", bookBtnTrailer: "🎬 Watch Trailer", bookBtnAudio: "🎧 Listen Audio",
+                
+                bookTitle_fin: "FIN", bookDesc_fin: "Sci-fi thriller about humanity's last hours.",
+                bookTitle_omg: "OH MY GOD", bookDesc_omg: "Divine satire where God comes to Earth on vacation.",
+                bookTitle_manual: "BASIC CONQUEST MANUAL", bookDesc_manual: "Humorous guide to galactic domination.",
+                bookTitle_tocata: "TOCATA Y FUGA...", bookDesc_tocata: "First part of the Lieutenant Escali saga.",
+                bookTitle_blues: "ESCALI'S BLUES", bookDesc_blues: "The noir sequel to Lieutenant Escali.",
+                bookTitle_exodos: "EXODUS", bookDesc_exodos: "Dystopian sci-fi under the pseudonym Kia P. Cabdill."
             }
         };
 
-        // Dashboard data
-        const dashboards = {
-            ventas: { images: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas2.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/ventas3.jpg"] },
-            futbol: { images: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/futbol2.jpg"] },
-            presencia: { images: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/bajas2.jpg"] },
-            coches: { images: ["https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler2.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler3.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/alquiler4.jpg"] }
-        };
+        // --- STATE & LOGIC ---
+        let currentLanguage = 'es';
+        let currentBook = 0;
+        let currentGalleryKey = null;
+        let currentImageIndex = 0;
+        const totalBooks = booksData.length;
 
-        // Book data with FIXED URLs (using multiple sources for video fallback)
-        const books = [
-            { 
-                id: "fin", 
-                author: "Pedro G. Guirao", 
-                genreColor: "linear-gradient(45deg, #c0392b, #8e44ad)", 
-                link: "https://www.amazon.es/Fin-Pedro-G-Guirao-ebook/dp/B0DYK9VBMS/ref=sr_1_1?dib=eyJ2IjoiMSJ9.6A_MzvFnAk2N0yalauznZ2xZOGXFl0yUb7ZGi1VHNBHGjHj071QN20LucGBJIEps.bloUs3wVHjhjcTuT5oZzT4yeiVf-FdHh3SeXP7CrViA&dib_tag=se&qid=1754474000&refinements=p_27%3APedro+G.+Guirao&s=books&sr=1-1" 
-            },
-            { 
-                id: "omg", 
-                author: "Pedro G. Guirao", 
-                genreColor: "linear-gradient(45deg, #f39c12, #e67e22)", 
-                link: "https://www.overdrive.com/media/10591700/%C2%A1oh-my-god" 
-            },
-            { 
-                id: "manual", 
-                author: "Pedro G. Guirao", 
-                genreColor: "linear-gradient(45deg, #27ae60, #2ecc71)", 
-                link: "https://www.amazon.es/Manual-B%C3%A1sico-Conquista-Pedro-Guirao-ebook/dp/B0DWXRXMLV/ref=sr_1_1?dib=eyJ2IjoiMSJ9.tmyylQfKGGx2v7Pa1FQPEHTkmibi0MFYU6RWXjUwEHI.ZFnJhW0F30RxeDkQjDnK3shLzHyzp8zqzBJhqYH6r24&dib_tag=se&qid=1754474035&refinements=p_27%3APedro+G.+Guirao&s=digital-text&sr=1-1&text=Pedro+G.+Guirao" 
-            },
-            { 
-                id: "tocata", 
-                author: "Pedro G. Guirao", 
-                genreColor: "linear-gradient(45deg, #2c3e50, #34495e)", 
-                link: "https://www.amazon.es/TOCATA-Y-FUGA-TENIENTE-ESCALI/dp/B0DVMY39JD/ref=sr_1_1?crid=15OOAKM8WIPW3&dib=eyJ2IjoiMSJ9.cRbTOFplKTevaqFsVz5PlZ9bSpSFEm6OwNgOLltm0UF-a5Bvnwj8gRcHiEaxjLqpfzr-XMPUCxGA3a9bT8UHDw.4AlqRcHWnmDHQBSRJcw4vU6NOGbKWvf4mplRhi-Q_08&dib_tag=se&keywords=pedro+g.+guirao&qid=1754473960&sprefix=%2Caps%2C135&sr=8-1", 
-                trailer: [
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER1.mp4",
-                    "https://github.com/PedroGuiraoGil/powerbi-dashboards/raw/main/images/BOOKTRAILER1.mp4"
-                ], 
-                trailer2: [
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/BOOKTRAILER2.mp4",
-                    "https://github.com/PedroGuiraoGil/powerbi-dashboards/raw/main/images/BOOKTRAILER2.mp4"
-                ]
-            },
-            { 
-                id: "blues", 
-                author: "Pedro G. Guirao", 
-                genreColor: "linear-gradient(45deg, #2c3e50, #34495e)", 
-                link: "https://www.kobo.com/us/es/ebook/escali-s-blues?srsltid=AfmBOoqYFWjt_Eg4PYnMu9vu8WiY2X9rEfq2xFnil1TCw2JVV_5xWDZp" 
-            },
-            { 
-                id: "exodos", 
-                author: "Kia P. Cabdill (Pseudónimo)", 
-                genreColor: "linear-gradient(45deg, #8e44ad, #9b59b6)", 
-                link: "https://www.amazon.es/s?k=EXODOS+KIA+P.+CABDILL&__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2QQ27I1STXWQL&sprefix=exodos+kia+p.+cabdill%2Caps%2C108&ref=nb_sb_noss", 
-                audio: [
-                    "https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/EXODOSESPANOL.mp3",
-                    "https://github.com/PedroGuiraoGil/powerbi-dashboards/raw/main/images/EXODOSESPANOL.mp3"
-                ]
-            }
-        ];
-        
-        // Add book text to translations object
-        books.forEach(book => {
-            translations.es[`bookTitle_${book.id}`] = { 
-                fin: "FIN", 
-                omg: "OH MY GOD", 
-                manual: "MANUAL BÁSICO DE CONQUISTA", 
-                tocata: "TOCATA Y FUGA DE LA TENIENTE ESCALI", 
-                blues: "ESCALI'S BLUES", 
-                exodos: "ÉXODOS" 
-            }[book.id];
-            
-            translations.en[`bookTitle_${book.id}`] = { 
-                fin: "END", 
-                omg: "OH MY GOD", 
-                manual: "BASIC CONQUEST MANUAL", 
-                tocata: "TOCATA AND FUGUE OF LIEUTENANT ESCALI", 
-                blues: "ESCALI'S BLUES", 
-                exodos: "EXODUS" 
-            }[book.id];
-            
-            translations.es[`bookDesc_${book.id}`] = { 
-                fin: "Thriller de ciencia ficción que explora las últimas horas de la humanidad en un mundo al borde del colapso total. Una historia intensa sobre supervivencia, decisiones imposibles y el verdadero significado del fin.", 
-                omg: "Una comedia satírica donde Dios decide tomarse unas vacaciones en la Tierra, desatando el caos más divertido que jamás hayas imaginado. Humor irreverente y reflexiones profundas sobre la condición humana.", 
-                manual: "Una guía humorística y estratégica sobre el arte de la conquista... galáctica. Combina comedia espacial con aventuras épicas en un universo lleno de sorpresas y personajes inolvidables.", 
-                tocata: "La primera entrega de la saga de la Teniente Escali, una novela negra que combina misterio, acción y personajes complejos en una trama que te mantendrá en vilo hasta la última página.", 
-                blues: "La Teniente Escali regresa en una nueva aventura llena de suspense y giros inesperados. Una secuela que profundiza en el universo noir creado en la primera entrega.", 
-                exodos: "Bajo pseudónimo, una historia de supervivencia y esperanza en un mundo postapocalíptico. Ciencia ficción distópica que explora la resistencia humana ante la adversidad extrema." 
-            }[book.id];
-            
-            translations.en[`bookDesc_${book.id}`] = { 
-                fin: "A science fiction thriller exploring the last hours of humanity in a world on the brink of total collapse. An intense story about survival, impossible decisions, and the true meaning of the end.", 
-                omg: "A satirical comedy where God decides to take a vacation on Earth, unleashing the funniest chaos you could ever imagine. Irreverent humor and deep reflections on the human condition.", 
-                manual: "A humorous and strategic guide to the art of... galactic conquest. Combines space comedy with epic adventures in a universe full of surprises and unforgettable characters.", 
-                tocata: "The first installment in the Lieutenant Escali saga, a noir novel that combines mystery, action, and complex characters in a plot that will keep you on edge until the last page.", 
-                blues: "Lieutenant Escali returns in a new adventure full of suspense and unexpected twists. A sequel that delves deeper into the noir universe created in the first installment.", 
-                exodos: "Under a pseudonym, a story of survival and hope in a post-apocalyptic world. Dystopian science fiction that explores human resistance in the face of extreme adversity." 
-            }[book.id];
-            
-            translations.es[`bookGenre_${book.id}`] = { 
-                fin: "Ciencia Ficción / Thriller", 
-                omg: "Comedia / Sátira", 
-                manual: "Ciencia Ficción / Humor", 
-                tocata: "Novela Negra", 
-                blues: "Novela Negra", 
-                exodos: "Ciencia Ficción / Distopía" 
-            }[book.id];
-            
-            translations.en[`bookGenre_${book.id}`] = { 
-                fin: "Sci-Fi / Thriller", 
-                omg: "Comedy / Satire", 
-                manual: "Sci-Fi / Humor", 
-                tocata: "Crime Noir", 
-                blues: "Crime Noir", 
-                exodos: "Sci-Fi / Dystopian" 
-            }[book.id];
-        });
-
-        // --- CORE FUNCTIONS ---
-
-        function applyTranslations() {
-            const lang = translations[currentLanguage];
-            document.querySelectorAll('[data-translation-key]').forEach(el => {
-                const key = el.dataset.translationKey;
-                if (lang[key]) {
-                    el.innerHTML = lang[key];
-                }
-            });
-            updateBookDisplay();
-        }
-
-        function changeLanguage(lang) {
-            currentLanguage = lang;
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
-            applyTranslations();
-        }
-
-        function showSection(sectionName) {
-            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionName).classList.add('active');
-            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
-            document.querySelector(`.tab-button[onclick*="'${sectionName}'"]`).classList.add('active');
-        }
-
-        // --- BOOK CAROUSEL LOGIC ---
-        
-        function updateBookDisplay() {
-            const book = books[currentBook];
-            const lang = translations[currentLanguage];
-            
-            document.getElementById('bookTitle').textContent = lang[`bookTitle_${book.id}`];
-            document.getElementById('bookAuthor').textContent = book.author;
-            document.getElementById('bookDescription').innerHTML = lang[`bookDesc_${book.id}`];
-            
-            const genreEl = document.getElementById('bookGenre');
-            genreEl.textContent = lang[`bookGenre_${book.id}`];
-            genreEl.style.background = book.genreColor;
-
-            const bookLink = document.getElementById('bookLink');
-            bookLink.href = book.link;
-            bookLink.onclick = (e) => {
-                e.preventDefault();
-                window.open(bookLink.href, '_blank');
-            };
-
-            const trailerBtn = document.getElementById('bookTrailerLink');
-            const trailerBtn2 = document.getElementById('bookTrailerLink2');
-            const audioBtn = document.getElementById('bookAudioLink');
-
-            trailerBtn.style.display = book.trailer ? 'inline-flex' : 'none';
-            trailerBtn2.style.display = book.trailer2 ? 'inline-flex' : 'none';
-            audioBtn.style.display = book.audio ? 'inline-flex' : 'none';
-
-            if (book.trailer) trailerBtn.onclick = () => openVideo(book.trailer, lang[`bookTitle_${book.id}`]);
-            if (book.trailer2) trailerBtn2.onclick = () => openVideo(book.trailer2, `${lang[`bookTitle_${book.id}`]} (2)`);
-            if (book.audio) audioBtn.onclick = () => openAudio(book.audio, lang[`bookTitle_${book.id}`]);
-        }
-        
-        function createIndicators() {
-            const indicatorsContainer = document.getElementById('indicators');
-            indicatorsContainer.innerHTML = '';
-            for (let i = 0; i < totalBooks; i++) {
-                const indicator = document.createElement('div');
-                indicator.className = 'indicator';
-                indicator.onclick = () => goToBook(i);
-                indicatorsContainer.appendChild(indicator);
-            }
-        }
-
-        function updateCarousel() {
-            const covers = document.querySelectorAll('.book-cover');
-            covers.forEach((cover, index) => {
-                cover.className = 'book-cover';
-                let newIndex = (index - currentBook + totalBooks) % totalBooks;
-                if (newIndex === 0) cover.classList.add('active');
-                else if (newIndex === 1) cover.classList.add('next');
-                else if (newIndex === totalBooks - 1) cover.classList.add('prev');
-                else cover.classList.add('hidden');
-            });
-            document.querySelectorAll('.indicator').forEach((ind, i) => ind.classList.toggle('active', i === currentBook));
-            updateBookDisplay();
-        }
-
-        function nextBook() {
-            currentBook = (currentBook + 1) % totalBooks;
-            updateCarousel();
-            resetAutoplay();
-        }
-
-        function prevBook() {
-            currentBook = (currentBook - 1 + totalBooks) % totalBooks;
-            updateCarousel();
-            resetAutoplay();
-        }
-        
-        function goToBook(index) {
-            currentBook = index;
-            updateCarousel();
-            resetAutoplay();
-        }
-
-        function toggleAutoplay() {
-            isAutoplayActive = !isAutoplayActive;
-            const btnSpan = document.getElementById('autoplayBtn').querySelector('span');
-            if (isAutoplayActive) {
-                startAutoplay();
-                btnSpan.dataset.translationKey = "pauseCarousel";
-            } else {
-                clearInterval(autoplayInterval);
-                btnSpan.dataset.translationKey = "resumeCarousel";
-            }
-            applyTranslations();
-        }
-
-        function startAutoplay() {
-            clearInterval(autoplayInterval);
-            autoplayInterval = setInterval(nextBook, 5000);
-        }
-        
-        function resetAutoplay() {
-            if (isAutoplayActive) startAutoplay();
-        }
-        
-        // --- IMPROVED MEDIA LOADING FUNCTIONS ---
-
-        function openVideo(videoSources, title) {
-            const modal = document.getElementById('videoModal');
-            const player = document.getElementById('videoPlayer');
-            const fallback = document.getElementById('videoFallback');
-            const loading = document.getElementById('videoLoading');
-            
-            // Ensure videoSources is always an array
-            const sources = Array.isArray(videoSources) ? videoSources : [videoSources];
-            
-            // Show modal and reset states
-            document.getElementById('videoTitle').textContent = `🎬 ${title}`;
-            modal.style.display = 'block';
-            
-            player.style.display = 'none';
-            fallback.style.display = 'none';
-            loading.style.display = 'block';
-            loading.textContent = translations[currentLanguage].loadingMedia;
-            
-            // Clear previous video
-            player.pause();
-            player.src = '';
-            player.load();
-            
-            let currentSourceIndex = 0;
-            
-            function tryNextSource() {
-                if (currentSourceIndex >= sources.length) {
-                    // All sources failed
-                    loading.style.display = 'none';
-                    fallback.innerHTML = `
-                        <div style="text-align: center;">
-                            <h3>❌ ${translations[currentLanguage].mediaError}</h3>
-                            <p>${translations[currentLanguage].mediaErrorDetail}</p>
-                            <br>
-                            <a href="${sources[0]}" target="_blank" style="color: #4ecdc4; font-weight: bold; text-decoration: none; padding: 10px 20px; border: 2px solid #4ecdc4; border-radius: 25px; display: inline-block; margin: 5px;">
-                                🔗 ${translations[currentLanguage].openDirectly}
-                            </a>
-                            <br><br>
-                            <details style="text-align: left; max-width: 500px; margin: 0 auto;">
-                                <summary style="cursor: pointer; color: #ccc;">URLs probadas:</summary>
-                                <ul style="margin-top: 10px; color: #999;">
-                                    ${sources.map(url => `<li>${url}</li>`).join('')}
-                                </ul>
-                            </details>
-                        </div>
-                    `;
-                    fallback.style.display = 'block';
-                    return;
-                }
-                
-                const currentSource = sources[currentSourceIndex];
-                console.log(`Intentando cargar video desde: ${currentSource}`);
-                
-                // Remove previous event listeners
-                player.onloadstart = null;
-                player.onloadedmetadata = null;
-                player.oncanplay = null;
-                player.onerror = null;
-                player.onstalled = null;
-                player.onabort = null;
-                
-                // Set up new event listeners
-                player.onloadstart = () => {
-                    console.log('Video: Iniciando carga...');
-                };
-                
-                player.onloadedmetadata = () => {
-                    console.log('Video: Metadatos cargados');
-                    loading.style.display = 'none';
-                    player.style.display = 'block';
-                    
-                    // Try to play (handle autoplay policies)
-                    const playPromise = player.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(e => {
-                            console.log('Autoplay bloqueado (normal):', e.message);
-                        });
-                    }
-                };
-                
-                player.oncanplay = () => {
-                    console.log('Video: Listo para reproducir');
-                };
-                
-                player.onerror = (e) => {
-                    console.log(`Error con fuente ${currentSourceIndex + 1}/${sources.length}:`, player.error);
-                    currentSourceIndex++;
-                    setTimeout(tryNextSource, 500);
-                };
-                
-                player.onstalled = () => {
-                    console.log('Video: Descarga estancada, probando siguiente fuente...');
-                    currentSourceIndex++;
-                    setTimeout(tryNextSource, 3000);
-                };
-                
-                player.onabort = () => {
-                    console.log('Video: Carga abortada, probando siguiente fuente...');
-                    currentSourceIndex++;
-                    setTimeout(tryNextSource, 500);
-                };
-                
-                // Set video source
-                player.src = currentSource;
-                player.load();
-            }
-            
-            // Start trying sources
-            tryNextSource();
-        }
-
-        function closeVideo() {
-            const player = document.getElementById('videoPlayer');
-            const loading = document.getElementById('videoLoading');
-            
-            player.pause();
-            player.src = '';
-            player.load();
-            loading.style.display = 'none';
-            
-            document.getElementById('videoModal').style.display = 'none';
-        }
-
-        function openAudio(audioSources, title) {
-            const modal = document.getElementById('audioModal');
-            const player = document.getElementById('audioPlayer');
-            const fallback = document.getElementById('audioFallback');
-            const loading = document.getElementById('audioLoading');
-            
-            // Ensure audioSources is always an array
-            const sources = Array.isArray(audioSources) ? audioSources : [audioSources];
-            
-            // Show modal and reset states
-            document.getElementById('audioTitle').textContent = `🎧 ${title}`;
-            modal.style.display = 'block';
-            
-            player.style.display = 'none';
-            fallback.style.display = 'none';
-            loading.style.display = 'block';
-            loading.textContent = translations[currentLanguage].loadingMedia;
-            
-            // Clear previous audio
-            player.pause();
-            player.src = '';
-            player.load();
-            
-            let currentSourceIndex = 0;
-            
-            function tryNextSource() {
-                if (currentSourceIndex >= sources.length) {
-                    // All sources failed
-                    loading.style.display = 'none';
-                    fallback.innerHTML = `
-                        <div style="text-align: center;">
-                            <h3>❌ ${translations[currentLanguage].mediaError}</h3>
-                            <p>${translations[currentLanguage].mediaErrorDetail}</p>
-                            <br>
-                            <a href="${sources[0]}" target="_blank" style="color: #4ecdc4; font-weight: bold; text-decoration: none; padding: 10px 20px; border: 2px solid #4ecdc4; border-radius: 25px; display: inline-block;">
-                                🔗 ${translations[currentLanguage].openDirectly}
-                            </a>
-                        </div>
-                    `;
-                    fallback.style.display = 'block';
-                    return;
-                }
-                
-                const currentSource = sources[currentSourceIndex];
-                console.log(`Intentando cargar audio desde: ${currentSource}`);
-                
-                // Remove previous event listeners
-                player.onloadstart = null;
-                player.onloadedmetadata = null;
-                player.oncanplay = null;
-                player.onerror = null;
-                player.onstalled = null;
-                
-                // Set up new event listeners
-                player.onloadedmetadata = () => {
-                    console.log('Audio: Metadatos cargados');
-                    loading.style.display = 'none';
-                    player.style.display = 'block';
-                };
-                
-                player.onerror = (e) => {
-                    console.log(`Error con fuente de audio ${currentSourceIndex + 1}/${sources.length}:`, player.error);
-                    currentSourceIndex++;
-                    setTimeout(tryNextSource, 500);
-                };
-                
-                player.onstalled = () => {
-                    console.log('Audio: Descarga estancada, probando siguiente fuente...');
-                    currentSourceIndex++;
-                    setTimeout(tryNextSource, 3000);
-                };
-                
-                // Set audio source
-                player.src = currentSource;
-                player.load();
-            }
-            
-            // Start trying sources
-            tryNextSource();
-        }
-
-        function closeAudio() {
-            const player = document.getElementById('audioPlayer');
-            const loading = document.getElementById('audioLoading');
-            
-            player.pause();
-            player.src = '';
-            player.load();
-            loading.style.display = 'none';
-            
-            document.getElementById('audioModal').style.display = 'none';
-        }
-
-        function openGallery(dashboardKey) {
-            if (event) event.stopPropagation();
-            currentGallery = dashboardKey;
-            const galleryModal = document.getElementById('galleryModal');
-            const galleryImages = document.getElementById('galleryImages');
-            const galleryTitle = document.getElementById('galleryTitle');
-            
-            const titleKey = `galleryTitle${dashboardKey.charAt(0).toUpperCase() + dashboardKey.slice(1)}`;
-            galleryTitle.textContent = translations[currentLanguage][titleKey] || dashboardKey;
-            
-            galleryImages.innerHTML = '';
-            dashboards[dashboardKey].images.forEach((imgSrc, index) => {
-                const imgContainer = document.createElement('div');
-                imgContainer.className = 'gallery-image';
-                imgContainer.onclick = () => openImageModal(index);
-                const img = document.createElement('img');
-                img.src = imgSrc;
-                img.alt = `Page ${index + 1} of ${dashboardKey} dashboard`;
-                img.onerror = function() { this.src='https://placehold.co/800x600/cccccc/ffffff?text=Image+not+available'; };
-                const overlay = document.createElement('div');
-                overlay.className = 'image-overlay';
-                overlay.textContent = translations[currentLanguage].galleryOverlay.replace('{index}', index + 1);
-                imgContainer.appendChild(img);
-                imgContainer.appendChild(overlay);
-                galleryImages.appendChild(imgContainer);
-            });
-            galleryModal.style.display = 'block';
-        }
-
-        function closeGallery() {
-            document.getElementById('galleryModal').style.display = 'none';
-        }
-
-        function openImageModal(index) {
-            currentImageIndex = index;
-            const images = dashboards[currentGallery].images;
-            const totalImages = images.length;
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('imageModalImg');
-            const modalTitle = document.getElementById('imageModalTitle');
-            const counter = document.getElementById('imageCounter');
-            
-            modalImg.src = images[currentImageIndex];
-            
-            const titleKey = `galleryTitle${currentGallery.charAt(0).toUpperCase() + currentGallery.slice(1)}`;
-            const dashboardName = (translations[currentLanguage][titleKey] || currentGallery).replace(/📊 |⚽ |📅 |🚗 /g, '');
-            
-            modalTitle.textContent = translations[currentLanguage].imageModalTitle
-                .replace('{index}', currentImageIndex + 1)
-                .replace('{total}', totalImages)
-                .replace('{dashboardName}', dashboardName);
-                
-            counter.textContent = `${currentImageIndex + 1} / ${totalImages}`;
-            
-            document.getElementById('prevImageBtn').disabled = currentImageIndex === 0;
-            document.getElementById('nextImageBtn').disabled = currentImageIndex === totalImages - 1;
-            document.getElementById('sideNavLeft').disabled = currentImageIndex === 0;
-            document.getElementById('sideNavRight').disabled = currentImageIndex === totalImages - 1;
-            modal.style.display = 'flex';
-        }
-
-        function closeImageModal() {
-            document.getElementById('imageModal').style.display = 'none';
-        }
-
-        function navigateImage(direction) {
-            const images = dashboards[currentGallery].images;
-            const newIndex = currentImageIndex + direction;
-            if (newIndex >= 0 && newIndex < images.length) {
-                openImageModal(newIndex);
-            }
-        }
-        
         // --- INITIALIZATION ---
-        
         document.addEventListener('DOMContentLoaded', () => {
-            // Animate roles
+            // Animate Roles
             const parts = document.querySelectorAll('.highlight-text .part');
             let currentPart = 0;
             setInterval(() => {
@@ -1950,24 +644,173 @@
                 currentPart = (currentPart + 1) % parts.length;
             }, 2500);
 
-            // Setup carousel
-            createIndicators();
+            // Initial Setup
             updateCarousel();
-            startAutoplay();
+            changeLanguage('es');
             
-            // Initial translation
-            applyTranslations();
-
-            // Global key listener
-            window.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    closeGallery();
-                    closeImageModal();
-                    closeVideo();
-                    closeAudio();
-                }
-            });
+            // Auto-advance Carousel
+            setInterval(() => nextBook(), 5000);
         });
+
+        // --- NAVIGATION ---
+        function showSection(sectionId) {
+            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+            // Find button calling this section
+            const buttons = document.querySelectorAll('.tab-button');
+            for(let btn of buttons) {
+                if(btn.getAttribute('onclick').includes(sectionId)) btn.classList.add('active');
+            }
+        }
+
+        // --- LANGUAGE ---
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+            
+            document.querySelectorAll('[data-translation-key]').forEach(el => {
+                const key = el.dataset.translationKey;
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            updateBookDisplay();
+        }
+
+        // --- BOOKS CAROUSEL ---
+        function updateCarousel() {
+            const covers = document.querySelectorAll('.book-cover');
+            covers.forEach((cover, index) => {
+                cover.className = 'book-cover';
+                let diff = (index - currentBook + totalBooks) % totalBooks;
+                if (diff === 0) cover.classList.add('active');
+                else if (diff === 1) cover.classList.add('next');
+                else if (diff === totalBooks - 1) cover.classList.add('prev');
+                else cover.classList.add('hidden');
+            });
+            updateBookDisplay();
+        }
+
+        function updateBookDisplay() {
+            const book = booksData[currentBook];
+            const lang = translations[currentLanguage];
+            
+            document.getElementById('bookTitle').textContent = lang[`bookTitle_${book.id}`];
+            document.getElementById('bookDescription').textContent = lang[`bookDesc_${book.id}`];
+            
+            const actionContainer = document.getElementById('bookActions');
+            actionContainer.innerHTML = '';
+            
+            // Main Link
+            const mainBtn = document.createElement('a');
+            mainBtn.href = book.link;
+            mainBtn.target = "_blank";
+            mainBtn.className = "book-action-btn";
+            mainBtn.style.background = "#8E44AD";
+            mainBtn.textContent = lang.bookBtnShop;
+            actionContainer.appendChild(mainBtn);
+
+            // Trailers/Audio
+            if (book.trailer) {
+                const trBtn = document.createElement('button');
+                trBtn.className = "book-action-btn";
+                trBtn.style.background = "#c0392b";
+                trBtn.textContent = lang.bookBtnTrailer;
+                trBtn.onclick = () => openMediaModal('video', book.trailer);
+                actionContainer.appendChild(trBtn);
+            }
+            if (book.trailer2) {
+                const trBtn2 = document.createElement('button');
+                trBtn2.className = "book-action-btn";
+                trBtn2.style.background = "#e74c3c";
+                trBtn2.textContent = lang.bookBtnTrailer + " 2";
+                trBtn2.onclick = () => openMediaModal('video', book.trailer2);
+                actionContainer.appendChild(trBtn2);
+            }
+            if (book.audio) {
+                const audBtn = document.createElement('button');
+                audBtn.className = "book-action-btn";
+                audBtn.style.background = "#27ae60";
+                audBtn.textContent = lang.bookBtnAudio;
+                audBtn.onclick = () => openMediaModal('audio', book.audio);
+                actionContainer.appendChild(audBtn);
+            }
+        }
+
+        function nextBook() { currentBook = (currentBook + 1) % totalBooks; updateCarousel(); }
+        function prevBook() { currentBook = (currentBook - 1 + totalBooks) % totalBooks; updateCarousel(); }
+        function goToBook(index) { currentBook = index; updateCarousel(); }
+
+        // --- GALLERIES ---
+        function openGallery(key) {
+            currentGalleryKey = key;
+            const images = dashboards[key];
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+            
+            images.forEach((src, idx) => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.innerHTML = `<img src="${src}" onerror="this.src='https://placehold.co/600x400/ccc/fff?text=N/A'">`;
+                item.onclick = () => openImageModal(null, idx);
+                grid.appendChild(item);
+            });
+            
+            document.getElementById('galleryTitle').textContent = key.toUpperCase();
+            openModal('galleryModal');
+        }
+
+        // --- MODAL UTILS ---
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        
+        function closeModal(id, event) {
+            if(event && event.target !== event.currentTarget && !event.target.classList.contains('close-modal')) return;
+            document.getElementById(id).style.display = 'none';
+            // Stop media if closing media modal
+            if(id === 'mediaModal') {
+                document.getElementById('videoPlayer').pause();
+                document.getElementById('audioPlayer').pause();
+            }
+        }
+
+        function openMediaModal(type, src) {
+            const vPlayer = document.getElementById('videoPlayer');
+            const aPlayer = document.getElementById('audioPlayer');
+            vPlayer.style.display = 'none';
+            aPlayer.style.display = 'none';
+            vPlayer.pause(); aPlayer.pause();
+
+            if (type === 'video') {
+                vPlayer.src = src;
+                vPlayer.style.display = 'block';
+                vPlayer.play().catch(e => console.log(e));
+            } else {
+                aPlayer.src = src;
+                aPlayer.style.display = 'block';
+                aPlayer.play().catch(e => console.log(e));
+            }
+            openModal('mediaModal');
+        }
+        function closeMediaModal(e) { closeModal('mediaModal', e); }
+        function closeGalleryModal(e) { closeModal('galleryModal', e); }
+
+        // --- IMAGE VIEWER ---
+        function openImageModal(e, index) {
+            currentImageIndex = index;
+            updateImageViewer();
+            openModal('imageModal');
+        }
+        function updateImageViewer() {
+            const src = dashboards[currentGalleryKey][currentImageIndex];
+            document.getElementById('fullImage').src = src;
+        }
+        function navImage(dir) {
+            const len = dashboards[currentGalleryKey].length;
+            currentImageIndex = (currentImageIndex + dir + len) % len;
+            updateImageViewer();
+        }
+        function closeImageModal(e) { closeModal('imageModal', e); }
+
     </script>
 </body>
 </html>
