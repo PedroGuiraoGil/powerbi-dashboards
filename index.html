@@ -87,24 +87,25 @@
             background: white; color: #333; transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* Botón Novelas - REDUCIDO Y ALINEADO A LA DERECHA */
-        .novel-menu { 
-            width: 100%; 
-            display: flex; 
-            justify-content: flex-end; /* Alineación derecha */
-            margin-top: 5px; 
-            padding-right: 20px; /* Margen derecho */
+        /* Botón Novelas (PEQUEÑO Y DERECHA) */
+        .novel-menu {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end; /* Alineación a la derecha */
+            margin-top: 5px;
+            padding-right: 40px; /* Margen para no pegarse al borde */
         }
+
         .novel-btn {
-            padding: 5px 15px; /* Tamaño reducido */
-            border: none; border-radius: 15px; 
-            font-weight: 600; font-size: 0.75rem; /* Texto más pequeño */
-            cursor: pointer; transition: all 0.3s ease; 
+            padding: 6px 16px; /* Tamaño reducido */
+            border: none; border-radius: 20px;
+            font-weight: 600; font-size: 0.8rem; /* Texto más pequeño */
+            cursor: pointer; transition: all 0.3s ease;
             background: linear-gradient(45deg, #8E44AD, #9B59B6); color: white;
-            box-shadow: 0 3px 10px rgba(142,68,173,0.3); 
+            box-shadow: 0 4px 10px rgba(142,68,173,0.3);
             text-transform: uppercase; letter-spacing: 0.5px;
         }
-        .novel-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(142,68,173,0.5); }
+        .novel-btn:hover { transform: scale(1.05); box-shadow: 0 6px 15px rgba(142,68,173,0.5); }
         .novel-btn.active { ring: 2px solid rgba(255,255,255,0.5); }
 
         /* --- CONTENEDORES DE SECCIÓN --- */
@@ -225,7 +226,7 @@
             .tech-menu { flex-direction: column; width: 100%; }
             .menu-btn { width: 100%; justify-content: center; }
             .nav-links { grid-template-columns: 1fr; }
-            .novel-menu { justify-content: center; padding-right: 0; }
+            .novel-menu { justify-content: center; padding-right: 0; margin-top: 15px; }
         }
     </style>
 </head>
