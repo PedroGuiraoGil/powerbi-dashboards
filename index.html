@@ -87,18 +87,24 @@
             background: white; color: #333; transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* Botón Grande (Novelas) - REDUCIDO */
-        .novel-menu { margin-top: 10px; }
+        /* Botón Novelas (MODIFICADO: REDUCIDO Y ALINEADO A LA DERECHA) */
+        .novel-menu { 
+            width: 100%; 
+            display: flex; 
+            justify-content: flex-end; /* Alineación a la derecha */
+            margin-top: 10px; 
+            padding-right: 20px;
+        }
         .novel-btn {
-            padding: 8px 20px; /* Reducido drásticamente */
-            border: none; border-radius: 20px; 
-            font-weight: 600; font-size: 0.9rem; /* Letra más pequeña */
+            padding: 6px 15px; /* Reducido a la mitad */
+            border: none; border-radius: 15px; 
+            font-weight: 600; font-size: 0.75rem; /* Texto pequeño */
             cursor: pointer; transition: all 0.3s ease; 
             background: linear-gradient(45deg, #8E44AD, #9B59B6); color: white;
-            box-shadow: 0 5px 15px rgba(142,68,173,0.3); 
-            text-transform: uppercase; letter-spacing: 1px;
+            box-shadow: 0 3px 10px rgba(142,68,173,0.3); 
+            text-transform: uppercase; letter-spacing: 0.5px;
         }
-        .novel-btn:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(142,68,173,0.5); }
+        .novel-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(142,68,173,0.5); }
         .novel-btn.active { ring: 2px solid rgba(255,255,255,0.5); }
 
         /* --- CONTENEDORES DE SECCIÓN --- */
@@ -219,6 +225,7 @@
             .tech-menu { flex-direction: column; width: 100%; }
             .menu-btn { width: 100%; justify-content: center; }
             .nav-links { grid-template-columns: 1fr; }
+            .novel-menu { justify-content: center; padding-right: 0; }
         }
     </style>
 </head>
@@ -245,7 +252,7 @@
             <div class="menu-container">
                 <div class="tech-menu">
                     <button class="menu-btn" onclick="showSection('dashboards')">
-                        📊 <span data-translation-key="btnDashboards">DASHBOARDS</span>
+                        📊 <span data-translation-key="btnDashboards">POWER BI DESKTOP & SERVICE</span>
                     </button>
                     <button class="menu-btn" onclick="showSection('excel')">
                         📈 <span data-translation-key="btnExcel">OFFICE & EXCEL</span>
@@ -338,7 +345,9 @@
             <div class="dashboard-grid">
                 <div class="dashboard-card">
                     <div class="card-image">
-                        <img src="http://googleusercontent.com/image_generation_content/0" alt="Google Sheets">
+                        <img src="images/google_sheets.jpg" 
+                             onerror="this.src='https://placehold.co/600x400/2196F3/ffffff?text=GOOGLE+SHEETS'" 
+                             alt="Google Sheets">
                     </div>
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Google Sheets</h3><span class="status-badge" style="background:#2196F3; color:white">Calculus</span></div>
@@ -348,7 +357,9 @@
                 
                 <div class="dashboard-card">
                     <div class="card-image">
-                        <img src="http://googleusercontent.com/image_generation_content/0" alt="Google Docs y Slides">
+                        <img src="images/google_docs.jpg" 
+                             onerror="this.src='https://placehold.co/600x400/FFC107/333333?text=DOCS+SLIDES'" 
+                             alt="Google Docs y Slides">
                     </div>
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Docs & Slides</h3><span class="status-badge" style="background:#FFC107; color:#333">Office Cloud</span></div>
@@ -358,7 +369,9 @@
 
                 <div class="dashboard-card">
                     <div class="card-image">
-                        <img src="http://googleusercontent.com/image_generation_content/2" alt="Google Forms">
+                        <img src="images/google_forms.jpg" 
+                             onerror="this.src='https://placehold.co/600x400/9C27B0/ffffff?text=FORMS'" 
+                             alt="Google Forms">
                     </div>
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Google Forms</h3><span class="status-badge" style="background:#9C27B0; color:white">Data Entry</span></div>
@@ -368,7 +381,9 @@
 
                 <div class="dashboard-card">
                     <div class="card-image">
-                        <img src="http://googleusercontent.com/image_generation_content/1" alt="Google Drive">
+                        <img src="images/google_drive.jpg" 
+                             onerror="this.src='https://placehold.co/600x400/1EA362/ffffff?text=GOOGLE+DRIVE'" 
+                             alt="Google Drive">
                     </div>
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Google Drive</h3><span class="status-badge" style="background:#1EA362; color:white">Cloud Storage</span></div>
@@ -378,7 +393,9 @@
 
                 <div class="dashboard-card">
                     <div class="card-image">
-                        <img src="http://googleusercontent.com/image_generation_content/3" alt="Looker Studio">
+                        <img src="images/looker_studio.jpg" 
+                             onerror="this.src='https://placehold.co/600x400/4285F4/ffffff?text=LOOKER'" 
+                             alt="Looker Studio">
                     </div>
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Looker Studio</h3><span class="status-badge" style="background:#4285F4">BI Cloud</span></div>
@@ -569,7 +586,7 @@
             es: {
                 roleSpecialist: "Especialista en Power BI y Microsoft Excel",
                 roleTrainer: "Formador", roleConsultant: "Consultant", roleNovelist: "Novelista",
-                btnDashboards: "DASHBOARDS", btnExcel: "OFFICE & EXCEL", btnGoogle: "GOOGLE TOOLS", btnAI: "IA GENERATIVA", btnNovels: "MIS NOVELAS",
+                btnDashboards: "POWER BI DESKTOP & SERVICE", btnExcel: "OFFICE & EXCEL", btnGoogle: "GOOGLE TOOLS", btnAI: "IA GENERATIVA", btnNovels: "MIS NOVELAS",
                 dashLinkSales: "📊 ANÁLISIS DE VENTAS", dashLinkFootball: "⚽ LIGA DE FÚTBOL", dashLinkAttendance: "📅 CONTROL PRESENCIA", dashLinkCars: "🚗 ALQUILER COCHES",
                 aboutDashboardsTitle: "🎯 Sobre estos Dashboards",
                 aboutDashboardsDesc: "Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos.",
@@ -585,7 +602,7 @@
             en: {
                 roleSpecialist: "Power BI and Microsoft Excel Specialist",
                 roleTrainer: "Trainer", roleConsultant: "Consultant", roleNovelist: "Novelist",
-                btnDashboards: "DASHBOARDS", btnExcel: "OFFICE & EXCEL", btnGoogle: "GOOGLE TOOLS", btnAI: "GENERATIVE AI", btnNovels: "MY NOVELS",
+                btnDashboards: "POWER BI DESKTOP & SERVICE", btnExcel: "OFFICE & EXCEL", btnGoogle: "GOOGLE TOOLS", btnAI: "GENERATIVE AI", btnNovels: "MY NOVELS",
                 dashLinkSales: "📊 SALES ANALYSIS", dashLinkFootball: "⚽ FOOTBALL LEAGUE", dashLinkAttendance: "📅 ATTENDANCE", dashLinkCars: "🚗 CAR RENTAL",
                 aboutDashboardsTitle: "🎯 About these Dashboards",
                 aboutDashboardsDesc: "These dashboards represent real Power BI implementation cases in different sectors. All remain publicly accessible as legacy examples.",
