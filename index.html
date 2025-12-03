@@ -87,15 +87,19 @@
             background: white; color: #333; transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* Botón Grande (Novelas) */
+        /* Botón Grande (Novelas) - REDUCIDO A 1/3 */
         .novel-btn {
-            padding: 15px 40px; border: none; border-radius: 30px; font-weight: bold; font-size: 1.2rem;
+            padding: 8px 25px; /* Reducido */
+            border: none; border-radius: 20px; 
+            font-weight: 600; font-size: 0.9rem; /* Reducido */
             cursor: pointer; transition: all 0.3s ease; 
             background: linear-gradient(45deg, #8E44AD, #9B59B6); color: white;
-            box-shadow: 0 10px 25px rgba(142,68,173,0.4); text-transform: uppercase; letter-spacing: 2px;
+            box-shadow: 0 5px 15px rgba(142,68,173,0.3); 
+            text-transform: uppercase; letter-spacing: 1px;
+            margin-top: 10px;
         }
-        .novel-btn:hover { transform: scale(1.05); box-shadow: 0 15px 35px rgba(142,68,173,0.6); }
-        .novel-btn.active { ring: 4px solid rgba(255,255,255,0.5); }
+        .novel-btn:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(142,68,173,0.5); }
+        .novel-btn.active { ring: 2px solid rgba(255,255,255,0.5); }
 
         /* --- CONTENEDORES DE SECCIÓN --- */
         .section-content { display: none; animation: fadeIn 0.5s ease-out; margin-top: 20px; }
@@ -110,22 +114,25 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.15); transition: all 0.4s ease;
             display: flex; flex-direction: column; height: 100%; border: 2px solid transparent;
         }
-        .dashboard-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.25); border-color: rgba(255,255,255,0.5); }
+        .dashboard-card:hover { transform: translateY(-5px); box-shadow: 0 25px 50px rgba(0,0,0,0.25); border-color: rgba(255,255,255,0.5); }
         
         .card-image { height: 200px; overflow: hidden; position: relative; background: #eee; }
         .card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .dashboard-card:hover .card-image img { transform: scale(1.1); }
+        .dashboard-card:hover .card-image img { transform: scale(1.05); }
         
         .card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .card-title { font-size: 1.4rem; font-weight: bold; background: linear-gradient(45deg, #333, #555); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .status-badge { padding: 5px 12px; border-radius: 15px; font-size: 0.75rem; font-weight: bold; color: white; background: #667eea; text-transform: uppercase; }
-        .card-description { color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
         
+        /* Descripción ampliada y mejorada */
+        .card-description { color: #555; font-size: 1rem; line-height: 1.6; margin-bottom: 0; flex-grow: 1; text-align: justify; }
+        
+        /* Botones internos eliminados en cursos, mantenidos en Dashboards/Juegos */
         .view-button {
             display: block; width: 100%; padding: 12px; border: none; border-radius: 12px;
             color: white; font-weight: bold; text-align: center; text-decoration: none; text-transform: uppercase;
-            font-size: 0.9rem; transition: 0.3s; cursor: pointer; margin-top: auto;
+            font-size: 0.9rem; transition: 0.3s; cursor: pointer; margin-top: 20px;
         }
         .view-button:hover { filter: brightness(1.1); }
 
@@ -248,7 +255,7 @@
                         ☁️ <span data-translation-key="btnGoogle">GOOGLE TOOLS</span>
                     </button>
                     <button class="menu-btn" onclick="showSection('ai')">
-                        🤖 <span data-translation-key="btnAI">IA & JUEGOS</span>
+                        🤖 <span data-translation-key="btnAI">IA GENERATIVA</span>
                     </button>
                 </div>
                 <div class="novel-menu">
@@ -291,40 +298,37 @@
             <div class="dashboard-grid">
                 <div class="dashboard-card">
                     <div class="card-image">
-                        <img src="images/excel%20basico.jpg" 
-                             onerror="this.src='https://placehold.co/600x400/217346/FFFFFF?text=FOTO+PENDIENTE'" 
+                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/excel_basico.jpg" 
+                             onerror="this.src='https://placehold.co/600x400/217346/FFFFFF?text=EXCEL+BASICO'" 
                              alt="Excel Básico">
                     </div>
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Nivel 1: Fundamentos</h3><span class="status-badge" style="background:#27ae60">Inicio</span></div>
-                        <p class="card-description">Manejo de entorno 365 (Desktop y Online). Estructura de datos, formatos condicionales y fórmulas esenciales.</p>
-                        <button class="view-button" style="background:#27ae60" onclick="alert('Contacta para temario detallado.')">Ver Temario</button>
+                        <p class="card-description">Domina el entorno Office 365, atajos de teclado y la gestión eficiente de libros. Aprende las buenas prácticas para introducir datos (evitando errores comunes), referencias relativas y absolutas, funciones matemáticas y lógicas esenciales (SI, SUMAR.SI, CONTAR.SI), formatos básicos y preparación profesional para impresión y PDF.</p>
                     </div>
                 </div>
 
                 <div class="dashboard-card">
                     <div class="card-image">
-                        <img src="images/excel%20medio.gif" 
-                             onerror="this.src='https://placehold.co/600x400/2980b9/FFFFFF?text=FOTO+PENDIENTE'" 
+                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/excel_medio.jpg" 
+                             onerror="this.src='https://placehold.co/600x400/2980b9/FFFFFF?text=EXCEL+INTERMEDIO'" 
                              alt="Excel Medio">
                     </div>
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Nivel 2: Intermedio</h3><span class="status-badge" style="background:#2980b9">Análisis</span></div>
-                        <p class="card-description">Tablas dinámicas, gráficos avanzados, funciones de búsqueda (BUSCARX) y validación de datos.</p>
-                        <button class="view-button" style="background:#2980b9" onclick="alert('Contacta para temario detallado.')">Ver Temario</button>
+                        <p class="card-description">El corazón del análisis de datos. Profundizamos en Tablas Dinámicas (agrupaciones, campos calculados), Segmentación de datos y Gráficos combinados. Dominarás las funciones de búsqueda modernas (BUSCARX, INDICE+COINCIDIR), Validación de Datos para blindar tus hojas y Formatos Condicionales avanzados basados en fórmulas.</p>
                     </div>
                 </div>
 
                 <div class="dashboard-card">
                     <div class="card-image">
-                        <img src="images/excel%20avanzado.jpg" 
-                             onerror="this.src='https://placehold.co/600x400/2c3e50/FFFFFF?text=FOTO+PENDIENTE'" 
+                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/excel_avanzado.jpg" 
+                             onerror="this.src='https://placehold.co/600x400/2c3e50/FFFFFF?text=EXCEL+AVANZADO'" 
                              alt="Excel Avanzado">
                     </div>
                     <div class="card-content">
-                        <div class="card-header"><h3 class="card-title">Nivel 3: Experto Data</h3><span class="status-badge" style="background:#2c3e50">Power Platform</span></div>
-                        <p class="card-description">Automatización con <strong>Power Query</strong>, modelado de datos (Power Pivot) y visualización conectada a Power BI.</p>
-                        <button class="view-button" style="background:#2c3e50" onclick="alert('Contacta para temario detallado.')">Ver Temario</button>
+                        <div class="card-header"><h3 class="card-title">Nivel 3: Experto & Power</h3><span class="status-badge" style="background:#2c3e50">Power Platform</span></div>
+                        <p class="card-description">El salto a la automatización y el BI. Introducción al ecosistema Power: Power Query para limpieza automática de datos (ETL) y Power Pivot para modelado de datos relacional. Conexión a orígenes externos (SQL, Web, Carpetas), macros básicas y la puerta de entrada natural hacia Power BI y la automatización de procesos empresariales.</p>
                     </div>
                 </div>
             </div>
@@ -335,20 +339,41 @@
             <div class="dashboard-grid">
                 <div class="dashboard-card">
                     <div class="card-image">
-                        <img src="https://placehold.co/600x400/f1c40f/333?text=GOOGLE+SHEETS+VS+EXCEL" alt="Google Sheets">
+                        <img src="http://googleusercontent.com/image_generation_content/0" alt="Google Sheets">
                     </div>
                     <div class="card-content">
-                        <div class="card-header"><h3 class="card-title">Google Sheets</h3><span class="status-badge" style="background:#f1c40f; color:#333">Cloud</span></div>
-                        <p class="card-description">Trabajo colaborativo en tiempo real, `IMPORTRANGE`, `QUERY` y automatización con Apps Script.</p>
+                        <div class="card-header"><h3 class="card-title">Google Sheets</h3><span class="status-badge" style="background:#2196F3; color:white">Calculus</span></div>
+                        <p class="card-description">La alternativa 100% colaborativa a Excel. Aprende a trabajar en tiempo real con tu equipo, historial de versiones, funciones exclusivas de nube (`IMPORTRANGE`, `GOOGLEFINANCE`) y arrays dinámicos.</p>
                     </div>
                 </div>
+                
                 <div class="dashboard-card">
                     <div class="card-image">
-                        <img src="https://placehold.co/600x400/4285F4/fff?text=LOOKER+STUDIO" alt="Looker Studio">
+                         <img src="http://googleusercontent.com/image_generation_content/1" alt="Google Docs y Slides">
                     </div>
                     <div class="card-content">
-                        <div class="card-header"><h3 class="card-title">Looker Studio</h3><span class="status-badge" style="background:#4285F4">Reporting</span></div>
-                        <p class="card-description">Creación de dashboards interactivos conectados a Hojas de Cálculo y Google Analytics.</p>
+                        <div class="card-header"><h3 class="card-title">Docs & Slides</h3><span class="status-badge" style="background:#FFC107; color:#333">Office Cloud</span></div>
+                        <p class="card-description">Ofimática colaborativa esencial. Redacción de documentos y presentaciones donde múltiples usuarios editan a la vez. Gestión de comentarios, sugerencias y vinculación de datos entre archivos.</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-image">
+                        <img src="http://googleusercontent.com/image_generation_content/2" alt="Google Forms">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header"><h3 class="card-title">Google Forms</h3><span class="status-badge" style="background:#9C27B0; color:white">Data Entry</span></div>
+                        <p class="card-description">La herramienta más sencilla para capturar datos. Creación de encuestas, exámenes o formularios de registro que vuelcan la información automáticamente en Sheets para su análisis inmediato.</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-image">
+                        <img src="http://googleusercontent.com/image_generation_content/3" alt="Looker Studio">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header"><h3 class="card-title">Looker Studio</h3><span class="status-badge" style="background:#4285F4">BI Cloud</span></div>
+                        <p class="card-description">El equivalente a Power BI de Google. Conecta tus Sheets, Forms y Analytics para crear cuadros de mando interactivos, gratuitos y compartibles vía web en segundos.</p>
                     </div>
                 </div>
             </div>
@@ -358,10 +383,10 @@
             <h2 style="text-align:center; color:white; margin-bottom:30px;">Inteligencia Artificial Aplicada</h2>
             
             <div class="ai-summary-box">
-                <h3>💡 ¿Qué hacemos en los cursos de IA?</h3>
-                <p>En mis formaciones de Inteligencia Artificial Generativa, enseñamos a transformar la productividad empresarial y personal. No se trata solo de usar ChatGPT, sino de integrar <strong>Gemini, Claude y Copilot</strong> en flujos de trabajo reales. </p>
+                <h3>💡 Formación en IA Generativa</h3>
+                <p>En mis formaciones de Inteligencia Artificial, enseñamos a transformar la productividad empresarial y personal. No se trata solo de usar ChatGPT, sino de integrar <strong>Copilot, Gemini y Claude</strong> en flujos de trabajo reales.</p>
                 <br>
-                <p>Aprendemos <strong>Prompt Engineering</strong> avanzado, creación de contenidos automatizados, análisis de datos complejos asistido por IA y generación de código para no programadores (como los juegos que verás abajo). Todo enfocado a la ética y la aplicación práctica inmediata.</p>
+                <p>Aprendemos <strong>Prompt Engineering</strong> avanzado, creación de contenidos automatizados y análisis de datos asistido por IA. Abajo puedes ver ejemplos creativos de lo que la IA puede generar (juegos, código, imágenes) como demostración de potencia.</p>
             </div>
 
             <div class="dashboard-grid">
@@ -369,7 +394,7 @@
                     <div class="card-image"><img src="https://placehold.co/600x400/834d9b/ffffff?text=CURSO+TECCO" alt="TECCO"></div>
                     <div class="card-content">
                         <h3 class="card-title">Curso TECCO</h3>
-                        <p class="card-description">Materiales y prácticas reales.</p>
+                        <p class="card-description">Materiales y prácticas reales de IA generativa.</p>
                         <a href="https://pedroguiraogil.github.io/CURSO-IA-TECCO/" target="_blank" class="view-button" style="background:#834d9b">Ver Curso</a>
                     </div>
                 </div>
@@ -377,47 +402,48 @@
                     <div class="card-image"><img src="https://placehold.co/600x400/00b09b/ffffff?text=CURSO+ONCE" alt="ONCE"></div>
                     <div class="card-content">
                         <h3 class="card-title">Fundación ONCE</h3>
-                        <p class="card-description">IA y Accesibilidad.</p>
+                        <p class="card-description">IA aplicada a la Accesibilidad y productividad.</p>
                         <a href="https://pedroguiraogil.github.io/CURSO-ONCE-/" target="_blank" class="view-button" style="background:#00b09b">Ver Curso</a>
-                    </div>
-                </div>
-                <div class="dashboard-card">
-                    <div class="card-image"><img src="https://placehold.co/600x400/e74c3c/ffffff?text=JUEGOS+IA" alt="Juegos"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">Juegos Generados</h3>
-                        <p class="card-description">Ejemplos de código generado por IA (Maze, Cognos).</p>
-                        <button onclick="showSection('games-gallery')" class="view-button" style="background:#e74c3c">Ver Galería Juegos</button>
                     </div>
                 </div>
                 <div class="dashboard-card">
                     <div class="card-image"><img src="https://placehold.co/600x400/F7971E/333?text=PROMPTS" alt="Prompts"></div>
                     <div class="card-content">
                         <h3 class="card-title">Biblioteca Prompts</h3>
-                        <p class="card-description">Ejemplos de chats en Gemini/Claude.</p>
+                        <p class="card-description">Ejemplos de chats y artefactos en Gemini/Claude.</p>
                         <button onclick="openModal('promptsModal')" class="view-button" style="background:#F7971E; color:#333">Ver Recursos</button>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-image"><img src="https://placehold.co/600x400/e74c3c/ffffff?text=JUEGOS+IA" alt="Juegos"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Capacidades Creativas</h3>
+                        <p class="card-description">Ejemplos de código (juegos web) generados íntegramente por IA mediante lenguaje natural.</p>
+                        <button onclick="showSection('games-gallery')" class="view-button" style="background:#e74c3c">Ver Demos</button>
                     </div>
                 </div>
             </div>
 
             <div id="games-gallery" style="display:none; margin-top:40px;">
-                <h3 style="text-align:center; color:white; margin-bottom:20px;">🎮 Galería de Juegos IA</h3>
+                <h3 style="text-align:center; color:white; margin-bottom:20px;">🎮 Demos Generadas por IA</h3>
                 <div class="dashboard-grid">
                     <div class="dashboard-card">
                         <div class="card-content">
                             <h3>COGNOS</h3>
-                            <a href="https://pedroguiraogil.github.io/COGNOS/" target="_blank" class="view-button" style="background:#2c3e50">Jugar</a>
+                            <a href="https://pedroguiraogil.github.io/COGNOS/" target="_blank" class="view-button" style="background:#2c3e50">Jugar Demo</a>
                         </div>
                     </div>
                     <div class="dashboard-card">
                         <div class="card-content">
                             <h3>Laberinto</h3>
-                            <a href="https://pedroguiraogil.github.io/MAZE/" target="_blank" class="view-button" style="background:#e74c3c">Jugar</a>
+                            <a href="https://pedroguiraogil.github.io/MAZE/" target="_blank" class="view-button" style="background:#e74c3c">Jugar Demo</a>
                         </div>
                     </div>
                     <div class="dashboard-card">
                         <div class="card-content">
                             <h3>Paisaje Sensorial</h3>
-                            <a href="https://pedroguiraogil.github.io/paisaje-sensorial/" target="_blank" class="view-button" style="background:#8e44ad">Ver</a>
+                            <a href="https://pedroguiraogil.github.io/paisaje-sensorial/" target="_blank" class="view-button" style="background:#8e44ad">Ver Demo</a>
                         </div>
                     </div>
                 </div>
@@ -534,21 +560,12 @@
             es: {
                 roleSpecialist: "Especialista en Power BI y Microsoft Excel",
                 roleTrainer: "Formador", roleConsultant: "Consultant", roleNovelist: "Novelista",
-                
-                // Menú Nuevo
-                btnDashboards: "DASHBOARDS",
-                btnExcel: "OFFICE & EXCEL",
-                btnGoogle: "GOOGLE TOOLS",
-                btnAI: "IA & JUEGOS",
-                btnNovels: "MIS NOVELAS",
-                
+                btnDashboards: "DASHBOARDS", btnExcel: "OFFICE & EXCEL", btnGoogle: "GOOGLE TOOLS", btnAI: "IA GENERATIVA", btnNovels: "MIS NOVELAS",
                 dashLinkSales: "📊 ANÁLISIS DE VENTAS", dashLinkFootball: "⚽ LIGA DE FÚTBOL", dashLinkAttendance: "📅 CONTROL PRESENCIA", dashLinkCars: "🚗 ALQUILER COCHES",
                 aboutDashboardsTitle: "🎯 Sobre estos Dashboards",
                 aboutDashboardsDesc: "Estos dashboards representan casos reales de implementación de Power BI en diferentes sectores: comercial, deportivo, recursos humanos y automovilístico. Todos mantienen acceso público como ejemplos legacy, ideales para demos comerciales y formación especializada en análisis de datos.",
-
                 literarySideTitle: "📚 Mi Faceta Literaria",
                 bookBtnShop: "📖 Comprar / Leer", bookBtnTrailer: "🎬 Ver Trailer", bookBtnAudio: "🎧 Escuchar Audio",
-                
                 bookTitle_fin: "FIN", bookDesc_fin: "Thriller de ciencia ficción sobre las últimas horas de la humanidad.",
                 bookTitle_omg: "OH MY GOD", bookDesc_omg: "Sátira divina donde Dios baja a la tierra de vacaciones.",
                 bookTitle_manual: "MANUAL BÁSICO DE CONQUISTA", bookDesc_manual: "Guía humorística para la dominación galáctica.",
@@ -559,21 +576,12 @@
             en: {
                 roleSpecialist: "Power BI and Microsoft Excel Specialist",
                 roleTrainer: "Trainer", roleConsultant: "Consultant", roleNovelist: "Novelist",
-                
-                // New Menu
-                btnDashboards: "DASHBOARDS",
-                btnExcel: "OFFICE & EXCEL",
-                btnGoogle: "GOOGLE TOOLS",
-                btnAI: "AI & GAMES",
-                btnNovels: "MY NOVELS",
-                
+                btnDashboards: "DASHBOARDS", btnExcel: "OFFICE & EXCEL", btnGoogle: "GOOGLE TOOLS", btnAI: "GENERATIVE AI", btnNovels: "MY NOVELS",
                 dashLinkSales: "📊 SALES ANALYSIS", dashLinkFootball: "⚽ FOOTBALL LEAGUE", dashLinkAttendance: "📅 ATTENDANCE", dashLinkCars: "🚗 CAR RENTAL",
                 aboutDashboardsTitle: "🎯 About these Dashboards",
                 aboutDashboardsDesc: "These dashboards represent real Power BI implementation cases in different sectors. All remain publicly accessible as legacy examples.",
-
                 literarySideTitle: "📚 My Literary Side",
                 bookBtnShop: "📖 Shop / Read", bookBtnTrailer: "🎬 Watch Trailer", bookBtnAudio: "🎧 Listen Audio",
-                
                 bookTitle_fin: "FIN", bookDesc_fin: "Sci-fi thriller about humanity's last hours.",
                 bookTitle_omg: "OH MY GOD", bookDesc_omg: "Divine satire where God comes to Earth on vacation.",
                 bookTitle_manual: "BASIC CONQUEST MANUAL", bookDesc_manual: "Humorous guide to galactic domination.",
@@ -610,7 +618,7 @@
             
             // Si es un toggle para juegos dentro de IA
             if(sectionId === 'games-gallery') {
-                document.getElementById('ai').classList.add('active'); // Keep AI open
+                document.getElementById('ai').classList.add('active'); 
                 document.getElementById('games-gallery').style.display = 'block';
                 return;
             }
