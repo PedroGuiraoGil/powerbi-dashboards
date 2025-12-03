@@ -87,16 +87,16 @@
             background: white; color: #333; transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* Botón Grande (Novelas) - REDUCIDO A 1/3 */
+        /* Botón Grande (Novelas) - REDUCIDO */
+        .novel-menu { margin-top: 10px; }
         .novel-btn {
-            padding: 8px 25px; /* Reducido */
+            padding: 8px 20px; /* Reducido drásticamente */
             border: none; border-radius: 20px; 
-            font-weight: 600; font-size: 0.9rem; /* Reducido */
+            font-weight: 600; font-size: 0.9rem; /* Letra más pequeña */
             cursor: pointer; transition: all 0.3s ease; 
             background: linear-gradient(45deg, #8E44AD, #9B59B6); color: white;
             box-shadow: 0 5px 15px rgba(142,68,173,0.3); 
             text-transform: uppercase; letter-spacing: 1px;
-            margin-top: 10px;
         }
         .novel-btn:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(142,68,173,0.5); }
         .novel-btn.active { ring: 2px solid rgba(255,255,255,0.5); }
@@ -125,10 +125,9 @@
         .card-title { font-size: 1.4rem; font-weight: bold; background: linear-gradient(45deg, #333, #555); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .status-badge { padding: 5px 12px; border-radius: 15px; font-size: 0.75rem; font-weight: bold; color: white; background: #667eea; text-transform: uppercase; }
         
-        /* Descripción ampliada y mejorada */
+        /* Descripción técnica mejorada y justificada */
         .card-description { color: #555; font-size: 1rem; line-height: 1.6; margin-bottom: 0; flex-grow: 1; text-align: justify; }
         
-        /* Botones internos eliminados en cursos, mantenidos en Dashboards/Juegos */
         .view-button {
             display: block; width: 100%; padding: 12px; border: none; border-radius: 12px;
             color: white; font-weight: bold; text-align: center; text-decoration: none; text-transform: uppercase;
@@ -284,7 +283,7 @@
                         <button class="view-button" style="background:#667eea">Ver Detalles</button>
                     </div>
                 </div>
-                </div>
+            </div>
             
             <div class="ai-summary-box">
                 <h3 data-translation-key="aboutDashboardsTitle"></h3>
@@ -298,7 +297,7 @@
             <div class="dashboard-grid">
                 <div class="dashboard-card">
                     <div class="card-image">
-                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/excel_basico.jpg" 
+                        <img src="images/excel_basico.jpg" 
                              onerror="this.src='https://placehold.co/600x400/217346/FFFFFF?text=EXCEL+BASICO'" 
                              alt="Excel Básico">
                     </div>
@@ -310,7 +309,7 @@
 
                 <div class="dashboard-card">
                     <div class="card-image">
-                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/excel_medio.jpg" 
+                        <img src="images/excel_medio.jpg" 
                              onerror="this.src='https://placehold.co/600x400/2980b9/FFFFFF?text=EXCEL+INTERMEDIO'" 
                              alt="Excel Medio">
                     </div>
@@ -322,7 +321,7 @@
 
                 <div class="dashboard-card">
                     <div class="card-image">
-                        <img src="https://raw.githubusercontent.com/PedroGuiraoGil/powerbi-dashboards/main/images/excel_avanzado.jpg" 
+                        <img src="images/excel_avanzado.jpg" 
                              onerror="this.src='https://placehold.co/600x400/2c3e50/FFFFFF?text=EXCEL+AVANZADO'" 
                              alt="Excel Avanzado">
                     </div>
@@ -349,7 +348,7 @@
                 
                 <div class="dashboard-card">
                     <div class="card-image">
-                         <img src="http://googleusercontent.com/image_generation_content/1" alt="Google Docs y Slides">
+                        <img src="http://googleusercontent.com/image_generation_content/0" alt="Google Docs y Slides">
                     </div>
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Docs & Slides</h3><span class="status-badge" style="background:#FFC107; color:#333">Office Cloud</span></div>
@@ -364,6 +363,16 @@
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Google Forms</h3><span class="status-badge" style="background:#9C27B0; color:white">Data Entry</span></div>
                         <p class="card-description">La herramienta más sencilla para capturar datos. Creación de encuestas, exámenes o formularios de registro que vuelcan la información automáticamente en Sheets para su análisis inmediato.</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-image">
+                        <img src="http://googleusercontent.com/image_generation_content/1" alt="Google Drive">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header"><h3 class="card-title">Google Drive</h3><span class="status-badge" style="background:#1EA362; color:white">Cloud Storage</span></div>
+                        <p class="card-description">El centro de mando de tu oficina digital. Almacenamiento seguro en la nube, gestión avanzada de permisos de carpetas compartidas, sincronización entre dispositivos y control de versiones de archivos.</p>
                     </div>
                 </div>
 
