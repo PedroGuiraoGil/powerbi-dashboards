@@ -33,20 +33,37 @@
         /* --- HEADER & PERFIL --- */
         .header { text-align: center; color: white; margin-bottom: 20px; padding-top: 40px; position: relative; }
 
+        /* --- SELECTOR DE IDIOMAS (NUEVO DISEÑO DE BANDERAS) --- */
         .language-selector {
-            position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 100;
+            position: absolute; top: 20px; right: 20px; display: flex; gap: 15px; z-index: 100;
         }
 
         .lang-btn {
-            background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); color: white;
-            padding: 8px 16px; border-radius: 20px; cursor: pointer; transition: all 0.3s ease;
-            font-weight: bold; font-size: 0.9rem; backdrop-filter: blur(10px); text-transform: uppercase;
+            width: 35px; height: 35px;
+            border-radius: 50%; /* Círculo perfecto */
+            border: 2px solid rgba(255,255,255,0.5);
+            cursor: pointer; transition: all 0.3s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            filter: grayscale(80%); /* Desactivados en gris */
         }
 
+        .lang-btn:hover { transform: scale(1.2); filter: grayscale(0%); }
+        
         .lang-btn.active {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border-color: rgba(255,255,255,0.5);
-            transform: scale(1.05); box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transform: scale(1.2);
+            border-color: #fff;
+            filter: grayscale(0%);
+            box-shadow: 0 0 15px rgba(255,255,255,0.6);
         }
+
+        /* URLs de las banderas (CDN público y estable) */
+        .btn-es { background-image: url('https://flagcdn.com/w80/es.png'); }
+        .btn-ca { background-image: url('https://flagcdn.com/w80/es-ct.png'); } /* Cataluña */
+        .btn-en { background-image: url('https://flagcdn.com/w80/gb.png'); }
+        .btn-fr { background-image: url('https://flagcdn.com/w80/fr.png'); }
 
         .profile-section h1 {
             font-size: 3.5rem; margin-bottom: 20px; text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
@@ -233,8 +250,10 @@
     <div class="container">
         <div class="header">
             <div class="language-selector">
-                <button class="lang-btn active" onclick="changeLanguage('es')" data-lang="es">🇪🇸 ES</button>
-                <button class="lang-btn" onclick="changeLanguage('en')" data-lang="en">🇬🇧 EN</button>
+                <button class="lang-btn btn-es active" onclick="changeLanguage('es')" title="Español"></button>
+                <button class="lang-btn btn-ca" onclick="changeLanguage('ca')" title="Català"></button>
+                <button class="lang-btn btn-en" onclick="changeLanguage('en')" title="English"></button>
+                <button class="lang-btn btn-fr" onclick="changeLanguage('fr')" title="Français"></button>
             </div>
             
             <div class="profile-section">
@@ -319,7 +338,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Nivel 1: Fundamentos</h3><span class="status-badge" style="background:#27ae60">Inicio</span></div>
-                        <p class="card-description">Domina el entorno Office 365, atajos de teclado y la gestión eficiente de libros. Aprende las buenas prácticas para introducir datos (evitando errores comunes), referencias relativas y absolutas, funciones matemáticas y lógicas esenciales (SI, SUMAR.SI, CONTAR.SI), formatos básicos y preparación profesional para impresión y PDF.</p>
+                        <p class="card-description" data-translation-key="descExcelBasic">Domina el entorno Office 365, atajos de teclado y la gestión eficiente de libros. Aprende las buenas prácticas para introducir datos, referencias relativas y absolutas, funciones esenciales (SI, SUMAR.SI) y preparación para impresión.</p>
                     </div>
                 </div>
 
@@ -331,7 +350,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Nivel 2: Intermedio</h3><span class="status-badge" style="background:#2980b9">Análisis</span></div>
-                        <p class="card-description">El corazón del análisis de datos. Profundizamos en Tablas Dinámicas (agrupaciones, campos calculados), Segmentación de datos y Gráficos combinados. Dominarás las funciones de búsqueda modernas (BUSCARX, INDICE+COINCIDIR), Validación de Datos para blindar tus hojas y Formatos Condicionales avanzados basados en fórmulas.</p>
+                        <p class="card-description" data-translation-key="descExcelInter">El corazón del análisis de datos. Profundizamos en Tablas Dinámicas, Segmentación de datos y Gráficos combinados. Dominarás funciones de búsqueda modernas (BUSCARX) y Validación de Datos.</p>
                     </div>
                 </div>
 
@@ -343,7 +362,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Nivel 3: Experto & Power</h3><span class="status-badge" style="background:#2c3e50">Power Platform</span></div>
-                        <p class="card-description">El salto a la automatización y el BI. Introducción al ecosistema Power: Power Query para limpieza automática de datos (ETL) y Power Pivot para modelado de datos relacional. Conexión a orígenes externos (SQL, Web, Carpetas), macros básicas y la puerta de entrada natural hacia Power BI y la automatización de procesos empresariales.</p>
+                        <p class="card-description" data-translation-key="descExcelAdv">El salto a la automatización. Introducción a Power Query para limpieza de datos (ETL) y Power Pivot para modelado. Conexión a orígenes externos y la puerta de entrada a Power BI.</p>
                     </div>
                 </div>
             </div>
@@ -360,7 +379,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Google Sheets</h3><span class="status-badge" style="background:#2196F3; color:white">Calculus</span></div>
-                        <p class="card-description">La alternativa 100% colaborativa a Excel. Aprende a trabajar en tiempo real con tu equipo, historial de versiones, funciones exclusivas de nube (`IMPORTRANGE`, `GOOGLEFINANCE`) y arrays dinámicos.</p>
+                        <p class="card-description" data-translation-key="descSheets">La alternativa 100% colaborativa a Excel. Aprende a trabajar en tiempo real con tu equipo, historial de versiones y funciones exclusivas de nube (`IMPORTRANGE`, `GOOGLEFINANCE`).</p>
                     </div>
                 </div>
                 
@@ -372,7 +391,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Docs & Slides</h3><span class="status-badge" style="background:#FFC107; color:#333">Office Cloud</span></div>
-                        <p class="card-description">Ofimática colaborativa esencial. Redacción de documentos y presentaciones donde múltiples usuarios editan a la vez. Gestión de comentarios, sugerencias y vinculación de datos entre archivos.</p>
+                        <p class="card-description" data-translation-key="descDocs">Ofimática colaborativa esencial. Redacción de documentos y presentaciones donde múltiples usuarios editan a la vez. Gestión de comentarios y sugerencias.</p>
                     </div>
                 </div>
 
@@ -384,7 +403,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Google Forms</h3><span class="status-badge" style="background:#9C27B0; color:white">Data Entry</span></div>
-                        <p class="card-description">La herramienta más sencilla para capturar datos. Creación de encuestas, exámenes o formularios de registro que vuelcan la información automáticamente en Sheets para su análisis inmediato.</p>
+                        <p class="card-description" data-translation-key="descForms">La herramienta más sencilla para capturar datos. Creación de encuestas, exámenes o formularios de registro que vuelcan la información automáticamente en Sheets.</p>
                     </div>
                 </div>
 
@@ -396,7 +415,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Google Drive</h3><span class="status-badge" style="background:#1EA362; color:white">Cloud Storage</span></div>
-                        <p class="card-description">El centro de mando de tu oficina digital. Almacenamiento seguro en la nube, gestión avanzada de permisos de carpetas compartidas, sincronización entre dispositivos y control de versiones de archivos.</p>
+                        <p class="card-description" data-translation-key="descDrive">El centro de mando de tu oficina digital. Almacenamiento seguro en la nube, gestión avanzada de permisos de carpetas compartidas y sincronización.</p>
                     </div>
                 </div>
 
@@ -408,7 +427,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-header"><h3 class="card-title">Looker Studio</h3><span class="status-badge" style="background:#4285F4">BI Cloud</span></div>
-                        <p class="card-description">El equivalente a Power BI de Google. Conecta tus Sheets, Forms y Analytics para crear cuadros de mando interactivos, gratuitos y compartibles vía web en segundos.</p>
+                        <p class="card-description" data-translation-key="descLooker">El equivalente a Power BI de Google. Conecta tus Sheets, Forms y Analytics para crear cuadros de mando interactivos, gratuitos y compartibles vía web.</p>
                     </div>
                 </div>
             </div>
@@ -418,10 +437,8 @@
             <h2 style="text-align:center; color:white; margin-bottom:30px;">Inteligencia Artificial Aplicada</h2>
             
             <div class="ai-summary-box">
-                <h3>💡 Formación en IA Generativa</h3>
-                <p>En mis formaciones de Inteligencia Artificial, enseñamos a transformar la productividad empresarial y personal. No se trata solo de usar ChatGPT, sino de integrar <strong>Copilot, Gemini y Claude</strong> en flujos de trabajo reales.</p>
-                <br>
-                <p>Aprendemos <strong>Prompt Engineering</strong> avanzado, creación de contenidos automatizados y análisis de datos asistido por IA. Abajo puedes ver ejemplos creativos de lo que la IA puede generar (juegos, código, imágenes) como demostración de potencia.</p>
+                <h3 data-translation-key="aiTitle">💡 Formación en IA Generativa</h3>
+                <p data-translation-key="aiDesc">En mis formaciones de Inteligencia Artificial, enseñamos a transformar la productividad empresarial y personal. No se trata solo de usar ChatGPT, sino de integrar <strong>Copilot, Gemini y Claude</strong> en flujos de trabajo reales.</p>
             </div>
 
             <div class="dashboard-grid">
@@ -453,7 +470,7 @@
                 <div class="dashboard-card">
                     <div class="card-image"><img src="https://placehold.co/600x400/e74c3c/ffffff?text=JUEGOS+IA" alt="Juegos"></div>
                     <div class="card-content">
-                        <h3 class="card-title">Capacidades Creativas</h3>
+                        <h3 class="card-title" data-translation-key="cardGames">Capacidades Creativas</h3>
                         <p class="card-description">Ejemplos de código (juegos web) generados íntegramente por IA mediante lenguaje natural.</p>
                         <button onclick="showSection('games-gallery')" class="view-button" style="background:#e74c3c">Ver Demos</button>
                     </div>
@@ -622,7 +639,48 @@
                 bookTitle_manual: "MANUAL BÁSICO DE CONQUISTA", bookDesc_manual: "Guía humorística para la dominación galáctica.",
                 bookTitle_tocata: "TOCATA Y FUGA...", bookDesc_tocata: "Primera parte de la saga de la Teniente Escali.",
                 bookTitle_blues: "ESCALI'S BLUES", bookDesc_blues: "La secuela noir de la Teniente Escali.",
-                bookTitle_exodos: "ÉXODOS", bookDesc_exodos: "Ciencia ficción distópica bajo el pseudónimo Kia P. Cabdill."
+                bookTitle_exodos: "ÉXODOS", bookDesc_exodos: "Ciencia ficción distópica bajo el pseudónimo Kia P. Cabdill.",
+                
+                // Nuevas traducciones para las descripciones (se usan data-translation-key en el HTML)
+                descExcelBasic: "Domina el entorno Office 365, atajos de teclado y la gestión eficiente de libros. Aprende las buenas prácticas para introducir datos, referencias relativas y absolutas, funciones esenciales (SI, SUMAR.SI) y preparación para impresión.",
+                descExcelInter: "El corazón del análisis de datos. Profundizamos en Tablas Dinámicas, Segmentación de datos y Gráficos combinados. Dominarás funciones de búsqueda modernas (BUSCARX) y Validación de Datos.",
+                descExcelAdv: "El salto a la automatización. Introducción a Power Query para limpieza de datos (ETL) y Power Pivot para modelado. Conexión a orígenes externos y la puerta de entrada a Power BI.",
+                descSheets: "La alternativa 100% colaborativa a Excel. Aprende a trabajar en tiempo real con tu equipo, historial de versiones y funciones exclusivas de nube (`IMPORTRANGE`, `GOOGLEFINANCE`).",
+                descDocs: "Ofimática colaborativa esencial. Redacción de documentos y presentaciones donde múltiples usuarios editan a la vez. Gestión de comentarios y sugerencias.",
+                descForms: "La herramienta más sencilla para capturar datos. Creación de encuestas, exámenes o formularios de registro que vuelcan la información automáticamente en Sheets.",
+                descDrive: "El centro de mando de tu oficina digital. Almacenamiento seguro en la nube, gestión avanzada de permisos de carpetas compartidas y sincronización.",
+                descLooker: "El equivalente a Power BI de Google. Conecta tus Sheets, Forms y Analytics para crear cuadros de mando interactivos, gratuitos y compartibles vía web.",
+                aiTitle: "💡 Formación en IA Generativa",
+                aiDesc: "En mis formaciones de Inteligencia Artificial, enseñamos a transformar la productividad empresarial y personal. No se trata solo de usar ChatGPT, sino de integrar <strong>Copilot, Gemini y Claude</strong> en flujos de trabajo reales.",
+                cardGames: "Capacidades Creativas"
+            },
+            ca: {
+                roleSpecialist: "Especialista en Power BI i Microsoft Excel",
+                roleTrainer: "Formador", roleConsultant: "Consultor", roleNovelist: "Novel·lista",
+                btnDashboards: "POWER BI DESKTOP & SERVICE", btnExcel: "OFFICE & EXCEL", btnGoogle: "EINES GOOGLE", btnAI: "IA GENERATIVA", btnNovels: "LES MEVES NOVEL·LES",
+                dashLinkSales: "📊 ANÀLISI DE VENDES", dashLinkFootball: "⚽ LLIGA DE FUTBOL", dashLinkAttendance: "📅 CONTROL PRESÈNCIA", dashLinkCars: "🚗 LLOGUER COTXES",
+                aboutDashboardsTitle: "🎯 Sobre aquests Dashboards",
+                aboutDashboardsDesc: "Aquests dashboards són exemples amb **dades inventades** creats específicament per a demostracions tècniques. No corresponen a dades reals de cap empresa, sinó que simulen escenaris de negoci habituals per mostrar capacitats d'anàlisi.",
+                literarySideTitle: "📚 La meva Faceta Literària",
+                bookBtnShop: "📖 Comprar / Llegir", bookBtnTrailer: "🎬 Veure Trailer", bookBtnAudio: "🎧 Escoltar Àudio",
+                bookTitle_fin: "FIN", bookDesc_fin: "Thriller de ciència-ficció sobre les últimes hores de la humanitat.",
+                bookTitle_omg: "OH MY GOD", bookDesc_omg: "Sàtira divina on Déu baixa a la terra de vacances.",
+                bookTitle_manual: "MANUAL BÀSIC DE CONQUESTA", bookDesc_manual: "Guia humorística per a la dominació galàctica.",
+                bookTitle_tocata: "TOCATA I FUGA...", bookDesc_tocata: "Primera part de la saga de la Tinent Escali.",
+                bookTitle_blues: "ESCALI'S BLUES", bookDesc_blues: "La seqüela noir de la Tinent Escali.",
+                bookTitle_exodos: "ÉXODOS", bookDesc_exodos: "Ciència-ficció distòpica sota el pseudònim Kia P. Cabdill.",
+
+                descExcelBasic: "Domina l'entorn Office 365, dreceres de teclat i gestió eficient de llibres. Aprèn bones pràctiques per introduir dades, referències relatives i absolutes, i funcions essencials.",
+                descExcelInter: "El cor de l'anàlisi de dades. Aprofundim en Taules Dinàmiques, Segmentació i Gràfics combinats. Dominaràs funcions de cerca modernes (BUSCARX) i Validació de Dades.",
+                descExcelAdv: "El salt a l'automatització. Introducció a Power Query per neteja de dades (ETL) i Power Pivot per modelatge. Connexió a orígens externs i la porta d'entrada a Power BI.",
+                descSheets: "L'alternativa 100% col·laborativa a Excel. Aprèn a treballar en temps real amb el teu equip, historial de versions i funcions exclusives de núvol.",
+                descDocs: "Ofimàtica col·laborativa essencial. Redacció de documents i presentacions on múltiples usuaris editen alhora. Gestió de comentaris i suggeriments.",
+                descForms: "L'eina més senzilla per capturar dades. Creació d'enquestes, exàmens o formularis de registre que bolquen la informació automàticament a Sheets.",
+                descDrive: "El centre de comandament de la teva oficina digital. Emmagatzematge segur al núvol, gestió avançada de permisos de carpetes compartides i sincronització.",
+                descLooker: "L'equivalent a Power BI de Google. Connecta els teus Sheets, Forms i Analytics per crear quadres de comandament interactius i gratuïts.",
+                aiTitle: "💡 Formació en IA Generativa",
+                aiDesc: "A les meves formacions d'Intel·ligència Artificial, ensenyem a transformar la productivitat empresarial i personal. No es tracta només d'usar ChatGPT, sinó d'integrar <strong>Copilot, Gemini i Claude</strong> en fluxos reals.",
+                cardGames: "Capacitats Creatives"
             },
             en: {
                 roleSpecialist: "Power BI and Microsoft Excel Specialist",
@@ -638,7 +696,47 @@
                 bookTitle_manual: "BASIC CONQUEST MANUAL", bookDesc_manual: "Humorous guide to galactic domination.",
                 bookTitle_tocata: "TOCATA Y FUGA...", bookDesc_tocata: "First part of the Lieutenant Escali saga.",
                 bookTitle_blues: "ESCALI'S BLUES", bookDesc_blues: "The noir sequel to Lieutenant Escali.",
-                bookTitle_exodos: "EXODUS", bookDesc_exodos: "Dystopian sci-fi under the pseudonym Kia P. Cabdill."
+                bookTitle_exodos: "EXODUS", bookDesc_exodos: "Dystopian sci-fi under the pseudonym Kia P. Cabdill.",
+
+                descExcelBasic: "Master the Office 365 environment, keyboard shortcuts, and efficient workbook management. Learn best practices for data entry, relative and absolute references, and essential functions.",
+                descExcelInter: "The heart of data analysis. We delve into Pivot Tables, Slicers, and Combo Charts. You will master modern lookup functions (XLOOKUP) and Data Validation.",
+                descExcelAdv: "The leap to automation. Introduction to Power Query for data cleaning (ETL) and Power Pivot for modeling. Connection to external sources and the gateway to Power BI.",
+                descSheets: "The 100% collaborative alternative to Excel. Learn to work in real-time with your team, version history, and exclusive cloud functions (`IMPORTRANGE`).",
+                descDocs: "Essential collaborative office tools. Drafting documents and presentations where multiple users edit at once. Management of comments and suggestions.",
+                descForms: "The easiest tool for capturing data. Creation of surveys, quizzes, or registration forms that automatically dump information into Sheets.",
+                descDrive: "The command center of your digital office. Secure cloud storage, advanced management of shared folder permissions, and synchronization.",
+                descLooker: "Google's equivalent to Power BI. Connect your Sheets, Forms, and Analytics to create interactive, free, and web-shareable dashboards.",
+                aiTitle: "💡 Generative AI Training",
+                aiDesc: "In my AI training, we teach how to transform business and personal productivity. It's not just about using ChatGPT, but integrating <strong>Copilot, Gemini, and Claude</strong> into real workflows.",
+                cardGames: "Creative Capabilities"
+            },
+            fr: {
+                roleSpecialist: "Spécialiste Power BI et Microsoft Excel",
+                roleTrainer: "Formateur", roleConsultant: "Consultant", roleNovelist: "Romancier",
+                btnDashboards: "POWER BI DESKTOP & SERVICE", btnExcel: "OFFICE & EXCEL", btnGoogle: "OUTILS GOOGLE", btnAI: "IA GÉNÉRATIVE", btnNovels: "MES ROMANS",
+                dashLinkSales: "📊 ANALYSE DES VENTES", dashLinkFootball: "⚽ LIGUE DE FOOTBALL", dashLinkAttendance: "📅 PRÉSENCE", dashLinkCars: "🚗 LOCATION VOITURES",
+                aboutDashboardsTitle: "🎯 À propos de ces Tableaux de Bord",
+                aboutDashboardsDesc: "Ces tableaux de bord sont des exemples utilisant des **données fictives** créées spécifiquement pour des démonstrations techniques. Ils ne correspondent pas à des données réelles d'entreprise, mais simulent des scénarios commerciaux courants.",
+                literarySideTitle: "📚 Mon Côté Littéraire",
+                bookBtnShop: "📖 Acheter / Lire", bookBtnTrailer: "🎬 Voir la Bande-annonce", bookBtnAudio: "🎧 Écouter l'Audio",
+                bookTitle_fin: "FIN", bookDesc_fin: "Thriller de science-fiction sur les dernières heures de l'humanité.",
+                bookTitle_omg: "OH MY GOD", bookDesc_omg: "Satire divine où Dieu descend sur Terre pour des vacances.",
+                bookTitle_manual: "MANUEL DE CONQUÊTE", bookDesc_manual: "Guide humoristique pour la domination galactique.",
+                bookTitle_tocata: "TOCATA ET FUGUE...", bookDesc_tocata: "Première partie de la saga du Lieutenant Escali.",
+                bookTitle_blues: "ESCALI'S BLUES", bookDesc_blues: "La suite noir du Lieutenant Escali.",
+                bookTitle_exodos: "EXODUS", bookDesc_exodos: "Science-fiction dystopique sous le pseudonyme Kia P. Cabdill.",
+
+                descExcelBasic: "Maîtrisez l'environnement Office 365, les raccourcis clavier et la gestion efficace des classeurs. Apprenez les meilleures pratiques pour la saisie de données et les fonctions essentielles.",
+                descExcelInter: "Le cœur de l'analyse de données. Nous approfondissons les tableaux croisés dynamiques, les segments et les graphiques combinés. Maîtrisez les fonctions de recherche modernes (XLOOKUP).",
+                descExcelAdv: "Le saut vers l'automatisation. Introduction à Power Query pour le nettoyage des données (ETL) et Power Pivot pour la modélisation. Connexion à des sources externes.",
+                descSheets: "L'alternative 100% collaborative à Excel. Apprenez à travailler en temps réel avec votre équipe, l'historique des versions et les fonctions cloud exclusives.",
+                descDocs: "Outils bureautiques collaboratifs essentiels. Rédaction de documents et présentations où plusieurs utilisateurs éditent simultanément.",
+                descForms: "L'outil le plus simple pour capturer des données. Création de sondages, quiz ou formulaires d'inscription qui déversent automatiquement les informations dans Sheets.",
+                descDrive: "Le centre de commande de votre bureau numérique. Stockage cloud sécurisé, gestion avancée des autorisations de dossiers partagés et synchronisation.",
+                descLooker: "L'équivalent de Power BI par Google. Connectez vos Sheets, Forms et Analytics pour créer des tableaux de bord interactifs et gratuits.",
+                aiTitle: "💡 Formation en IA Générative",
+                aiDesc: "Dans mes formations en IA, nous enseignons comment transformer la productivité. Il ne s'agit pas seulement d'utiliser ChatGPT, mais d'intégrer <strong>Copilot, Gemini et Claude</strong> dans des flux réels.",
+                cardGames: "Capacités Créatives"
             }
         };
 
@@ -686,11 +784,19 @@
         // --- LANGUAGE ---
         function changeLanguage(lang) {
             currentLanguage = lang;
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.btn-${lang}`).classList.add('active');
             
             document.querySelectorAll('[data-translation-key]').forEach(el => {
                 const key = el.dataset.translationKey;
-                if (translations[lang][key]) el.textContent = translations[lang][key];
+                if (translations[lang][key]) {
+                    // Si contiene HTML (strong), usar innerHTML
+                    if (key === 'aiDesc') {
+                        el.innerHTML = translations[lang][key];
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
             });
             updateBookDisplay();
         }
