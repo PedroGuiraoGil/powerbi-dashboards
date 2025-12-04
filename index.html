@@ -33,21 +33,21 @@
         /* --- HEADER & PERFIL --- */
         .header { text-align: center; color: white; margin-bottom: 20px; padding-top: 40px; position: relative; }
 
-        /* --- SELECTOR DE IDIOMAS (NUEVO DISEÑO DE BANDERAS) --- */
+        /* --- SELECTOR DE IDIOMAS (CORREGIDO CON SVG) --- */
         .language-selector {
             position: absolute; top: 20px; right: 20px; display: flex; gap: 15px; z-index: 100;
         }
 
         .lang-btn {
             width: 35px; height: 35px;
-            border-radius: 50%; /* Círculo perfecto */
+            border-radius: 50%;
             border: 2px solid rgba(255,255,255,0.5);
             cursor: pointer; transition: all 0.3s ease;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            filter: grayscale(80%); /* Desactivados en gris */
+            filter: grayscale(80%);
         }
 
         .lang-btn:hover { transform: scale(1.2); filter: grayscale(0%); }
@@ -59,9 +59,10 @@
             box-shadow: 0 0 15px rgba(255,255,255,0.6);
         }
 
-        /* URLs de las banderas (CDN público y estable) */
+        /* URLs de las banderas */
         .btn-es { background-image: url('https://flagcdn.com/w80/es.png'); }
-        .btn-ca { background-image: url('https://flagcdn.com/w80/es-ct.png'); } /* Cataluña */
+        /* CORRECCIÓN: SVG Directo para máxima fiabilidad */
+        .btn-ca { background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/ce/Flag_of_Catalonia.svg'); }
         .btn-en { background-image: url('https://flagcdn.com/w80/gb.png'); }
         .btn-fr { background-image: url('https://flagcdn.com/w80/fr.png'); }
 
@@ -606,7 +607,7 @@
 
     <script>
         // --- DATA ---
-        // Actualizada ruta a CURSOS
+        // Actualizada ruta a CURSOS y corregidos nombres
         const dashboards = {
             ventas: ["https://raw.githubusercontent.com/PedroGuiraoGil/CURSOS/main/images/ventas1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/CURSOS/main/images/ventas2.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/CURSOS/main/images/ventas3.jpg"],
             futbol: ["https://raw.githubusercontent.com/PedroGuiraoGil/CURSOS/main/images/futbol1.jpg", "https://raw.githubusercontent.com/PedroGuiraoGil/CURSOS/main/images/futbol2.jpg"],
